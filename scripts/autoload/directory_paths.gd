@@ -21,6 +21,11 @@ const monster1_remains_scene = {
     GameData.MONSTERS1.GIANT_WORM: "res://scenes/actors/monsters/remains/bloody_remains.tscn",
 }
 
+# --- ITEMS ---
+
+const weapon_scenes = {
+    "steel_longsword": "res://scenes/items/weapons/swords/steel_longsword.tscn",
+}
 
 # --- SCRIPT CLASSES ---
 

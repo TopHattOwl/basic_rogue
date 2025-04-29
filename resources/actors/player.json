@@ -1,18 +1,28 @@
 {
 	"attributes_component": {
-		"constitution": 5,
+		"constitution": 13,
 		"dexterity": 14,
 		"intelligence": 13,
 		"strength": 16
 	},
 	"health_component": {
-		"hp": 20,
-		"max_hp": 20
+		"hp": 18,
+		"max_hp": 18
 	},
 	"identity_component": {
 		"actor_name": "player",
 		"faction": "player",
 		"is_player": true
+	},
+	"melee_combat_component": {
+		"attack_type": 1,
+		"damage": [
+			1.0,
+			4.0,
+			[]
+		],
+		"element": 0,
+		"to_hit_bonus": 0
 	},
 	"player_component": {
 		"is_in_dungeon": false,

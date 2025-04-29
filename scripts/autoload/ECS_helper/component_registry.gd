@@ -7,3 +7,10 @@ func get_component(entity: Node, component_key: int) -> Node:
 
 func get_player_comp(component_key: int) -> Node:
 	return get_component(GameData.player, component_key)
+
+
+func init_weapon_components(weapon_node: Node2D, d: Dictionary) ->void:
+
+	weapon_node.item_identity_comp.initialize(d[GameData.ComponentKeys.ITEM_IDENTITY])
+	pass
+	

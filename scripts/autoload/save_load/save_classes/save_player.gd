@@ -54,15 +54,15 @@ func save_player_data(player: Node2D) -> bool:
             "faction": identity_comp.faction
         }
     
-    # # Melee Combat Component
-    # var melee_comp = ComponentRegistry.get_component(player, GameData.ComponentKeys.MELEE_COMBAT)
-    # if melee_comp:
-    #     save_data["melee_combat_component"] = {
-    #         "damage": melee_comp.damage,
-    #         "attack_type": melee_comp.attack_type,
-    #         "element": melee_comp.element,
-    #         "to_hit_bonus": melee_comp.to_hit_bonus
-    #     }
+    # Melee Combat Component
+    var melee_comp = ComponentRegistry.get_component(player, GameData.ComponentKeys.MELEE_COMBAT)
+    if melee_comp:
+        save_data["melee_combat_component"] = {
+            "damage": melee_comp.damage,
+            "attack_type": melee_comp.attack_type,
+            "element": melee_comp.element,
+            "to_hit_bonus": melee_comp.to_hit_bonus
+        }
     
     # Player Comonent
     var player_comp = ComponentRegistry.get_component(player, GameData.ComponentKeys.PLAYER)

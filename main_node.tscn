@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b423to0sh4ppm"]
+[gd_scene load_steps=6 format=3 uid="uid://b423to0sh4ppm"]
 
 [ext_resource type="Script" uid="uid://b25g1hme5htyn" path="res://scripts/main_node.gd" id="1_scfaf"]
 [ext_resource type="Shader" uid="uid://cfb76lctdcisy" path="res://resources/shader/scan_lines_shader.gdshader" id="2_dhalm"]
+[ext_resource type="PackedScene" uid="uid://djhmhiomdqoq0" path="res://scenes/items/weapons/swords/steel_longsword.tscn" id="3_bxfy6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bxfy6"]
 shader = ExtResource("2_dhalm")
@@ -18,3 +19,6 @@ script = ExtResource("1_scfaf")
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_bxfy6")
 mesh = SubResource("QuadMesh_lwogq")
+
+[node name="SteelLongsword" parent="." instance=ExtResource("3_bxfy6")]
+position = Vector2(135, 186)

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://coxhiuau7rk0j"]
+
+[ext_resource type="Script" uid="uid://dkijg5ltptk7r" path="res://scripts/ECS/components/items/component_scripts/weapons/weapon_stats_component.gd" id="1_boat6"]
+
+[node name="WeaponStatsComponent" type="Node"]
+script = ExtResource("1_boat6")

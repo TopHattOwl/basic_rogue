@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://djhmhiomdqoq0"]
+
+[ext_resource type="PackedScene" uid="uid://cujlg5ypst3by" path="res://scripts/ECS/components/items/component_scenes/item_identity_component.tscn" id="1_8cjax"]
+[ext_resource type="Script" uid="uid://ba1s47onls0w5" path="res://scenes/items/weapons/swords/steel_longsword.gd" id="1_kuu1c"]
+[ext_resource type="PackedScene" uid="uid://cyldow411e2t" path="res://scripts/ECS/components/items/component_scenes/item_position_component.tscn" id="2_kuu1c"]
+[ext_resource type="PackedScene" uid="uid://coxhiuau7rk0j" path="res://scripts/ECS/components/items/component_scenes/weapon_component_scenes/weapon_stats_component.tscn" id="3_6txsj"]
+
+[node name="SteelLongsword" type="Node2D"]
+script = ExtResource("1_kuu1c")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="ItemIdentityComponent" parent="Components" instance=ExtResource("1_8cjax")]
+
+[node name="ItemPositionComponent" parent="Components" instance=ExtResource("2_kuu1c")]
+
+[node name="WeaponStatsComponent" parent="Components" instance=ExtResource("3_6txsj")]

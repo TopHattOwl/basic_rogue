@@ -118,6 +118,7 @@ const INPUT_DIRECTIONS ={
 
 
 const COMPONENTS = {
+	# ACTORS
 	ComponentKeys.ABILITIES: "Components/AbilitiesComponent",
 	ComponentKeys.AI_BEHAVIOR: "Components/AiBehaviorComponent",
 	ComponentKeys.ATTRIBUTES: "Components/AttributesComponent",
@@ -132,7 +133,14 @@ const COMPONENTS = {
 	ComponentKeys.SPELLS: "Components/SpellsComponent",
 	ComponentKeys.STAMINA: "Components/StaminaComponent",
 	ComponentKeys.STATE: "Components/StateComponent",
-	ComponentKeys.PLAYER: "Components/PlayerComponent"
+	ComponentKeys.PLAYER: "Components/PlayerComponent",
+
+	# ITEMS
+	ComponentKeys.ITEM_POSITION: "Components/ItemPositionComponent",
+	ComponentKeys.ITEM_IDENTITY: "Components/ItemIdentityComponent",
+
+
+	ComponentKeys.WEAPON_STATS: "Components/WeaponStatsComponent",
 }
 
 func get_component_path(component_key: int) -> String:
@@ -145,6 +153,7 @@ func get_component_name(component_key: int) -> String:
 
 # ___ Enums ___
 
+# attributes
 enum ATTRIBUTES {
 	STRENGTH,
 	DEXTERITY,
@@ -152,7 +161,23 @@ enum ATTRIBUTES {
 	CONSTITUTION
 }
 
+# attack type
+enum ATTACK_TYPE {
+	SLASH,
+	BASH,
+	PIERCE,
+}
+
+enum ELEMENT {
+	PHYSICAL,
+	FIRE,
+	ICE,
+	ELECTRICITY,
+}
+
+
 enum ComponentKeys {
+	# ACTORS
 	ABILITIES,
 	AI_BEHAVIOR,
 	ATTRIBUTES,
@@ -167,7 +192,13 @@ enum ComponentKeys {
 	SPELLS,
 	STAMINA,
 	STATE,
-	PLAYER
+	PLAYER,
+
+	# ITEMS
+	ITEM_POSITION,
+	ITEM_IDENTITY,
+
+	WEAPON_STATS,
 }
 
 enum ENTITY_TAGS {
@@ -188,6 +219,8 @@ enum TILE_TAGS {
 	NATURE,
 }
 
+
+# items
 enum ARMOR_SLOTS {
 	HEAD,
 	SHOULDERS,
@@ -196,4 +229,34 @@ enum ARMOR_SLOTS {
 	HANDS,
 	LEGS,
 	FEET
+}
+
+enum ITEM_TYPES {
+	WEAPON,
+	RANGED_WEAPON,
+	ARMOR,
+	POTION,
+	POWDER,
+	MONSTER_PART,
+	RESOURCE,
+	OTHER
+}
+
+enum WEAPON_TYPES {
+	SWORD,
+	AXE,
+	SPEAR,
+}
+
+enum WEAPON_SUBTYPES {
+	SWORD_1H,
+	SWORD_2H,
+	AXE_1H,
+	AXE_2H,
+	SPEAR_1H,
+	SPEAR_2H
+}
+
+enum RANGED_WEAPONS {
+
 }

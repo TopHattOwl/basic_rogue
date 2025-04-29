@@ -29,3 +29,10 @@ func load_player_data(json):
 	var player = json.get("player_component")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_dungeon = player.get("is_in_dungeon")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = player.get("is_players_turn")
+
+	# Melee combat component
+	var melee = json.get("melee_combat_component")
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).damage = melee.get("damage")
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).attack_type = melee.get("attack_type")
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).element = melee.get("element")
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).to_hit_bonus = melee.get("to_hit_bonus")

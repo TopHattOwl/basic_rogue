@@ -4,20 +4,22 @@ extends Node
 # base values for unarmed attack
 # var damage: String = "1d4"
 var damage: Array = [1, 4, []]
-var attack_type: String = "bash"
-var element: String = "physical"
+var attack_type: int = 1
+var element: int = 0
 var to_hit_bonus: int = 0
 
 
 func initialize(d: Dictionary) -> void:
-	damage = [d.get("num_of_dice", 1), d.get("dice_sides", 4), d.get("modifiers", [])]
-	attack_type = d.get("attack_type", "bash")
-	element = d.get("element", "physical")
+	damage = d.get("damage", [1, 4, []])
+	attack_type = d.get("attack_type", 1)
+	element = d.get("element", 0)
 	to_hit_bonus = d.get("to_hit_bonus", 0)
 
 func get_dodge() -> int:
 	var dodge = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.ATTRIBUTES)).dexterity_modifier
 	return dodge
+
+# TODO: set_to_hit_bonus
 
 # func get_to_hit_bonus() -> int:
 

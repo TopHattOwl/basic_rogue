@@ -23,13 +23,9 @@
         "faction": "monsters"
     },
     "melee_combat_component": {
-        "damage": {
-            "num_of_dice": 1,
-            "dice_sides": 4,
-            "modifiers": [1]
-        },
-        "attack_type": "bash",
-        "element": "physical",
+        "damage": [1, 4, []],
+        "attack_type": 1,
+        "element": 0,
         "to_hit_bonus": 1
     },
     "monster_stats_component": {

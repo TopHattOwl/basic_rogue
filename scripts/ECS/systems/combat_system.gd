@@ -4,7 +4,6 @@ extends Node
 # this main_node variable is set in main_node.gd's ready function by entity-systems-manager.gd
 
 func melee_attack(attacker: Node2D, target: Node2D) -> bool:
-	print("melee attack")
 	if attacker == target:
 		return false
 
@@ -23,7 +22,7 @@ func melee_attack(attacker: Node2D, target: Node2D) -> bool:
 
 	if accuracy_roll < target_melee_combat_component.get_dodge():
 		# tried to hit but missed so actor acted
-		print("missed")
+
 		return true
 
 	var damage_roll = attacker_melee_combat_component.get_full_damage()
