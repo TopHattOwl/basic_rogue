@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dus1wv07rg63q"]
+
+[ext_resource type="Script" uid="uid://7samidq0xqvn" path="res://scripts/ECS/components/actors/component_scripts/position_component.gd" id="1_s8jdp"]
+
+[node name="PositionComponent" type="Node"]
+script = ExtResource("1_s8jdp")

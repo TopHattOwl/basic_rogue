@@ -1,0 +1,19 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cj86qmxhpe756"]
+
+[ext_resource type="Texture2D" uid="uid://0eibvpo6c4pl" path="res://assets/nature/tree1.png" id="1_qatry"]
+[ext_resource type="Texture2D" uid="uid://b1jrb615j03kf" path="res://assets/nature/tree2.png" id="2_3xqhp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ykqmu"]
+texture = ExtResource("1_qatry")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vrrm0"]
+texture = ExtResource("2_3xqhp")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(16, 24)
+sources/0 = SubResource("TileSetAtlasSource_ykqmu")
+sources/1 = SubResource("TileSetAtlasSource_vrrm0")

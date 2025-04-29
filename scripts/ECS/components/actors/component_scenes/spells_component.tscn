@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv01q7oluy74a"]
+
+[ext_resource type="Script" uid="uid://dp2mx75wwd77w" path="res://scripts/ECS/components/actors/component_scripts/spells_component.gd" id="1_fcagh"]
+
+[node name="SpellsComponent" type="Node"]
+script = ExtResource("1_fcagh")

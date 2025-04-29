@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnqw4jsoe0kdn"]
+
+[ext_resource type="TileSet" uid="uid://cj86qmxhpe756" path="res://resources/tiles/nature/trees.tres" id="1_ae2px"]
+
+[node name="NatureLayer" type="TileMapLayer"]
+z_index = 2
+z_as_relative = false
+tile_set = ExtResource("1_ae2px")

@@ -1,0 +1,27 @@
+{
+	"attributes_component": {
+		"constitution": 5,
+		"dexterity": 14,
+		"intelligence": 13,
+		"strength": 16
+	},
+	"health_component": {
+		"hp": 20,
+		"max_hp": 20
+	},
+	"identity_component": {
+		"actor_name": "player",
+		"faction": "player",
+		"is_player": true
+	},
+	"player_component": {
+		"is_in_dungeon": false,
+		"is_players_turn": true
+	},
+	"position_component": {
+		"grid_pos": {
+			"x": 5,
+			"y": 5
+		}
+	}
+}

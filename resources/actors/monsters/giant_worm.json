@@ -1,0 +1,38 @@
+{
+    "health_component":{
+        "max_hp":11,
+        "hp": 11
+    },
+    "ai_behavior_component": {
+        "type": "chase",
+        "is_hostile": true,
+        "vision_range": 8
+    },
+    "attributes_component": {
+        "strength": 12,
+        "dexterity": 14,
+        "intelligence": 3,
+        "constitution": 7
+    },
+    "spells_component": [],
+    "abilities_component": ["burrow", "acid_spit"],
+    "monster_properties_component": [],
+    "identity_component": {
+        "is_player": false,
+        "actor_name": "Giant Worm",
+        "faction": "monsters"
+    },
+    "melee_combat_component": {
+        "damage": {
+            "num_of_dice": 1,
+            "dice_sides": 4,
+            "modifiers": [1]
+        },
+        "attack_type": "bash",
+        "element": "physical",
+        "to_hit_bonus": 1
+    },
+    "monster_stats_component": {
+        "armor": 2
+    }
+}

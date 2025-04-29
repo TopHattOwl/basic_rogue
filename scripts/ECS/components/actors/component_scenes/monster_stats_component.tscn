@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyrpo785ix73c"]
+
+[ext_resource type="Script" uid="uid://c1bhwoa6liprw" path="res://scripts/ECS/components/actors/component_scripts/monster_stats_component.gd" id="1_yd3r7"]
+
+[node name="MonsterStatsComponent" type="Node"]
+script = ExtResource("1_yd3r7")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhab5hrsoqpou"]
+
+[ext_resource type="PackedScene" uid="uid://fj5eqr6uv11j" path="res://resources/tiles/tile_layer_scenes/door_frame_layer.tscn" id="1_41f5y"]
+[ext_resource type="PackedScene" uid="uid://d2ykjonrt0hyh" path="res://resources/tiles/tile_layer_scenes/door_layer.tscn" id="2_0n1be"]
+[ext_resource type="PackedScene" uid="uid://mehf2wrg2eg1" path="res://resources/tiles/tile_layer_scenes/floor_layer.tscn" id="3_q1kd2"]
+[ext_resource type="PackedScene" uid="uid://cnqw4jsoe0kdn" path="res://resources/tiles/tile_layer_scenes/nature_layer.tscn" id="4_op0be"]
+[ext_resource type="PackedScene" uid="uid://n0r2s81dvgxx" path="res://resources/tiles/tile_layer_scenes/stair_layer.tscn" id="5_w3kvc"]
+[ext_resource type="PackedScene" uid="uid://r72ohxqkq5x2" path="res://resources/tiles/tile_layer_scenes/wall_layer.tscn" id="6_dsm5r"]
+
+[node name="World" type="Node2D"]
+
+[node name="DoorFrameLayer" parent="." instance=ExtResource("1_41f5y")]
+
+[node name="DoorLayer" parent="." instance=ExtResource("2_0n1be")]
+
+[node name="FloorLayer" parent="." instance=ExtResource("3_q1kd2")]
+
+[node name="NatureLayer" parent="." instance=ExtResource("4_op0be")]
+
+[node name="StairLayer" parent="." instance=ExtResource("5_w3kvc")]
+
+[node name="WallLayer" parent="." instance=ExtResource("6_dsm5r")]

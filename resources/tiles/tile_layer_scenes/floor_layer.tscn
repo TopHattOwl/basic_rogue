@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://mehf2wrg2eg1"]
+
+[ext_resource type="TileSet" uid="uid://c34gn2we4xfsi" path="res://resources/tiles/floor.tres" id="1_n0set"]
+
+[node name="FloorLayer" type="TileMapLayer"]
+z_as_relative = false
+tile_set = ExtResource("1_n0set")

@@ -1,0 +1,17 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c2sgf7gqvbcw6"]
+
+[ext_resource type="Texture2D" uid="uid://cpj1cnl2w0oyd" path="res://assets/wall/wall_wooden_all.png" id="1_mtdxo"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nydnj"]
+texture = ExtResource("1_mtdxo")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[resource]
+tile_size = Vector2i(16, 24)
+sources/0 = SubResource("TileSetAtlasSource_nydnj")

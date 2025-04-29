@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv8wcyppts1of"]
+
+[ext_resource type="Script" uid="uid://wnxes3dl5pwq" path="res://scripts/ECS/components/actors/component_scripts/equipment_component.gd" id="1_pc6fs"]
+
+[node name="EquipmentComponent" type="Node"]
+script = ExtResource("1_pc6fs")

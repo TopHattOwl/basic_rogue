@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2ykjonrt0hyh"]
+
+[ext_resource type="TileSet" uid="uid://dsbkdou86cuf0" path="res://resources/tiles/door/door.tres" id="1_56xon"]
+
+[node name="DoorLayer" type="TileMapLayer"]
+z_index = 2
+z_as_relative = false
+tile_set = ExtResource("1_56xon")

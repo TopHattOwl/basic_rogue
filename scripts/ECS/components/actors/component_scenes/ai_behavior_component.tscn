@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3op5dqs2jch1"]
+
+[ext_resource type="Script" uid="uid://br5og8c02s62v" path="res://scripts/ECS/components/actors/component_scripts/ai_behavior_component.gd" id="1_ji5wt"]
+
+[node name="AiBehaviorComponent" type="Node"]
+script = ExtResource("1_ji5wt")

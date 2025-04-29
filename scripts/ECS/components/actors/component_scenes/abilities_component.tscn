@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://duhsb81d10cy6"]
+
+[ext_resource type="Script" uid="uid://cdlhaxvyhdiin" path="res://scripts/ECS/components/actors/component_scripts/abilities_component.gd" id="1_mp5v4"]
+
+[node name="AbilitiesComponent" type="Node"]
+script = ExtResource("1_mp5v4")

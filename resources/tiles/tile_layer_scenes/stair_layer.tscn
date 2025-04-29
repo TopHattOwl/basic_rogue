@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://n0r2s81dvgxx"]
+
+[ext_resource type="TileSet" uid="uid://c730xxb2vd5je" path="res://resources/tiles/stair/stair.tres" id="1_myrvj"]
+
+[node name="StairLayer" type="TileMapLayer"]
+z_index = 2
+z_as_relative = false
+tile_set = ExtResource("1_myrvj")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b61calyf4yl75"]
+
+[ext_resource type="Script" uid="uid://bw35k46ndkeaa" path="res://scripts/ECS/components/actors/component_scripts/identity_component.gd" id="1_1h5g0"]
+
+[node name="IdentityComponent" type="Node"]
+script = ExtResource("1_1h5g0")
