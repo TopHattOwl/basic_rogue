@@ -1,13 +1,13 @@
 class_name ItemIdentityComponent
 extends Node
 
-var itemy_type: int = 0
+var item_type: int = 0
 var item_name: String = ""
 var price: int = 0
 
 
 
 func initialize(d: Dictionary) -> void:
-    itemy_type = d.get("item_type", GameData.ITEM_TYPES.OTHER)
+    item_type = d.get("item_type", GameData.ITEM_TYPES.OTHER)
     item_name = d.get("item_name", "")
     price = d.get("price", 0)

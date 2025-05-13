@@ -27,7 +27,7 @@ func get_chase_position(current_pos: Vector2i, target_pos: Vector2i) -> Vector2i
 		return current_pos
 	
 	# Get A* path
-	current_path = MapFunction.get_path_astar(current_pos, target_pos)
+	current_path = MapFunction.astar_get_path(current_pos, target_pos)
 	
 	# Return next step or current position if no path
 	return current_path[1] if current_path.size() > 1 else current_pos

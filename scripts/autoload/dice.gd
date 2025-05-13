@@ -61,9 +61,9 @@ func roll_damage_dice(dice_string: String) -> int:
 
 	# find where modifier starts
 	var modifier_index = right_side.length()
-	for char in right_side:
-		if char == "+" or char == "-":
-			modifier_index = right_side.find(char)
+	for chars in right_side:
+		if chars == "+" or chars == "-":
+			modifier_index = right_side.find(chars)
 			break
 
 	# extract dice sides
@@ -171,17 +171,17 @@ func _calculate_modifier(mod_string: String) -> int:
 	_apply_current_number(total, current_sign, current_num)
 	return total
 
-func _apply_current_number(total: int, sign: int, num_str: String) -> void:
+func _apply_current_number(_total: int, signn: int, num_str: String) -> void:
 	if num_str.is_valid_int():
-		# Use call_by_reference to modify original total
+		# Use call_by_reference to modify original _total
 		var num = int(num_str)
-		total += sign * num
+		_total += signn * num
 
 func _parse_positive_int(input: String) -> int:
 	return max(int(input) if input.is_valid_int() else 0, 0)
 
 func roll_dicee(num_dice: int, dice_sides: int) -> int:
-	var total := 0
+	var _total := 0
 	for i in num_dice:
-		total += randi_range(1, max(dice_sides, 1))
-	return total
+		_total += randi_range(1, max(dice_sides, 1))
+	return _total

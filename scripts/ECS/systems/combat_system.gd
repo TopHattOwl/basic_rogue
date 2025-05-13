@@ -25,11 +25,26 @@ func melee_attack(attacker: Node2D, target: Node2D) -> bool:
 
 		return true
 
+	# damage calc
 	var damage_roll = attacker_melee_combat_component.get_full_damage()
 	var final_damage = max(0, damage_roll - target_melee_combat_component.get_armor())
 
 	target_health_component.take_damage(final_damage)
 	
+
+	# if player attacked do extra stuff
+	if ComponentRegistry.get_component(attacker, GameData.ComponentKeys.IDENTITY).is_player:
+		# increase player skill
+		var weapon = ComponentRegistry.get_player_comp(GameData.ComponentKeys.EQUIPMENT).weapon
+		if weapon:
+			var weapon_skill = ComponentRegistry.get_component(weapon, GameData.ComponentKeys.ITEM_SKILL).skill
+			ComponentRegistry.get_player_comp(GameData.ComponentKeys.SKILLS)._add_exp_to_skill(weapon_skill, final_damage)
+			print("player skill: ", ComponentRegistry.get_player_comp(GameData.ComponentKeys.SKILLS).skill_levels[weapon_skill])
+
+		# log message
+		var target_name = ComponentRegistry.get_component(target, GameData.ComponentKeys.IDENTITY).actor_name
+		UiFunc.log_message("You hit the %s for %s damage" % [target_name, final_damage])
+
 
 	return true
 
@@ -37,11 +52,16 @@ func die(actor: Node2D):
 
 	var actor_pos = ComponentRegistry.get_component(actor, GameData.ComponentKeys.POSITION).grid_pos
 	var actor_identity = ComponentRegistry.get_component(actor, GameData.ComponentKeys.IDENTITY)
-
+	var is_actor_player = GameData.player == actor
 	# delete actor from entity_map and all_hostle_actors
 	GameData.actors_map[actor_pos.y][actor_pos.x] = null
 	GameData.all_hostile_actors.erase(actor)
 	GameData.all_actors.erase(actor)
+
+	# if actor is not player, toggle walkable tile when dies
+	if not is_actor_player:
+		MapFunction.astar_toggle_walkable(actor_pos)
+
 
 	# if monster drop monster remains TODO also drom monster loot
 	if actor_identity.faction == "monsters":

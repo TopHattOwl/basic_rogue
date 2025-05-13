@@ -3,37 +3,41 @@ extends Node2D
 # --- INPUT ---
 const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 
+
+# TODO:
+	# load player into the correct world_map tile
+	# remove actor nodes when trasitioning maps and entering and exiting world map, right now giant worm is invisible in certain cases
+	# fix is_action_pressed timer to work properly with everything
 func _ready():
 
 	# passing main node to game data
 	GameData.main_node = self
 
 	MapFunction.load_premade_map(DirectoryPaths.first_outpost)
-	EntitySystems.initialize_systems(self)
 
 	# entity system manager initialization
-	EntitySystems.entity_spawner.spawn_player(Vector2i(5, 5))
+	EntitySystems.initialize_systems(self)
 
 	SaveFuncs.save_player_data(GameData.player)
 
-	EntitySystems.entity_spawner.spawn_monster(Vector2i(8, 5), GameData.MONSTERS1.GIANT_WORM)
 
+	EntitySystems.entity_spawner.spawn_item(Vector2i(6,6), GameData.ALL_ITEMS.STEEL_LONGSWORD)
 
-	MapFunction.initialize_astar_grid()
+	# test weapon equip and save after
+	get_player_comp(GameData.ComponentKeys.EQUIPMENT).equip_weapon(GameData.all_items[0])
 
-	print(MapFunction.chebyshev_distance(get_player_pos(), ComponentRegistry.get_component(GameData.all_hostile_actors[0], GameData.ComponentKeys.POSITION).grid_pos))
+	# SaveFuncs.save_player_data(GameData.player)
 
-	# print("entity map worm", GameData.actors_map[5][6])
-
-	# print(GameData.all_actors)
-
+	UiFunc.log_message("You arrive in ******")
 
 
 func _process(_delta):
 
 	if get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn:
-		handle_inputs()
-	pass
+		if get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map:
+			handle_world_map_inputs()
+		else:
+			handle_zoomed_in_inputs()
 
 
 
@@ -46,12 +50,16 @@ func get_player_pos() -> Vector2i:
 
 # --- INPUT ---
 
-func handle_inputs():
+
+func handle_zoomed_in_inputs():
 
 	for action in GameData.INPUT_DIRECTIONS:
-		if Input.is_action_just_pressed(action):
+		if Input.is_action_just_pressed(action): # if using is_action_pressed holding down the button will work but too fast
 			var dir = GameData.INPUT_DIRECTIONS[action]
 			var new_grid = get_player_pos() + dir
+
+			# timer for using is_action_pressed
+			# await get_tree().create_timer(0.2).timeout
 
 			# moves player
 			# if player moved player's turn is false and it's enemies' turn
@@ -60,8 +68,38 @@ func handle_inputs():
 				handle_hostile_turn()
 			break
 
-		if Input.is_action_just_pressed("go_down") and GameData.terrain_map[get_player_pos().y][get_player_pos().x]["tags"].has(GameData.TILE_TAGS.STAIR):
-			print("you go down")
+	if Input.is_action_just_pressed("pick_up") and GameData.items_map[get_player_pos().y][get_player_pos().x]:
+		ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = false
+		var pos = get_player_pos()
+		EntitySystems.inventory_system.pick_up_item(pos)
+
+		# TODO pickup window
+
+	if Input.is_action_just_pressed("open_world_map") and not get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map:
+		MapFunction.enter_world_map()
+
+
+	if Input.is_action_just_pressed("quit"):
+		print("quitting")
+		SaveFuncs.save_player_data(GameData.player)
+		get_tree().quit()
+	
+	if Input.is_action_just_pressed("dev_overlay"):
+		GameData.player.get_node("DevTools").toggle_dev_overlay()
+
+
+func handle_world_map_inputs():
+	for action in GameData.INPUT_DIRECTIONS:
+		if Input.is_action_just_pressed(action):
+			var dir = GameData.INPUT_DIRECTIONS[action]
+			var new_grid = get_player_comp(GameData.ComponentKeys.PLAYER).world_map_pos + dir
+
+			if EntitySystems.movement_system.process_world_map_movement(new_grid):
+				ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
+			break
+		if Input.is_action_just_pressed("open_world_map") and get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map:
+			MapFunction.exit_world_map()
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
 
 
 func handle_hostile_turn():
@@ -71,9 +109,9 @@ func handle_hostile_turn():
 	for enemy in GameData.all_hostile_actors:
 		var ai = ComponentRegistry.get_component(enemy, GameData.ComponentKeys.AI_BEHAVIOR)
 		var enemy_pos = ComponentRegistry.get_component(enemy, GameData.ComponentKeys.POSITION).grid_pos
-		print("asd")
+
 		if ai.is_in_range(player_pos, enemy_pos):
-			print("ai is in range")
+
 			var target_pos = ai.get_next_position(enemy_pos, player_pos)
 			EntitySystems.movement_system.process_movement(enemy, target_pos)
 

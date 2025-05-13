@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://xu1v46ex8vaq"]
+[gd_scene load_steps=17 format=3 uid="uid://xu1v46ex8vaq"]
 
 [ext_resource type="Texture2D" uid="uid://mk7q31h1b4rs" path="res://assets/player/player_knight.png" id="1_wmv1v"]
 [ext_resource type="PackedScene" uid="uid://duhsb81d10cy6" path="res://scripts/ECS/components/actors/component_scenes/abilities_component.tscn" id="2_inh5e"]
@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://biqagb3p4ub8g" path="res://scripts/ECS/components/actors/component_scenes/stamina_component.tscn" id="11_qxscg"]
 [ext_resource type="PackedScene" uid="uid://cf1uus56vaws3" path="res://scripts/ECS/components/actors/component_scenes/state_component.tscn" id="12_biscu"]
 [ext_resource type="PackedScene" uid="uid://ch6ubl1txx0x5" path="res://scripts/ECS/components/actors/component_scenes/player_component.tscn" id="13_hcvpp"]
+[ext_resource type="PackedScene" uid="uid://ciajb1jf67nek" path="res://scripts/ECS/components/actors/component_scenes/skills_component.tscn" id="14_4iwnj"]
+[ext_resource type="PackedScene" uid="uid://dnbuk32inicvw" path="res://scenes/dev_tools/dev_tools.tscn" id="15_068wj"]
+[ext_resource type="PackedScene" uid="uid://be4gwtu23s7n6" path="res://scenes/ui/player_ui/player_ui.tscn" id="16_xducv"]
 
 [node name="Player" type="Node2D"]
 
@@ -53,3 +56,10 @@ limit_bottom = 480
 [node name="StateComponent" parent="Components" instance=ExtResource("12_biscu")]
 
 [node name="PlayerComponent" parent="Components" instance=ExtResource("13_hcvpp")]
+
+[node name="SkillsComponent" parent="Components" instance=ExtResource("14_4iwnj")]
+
+[node name="DevTools" parent="." instance=ExtResource("15_068wj")]
+visible = false
+
+[node name="PlayerUI" parent="." instance=ExtResource("16_xducv")]

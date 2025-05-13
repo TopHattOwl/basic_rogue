@@ -1,0 +1,40 @@
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://clrvadt3bnbiy"]
+
+[ext_resource type="Texture2D" uid="uid://bvxr7enlxvg1e" path="res://assets/world_map/desert.png" id="1_wp3ub"]
+[ext_resource type="Texture2D" uid="uid://ca2ms54o7x1a3" path="res://assets/world_map/forest.png" id="2_b1cf1"]
+[ext_resource type="Texture2D" uid="uid://biw1qblbfhd15" path="res://assets/world_map/outpost.png" id="3_kc05l"]
+[ext_resource type="Texture2D" uid="uid://jv4ueuo86b30" path="res://assets/background.png" id="5_771tk"]
+[ext_resource type="Texture2D" uid="uid://biutnye8xte7" path="res://assets/world_map/water1_deeper.png" id="5_kc05l"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_771tk"]
+texture = ExtResource("1_wp3ub")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iayhb"]
+texture = ExtResource("2_b1cf1")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oo8x1"]
+texture = ExtResource("3_kc05l")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vepob"]
+texture = ExtResource("5_771tk")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7p4ri"]
+texture = ExtResource("5_kc05l")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(16, 24)
+sources/2 = SubResource("TileSetAtlasSource_771tk")
+sources/3 = SubResource("TileSetAtlasSource_iayhb")
+sources/4 = SubResource("TileSetAtlasSource_oo8x1")
+sources/6 = SubResource("TileSetAtlasSource_vepob")
+sources/7 = SubResource("TileSetAtlasSource_7p4ri")

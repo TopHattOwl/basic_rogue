@@ -17,7 +17,6 @@ func initialize(max_hp_value: int) -> void:
 func take_damage(damage: int) -> int:
     var actual_damage = min(damage, hp)
     hp -= actual_damage
-    print(hp)
     if hp <= 0:
         EntitySystems.combat_system.die(get_parent().get_parent())
     return actual_damage

@@ -1,7 +1,7 @@
 {
     "health_component":{
-        "max_hp":11,
-        "hp": 11
+        "max_hp":6,
+        "hp": 6
     },
     "ai_behavior_component": {
         "type": "chase",
@@ -29,6 +29,9 @@
         "to_hit_bonus": 1
     },
     "monster_stats_component": {
-        "armor": 2
+        "armor": 0
+    },
+    "monster_drops_component": {
+        "loot_pool": []
     }
 }

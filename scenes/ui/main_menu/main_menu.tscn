@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvsqudp7xh03o"]
+
+[ext_resource type="Script" uid="uid://dttmpnvm3yaub" path="res://scenes/ui/main_menu/main_menu.gd" id="1_1ch07"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1ch07")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonVBox" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+alignment = 1
+
+[node name="StartButton" type="Button" parent="HBoxContainer/ButtonVBox"]
+layout_mode = 2
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="HBoxContainer/ButtonVBox"]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="HBoxContainer/ButtonVBox"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="HBoxContainer/ButtonVBox/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonVBox/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonVBox/QuitButton" to="." method="_on_quit_button_pressed"]

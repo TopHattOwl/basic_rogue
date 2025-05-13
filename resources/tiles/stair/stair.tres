@@ -1,12 +1,20 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c730xxb2vd5je"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c730xxb2vd5je"]
 
 [ext_resource type="Texture2D" uid="uid://ditfcig7sna1h" path="res://assets/stair/stair_down.png" id="1_xlllx"]
+[ext_resource type="Texture2D" uid="uid://bdetwpeqapky1" path="res://assets/stair/dungeon_enterance_1.png" id="2_dordt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dordt"]
 texture = ExtResource("1_xlllx")
 texture_region_size = Vector2i(16, 24)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2rk3"]
+texture = ExtResource("2_dordt")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+1:0/0 = 0
+
 [resource]
 tile_size = Vector2i(16, 24)
 sources/0 = SubResource("TileSetAtlasSource_dordt")
+sources/1 = SubResource("TileSetAtlasSource_e2rk3")

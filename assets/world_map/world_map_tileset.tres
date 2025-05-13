@@ -1,0 +1,24 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://clh0keyek7yyy"]
+
+[ext_resource type="Texture2D" uid="uid://dwuasmtumlo2k" path="res://assets/floor/ground_nature_spritesheet.png" id="1_4jsps"]
+[ext_resource type="Texture2D" uid="uid://b1jrb615j03kf" path="res://assets/nature/tree2.png" id="2_y0fuv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5wmuj"]
+texture = ExtResource("1_4jsps")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xekde"]
+texture = ExtResource("2_y0fuv")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(16, 24)
+sources/1 = SubResource("TileSetAtlasSource_5wmuj")
+sources/2 = SubResource("TileSetAtlasSource_xekde")

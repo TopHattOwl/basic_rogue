@@ -4,11 +4,13 @@ extends Node
 var main_node: Node2D
 
 
-func spawn_player(grid_pos: Vector2i):
+func spawn_player():
+	if GameData.player:
+		return
 	var player_scene = preload(DirectoryPaths.player_scene)
 	GameData.player = player_scene.instantiate()
 
-	main_node.add_child(GameData.player)
+	GameData.main_node.add_child(GameData.player)
 	GameData.player.owner = main_node # for scene persistence
 
 
@@ -18,7 +20,7 @@ func spawn_player(grid_pos: Vector2i):
 
 	var position_comp = ComponentRegistry.get_component(GameData.player, GameData.ComponentKeys.POSITION)
 	if position_comp:
-		GameData.player.position = MapFunction.to_world_pos(grid_pos)
+		GameData.player.position = MapFunction.to_world_pos(ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION).grid_pos)
 
 		MapFunction.add_player_to_variables(GameData.player)
 
@@ -49,7 +51,7 @@ func spawn_monster(grid_pos: Vector2i, monster_key: int):
 		push_error("Monster position component not found")
 	
 
-	main_node.add_child(monster)
+	GameData.main_node.add_child(monster)
 	monster.owner = main_node # for scene persistence
 
 
@@ -78,6 +80,28 @@ func init_monster_components(monster: Node2D, monster_data: Dictionary):
 	var ai_behavior = monster.get_node(GameData.get_component_path(GameData.ComponentKeys.AI_BEHAVIOR))
 	ai_behavior.initialize(monster_data.ai_behavior_component)
 
+# --- ITEMS ---
 
+## Spawns a specific item
+func spawn_item(grid_pos: Vector2i, item_scene_key: int):
+	var item = load(DirectoryPaths.item_scenes[item_scene_key]).instantiate()
 
-	
+	var position_comp = ComponentRegistry.get_component(item, GameData.ComponentKeys.ITEM_POSITION)
+	if position_comp:
+		# set position
+		position_comp.grid_pos = grid_pos
+		item.position = MapFunction.to_world_pos(grid_pos)
+		position_comp.is_on_ground = true
+
+		# add to GameData map and item variables
+
+		MapFunction.add_item_to_variables(item)
+
+	else:
+		push_error("Item position component not found")
+	main_node.add_child(item)
+	item.owner = main_node # for scene persistence
+
+## spawns a random item based on item type given
+func spawn_random_item(item_type: int):
+	pass

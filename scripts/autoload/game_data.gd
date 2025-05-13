@@ -20,23 +20,31 @@ func set_main_node(value: Node2D) -> void:
 # ___ Constants ___
 const TILE_SIZE = Vector2i(16, 24) # tile size in pixels
 const MAP_SIZE = Vector2i(65, 20) # map size in tiles
+const WORLD_MAP_SIZE = Vector2i(110, 75)
 const OFFSET = Vector2i(8, 12)
 
 # ___ Player ___
 var player_scene = DirectoryPaths.player_scene
 var player: Node2D
 
-# ___ Actors ___
+# ___ Etities ___
 var all_hostile_actors: Array = []
 var all_friendly_actors: Array = []
 
 var all_actors: Array = []
 
-func reset_actor_variables() -> void:
+var all_items: Array = []
+
+func reset_entity_variables() -> void:
 	all_hostile_actors = []
 	all_friendly_actors = []
 	all_actors = []
+	all_items = []
 
+func get_actor(grid_pos: Vector2i) -> Node2D:
+	if not MapFunction.is_in_bounds(grid_pos):
+		return null
+	return actors_map[grid_pos.y][grid_pos.x]
 
 # monsters
 
@@ -77,7 +85,7 @@ var TileDatas = {
 		"transparent": false,
 	},
 	TILE_TAGS.STAIR: {
-		"walkable": true,
+		"walkable": false,
 		"transparent": true,
 	},
 	TILE_TAGS.DOOR: {
@@ -102,7 +110,7 @@ func get_tile_data(tile_tag: int) -> Dictionary:
 # ___ Input ___
 
 const INPUT_DIRECTIONS ={
-    "numpad_1": Vector2i(-1, 1),
+	"numpad_1": Vector2i(-1, 1),
 	"numpad_2": Vector2i(0, 1),
 	"numpad_3": Vector2i(1, 1),
 	"numpad_4": Vector2i(-1, 0),
@@ -134,10 +142,12 @@ const COMPONENTS = {
 	ComponentKeys.STAMINA: "Components/StaminaComponent",
 	ComponentKeys.STATE: "Components/StateComponent",
 	ComponentKeys.PLAYER: "Components/PlayerComponent",
+	ComponentKeys.SKILLS: "Components/SkillsComponent",
 
 	# ITEMS
 	ComponentKeys.ITEM_POSITION: "Components/ItemPositionComponent",
 	ComponentKeys.ITEM_IDENTITY: "Components/ItemIdentityComponent",
+	ComponentKeys.ITEM_SKILL: "Components/ItemSkillComponent",
 
 
 	ComponentKeys.WEAPON_STATS: "Components/WeaponStatsComponent",
@@ -150,10 +160,9 @@ func get_component_name(component_key: int) -> String:
 	var component_name = COMPONENTS.get(component_key, "").replace("Components/", "")
 	return component_name
 
-
 # ___ Enums ___
 
-# attributes
+# ATTRIBUTES
 enum ATTRIBUTES {
 	STRENGTH,
 	DEXTERITY,
@@ -161,7 +170,7 @@ enum ATTRIBUTES {
 	CONSTITUTION
 }
 
-# attack type
+# ATTACK TYPE
 enum ATTACK_TYPE {
 	SLASH,
 	BASH,
@@ -176,6 +185,7 @@ enum ELEMENT {
 }
 
 
+# COMPONENTS
 enum ComponentKeys {
 	# ACTORS
 	ABILITIES,
@@ -193,10 +203,12 @@ enum ComponentKeys {
 	STAMINA,
 	STATE,
 	PLAYER,
+	SKILLS,
 
 	# ITEMS
 	ITEM_POSITION,
 	ITEM_IDENTITY,
+	ITEM_SKILL,
 
 	WEAPON_STATS,
 }
@@ -209,6 +221,7 @@ enum ENTITY_TAGS {
 	ITEM,
 }
 
+# MAP
 enum TILE_TAGS {
 	NONE,
 	FLOOR,
@@ -219,8 +232,29 @@ enum TILE_TAGS {
 	NATURE,
 }
 
+enum WORLD_TILE_TYPES {
+	# civilization
+	CITY,
+	VILLAGE,
+	OUTPOST,
 
-# items
+	# nature
+	SWAMP,
+	FOREST,
+	FIELD,
+
+}
+
+# SKILLS
+enum SKILLS {
+	SWORD,
+	AXE,
+	SPEAR,
+	POLEAXE,
+	BOW,
+}
+
+# ITEMS
 enum ARMOR_SLOTS {
 	HEAD,
 	SHOULDERS,
@@ -259,4 +293,18 @@ enum WEAPON_SUBTYPES {
 
 enum RANGED_WEAPONS {
 
+}
+
+# 	all items
+
+enum ALL_ITEMS {
+	# weapons
+	STEEL_LONGSWORD,
+
+	# armor
+	LEATHER_CHEST,
+	LEATHER_LEGS,
+	LEATHER_BOOTS,
+
+	# potions
 }

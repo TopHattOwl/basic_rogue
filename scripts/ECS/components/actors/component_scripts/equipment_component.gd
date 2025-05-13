@@ -2,8 +2,7 @@ class_name EquipmentComponent
 extends Node
 
 
-
-var weapon: Dictionary = {}
+var weapon: Node2D = null
 var shield: Dictionary = {}
 var ranged_weapon: Dictionary = {}
 var armor: Dictionary = {
@@ -23,7 +22,14 @@ func get_total_armor() -> int:
 			total_armor += armor[armor_slot].armor
 	return total_armor
 
-func get_weapn_stats() -> Dictionary:
-	if weapon != null:
-		return weapon.full_stats
-	return {}
+
+## equips the weeapon and updates melee combat
+func equip_weapon(new_weapon: Node2D):
+	# if weapon equipped, add to inventory
+	if weapon:
+		ComponentRegistry.get_component(get_parent().get_parent(), GameData.ComponentKeys.INVENTORY).weapons.append(weapon)
+	weapon = new_weapon
+	get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.MELEE_COMBAT)).update()
+
+	# TODO put eqipped weapon into inventory
+

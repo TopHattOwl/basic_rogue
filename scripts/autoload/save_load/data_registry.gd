@@ -1,6 +1,6 @@
 extends Node
 
-
+# monsters
 var monsters1: Dictionary = {}
 
 
@@ -17,12 +17,12 @@ func cache_monsters():
 	chache_monsters2()
 
 
+
 func cache_monsters1():
 	# clear data
 	monsters1.clear()
 
 	for monster_key in DirectoryPaths.monsters1:
-		print(DirectoryPaths.monsters1[monster_key])
 		monsters1[monster_key] = load_monsters1_from_json(monster_key)
 
 func chache_monsters2():
