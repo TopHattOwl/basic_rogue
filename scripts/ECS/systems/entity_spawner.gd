@@ -13,6 +13,9 @@ func spawn_player():
 	GameData.main_node.add_child(GameData.player)
 	GameData.player.owner = main_node # for scene persistence
 
+	# give player ui to UiFunc
+	UiFunc.set_player_ui()
+
 
 	# data load
 	var json = JSON.parse_string(FileAccess.get_file_as_string(DirectoryPaths.player_data_json))

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7ktrfa4enr0g"]
+
+[ext_resource type="Script" uid="uid://f8macg8is61r" path="res://scripts/camera/look_camera.gd" id="1_ju73v"]
+
+[node name="LookCamera" type="Camera2D"]
+enabled = false
+zoom = Vector2(0.8, 0.8)
+limit_left = 0
+limit_top = 0
+limit_right = 1040
+limit_bottom = 480
+drag_left_margin = 1.0
+drag_top_margin = 1.0
+drag_right_margin = 1.0
+drag_bottom_margin = 1.0
+script = ExtResource("1_ju73v")

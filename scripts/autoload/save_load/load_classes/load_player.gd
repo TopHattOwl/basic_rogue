@@ -33,6 +33,8 @@ func load_player_data(json):
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = player.get("is_players_turn")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map = player.get("is_in_world_map")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).world_map_pos = Vector2i(player.get("world_map_pos").get("x"), player.get("world_map_pos").get("y"))
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_dead = player.get("is_dead")
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).input_mode = player.get("input_mode")
 
 	# Melee combat component
 	var melee = json.get("melee_combat_component")

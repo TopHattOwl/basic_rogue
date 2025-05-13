@@ -1,0 +1,12 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://1tefjn06t5nv"]
+
+[ext_resource type="Texture2D" uid="uid://c5nwcw77d8n0c" path="res://assets/world_map/mountain.png" id="1_7o0kr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4tiju"]
+texture = ExtResource("1_7o0kr")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(16, 24)
+sources/2 = SubResource("TileSetAtlasSource_4tiju")

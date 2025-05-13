@@ -25,7 +25,7 @@ z_as_relative = false
 texture = ExtResource("1_wmv1v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.83, 0.83)
+zoom = Vector2(0.8, 0.8)
 limit_left = 0
 limit_top = 0
 limit_right = 1040

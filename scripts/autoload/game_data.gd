@@ -104,6 +104,16 @@ var TileDatas = {
 	}
 }
 
+var TilemapLayers = {
+	TILE_TAGS.NONE: "NoneLayer",
+	TILE_TAGS.FLOOR: "FloorLayer",
+	TILE_TAGS.WALL: "WallLayer",
+	TILE_TAGS.STAIR: "StairLayer",	
+	TILE_TAGS.DOOR: "DoorLayer",
+	TILE_TAGS.DOOR_FRAME: "DoorFrameLayer",
+	TILE_TAGS.NATURE: "NatureLayer"
+}
+
 func get_tile_data(tile_tag: int) -> Dictionary:
 	return TileDatas.get(tile_tag, {})
 
@@ -121,6 +131,14 @@ const INPUT_DIRECTIONS ={
 	"numpad_7": Vector2i(-1, -1),
 	"numpad_8": Vector2i(0, -1),
 	"numpad_9": Vector2i(1, -1),
+}
+
+enum INPUT_MODES {
+	ZOOMED_IN_MOVEMENT,
+	WORLD_MAP_MOVEMENT,
+	LOOK,
+	WORLD_MAP_LOOK,
+	UI_INPUT
 }
 
 # ___ Component Data ___

@@ -30,6 +30,14 @@ func get_tile_info(grid_pos: Vector2i) -> Dictionary:
 func chebyshev_distance(a: Vector2i, b: Vector2i) -> int:
 	return max(abs(a.x - b.x), abs(a.y - b.y)) 
 
+func get_actor(grid_pos: Vector2i) -> Node2D:
+	return GameData.actors_map[grid_pos.y][grid_pos.x]
+
+func get_items(grid_pos: Vector2i) -> Array:
+	return GameData.items_map[grid_pos.y][grid_pos.x]
+
+func get_terrain(grid_pos) -> Dictionary:
+	return GameData.terrain_map[grid_pos.y][grid_pos.x]
 
 # --- Map data ---
 func initialize_map_data():
@@ -53,6 +61,7 @@ func initialize_map_data():
 
 
 func parse_tile_layers_from_scene(map_root: Node2D) -> void:
+	# TODO: use GameData.TilemapLayers dictionary to get all layers
 
 	for y in range(GameData.MAP_SIZE.y):
 		for x in range(GameData.MAP_SIZE.x):
@@ -110,6 +119,41 @@ func remove_item_from_variables(item: Node2D) -> void:
 	var grid_pos = ComponentRegistry.get_component(item, GameData.ComponentKeys.ITEM_POSITION).grid_pos
 	GameData.items_map[grid_pos.y][grid_pos.x].erase(item)
 	GameData.all_items.erase(item)
+
+# --- TileSet ---
+
+func get_tile_texture(tilemap_layer: TileMapLayer, grid_pos: Vector2i) -> Texture2D:
+
+	# get tile data
+	var source_id = tilemap_layer.get_cell_source_id(grid_pos)
+	if source_id == -1:
+		return null
+	var atlas_coords = tilemap_layer.get_cell_atlas_coords(grid_pos)
+
+	# get tileset resource
+	var tileset = tilemap_layer.tile_set
+	var source = tileset.get_source(source_id) as TileSetAtlasSource
+
+	# get texture and region
+	var texture = source.texture
+	var region = source.get_tile_texture_region(atlas_coords)
+
+	# creade sub-region texture
+	var atlas_texture = AtlasTexture.new()
+	atlas_texture.atlas = texture
+	atlas_texture.region = region
+	return atlas_texture
+
+## returns an array of tile layers at grid_pos
+func get_tile_map_layers(grid_pos: Vector2i) -> Array:
+
+	var tilemap_layers = []
+	for key in GameData.TilemapLayers.keys():
+		var layer = GameData.current_map.get_node_or_null(GameData.TilemapLayers[key])
+		if layer and layer.get_cell_tile_data(grid_pos):
+			tilemap_layers.append(layer)
+
+	return tilemap_layers
 
 # --- AStar ---
 
@@ -239,6 +283,10 @@ func enter_world_map():
 	# set camera zoom
 	var camera = GameData.player.get_node("Camera2D")
 	camera.zoom = Vector2(0.4, 0.4)
+
+	# set player input mode
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).input_mode = GameData.INPUT_MODES.WORLD_MAP_MOVEMENT
+
 	# TODO: save the data about current map and load world map and put player at the right position
 	
 func exit_world_map():
@@ -262,6 +310,7 @@ func exit_world_map():
 
 	UiFunc.log_message("You exit the world map")
 
+	# set camera limits
 	GameData.player.get_node("Camera2D").limit_right = GameData.MAP_SIZE.x * GameData.TILE_SIZE.x
 	GameData.player.get_node("Camera2D").limit_bottom = GameData.MAP_SIZE.y * GameData.TILE_SIZE.y
 
@@ -272,6 +321,9 @@ func exit_world_map():
 	# queue free world map
 	if GameData.main_node.has_node("WorldMap"):
 		GameData.main_node.get_node("WorldMap").queue_free()
+
+	# set player input mode
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).input_mode = GameData.INPUT_MODES.ZOOMED_IN_MOVEMENT
 
 func is_in_world_map(pos:Vector2i) -> bool:
 	return pos.x >= 0 and pos.x < GameData.WORLD_MAP_SIZE.x and pos.y >= 0 and pos.y < GameData.WORLD_MAP_SIZE.y

@@ -75,3 +75,10 @@ const dungeon_generator = "res://scripts/map_generation/dungeon_generator.gd"
 const main_menu_scene = "res://scenes/ui/main_menu/main_menu.tscn"
 const pick_up_window_scene = "res://scenes/ui/items/pick_up_window.tscn"
 const pick_up_window_script = "res://scenes/ui/items/pick_up_window.gd"
+
+
+
+
+# --- SPRITES/TILEMAPS ---
+
+const wall_tile_set = "res://resources/tiles/wall/wall.tres"

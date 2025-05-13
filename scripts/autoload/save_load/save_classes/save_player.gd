@@ -74,7 +74,9 @@ func save_player_data(player: Node2D) -> bool:
 			"world_map_pos": {
 				"x": player_comp.world_map_pos.x,
 				"y": player_comp.world_map_pos.y
-			}
+			},
+			"is_dead": player_comp.is_dead,
+			"input_mode": player_comp.input_mode
 		}
 
 	# Skills Component

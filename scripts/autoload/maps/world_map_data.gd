@@ -48,7 +48,7 @@ func _ready() -> void:
 	SaveFuncs.save_world_map_data()
 
 
-func add_map_to_world_map(world_map_pos: Vector2i, map_path: String = "", generated_seed: int = 0, explored: bool = false, walkable: bool = true):
+func add_map_to_world_map(world_map_pos: Vector2i, map_path: String = "", generated_seed: int = 0, explored: int = 0, walkable: int = 1) -> void:
 	if map_path:
 		world_map[world_map_pos.y][world_map_pos.x] = {
 			"is_premade": true,
@@ -76,8 +76,8 @@ func init_world_map_data() -> void:
 				"is_premade": false,
 				"map_path": "",
 				"generated_seed": 0,
-				"explored": false,
-				"walkable": true
+				"explored": 0,
+				"walkable": 1
 			})
 
 func init_biome_type() -> void:
