@@ -1,4 +1,4 @@
-# [Your Traditional Roguelike Title]
+# [Placeholder Title]
 
 ![Game Screenshot Placeholder](screenshots/screenshot1.png)  
 *A traditional roguelike of exploration, survival, and discovery.*
@@ -34,4 +34,4 @@ Dive into a vast, perilous world filled with ancient secrets, deadly creatures, 
 ## Installation  
 1. **Clone the repository**:  
    ```bash  
-   git clone https://github.com/yourusername/your-roguelike.git  
+   git clone https://github.com/TopHattOwl/basic_rogue.git  
