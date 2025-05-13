@@ -30,7 +30,7 @@ func get_chase_position(current_pos: Vector2i, target_pos: Vector2i) -> Vector2i
 	current_path = MapFunction.astar_get_path(current_pos, target_pos)
 	
 	# Return next step or current position if no path
-	return current_path[1] if current_path.size() > 1 else current_pos
+	return current_path[1]
 
 func is_in_range(ai_pos: Vector2i, target_pos: Vector2i) -> bool:
 

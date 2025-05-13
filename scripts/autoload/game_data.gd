@@ -1,5 +1,7 @@
 extends Node
 
+var world_seed: int = 2840132 # set when starting new game
+
 # ___ Main Node ___
 
 var main_node: Node2D
@@ -232,6 +234,7 @@ enum TILE_TAGS {
 	NATURE,
 }
 
+# world map
 enum WORLD_TILE_TYPES {
 	# civilization
 	CITY,
@@ -242,6 +245,7 @@ enum WORLD_TILE_TYPES {
 	SWAMP,
 	FOREST,
 	FIELD,
+	DESERT,
 
 }
 

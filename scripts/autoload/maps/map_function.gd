@@ -186,6 +186,8 @@ func load_premade_map(map_path: String) -> void:
 #	when zoomed in and trying to move outside of world map
 func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 
+	if !WorldMapData.world_map:
+		push_error("Error: No world map data, world_map is null")
 	# check world map borders
 	if not is_in_world_map(new_world_map_pos):
 		return
@@ -262,6 +264,14 @@ func exit_world_map():
 
 	GameData.player.get_node("Camera2D").limit_right = GameData.MAP_SIZE.x * GameData.TILE_SIZE.x
 	GameData.player.get_node("Camera2D").limit_bottom = GameData.MAP_SIZE.y * GameData.TILE_SIZE.y
+
+	# set camera zoom
+	var camera = GameData.player.get_node("Camera2D")
+	camera.zoom = Vector2(0.8, 0.8)
+
+	# queue free world map
+	if GameData.main_node.has_node("WorldMap"):
+		GameData.main_node.get_node("WorldMap").queue_free()
 
 func is_in_world_map(pos:Vector2i) -> bool:
 	return pos.x >= 0 and pos.x < GameData.WORLD_MAP_SIZE.x and pos.y >= 0 and pos.y < GameData.WORLD_MAP_SIZE.y

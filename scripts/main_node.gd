@@ -86,6 +86,7 @@ func handle_zoomed_in_inputs():
 	
 	if Input.is_action_just_pressed("dev_overlay"):
 		GameData.player.get_node("DevTools").toggle_dev_overlay()
+		print(WorldMapData.world_map)
 
 
 func handle_world_map_inputs():

@@ -103,5 +103,5 @@ func spawn_item(grid_pos: Vector2i, item_scene_key: int):
 	item.owner = main_node # for scene persistence
 
 ## spawns a random item based on item type given
-func spawn_random_item(item_type: int):
+func spawn_random_item(_item_type: int):
 	pass

@@ -15,7 +15,8 @@ var world_map_monster_data = []
 #	 "is_premade": false,
 #	 "map_path": "",
 #	 "generated_seed": 0,
-#	 "explored": false, 
+#	 "explored": false,
+#	 "walkable": false,
 # }
 
 # biome types is a 2d array correspondng to each world map tile's biome type -> biome_type[y][x] tells what biome the tile is
@@ -32,30 +33,29 @@ var world_map_monster_data = []
 
 
 func _ready() -> void:
-	SaveFuncs.load_world_map_data()
+	# SaveFuncs.load_world_map_data()
 
-	# init_world_map_data()
-	# init_biome_type()
-	# init_world_map_monster_data()
+	init_world_map_data()
+	init_biome_type()
+	init_world_map_monster_data()
 
 	# add first outpost
-	# add_map_to_world_map(Vector2i(5, 8), DirectoryPaths.first_outpost, 0, true)
+	add_map_to_world_map(Vector2i(5, 8), DirectoryPaths.first_outpost, 0, true)
 
-	# # add field with hideout
-	# add_map_to_world_map(Vector2i(5, 9), DirectoryPaths.field_with_hideout, 0, true)
+	# add field with hideout
+	add_map_to_world_map(Vector2i(5, 9), DirectoryPaths.field_with_hideout, 0, true)
 
-	# SaveFuncs.save_world_map_data()
-
-
+	SaveFuncs.save_world_map_data()
 
 
-func add_map_to_world_map(world_map_pos: Vector2i, map_path: String = "", generated_seed: int = 0, explored: bool = false):
+func add_map_to_world_map(world_map_pos: Vector2i, map_path: String = "", generated_seed: int = 0, explored: bool = false, walkable: bool = true):
 	if map_path:
 		world_map[world_map_pos.y][world_map_pos.x] = {
 			"is_premade": true,
 			"map_path": map_path,
 			"generated_seed": generated_seed,
 			"explored": explored,
+			"walkable": walkable
 		}
 	else:
 		world_map[world_map_pos.y][world_map_pos.x] = {
@@ -63,6 +63,7 @@ func add_map_to_world_map(world_map_pos: Vector2i, map_path: String = "", genera
 			"map_path": map_path,
 			"generated_seed": generated_seed,
 			"explored": explored,
+			"walkable": walkable
 		}
 
 
@@ -76,6 +77,7 @@ func init_world_map_data() -> void:
 				"map_path": "",
 				"generated_seed": 0,
 				"explored": false,
+				"walkable": true
 			})
 
 func init_biome_type() -> void:
