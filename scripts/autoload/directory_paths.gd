@@ -82,3 +82,6 @@ const pick_up_window_script = "res://scenes/ui/items/pick_up_window.gd"
 # --- SPRITES/TILEMAPS ---
 
 const wall_tile_set = "res://resources/tiles/wall/wall.tres"
+
+
+const targeter = "res://scenes/ui/targeter/targeter.tscn"

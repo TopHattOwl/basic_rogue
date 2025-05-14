@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://xu1v46ex8vaq"]
+[gd_scene load_steps=18 format=3 uid="uid://xu1v46ex8vaq"]
 
 [ext_resource type="Texture2D" uid="uid://mk7q31h1b4rs" path="res://assets/player/player_knight.png" id="1_wmv1v"]
 [ext_resource type="PackedScene" uid="uid://duhsb81d10cy6" path="res://scripts/ECS/components/actors/component_scenes/abilities_component.tscn" id="2_inh5e"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ciajb1jf67nek" path="res://scripts/ECS/components/actors/component_scenes/skills_component.tscn" id="14_4iwnj"]
 [ext_resource type="PackedScene" uid="uid://dnbuk32inicvw" path="res://scenes/dev_tools/dev_tools.tscn" id="15_068wj"]
 [ext_resource type="PackedScene" uid="uid://be4gwtu23s7n6" path="res://scenes/ui/player_ui/player_ui.tscn" id="16_xducv"]
+[ext_resource type="PackedScene" uid="uid://bofi0u0bprhs8" path="res://scenes/ui/targeter/targeter.tscn" id="17_yab6n"]
 
 [node name="Player" type="Node2D"]
 
@@ -63,3 +64,8 @@ limit_bottom = 480
 visible = false
 
 [node name="PlayerUI" parent="." instance=ExtResource("16_xducv")]
+
+[node name="Targeter" parent="." instance=ExtResource("17_yab6n")]
+visible = false
+z_index = 4
+z_as_relative = false

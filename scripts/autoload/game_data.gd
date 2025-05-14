@@ -245,11 +245,11 @@ enum ENTITY_TAGS {
 enum TILE_TAGS {
 	NONE,
 	FLOOR,
-	WALL,
 	STAIR,
 	DOOR,
 	DOOR_FRAME,
 	NATURE,
+	WALL,
 }
 
 # world map

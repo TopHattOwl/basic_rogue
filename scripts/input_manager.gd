@@ -101,17 +101,9 @@ func handle_look_inputs():
 			elif look_diff_from_player.x < -3 and UiFunc.player_ui.look_ui_side == -1:
 				UiFunc.player_ui.flip_look_ui()
 
-			# getting look target info
-			var look_target_actor = MapFunction.get_actor(look_target_grid)
-			var look_target_item = MapFunction.get_items(look_target_grid)
-			var look_target_terrain = MapFunction.get_terrain(look_target_grid)
-
-			print("actor:", look_target_actor)
-			print("item:", look_target_item)
-			print("terrain:", look_target_terrain)
-
-			var tilemap_layers = MapFunction.get_tile_map_layers(look_target_grid)
-			UiFunc.set_look_ui_texture(MapFunction.get_tile_texture(tilemap_layers[0], look_target_grid))
+			
+			# updating look ui's target array
+			UiFunc.set_look_ui_target_array(look_target_grid)
 			break
 
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
@@ -150,8 +142,7 @@ func toggle_look_mode() -> void:
 
 		# reset look diff and set look ui texture
 		look_diff_from_player = Vector2i(0, 0)
-		var tilemap_layers = MapFunction.get_tile_map_layers(ComponentRegistry.get_player_pos())
-		UiFunc.set_look_ui_texture(MapFunction.get_tile_texture(tilemap_layers[0], ComponentRegistry.get_player_pos()))
+		UiFunc.set_look_ui_target_array(ComponentRegistry.get_player_pos())
 		
 		# toggle look ui visibility
 		UiFunc.toggle_look_ui()

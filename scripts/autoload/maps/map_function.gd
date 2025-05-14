@@ -145,13 +145,14 @@ func get_tile_texture(tilemap_layer: TileMapLayer, grid_pos: Vector2i) -> Textur
 	return atlas_texture
 
 ## returns an array of tile layers at grid_pos
-func get_tile_map_layers(grid_pos: Vector2i) -> Array:
+func get_tile_map_layers(grid_pos: Vector2i) -> Dictionary:
 
-	var tilemap_layers = []
+	var tilemap_layers = {}
 	for key in GameData.TilemapLayers.keys():
 		var layer = GameData.current_map.get_node_or_null(GameData.TilemapLayers[key])
 		if layer and layer.get_cell_tile_data(grid_pos):
-			tilemap_layers.append(layer)
+			# tilemap_layers.append(layer)
+			tilemap_layers[key] = layer
 
 	return tilemap_layers
 
@@ -245,7 +246,6 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 	var is_transition_success = false
 	if world_tile.is_premade:
 		load_premade_map(world_tile.map_path)
-		print("map is premade")
 		is_transition_success = true
 	else:
 		Generators.generate_random_map(new_world_map_pos)
