@@ -10,8 +10,12 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# fix is_action_pressed timer to work properly with everything (right now, using is_action_just_pressed, so cant hold down button)
 	# in input_manager -> look input 
 		# get all terrain data and actor data at look target grid, get actor's sprite for displye, somhow get tile map's tile for display
-	# in map_functions TODO: use GameData.TilemapLayers dictionary to get all layers
+	# in map_functions -> parse_tile_layers_from_scene TODO: use GameData.TilemapLayers dictionary to get all layers
 	# player_ui.gd make look ui array cycleable when looking at tile with more stuff
+	# in world_map_data.gd add world_map_identity array, figure out what yo put there, name, quests, notes, etc
+	# make thiner road tile for smaller roads
+	# make world map save and load smaller (for loop tru each DirectoryPaths.world_save_file)
+	# finish savagery rate calculation
 func _ready():
 
 	# passing main node to game data

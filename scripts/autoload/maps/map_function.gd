@@ -262,6 +262,7 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 # --- World Map ---
 	
 func enter_world_map():
+	# TODO save current map data and queue_free actors and items / all nodes, also reset variables
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map = true
 
 	# opening the world map

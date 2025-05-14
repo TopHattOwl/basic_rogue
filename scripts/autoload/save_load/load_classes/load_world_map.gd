@@ -18,3 +18,9 @@ func load_world_map_monster_data():
         var file = FileAccess.open_compressed(DirectoryPaths.monster_world_map_data_save, FileAccess.READ)
         WorldMapData.world_map_monster_data = file.get_var()
         file.close()
+
+func load_world_map_savagery():
+    if FileAccess.file_exists(DirectoryPaths.world_map_savagery_save):
+        var file = FileAccess.open_compressed(DirectoryPaths.world_map_savagery_save, FileAccess.READ)
+        WorldMapData.world_map_savagery = file.get_var()
+        file.close()

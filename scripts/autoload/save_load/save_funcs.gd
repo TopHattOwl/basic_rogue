@@ -23,8 +23,10 @@ func save_world_map_data():
 	save_world_map.save_world_map_data()
 	save_world_map.save_biome_type_data()
 	save_world_map.save_world_map_monster_data()
+	save_world_map.save_world_map_savagery()
 
 func load_world_map_data():
 	load_world_map.load_world_map_data()
 	load_world_map.load_biome_type_data()
 	load_world_map.load_world_map_monster_data()
+	load_world_map.load_world_map_savagery()

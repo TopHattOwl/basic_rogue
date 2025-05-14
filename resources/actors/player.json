@@ -32,12 +32,12 @@
 		"is_players_turn": true,
 		"world_map_pos": {
 			"x": 5,
-			"y": 8
+			"y": 9
 		}
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 26,
+			"x": 28,
 			"y": 0
 		}
 	},

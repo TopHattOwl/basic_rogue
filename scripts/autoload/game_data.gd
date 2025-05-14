@@ -114,6 +114,23 @@ var TilemapLayers = {
 	TILE_TAGS.NATURE: "NatureLayer"
 }
 
+
+var WorldMapTileLayer = {
+	WORLD_TILE_TYPES.CITY: "City",
+	WORLD_TILE_TYPES.VILLAGE: "Village",
+	WORLD_TILE_TYPES.OUTPOST: "Outpost",
+	WORLD_TILE_TYPES.ROAD: "Road",
+
+	WORLD_TILE_TYPES.SWAMP: "Swamp",
+	WORLD_TILE_TYPES.FOREST: "Forest",
+	WORLD_TILE_TYPES.FIELD: "Field",
+	WORLD_TILE_TYPES.DESERT: "Desert",
+	WORLD_TILE_TYPES.MOUNTAIN: "Mountain",
+
+	WORLD_TILE_TYPES.WATER: "Water",
+	WORLD_TILE_TYPES.RIVER: "Rriver",
+}
+
 func get_tile_data(tile_tag: int) -> Dictionary:
 	return TileDatas.get(tile_tag, {})
 
@@ -258,12 +275,18 @@ enum WORLD_TILE_TYPES {
 	CITY,
 	VILLAGE,
 	OUTPOST,
+	ROAD,
 
 	# nature
 	SWAMP,
 	FOREST,
 	FIELD,
 	DESERT,
+	MOUNTAIN,
+
+	# water
+	WATER,
+	RIVER,
 
 }
 
