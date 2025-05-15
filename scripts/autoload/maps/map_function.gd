@@ -5,7 +5,6 @@ extends Node
 func to_world_pos(pos: Vector2i) -> Vector2:
 	return Vector2(pos.x * GameData.TILE_SIZE.x + GameData.OFFSET.x, pos.y * GameData.TILE_SIZE.y + GameData.OFFSET.y)
 
-
 func to_grid_pos(pos: Vector2) -> Vector2i:
 	return Vector2i(
 		floor((pos.x - GameData.OFFSET.x) / GameData.TILE_SIZE.x),
@@ -13,6 +12,7 @@ func to_grid_pos(pos: Vector2) -> Vector2i:
 	)
 
 
+# --- CHECKS ---
 func is_tile_walkable(pos: Vector2i) -> bool:
 	return GameData.terrain_map[pos.y][pos.x]["walkable"]
 
@@ -21,6 +21,7 @@ func is_in_bounds(pos: Vector2i) -> bool:
 	return pos.x >= 0 and pos.x < GameData.MAP_SIZE.x and pos.y >= 0 and pos.y < GameData.MAP_SIZE.y
 
 
+# --- GETTERS ---
 func get_tile_info(grid_pos: Vector2i) -> Dictionary:
 	if not is_in_bounds(grid_pos):
 		return {}
@@ -29,6 +30,9 @@ func get_tile_info(grid_pos: Vector2i) -> Dictionary:
 
 func chebyshev_distance(a: Vector2i, b: Vector2i) -> int:
 	return max(abs(a.x - b.x), abs(a.y - b.y)) 
+
+func manhattan_distance(a: Vector2i, b: Vector2i) -> int:
+	return abs(a.x - b.x) + abs(a.y - b.y)
 
 func get_actor(grid_pos: Vector2i) -> Node2D:
 	return GameData.actors_map[grid_pos.y][grid_pos.x]
@@ -39,7 +43,7 @@ func get_items(grid_pos: Vector2i) -> Array:
 func get_terrain(grid_pos) -> Dictionary:
 	return GameData.terrain_map[grid_pos.y][grid_pos.x]
 
-# --- Map data ---
+# --- MAP DATA ---
 func initialize_map_data():
 	# reset variables
 	GameData.reset_maps()
@@ -66,24 +70,18 @@ func parse_tile_layers_from_scene(map_root: Node2D) -> void:
 	for y in range(GameData.MAP_SIZE.y):
 		for x in range(GameData.MAP_SIZE.x):
 			var grid_pos = Vector2i(x, y)
-			var wall_layer = map_root.get_node_or_null("WallLayer")
-			var door_layer = map_root.get_node_or_null("DoorLayer")
-			var stair_layer = map_root.get_node_or_null("StairLayer")
+			
+			# add terrain data from tile layers
+			for key in GameData.TilemapLayers.keys():
 
-			# checks if in grid_pos there is a tile in the given layer
-			if wall_layer and wall_layer.get_cell_tile_data(grid_pos):
-				var tile_info = GameData.get_tile_data(GameData.TILE_TAGS.WALL)
-				add_terrain_map_data(grid_pos, GameData.TILE_TAGS.WALL, tile_info)
-				
+				# floor is always there (when terrain_map is initialized floor is added as base)
+				if key == GameData.TILE_TAGS.FLOOR or key == GameData.TILE_TAGS.NONE:
+					continue
+				var layer = map_root.get_node_or_null(GameData.TilemapLayers[key])
+				if layer and layer.get_cell_tile_data(grid_pos):
+					var tile_info = GameData.get_tile_data(key)
+					add_terrain_map_data(grid_pos, key, tile_info)
 
-			if door_layer and door_layer.get_cell_tile_data(grid_pos):
-				var tile_info = GameData.get_tile_data(GameData.TILE_TAGS.DOOR)
-				add_terrain_map_data(grid_pos, GameData.TILE_TAGS.DOOR, tile_info)
-				
-				
-			if stair_layer and stair_layer.get_cell_tile_data(grid_pos):
-				var tile_info = GameData.get_tile_data(GameData.TILE_TAGS.STAIR)
-				add_terrain_map_data(grid_pos,GameData.TILE_TAGS.STAIR ,tile_info)
 	
 	# initialize astar afther collecting terrain_data
 	MapFunction.initialize_astar_grid()
@@ -328,3 +326,21 @@ func exit_world_map():
 
 func is_in_world_map(pos:Vector2i) -> bool:
 	return pos.x >= 0 and pos.x < GameData.WORLD_MAP_SIZE.x and pos.y >= 0 and pos.y < GameData.WORLD_MAP_SIZE.y
+
+
+
+
+# --- CONSTRUCTORS ---
+
+## Makes base terrain map filled with floor
+func make_base_terrain_map() -> Array:
+	var terrain_map = []
+	for y in GameData.MAP_SIZE.y:
+		terrain_map.append([])
+		for x in GameData.MAP_SIZE.x:
+			terrain_map[y].append({
+				"tags": [GameData.TILE_TAGS.FLOOR],
+				"walkable": true,
+				"transparent": true
+			})
+	return terrain_map

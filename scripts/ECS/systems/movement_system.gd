@@ -20,7 +20,7 @@ func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 	# Map transition check
 	# if player is zoomed in and trying to move outside of world map
 	var dir = new_pos - position_component.grid_pos
-	if check__map_transition(new_pos, dir):
+	if is_current_actor_player and check__map_transition(new_pos, dir):
 		# if map transition is successful it's still player's move (free move)
 		return false
 
@@ -55,7 +55,7 @@ func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 		return true
 
 	# Dungeon enter check
-	if MapFunction.get_tile_info(new_pos)["tags"].has(GameData.TILE_TAGS.STAIR):
+	if MapFunction.get_tile_info(new_pos)["tags"].has(GameData.TILE_TAGS.STAIR) and is_current_actor_player:
 		print("enter dungeon")
 
 	return false

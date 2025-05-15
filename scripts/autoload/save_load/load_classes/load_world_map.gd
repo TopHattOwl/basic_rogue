@@ -24,3 +24,9 @@ func load_world_map_savagery():
         var file = FileAccess.open_compressed(DirectoryPaths.world_map_savagery_save, FileAccess.READ)
         WorldMapData.world_map_savagery = file.get_var()
         file.close()
+
+func load_world_map_civilization():
+    if FileAccess.file_exists(DirectoryPaths.world_map_civilization_save):
+        var file = FileAccess.open_compressed(DirectoryPaths.world_map_civilization_save, FileAccess.READ)
+        WorldMapData.world_map_civilization = file.get_var()
+        file.close()

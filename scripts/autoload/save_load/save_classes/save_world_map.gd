@@ -21,3 +21,8 @@ func save_world_map_savagery() -> void:
 	var file = FileAccess.open_compressed(DirectoryPaths.world_map_savagery_save, FileAccess.WRITE)
 	file.store_var(WorldMapData.world_map_savagery)
 	file.close()
+
+func save_world_map_civilization() -> void:
+	var file = FileAccess.open_compressed(DirectoryPaths.world_map_civilization_save, FileAccess.WRITE)
+	file.store_var(WorldMapData.world_map_civilization)
+	file.close()

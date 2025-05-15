@@ -23,8 +23,8 @@ func set_look_ui_target_array(grid_pos: Vector2i) -> void:
 
 	var actor = MapFunction.get_actor(grid_pos)
 	var items = MapFunction.get_items(grid_pos)
-	var terrain = MapFunction.get_terrain(grid_pos)
 	var tile_map_layers = MapFunction.get_tile_map_layers(grid_pos)
+	var terrain_data = MapFunction.get_terrain(grid_pos)
 
 	var look_target_stuff = []
 
@@ -41,6 +41,7 @@ func set_look_ui_target_array(grid_pos: Vector2i) -> void:
 			look_target_stuff.append(make_look_target_entry(item.get_node("Sprite2D").texture, item_name, item_name))
 
 	# TERRAIN
+	# TODO: loop tru terrain_data.tags and add all terrains
 	var terrain_stuff = []
 	# if it has wall the only thing the player can see is wall
 	if tile_map_layers.keys().has(GameData.TILE_TAGS.WALL):
@@ -58,7 +59,8 @@ func set_look_ui_target_array(grid_pos: Vector2i) -> void:
 			terrain_name,
 			"a wall"
 		))
-	elif tile_map_layers.keys().has(GameData.TILE_TAGS.FLOOR):
+	else:
+		# tile_map_layers.keys().has(GameData.TILE_TAGS.FLOOR):
 
 		# get the name (matchin source id of the tile) see TileMapLayer Node's TileSet resource
 		var terrain_name = ""

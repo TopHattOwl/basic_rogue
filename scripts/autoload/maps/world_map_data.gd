@@ -15,7 +15,7 @@ var world_map_identity = []
 # 2d array corresponding to world map tile's savagery rate (0-14) 0 -> no chance for monsters
 var world_map_savagery = []
 
-# 2d array corresponding to world map tile's civilization 1 -> civilization 0 -> not civilization
+# 2d array corresponding to world map tile's civilization 1 -> civilization 0 -> not civilization, set when world map is loaded
 var world_map_civilization = []
 
 # var tile_template = {
@@ -49,25 +49,27 @@ var world_map_civilization = []
 func _ready() -> void:
 	SaveFuncs.load_world_map_data()
 
-	parse_world_map_data()
+	# parse_world_map_data()
 
-	# set world map civilization since it gets it from biome only (and it's loaded already here)
-	init_world_map_civilization()
-
+	
+	# init_world_map_civilization()
 	# init_world_map_data()
 	# init_biome_type()
 	# init_world_map_monster_data()
 	# init_world_map_savagery()
 
 	# # add first outpost
-	# add_map_to_world_map(Vector2i(5, 8), DirectoryPaths.first_outpost, 0, true)
+	# add_map_to_world_map(Vector2i(31, 16), DirectoryPaths.first_outpost, 0, true)
 
 	# # add field with hideout
-	# add_map_to_world_map(Vector2i(5, 9), DirectoryPaths.field_with_hideout, 0, true)
+	# add_map_to_world_map(Vector2i(31, 17), DirectoryPaths.field_with_hideout, 0, true)
 
-	# SaveFuncs.save_world_map_data()
+	# reset_world_map_tile(Vector2i(5, 8))
+	# reset_world_map_tile(Vector2i(5, 9))
 
-# --- ADD MAP ---
+	SaveFuncs.save_world_map_data()
+
+# --- MAP DATA REGISTRY ---
 func add_map_to_world_map(world_map_pos: Vector2i, map_path: String = "", generated_seed: int = 0, explored: int = 0, walkable: int = 1) -> void:
 	if map_path:
 		world_map[world_map_pos.y][world_map_pos.x] = {
@@ -85,6 +87,19 @@ func add_map_to_world_map(world_map_pos: Vector2i, map_path: String = "", genera
 			"explored": explored,
 			"walkable": walkable
 		}
+
+func reset_world_map_tile(grid_pos: Vector2i) -> void:
+	if !MapFunction.is_in_world_map(grid_pos):
+		push_error("tile is not in world map")
+		return
+
+	world_map[grid_pos.y][grid_pos.x] = {
+		"is_premade": false,
+		"map_path": "",
+		"generated_seed": randi_range(111111, 999999),
+		"explored": 0,
+		"walkable": 1
+	}
 
 # --- INIT ---
 func init_world_map_data() -> void:
@@ -178,17 +193,23 @@ func parse_world_map_data() -> void:
 				biome_type[y][x] = GameData.WORLD_TILE_TYPES.DESERT
 				continue
 			
+			# civilization
 			var outpost_layer = world_map_scene.get_node(GameData.WorldMapTileLayer[GameData.WORLD_TILE_TYPES.OUTPOST])
 			if outpost_layer and outpost_layer.get_cell_tile_data(grid_pos):
 				biome_type[y][x] = GameData.WORLD_TILE_TYPES.OUTPOST
 				continue
+			
+			var village_layer = world_map_scene.get_node(GameData.WorldMapTileLayer[GameData.WORLD_TILE_TYPES.VILLAGE])
+			if village_layer and village_layer.get_cell_tile_data(grid_pos):
+				biome_type[y][x] = GameData.WORLD_TILE_TYPES.VILLAGE
+				continue
 	
 
-	# get savagery rate
+	# set savagery rate, savagery is saved so this need to run only once
 	for y in range(GameData.WORLD_MAP_SIZE.y):
 		for x in range(GameData.WORLD_MAP_SIZE.x):
 			# TODO: get closest civilization -> distance from it = savagery_rate
-			pass
+			world_map_savagery[y][x] = calc_savagery_for_tile(Vector2i(x, y))
 
 
 # --- CHECKS ---
@@ -203,3 +224,19 @@ func is_tile_civilization(grid_pos: Vector2i) -> bool:
 			return true
 
 	return false
+
+
+# --- UTILS ---
+
+## returns wotld map tile's savagery rate depen on distance from civlization
+# TODO: outposts start at 4 savagery, city -> 0, village -> 2
+func calc_savagery_for_tile(grid_pos: Vector2i) -> int:
+
+	var distance = 15
+
+	for y in range(GameData.WORLD_MAP_SIZE.y):
+		for x in range(GameData.WORLD_MAP_SIZE.x):
+			if world_map_civilization[y][x]:
+				var current_distance = MapFunction.manhattan_distance(grid_pos, Vector2i(x, y))
+				distance = current_distance if current_distance < distance else distance
+	return distance
