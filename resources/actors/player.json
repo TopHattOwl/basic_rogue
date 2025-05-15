@@ -32,13 +32,13 @@
 		"is_players_turn": true,
 		"world_map_pos": {
 			"x": 31,
-			"y": 17
+			"y": 16
 		}
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 21,
-			"y": 0
+			"x": 24,
+			"y": 13
 		}
 	},
 	"skills_component": {

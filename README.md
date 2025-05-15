@@ -1,6 +1,6 @@
 # [Placeholder Title]
 
-![Game Screenshot Placeholder](screenshots/screenshot1.png)  
+![Game Screenshot Placeholder](assets/screenshots/world_map.png)  
 *A traditional roguelike of exploration, survival, and discovery.*
 
 ---
