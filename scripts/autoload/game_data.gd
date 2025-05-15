@@ -56,6 +56,10 @@ enum MONSTERS1 {
 	MASK
 }
 
+enum MONSTERS2 {
+	PLACEHOLDER,
+}
+
 # ___ Maps ___
 
 var current_map: Node2D = null
@@ -175,6 +179,7 @@ const COMPONENTS = {
 	ComponentKeys.POSITION: "Components/PositionComponent",
 	ComponentKeys.MONSTER_PROPERTIES: "Components/MonsterPropertiesComponent",
 	ComponentKeys.MONSTER_STATS: "Components/MonsterStatsComponent",
+	ComponentKeys.MONSTER_DROPS: "Components/MonsterDropsComponent",
 	ComponentKeys.SPELLS: "Components/SpellsComponent",
 	ComponentKeys.STAMINA: "Components/StaminaComponent",
 	ComponentKeys.STATE: "Components/StateComponent",
@@ -185,7 +190,6 @@ const COMPONENTS = {
 	ComponentKeys.ITEM_POSITION: "Components/ItemPositionComponent",
 	ComponentKeys.ITEM_IDENTITY: "Components/ItemIdentityComponent",
 	ComponentKeys.ITEM_SKILL: "Components/ItemSkillComponent",
-
 
 	ComponentKeys.WEAPON_STATS: "Components/WeaponStatsComponent",
 }
@@ -236,6 +240,7 @@ enum ComponentKeys {
 	POSITION,
 	MONSTER_PROPERTIES,
 	MONSTER_STATS,
+	MONSTER_DROPS,
 	SPELLS,
 	STAMINA,
 	STATE,

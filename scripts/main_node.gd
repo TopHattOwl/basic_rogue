@@ -5,6 +5,8 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 @export var input_manager: Node = null
 
 # TODO:
+	# Stamina and State componenet not finished
+	# IMPORTANT: make giant worm spawn the same way mask does (variables set in own ready script)
 	# load player into the correct world_map tile
 	# remove actor nodes when trasitioning maps and entering and exiting world map, right now giant worm is invisible in certain cases
 	# fix is_action_pressed timer to work properly with everything (right now, using is_action_just_pressed, so cant hold down button)
@@ -12,7 +14,7 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 		# get all terrain data and actor data at look target grid, get actor's sprite for displye, somhow get tile map's tile for display
 	# in map_functions -> parse_tile_layers_from_scene TODO: use GameData.TilemapLayers dictionary to get all layers
 	# player_ui.gd make look ui array cycleable when looking at tile with more stuff
-	# in world_map_data.gd add world_map_identity array, figure out what to put there, name, quests, notes, etc
+	# in world_map_data.gd add world_map_identity array, figure out what to put there, name, quests, notes, etc also add it to map generation
 	# make thiner road tile for smaller roads
 	# make world map save and load smaller (for loop tru each DirectoryPaths.world_save_file)
 	# finish savagery rate calculation
@@ -38,6 +40,12 @@ func _ready():
 	# SaveFuncs.save_player_data(GameData.player)
 
 	UiFunc.log_message("You arrive in ******")
+
+	# # spawn mask 
+	# var mask = load(DirectoryPaths.monsters1_scenes[GameData.MONSTERS1.MASK]).instantiate()
+	# mask.position = MapFunction.to_world_pos(Vector2i(7, 4))
+	# GameData.main_node.add_child(mask)
+
 
 func _process(_delta):
 # input handle autoload, gets input passed to it and depending on what input is pressed it calls different functions

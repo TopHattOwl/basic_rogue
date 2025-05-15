@@ -19,6 +19,17 @@ func generate_random_map(world_map_pos: Vector2i) -> void:
     print("generating random map at pos: ", world_map_pos)
     var terrain_map = MapFunction.make_base_terrain_map()
 
+    # getting data
+    var savagery = WorldMapData.world_map_savagery[world_map_pos.y][world_map_pos.x]
+    var monster_data = WorldMapData.world_map_monster_data[world_map_pos.y][world_map_pos.x]
+    var biome_type = WorldMapData.biome_type[world_map_pos.y][world_map_pos.x]
+
+    print("savagery: ", savagery)
+    print("biome: ", biome_type)
+    print("monster data: ", monster_data)
+
+
+
 
 
 

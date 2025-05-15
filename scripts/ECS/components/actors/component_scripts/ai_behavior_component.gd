@@ -4,6 +4,7 @@ extends Node
 var type: String
 var is_hostile: bool = false
 var vision_range: int
+
 var current_path: PackedVector2Array = []
 
 
@@ -29,6 +30,8 @@ func get_chase_position(current_pos: Vector2i, target_pos: Vector2i) -> Vector2i
 	# Get A* path
 	current_path = MapFunction.astar_get_path(current_pos, target_pos)
 	
+	if current_path.size() == 0:
+		return current_pos
 	# Return next step or current position if no path
 	return current_path[1]
 

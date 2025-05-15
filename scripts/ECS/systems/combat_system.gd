@@ -62,7 +62,6 @@ func die(actor: Node2D):
 	if not is_actor_player:
 		MapFunction.astar_toggle_walkable(actor_pos)
 
-
 	# if monster drop monster remains TODO also drom monster loot
 	if actor_identity.faction == "monsters":
 		var monster_id = ComponentRegistry.get_component(actor, GameData.ComponentKeys.MONSTER_STATS).monster_id
@@ -73,8 +72,3 @@ func die(actor: Node2D):
 
 	# remove actor
 	actor.queue_free()
-	
-
-
-
-	

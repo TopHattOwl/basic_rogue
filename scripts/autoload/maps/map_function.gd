@@ -119,7 +119,6 @@ func remove_item_from_variables(item: Node2D) -> void:
 	GameData.all_items.erase(item)
 
 # --- TileSet ---
-
 func get_tile_texture(tilemap_layer: TileMapLayer, grid_pos: Vector2i) -> Texture2D:
 
 	# get tile data

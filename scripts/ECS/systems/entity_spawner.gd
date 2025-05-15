@@ -31,31 +31,49 @@ func spawn_player():
 		push_error("Player position component not found")
 
 
-func spawn_monster(grid_pos: Vector2i, monster_key: int):
-	var monster = load(DirectoryPaths.monsters1_scenes[monster_key]).instantiate()
-	var monster_data = DataRegistry.monsters1[monster_key]
+func spawn_monster(grid_pos: Vector2i, monster_key: int, monster_tier: int = 1):
+	var monster = null
+	match monster_tier:
+		1:
+			monster = load(DirectoryPaths.monsters1_scenes[monster_key]).instantiate()
+			var position_comp = ComponentRegistry.get_component(monster, GameData.ComponentKeys.POSITION)
 
-	init_monster_components(monster, monster_data)
-
-	var position_comp = ComponentRegistry.get_component(monster, GameData.ComponentKeys.POSITION)
-
-	if position_comp:
-		# set position
-		position_comp.grid_pos = grid_pos
-		monster.position = MapFunction.to_world_pos(grid_pos)
-
-		# set monster_id
-		var monster_stats_comp = ComponentRegistry.get_component(monster, GameData.ComponentKeys.MONSTER_STATS)
-		monster_stats_comp.monster_id = monster_key
-
-		MapFunction.add_hostile_to_variables(monster)
-
-	else:
-		push_error("Monster position component not found")
-	
+			if position_comp:
+				monster.position = MapFunction.to_world_pos(grid_pos)
+				position_comp.grid_pos = grid_pos
+				MapFunction.add_hostile_to_variables(monster)
+			else:
+				push_error("Monster position component not found")
+		2:
+			pass
 
 	GameData.main_node.add_child(monster)
 	monster.owner = main_node # for scene persistence
+
+	# var monster = load(DirectoryPaths.monsters1_scenes[monster_key]).instantiate()
+	# var monster_data = DataRegistry.monsters1[monster_key]
+
+	# init_monster_components(monster, monster_data)
+
+	# var position_comp = ComponentRegistry.get_component(monster, GameData.ComponentKeys.POSITION)
+
+	# if position_comp:
+	# 	# set position
+	# 	position_comp.grid_pos = grid_pos
+	# 	monster.position = MapFunction.to_world_pos(grid_pos)
+
+	# 	# set monster_id
+	# 	var monster_stats_comp = ComponentRegistry.get_component(monster, GameData.ComponentKeys.MONSTER_STATS)
+	# 	monster_stats_comp.monster_id = monster_key
+
+	# 	MapFunction.add_hostile_to_variables(monster)
+
+	# else:
+	# 	push_error("Monster position component not found")
+	
+
+	# GameData.main_node.add_child(monster)
+	# monster.owner = main_node # for scene persistence
 
 
 func init_monster_components(monster: Node2D, monster_data: Dictionary):

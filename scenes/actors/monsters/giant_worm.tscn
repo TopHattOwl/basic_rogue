@@ -16,6 +16,8 @@
 [node name="GiantWorm" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+z_as_relative = false
 texture = ExtResource("1_p348a")
 
 [node name="Components" type="Node" parent="."]

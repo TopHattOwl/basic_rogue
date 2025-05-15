@@ -18,12 +18,12 @@ const monsters1 = {
 
 const monsters1_scenes = {
     GameData.MONSTERS1.GIANT_WORM: "res://scenes/actors/monsters/giant_worm.tscn",
-    GameData.MONSTERS1.MASK: "",
+    GameData.MONSTERS1.MASK: "res://scenes/actors/monsters/tier_1/mask.tscn",
 }
-
 
 const monster1_remains_scene = {
     GameData.MONSTERS1.GIANT_WORM: "res://scenes/actors/monsters/remains/bloody_remains.tscn",
+    GameData.MONSTERS1.MASK: "res://scenes/actors/monsters/remains/mask_remains.tscn",
 }
 
 # --- ITEMS ---
