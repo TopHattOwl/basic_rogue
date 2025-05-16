@@ -245,6 +245,7 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 		load_premade_map(world_tile.map_path)
 		is_transition_success = true
 	else:
+		# TODO is explored load that data ininstead, not generate
 		Generators.generate_random_map(new_world_map_pos)
 		is_transition_success = true
 		
@@ -304,6 +305,7 @@ func exit_world_map():
 	if current_map_data.is_premade:
 		load_premade_map(current_map_data.map_path)
 	else:
+		# TODO is explored load that data ininstead, not generate
 		Generators.generate_random_map(player_world_pos)
 
 

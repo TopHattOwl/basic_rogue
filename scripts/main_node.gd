@@ -7,6 +7,7 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 # TODO:
 	# Stamina and State componenet not finished
 	# IMPORTANT: make giant worm spawn the same way mask does (variables set in own ready script)
+	# IMPORTANT: WorldMapData TODO  if explored world map tile in map transition and exit world map, load that data ininstead, not generate
 	# load player into the correct world_map tile
 	# remove actor nodes when trasitioning maps and entering and exiting world map, right now giant worm is invisible in certain cases
 	# fix is_action_pressed timer to work properly with everything (right now, using is_action_just_pressed, so cant hold down button)

@@ -1,19 +1,13 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dcpedkk1owmmc"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dcpedkk1owmmc"]
 
-[ext_resource type="Texture2D" uid="uid://0eibvpo6c4pl" path="res://assets/nature/tree1.png" id="1_6i0ic"]
-[ext_resource type="Texture2D" uid="uid://b1jrb615j03kf" path="res://assets/nature/tree2.png" id="2_jaba6"]
+[ext_resource type="Texture2D" uid="uid://vregf2vm8nal" path="res://assets/nature/field/trees.png" id="1_byvhr"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bhxvh"]
-texture = ExtResource("1_6i0ic")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6i0ic"]
+texture = ExtResource("1_byvhr")
 texture_region_size = Vector2i(16, 24)
 0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rsc0o"]
-texture = ExtResource("2_jaba6")
-texture_region_size = Vector2i(16, 24)
-0:0/0 = 0
+1:0/0 = 0
 
 [resource]
 tile_size = Vector2i(16, 24)
-sources/0 = SubResource("TileSetAtlasSource_bhxvh")
-sources/1 = SubResource("TileSetAtlasSource_rsc0o")
+sources/2 = SubResource("TileSetAtlasSource_6i0ic")
