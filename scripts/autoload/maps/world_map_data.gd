@@ -68,7 +68,7 @@ func _ready() -> void:
 	# reset_world_map_tile(Vector2i(5, 8))
 	# reset_world_map_tile(Vector2i(31, 17))
 
-	SaveFuncs.save_world_map_data()
+	# SaveFuncs.save_world_map_data()
 
 # --- MAP DATA REGISTRY ---
 func add_map_to_world_map(world_map_pos: Vector2i, map_path: String = "", generated_seed: int = 0, explored: int = 0, walkable: int = 1) -> void:
@@ -182,27 +182,29 @@ func parse_biome_type(world_map_scene: Node2D) -> void:
 				var layer = world_map_scene.get_node(GameData.WorldMapTileLayer[key])
 				if layer and layer.get_cell_tile_data(grid_pos):
 					biome_type[y][x] = key
+					if key == GameData.WORLD_TILE_TYPES.WATER:
+						world_map[y][x].walkable = 0
 					break
 
-func parse_monster_data() -> void:
-	for y in range(GameData.WORLD_MAP_SIZE.y):
-		for x in range(GameData.WORLD_MAP_SIZE.x):
-			var grid_pos = Vector2i(x, y)
+# func parse_monster_data() -> void:
+# 	for y in range(GameData.WORLD_MAP_SIZE.y):
+# 		for x in range(GameData.WORLD_MAP_SIZE.x):
+# 			var grid_pos = Vector2i(x, y)
 
-			var tier = calc_monster_tier(grid_pos)
-			var biome = biome_type[y][x]
+# 			var tier = calc_monster_tier(grid_pos)
+# 			var biome = biome_type[y][x]
 
-			# if biome type does not upport monster spawning -> skip
-			if !GameData.MonstersAll[tier].has(biome):
-				continue
+# 			# if biome type does not upport monster spawning -> skip
+# 			if !GameData.MonstersAll[tier].has(biome):
+# 				continue
 
-			var types = GameData.MonstersAll[tier][biome_type[y][x]]
-			world_map_monster_data[y][x] = {
-				"monster_tier": tier,
-				"monster_types": types,
-				"spawn_points": [], # gets filled when map is generated
-				"has_dungeon": false # also gets filled when generated
-			}
+# 			var types = GameData.MonstersAll[tier][biome_type[y][x]]
+# 			world_map_monster_data[y][x] = {
+# 				"monster_tier": tier,
+# 				"monster_types": types,
+# 				"spawn_points": [], # gets filled when map is generated
+# 				"has_dungeon": false # also gets filled when generated
+# 			}
 
 
 

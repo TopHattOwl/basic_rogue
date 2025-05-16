@@ -3,13 +3,12 @@ extends Node
 
 
 # genrates random surface map
-# most of the generation is handled in world.gd (world Node's script) world.gd's variables are set here
+# generation is handled in world.gd and here both
 
 # generation steps:
 	# init with all floor tile (each tile is random from given tileset)
 	# generate map data matching biome type
 	# generate monster related stuff based on savagery and world map monster data
-	# make it usable for world Node (load into the tile map layer Nodes)
 	# make copy of world Node and set it to current map
 	# set variables
 	# add as a child into main node
@@ -40,6 +39,7 @@ func generate_random_map(world_map_pos: Vector2i) -> void:
 	# init world_node, set its data
 	var world_node = load(DirectoryPaths.world).instantiate()
 	world_node.init_data(world_node_data)
+	world_node.generate_terrain_data()
 
 	
 	# variables handling
@@ -67,5 +67,3 @@ func set_variables(map_node: Node2D) -> void:
 
 	GameData.current_map = map_node
 	GameData.main_node.add_child(GameData.current_map)
-
-	MapFunction.parse_tile_layers_from_scene(GameData.current_map)

@@ -31,9 +31,13 @@ var civilization: bool = false
 var biome: int = 0
 var monster_data: Dictionary = {}
 
+# rng machine
+var map_rng = RandomNumberGenerator.new()
+
 func init_data(d: Dictionary) -> void:
 
-	terrain_data = d.get("terrain_data", null)
+	# terrain data here is filled with floor tiles only, other layers added here
+	terrain_data = d.get("terrain_data", MapFunction.make_base_terrain_map())
 	tilesets = d.get("tile_sets", tilesets)
 	current_map_pos = d.get("world_map_pos", Vector2i(0, 0))
 	savagery = d.get("savagery", 0)
@@ -54,9 +58,16 @@ func init_data(d: Dictionary) -> void:
 	nature_layer.tile_set = tilesets[GameData.TILE_TAGS.NATURE]
 	wall_layer.tile_set = tilesets[GameData.TILE_TAGS.WALL]
 
+	# set rng machine
+	map_rng.seed = WorldMapData.world_map[current_map_pos.y][current_map_pos.x].generated_seed
+
 
 func generate_terrain_data() -> void:
-	pass
+	match biome:
+		GameData.WORLD_TILE_TYPES.FIELD:
+			generate_field_terrain()
+		GameData.WORLD_TILE_TYPES.FOREST:
+			generate_forest_terrain()
 
 
 func _ready() -> void:
@@ -66,8 +77,72 @@ func _ready() -> void:
 			var atlas_max = TileSetDrawData[biome][GameData.TILE_TAGS.FLOOR]["atlas_coords_max"]
 			var atlas_min = TileSetDrawData[biome][GameData.TILE_TAGS.FLOOR]["atlas_coords_min"]
 			var source_id = TileSetDrawData[biome][GameData.TILE_TAGS.FLOOR].source_id
-			floor_layer.set_cell(Vector2i(x, y), source_id, Vector2i(randi_range(atlas_min.x, atlas_max.x), randi_range(atlas_min.y, atlas_max.y)))
+			floor_layer.set_cell(Vector2i(x, y), source_id, Vector2i(map_rng.randi_range(atlas_min.x, atlas_max.x), map_rng.randi_range(atlas_min.y, atlas_max.y)))
 
+			if terrain_data[y][x]["tags"].has(GameData.TILE_TAGS.WALL):
+				var wall_source_id = TileSetDrawData[biome][GameData.TILE_TAGS.WALL].source_id
+				wall_layer.set_cell(Vector2i(x, y), wall_source_id, Vector2i(0, 0))
+	
+	GameData.terrain_map = terrain_data
+
+
+#  --- GENERATORS ---
+
+# --- Field
+# variables
+var field_wall_chance: int = 1
+var field_nature_chance: int = 3
+func generate_field_terrain() -> void:
+
+	field_add_walls()
+	field_add_nature()
+	field_add_monsters()
+
+func field_add_walls() -> void:
+	# field has few walls (rocks, boulders)
+	for y in range(GameData.MAP_SIZE.y):
+		for x in range(GameData.MAP_SIZE.x):
+			if x == 0 or x == GameData.MAP_SIZE.x - 1 or y == 0 or y == GameData.MAP_SIZE.y - 1:
+				continue
+			if map_rng.randi_range(0, 100) < field_wall_chance:
+				add_terrain_map_data(Vector2i(x, y), GameData.TILE_TAGS.WALL, GameData.get_tile_data(GameData.TILE_TAGS.WALL))
+				 
+
+func field_add_nature() -> void:
+	for y in range(GameData.MAP_SIZE.y):
+		for x in range(GameData.MAP_SIZE.x):
+			if terrain_data[y][x].tags.has(GameData.TILE_TAGS.WALL):
+				continue
+			
+			
+func field_add_monsters() -> void:
+	pass
+	
+# --- Forest
+func generate_forest_terrain() -> void:
+	forest_add_walls()
+	forest_add_nature()
+	forest_add_monsters()
+
+func forest_add_walls() -> void:
+	pass
+func forest_add_nature() -> void:
+	pass
+func forest_add_monsters() -> void:
+	pass
+
+
+# --- UTILS ---
+
+## Adds terrain map data to this Nodes terrain data,
+## To set GameData.terrain map use MapFunction.add_terrain_map_data()
+func add_terrain_map_data(target_pos: Vector2i, tag: int, tile_info: Dictionary) -> void:
+	var target_tile = terrain_data[target_pos.y][target_pos.x]
+	target_tile["tags"].append(tag)
+
+	# apply most restrictive properties
+	target_tile["walkable"] = target_tile["walkable"] and tile_info.walkable
+	target_tile["transparent"] = target_tile["transparent"] and tile_info.transparent
 
 # tile set's draw data
 var TileSetDrawData = {
@@ -110,8 +185,8 @@ var TileSetDrawData = {
 			"atlas_coords_min": Vector2i(0, 0),
 		},
 		GameData.TILE_TAGS.WALL: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 2), 
+			"source_id": 1,
+			"atlas_coords_max": Vector2i(0, 0),
 			"atlas_coords_min": Vector2i(0, 0),
 		},
 		GameData.TILE_TAGS.STAIR: {

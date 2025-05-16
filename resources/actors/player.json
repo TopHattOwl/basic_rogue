@@ -31,14 +31,14 @@
 		"is_in_world_map": false,
 		"is_players_turn": true,
 		"world_map_pos": {
-			"x": 30,
-			"y": 14
+			"x": 31,
+			"y": 5
 		}
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 63,
-			"y": 0
+			"x": 34,
+			"y": 19
 		}
 	},
 	"skills_component": {

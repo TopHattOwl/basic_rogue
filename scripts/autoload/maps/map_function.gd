@@ -64,6 +64,7 @@ func initialize_map_data():
 			GameData.items_map[y].append([])
 
 
+## parse tile layers from preloaded scenes, generated maps first generate this data and draw later
 func parse_tile_layers_from_scene(map_root: Node2D) -> void:
 	# TODO: use GameData.TilemapLayers dictionary to get all layers
 

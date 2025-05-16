@@ -69,7 +69,8 @@ func process_world_map_movement(new_pos: Vector2i) -> bool:
 		push_error("No position component found for player")
 		return false
 	if not world_map_gird_pos:
-		push_error("No world map position component found for player")
+		return false
+	if not WorldMapData.world_map[new_pos.y][new_pos.x].walkable:
 		return false
 
 	if MapFunction.is_in_world_map(new_pos):
