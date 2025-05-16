@@ -1,22 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhab5hrsoqpou"]
+[gd_scene load_steps=2 format=3 uid="uid://dhab5hrsoqpou"]
 
-[ext_resource type="PackedScene" uid="uid://fj5eqr6uv11j" path="res://resources/tiles/tile_layer_scenes/door_frame_layer.tscn" id="1_41f5y"]
-[ext_resource type="PackedScene" uid="uid://d2ykjonrt0hyh" path="res://resources/tiles/tile_layer_scenes/door_layer.tscn" id="2_0n1be"]
-[ext_resource type="PackedScene" uid="uid://mehf2wrg2eg1" path="res://resources/tiles/tile_layer_scenes/floor_layer.tscn" id="3_q1kd2"]
-[ext_resource type="PackedScene" uid="uid://cnqw4jsoe0kdn" path="res://resources/tiles/tile_layer_scenes/nature_layer.tscn" id="4_op0be"]
-[ext_resource type="PackedScene" uid="uid://n0r2s81dvgxx" path="res://resources/tiles/tile_layer_scenes/stair_layer.tscn" id="5_w3kvc"]
-[ext_resource type="PackedScene" uid="uid://r72ohxqkq5x2" path="res://resources/tiles/tile_layer_scenes/wall_layer.tscn" id="6_dsm5r"]
+[ext_resource type="Script" uid="uid://tjvnton4yst7" path="res://maps/world.gd" id="1_dyenr"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("floor_layer", "stair_layer", "door_layer", "door_frame_layer", "nature_layer", "wall_layer")]
+script = ExtResource("1_dyenr")
+floor_layer = NodePath("FloorLayer")
+stair_layer = NodePath("StairLayer")
+door_layer = NodePath("DoorLayer")
+door_frame_layer = NodePath("DoorFrameLayer")
+nature_layer = NodePath("NatureLayer")
+wall_layer = NodePath("WallLayer")
 
-[node name="DoorFrameLayer" parent="." instance=ExtResource("1_41f5y")]
+[node name="FloorLayer" type="TileMapLayer" parent="."]
 
-[node name="DoorLayer" parent="." instance=ExtResource("2_0n1be")]
+[node name="WallLayer" type="TileMapLayer" parent="."]
 
-[node name="FloorLayer" parent="." instance=ExtResource("3_q1kd2")]
+[node name="StairLayer" type="TileMapLayer" parent="."]
 
-[node name="NatureLayer" parent="." instance=ExtResource("4_op0be")]
+[node name="DoorLayer" type="TileMapLayer" parent="."]
 
-[node name="StairLayer" parent="." instance=ExtResource("5_w3kvc")]
+[node name="DoorFrameLayer" type="TileMapLayer" parent="."]
 
-[node name="WallLayer" parent="." instance=ExtResource("6_dsm5r")]
+[node name="NatureLayer" type="TileMapLayer" parent="."]

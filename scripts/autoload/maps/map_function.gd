@@ -204,13 +204,12 @@ func astar_get_path(from: Vector2i, to: Vector2i) -> PackedVector2Array:
 ## loads a premade map into GameData.current_map
 func load_premade_map(map_path: String) -> void:
 
-	# reset variables
-	initialize_map_data()
-	GameData.reset_entity_variables()
-
 	if GameData.current_map:
 		GameData.current_map.queue_free()
 		GameData.current_map = null
+	# reset variables
+	initialize_map_data()
+	GameData.reset_entity_variables()
 	
 	GameData.current_map = load(map_path).instantiate()
 	GameData.main_node.add_child(GameData.current_map)
@@ -246,6 +245,7 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 		is_transition_success = true
 	else:
 		Generators.generate_random_map(new_world_map_pos)
+		is_transition_success = true
 		
 	if is_transition_success:
 

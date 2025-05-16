@@ -1,0 +1,17 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bg13q810e2sm2"]
+
+[ext_resource type="Texture2D" uid="uid://dwuasmtumlo2k" path="res://assets/floor/ground_nature_spritesheet.png" id="1_nmt8l"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynfva"]
+texture = ExtResource("1_nmt8l")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[resource]
+tile_size = Vector2i(16, 24)
+sources/0 = SubResource("TileSetAtlasSource_ynfva")

@@ -41,12 +41,6 @@ func _ready():
 
 	UiFunc.log_message("You arrive in ******")
 
-	# # spawn mask 
-	# var mask = load(DirectoryPaths.monsters1_scenes[GameData.MONSTERS1.MASK]).instantiate()
-	# mask.position = MapFunction.to_world_pos(Vector2i(7, 4))
-	# GameData.main_node.add_child(mask)
-
-
 func _process(_delta):
 # input handle autoload, gets input passed to it and depending on what input is pressed it calls different functions
 	if get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn:

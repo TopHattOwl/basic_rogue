@@ -1,10 +1,10 @@
 extends Node2D
 
-var max_hp = 15
+var max_hp = 7
 
 var melee_combat_component = {
 	"damage": [1, 4, []],
-	"attack_type": GameData.ATTACK_TYPE.BASH,
+	"attack_type": GameData.ATTACK_TYPE.SLASH,
 	"element": GameData.ELEMENT.PHYSICAL,
 	"to_hit_bonus": 0
 }
@@ -12,19 +12,19 @@ var melee_combat_component = {
 var ai_behavior_component = {
 	"type": "chase",
 	"is_hostile": true,
-	"vision_range": 12,
+	"vision_range": 8,
 }
 
 var attributes_component = {
-	"strength": 10,
-	"dexterity": 15,
-	"intelligence": 11,
-	"constitution": 12
+	"strength": 13,
+	"dexterity": 9,
+	"intelligence": 7,
+	"constitution": 14
 }
 
 var identity_component = {
 	"is_player": false,
-	"actor_name": "Mask",
+	"actor_name": "Iron Worm",
 	"faction": "monsters"
 }
 
@@ -41,9 +41,9 @@ var monster_properties_componenet = {
 }
 
 var monster_stats_component = {
-	"armor": 0,
+	"armor": 2,
 	"monster_tier": 1,
-	"monster_id": GameData.MONSTERS_ALL.MASK,
+	"monster_id": GameData.MONSTERS_ALL.IRON_WORM,
 }
 
 var monster_drops_component = {

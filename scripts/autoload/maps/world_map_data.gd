@@ -13,7 +13,7 @@ var world_map_monster_data = []
 var world_map_identity = []
 
 # 2d array corresponding to world map tile's savagery rate (0-14) 0 -> no chance for monsters
-var world_map_savagery = []
+var world_map_savagery = [] # effects monster spawn rate and dungeon spawns chance
 
 # 2d array corresponding to world map tile's civilization 1 -> civilization 0 -> not civilization, set when world map is loaded
 var world_map_civilization = []
@@ -23,18 +23,19 @@ var world_map_civilization = []
 #	 "map_path": "",
 #	 "generated_seed": 0,
 #	 "explored": false,
-#	 "walkable": false,
+#	 "walkable": false, # is it walkable on world map
 # }
 
-# biome types is a 2d array correspondng to each world map tile's biome type -> biome_type[y][x] tells what biome the tile is
-# var biome_type_template = {
-# 	"biome_type": int, # int from enum WORLD_TILE_TYPES
-# }
+# biome types is a 2d array correspondng to each world map tile's biome type -> biome_type[y][x] = int tells what biome the tile is
+# var biome_type_template = [
+# 	int, # int from enum WORLD_TILE_TYPES
+# ]
 
 # world_map_monster_data is a 2d array holding data about monsters spawning in each world map tile
 # everything is null, it all gets filled in and saved when map is generated
 # var world_map_monster_data_template = {
-# 	"monster_types": Array, # array of int from enum MONSTER_TYPES, there monsters can appear here
+#	"monster_tier": int, from 1 to 5
+# 	"monster_types": Array, # array of int from enum MONSTERS_ALL, what monsters can appear here
 # 	"spawn_points": Array, # array of Vector2i, gets filled in when map is generated and saved
 #	"has_dungeon": bool,
 # }
@@ -49,7 +50,7 @@ var world_map_civilization = []
 func _ready() -> void:
 	SaveFuncs.load_world_map_data()
 
-	parse_world_map_data()
+	# parse_world_map_data()
 
 	
 	# init_world_map_civilization()
@@ -65,7 +66,7 @@ func _ready() -> void:
 	# add_map_to_world_map(Vector2i(31, 17), DirectoryPaths.field_with_hideout, 0, true)
 
 	# reset_world_map_tile(Vector2i(5, 8))
-	# reset_world_map_tile(Vector2i(5, 9))
+	# reset_world_map_tile(Vector2i(31, 17))
 
 	SaveFuncs.save_world_map_data()
 
@@ -128,6 +129,7 @@ func init_world_map_monster_data() -> void:
 		world_map_monster_data.append([])
 		for x in range(GameData.WORLD_MAP_SIZE.x):
 			world_map_monster_data[y].append({
+				"monster_tier": 0,
 				"monster_types": [],
 				"spawn_points": [],
 				"has_dungeon": false,
@@ -165,7 +167,7 @@ func parse_world_map_data() -> void:
 	# parse_biome_type(world_map_scene)
 
 	# set monster data
-	parse_monster_data()
+	# parse_monster_data()
 
 	# set savagery rate, savagery is saved so this need to run only once
 	# parse_savagery()
@@ -186,20 +188,22 @@ func parse_monster_data() -> void:
 	for y in range(GameData.WORLD_MAP_SIZE.y):
 		for x in range(GameData.WORLD_MAP_SIZE.x):
 			var grid_pos = Vector2i(x, y)
-			var biome_type = biome_type[y][x]
-			var savagery = world_map_savagery[y][x]
 
+			var tier = calc_monster_tier(grid_pos)
+			var biome = biome_type[y][x]
 
+			# if biome type does not upport monster spawning -> skip
+			if !GameData.MonstersAll[tier].has(biome):
+				continue
+
+			var types = GameData.MonstersAll[tier][biome_type[y][x]]
 			world_map_monster_data[y][x] = {
-
+				"monster_tier": tier,
+				"monster_types": types,
+				"spawn_points": [], # gets filled when map is generated
+				"has_dungeon": false # also gets filled when generated
 			}
 
-# var world_map_monster_data_template = {
-#	"monster_tier": int, from 1 to 5
-# 	"monster_types": Array, # array of int from enum MONSTER_TYPES, there monsters can appear here
-# 	"spawn_points": Array, # array of Vector2i, gets filled in when map is generated and saved
-#	"has_dungeon": bool,
-# }
 
 
 
@@ -237,3 +241,13 @@ func calc_savagery_for_tile(grid_pos: Vector2i) -> int:
 				var current_distance = MapFunction.manhattan_distance(grid_pos, Vector2i(x, y))
 				distance = current_distance if current_distance < distance else distance
 	return distance
+
+
+func calc_monster_tier(grid_pos: Vector2i) -> int:
+
+	var savagery = world_map_savagery[grid_pos.y][grid_pos.x]
+	
+	var tier = savagery / 3
+	tier = tier if tier > 0 else 1
+
+	return tier

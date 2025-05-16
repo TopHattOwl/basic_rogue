@@ -11,19 +11,28 @@ const player_scene = "res://scenes/actors/player/player.tscn"
 
 # --- ACTORS ---
 
-const monsters1 = {
-    GameData.MONSTERS1.GIANT_WORM: "res://resources/actors/monsters/giant_worm.json",
-    GameData.MONSTERS1.MASK: "",
-}
+# const monsters1 = {
+#     GameData.MONSTERS1.IRON_WORM: "res://resources/actors/monsters/giant_worm.json",
+#     GameData.MONSTERS1.MASK: "",
+# }
 
 const monsters1_scenes = {
-    GameData.MONSTERS1.GIANT_WORM: "res://scenes/actors/monsters/giant_worm.tscn",
+    GameData.MONSTERS1.IRON_WORM: "res://scenes/actors/monsters/tier_1/iron_worm.tscn",
     GameData.MONSTERS1.MASK: "res://scenes/actors/monsters/tier_1/mask.tscn",
 }
 
 const monster1_remains_scene = {
-    GameData.MONSTERS1.GIANT_WORM: "res://scenes/actors/monsters/remains/bloody_remains.tscn",
+    GameData.MONSTERS1.IRON_WORM: "res://scenes/actors/monsters/remains/bloody_remains.tscn",
     GameData.MONSTERS1.MASK: "res://scenes/actors/monsters/remains/mask_remains.tscn",
+}
+
+const monster_scenes = {
+    # tier 1
+    GameData.MONSTERS_ALL.IRON_WORM: "res://scenes/actors/monsters/tier_1/iron_worm.tscn",
+    GameData.MONSTERS_ALL.MASK: "res://scenes/actors/monsters/tier_1/mask.tscn",
+
+    # tier 2
+    GameData.MONSTERS_ALL.PLACEHOLDER: "",
 }
 
 # --- ITEMS ---
@@ -62,6 +71,10 @@ const inventory_system = "res://scripts/ECS/systems/inventory_system.gd"
 const first_outpost = "res://maps/premade_maps/first_outpost.tscn"
 const field_with_hideout = "res://maps/premade_maps/field_with_hideout.tscn"
 
+# current map will be a copy of this if tile is not premade
+# terrain data gets loaded into this Node when generating
+const world = "res://maps/world.tscn"
+
 
 # --- WORLD MAP ---
 
@@ -87,3 +100,50 @@ const wall_tile_set = "res://resources/tiles/wall/wall.tres"
 
 
 const targeter = "res://scenes/ui/targeter/targeter.tscn"
+
+
+# --- TILE SETS ---
+
+# biome type -> tile layer -> tileset resource
+var BiomeTileSets = {
+	GameData.WORLD_TILE_TYPES.SWAMP: {
+        GameData.TILE_TAGS.FLOOR: "res://resources/tiles/biome_sets/field/field_floor_tileset.tres",
+        GameData.TILE_TAGS.STAIR: "",
+        GameData.TILE_TAGS.DOOR: "",
+        GameData.TILE_TAGS.DOOR_FRAME: "",
+        GameData.TILE_TAGS.NATURE: "",
+        GameData.TILE_TAGS.WALL: "",
+    },
+    GameData.WORLD_TILE_TYPES.FIELD: {
+        GameData.TILE_TAGS.FLOOR: "res://resources/tiles/biome_sets/field/field_floor_tileset.tres",
+        GameData.TILE_TAGS.STAIR: "res://resources/tiles/biome_sets/field/field_stair_tileset.tres",
+        GameData.TILE_TAGS.DOOR: "res://resources/tiles/biome_sets/field/field_door_tileset.tres",
+        GameData.TILE_TAGS.DOOR_FRAME: "res://resources/tiles/biome_sets/field/field_door_tileset.tres",
+        GameData.TILE_TAGS.NATURE: "res://resources/tiles/biome_sets/field/field_nature_tileset.tres",
+        GameData.TILE_TAGS.WALL: "res://resources/tiles/biome_sets/field/field_wall_tileset.tres",
+    },
+    GameData.WORLD_TILE_TYPES.FOREST: {
+        GameData.TILE_TAGS.FLOOR: "res://resources/tiles/biome_sets/field/field_floor_tileset.tres",
+        GameData.TILE_TAGS.STAIR: "",
+        GameData.TILE_TAGS.DOOR: "",
+        GameData.TILE_TAGS.DOOR_FRAME: "",
+        GameData.TILE_TAGS.NATURE: "",
+        GameData.TILE_TAGS.WALL: "",
+    },
+    GameData.WORLD_TILE_TYPES.DESERT: {
+        GameData.TILE_TAGS.FLOOR: "res://resources/tiles/biome_sets/field/field_floor_tileset.tres",
+        GameData.TILE_TAGS.STAIR: "",
+        GameData.TILE_TAGS.DOOR: "",
+        GameData.TILE_TAGS.DOOR_FRAME: "",
+        GameData.TILE_TAGS.NATURE: "",
+        GameData.TILE_TAGS.WALL: "",
+    },
+    GameData.WORLD_TILE_TYPES.MOUNTAIN: {
+        GameData.TILE_TAGS.FLOOR: "res://resources/tiles/biome_sets/field/field_floor_tileset.tres",
+        GameData.TILE_TAGS.STAIR: "",
+        GameData.TILE_TAGS.DOOR: "",
+        GameData.TILE_TAGS.DOOR_FRAME: "",
+        GameData.TILE_TAGS.NATURE: "",
+        GameData.TILE_TAGS.WALL: "",
+    },
+}

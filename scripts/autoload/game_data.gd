@@ -48,17 +48,74 @@ func get_actor(grid_pos: Vector2i) -> Node2D:
 		return null
 	return actors_map[grid_pos.y][grid_pos.x]
 
-# monsters
+# ___ MONSTERS ___
 
 # tier 1 monsters
 enum MONSTERS1 {
-	GIANT_WORM,
+	# field
+	IRON_WORM,
 	MASK
+
+	# swamp
 }
 
 enum MONSTERS2 {
 	PLACEHOLDER,
 }
+
+enum MONSTERS_ALL {
+	# tier 1
+	IRON_WORM,
+	MASK,
+
+	# tier 2
+	PLACEHOLDER
+}
+
+# monster tiers (1-5) -> monster biome (what biome it can appear in) -> monster key array
+var MonstersAll = {
+	1: {
+		WORLD_TILE_TYPES.FIELD: [MONSTERS_ALL.IRON_WORM, MONSTERS_ALL.MASK],
+		WORLD_TILE_TYPES.SWAMP: [MONSTERS_ALL.MASK],
+		WORLD_TILE_TYPES.DESERT: [],
+		WORLD_TILE_TYPES.MOUNTAIN: [],
+		WORLD_TILE_TYPES.FOREST: [],
+
+	},
+	2: {
+		WORLD_TILE_TYPES.FIELD: [MONSTERS_ALL.MASK],
+		WORLD_TILE_TYPES.SWAMP: [],
+		WORLD_TILE_TYPES.DESERT: [],
+		WORLD_TILE_TYPES.MOUNTAIN: [],
+		WORLD_TILE_TYPES.FOREST: [],
+		
+	},
+	3: {
+		WORLD_TILE_TYPES.FIELD: [MONSTERS_ALL.MASK],
+		WORLD_TILE_TYPES.SWAMP: [],
+		WORLD_TILE_TYPES.DESERT: [],
+		WORLD_TILE_TYPES.MOUNTAIN: [],
+		WORLD_TILE_TYPES.FOREST: [],
+		
+	},
+	4: {
+		WORLD_TILE_TYPES.FIELD: [MONSTERS_ALL.MASK],
+		WORLD_TILE_TYPES.SWAMP: [],
+		WORLD_TILE_TYPES.DESERT: [],
+		WORLD_TILE_TYPES.MOUNTAIN: [],
+		WORLD_TILE_TYPES.FOREST: [],
+		
+	},
+	5: {
+		WORLD_TILE_TYPES.FIELD: [MONSTERS_ALL.MASK],
+		WORLD_TILE_TYPES.SWAMP: [],
+		WORLD_TILE_TYPES.DESERT: [],
+		WORLD_TILE_TYPES.MOUNTAIN: [],
+		WORLD_TILE_TYPES.FOREST: [],
+		
+	}
+}
+
 
 # ___ Maps ___
 
@@ -116,6 +173,169 @@ var TilemapLayers = {
 	TILE_TAGS.DOOR: "DoorLayer",
 	TILE_TAGS.DOOR_FRAME: "DoorFrameLayer",
 	TILE_TAGS.NATURE: "NatureLayer"
+}
+
+var TileSetDrawData = {
+	WORLD_TILE_TYPES.SWAMP: {
+		TILE_TAGS.FLOOR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 2), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.WALL: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 2), 
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.STAIR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.DOOR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(0, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.DOOR_FRAME: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 0), 
+			"atlas_coords_min": Vector2i(1, 0),
+		},
+		TILE_TAGS.NATURE: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(0, 0), 
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+	},
+	WORLD_TILE_TYPES.FIELD: {
+		TILE_TAGS.FLOOR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 2), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.WALL: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 2), 
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.STAIR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.DOOR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(0, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.DOOR_FRAME: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 0), 
+			"atlas_coords_min": Vector2i(1, 0),
+		},
+		TILE_TAGS.NATURE: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(0, 0), 
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+	},
+	WORLD_TILE_TYPES.DESERT: {
+		TILE_TAGS.FLOOR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 2), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.WALL: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 2), 
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.STAIR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.DOOR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(0, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.DOOR_FRAME: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 0), 
+			"atlas_coords_min": Vector2i(1, 0),
+		},
+		TILE_TAGS.NATURE: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(0, 0), 
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+	},
+	WORLD_TILE_TYPES.MOUNTAIN: {
+		TILE_TAGS.FLOOR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 2), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.WALL: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 2), 
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.STAIR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.DOOR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(0, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.DOOR_FRAME: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 0), 
+			"atlas_coords_min": Vector2i(1, 0),
+		},
+		TILE_TAGS.NATURE: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(0, 0), 
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+	},
+	WORLD_TILE_TYPES.FOREST: {
+		TILE_TAGS.FLOOR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 2), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.WALL: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 2), 
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.STAIR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.DOOR: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(0, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		TILE_TAGS.DOOR_FRAME: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(1, 0), 
+			"atlas_coords_min": Vector2i(1, 0),
+		},
+		TILE_TAGS.NATURE: {
+			"source_id": 0,
+			"atlas_coords_max": Vector2i(0, 0), 
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+	},
 }
 
 

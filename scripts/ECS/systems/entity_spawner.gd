@@ -31,21 +31,19 @@ func spawn_player():
 		push_error("Player position component not found")
 
 
-func spawn_monster(grid_pos: Vector2i, monster_key: int, monster_tier: int = 1):
+func spawn_monster(grid_pos: Vector2i, monster_key: int):
 	var monster = null
-	match monster_tier:
-		1:
-			monster = load(DirectoryPaths.monsters1_scenes[monster_key]).instantiate()
-			var position_comp = ComponentRegistry.get_component(monster, GameData.ComponentKeys.POSITION)
 
-			if position_comp:
-				monster.position = MapFunction.to_world_pos(grid_pos)
-				position_comp.grid_pos = grid_pos
-				MapFunction.add_hostile_to_variables(monster)
-			else:
-				push_error("Monster position component not found")
-		2:
-			pass
+	monster = load(DirectoryPaths.monster_scenes[monster_key]).instantiate()
+	var position_comp = ComponentRegistry.get_component(monster, GameData.ComponentKeys.POSITION)
+
+	if position_comp:
+		monster.position = MapFunction.to_world_pos(grid_pos)
+		position_comp.grid_pos = grid_pos
+		MapFunction.add_hostile_to_variables(monster)
+	else:
+		push_error("Monster position component not found")
+
 
 	GameData.main_node.add_child(monster)
 	monster.owner = main_node # for scene persistence
