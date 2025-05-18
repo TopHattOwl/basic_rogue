@@ -3,8 +3,8 @@
 graph TD
   A[MainNode] -- Calles --> B[InputManager]
   B -- Deicides Input type --> C[Handle Input]
-  B --> C[Zoomed in inputs]
-  B --> D[World map input]
-  B --> E[Look input]
-  B --> F[UI input]
+  C --> [Zoomed in inputs]
+  C --> [World map input]
+  C --> [Look input]
+  C --> [UI input]
   ```
