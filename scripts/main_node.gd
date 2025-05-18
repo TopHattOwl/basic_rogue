@@ -1,13 +1,17 @@
 extends Node2D
 
+
 # --- INPUT ---
 const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 @export var input_manager: Node = null
+
 
 # IDEAS:
 	# foraging map (like terrain map, 2d array) for placing foraging objects for player to forage for potions, food and stuff
 		# foraging vision -> based on perception and knowlege of plants (notice plants you know better)
 		# foraging mode -> regular vision decreeses but foraging vision increases 
+
+	# biome, make class for each biome
 
 # TODO:
 	# add perception attributes (find all references, some are string refereces, like "strenght" when saving and loading player data)
@@ -45,6 +49,7 @@ func _ready():
 	# SaveFuncs.save_player_data(GameData.player)
 
 	UiFunc.log_message("You arrive in ******")
+
 
 func _process(_delta):
 # input handle autoload, gets input passed to it and depending on what input is pressed it calls different functions

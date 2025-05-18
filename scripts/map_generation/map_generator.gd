@@ -15,7 +15,7 @@ extends Node
 
 
 ## Generates random map, sets variables, loads map
-func generate_random_map(world_map_pos: Vector2i) -> void:
+static func generate_random_map(world_map_pos: Vector2i) -> void:
 	print("generating random map at pos: ", world_map_pos)
 	var terrain_map = MapFunction.make_base_terrain_map()
 
@@ -46,7 +46,7 @@ func generate_random_map(world_map_pos: Vector2i) -> void:
 	set_variables(world_node)
 
 
-func get_tile_sets(biome_type: int) -> Dictionary:
+static func get_tile_sets(biome_type: int) -> Dictionary:
 	var tile_sets = {
 		GameData.TILE_TAGS.FLOOR: load(DirectoryPaths.BiomeTileSets[biome_type][GameData.TILE_TAGS.FLOOR]),
 		GameData.TILE_TAGS.STAIR: load(DirectoryPaths.BiomeTileSets[biome_type][GameData.TILE_TAGS.STAIR]),
@@ -57,7 +57,7 @@ func get_tile_sets(biome_type: int) -> Dictionary:
 	}
 	return tile_sets
 
-func set_variables(map_node: Node2D) -> void:
+static func set_variables(map_node: Node2D) -> void:
 	if GameData.current_map:
 		GameData.current_map.queue_free()
 		GameData.current_map = null

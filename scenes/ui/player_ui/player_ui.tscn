@@ -24,9 +24,9 @@ theme_override_font_sizes/normal_font_size = 6
 vertical_alignment = 2
 
 [node name="HPBar" type="Label" parent="."]
-offset_left = 288.0
+offset_left = 224.0
 offset_top = 336.0
-offset_right = 352.0
+offset_right = 288.0
 offset_bottom = 360.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
@@ -43,7 +43,7 @@ offset_bottom = 24.0
 [node name="TextureRect" type="TextureRect" parent="HPBar"]
 z_index = -1
 layout_mode = 0
-offset_left = -64.0
+offset_right = 64.0
 offset_bottom = 24.0
 texture = ExtResource("2_ow2f4")
 

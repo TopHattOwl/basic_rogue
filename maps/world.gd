@@ -79,7 +79,6 @@ func load_data() -> void:
 	
 	pass
 
-
 func _ready() -> void:
 
 

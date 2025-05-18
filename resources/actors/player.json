@@ -6,7 +6,7 @@
 		"strength": 16
 	},
 	"health_component": {
-		"hp": 299,
+		"hp": 280,
 		"max_hp": 500
 	},
 	"identity_component": {
@@ -31,20 +31,20 @@
 		"is_in_world_map": false,
 		"is_players_turn": true,
 		"world_map_pos": {
-			"x": 51,
-			"y": 25
+			"x": 43,
+			"y": 4
 		}
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 28,
+			"x": 13,
 			"y": 0
 		}
 	},
 	"skills_component": {
 		"skill_levels": {
 			"0": {
-				"current_exp": 461.0,
+				"current_exp": 493.0,
 				"exp_for_next_level": 500.0,
 				"level": 2.0
 			},

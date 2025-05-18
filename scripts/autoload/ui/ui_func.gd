@@ -132,3 +132,9 @@ func update_camera_data():
 		cam.zoom = Vector2(0.4, 0.4)
 
 		cam.offset.x = 0
+
+
+# --- SIDEBAR ---
+
+func toggle_sidebar():
+	player_ui.visible = !player_ui.visible

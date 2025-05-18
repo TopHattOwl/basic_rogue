@@ -71,7 +71,7 @@
         - `is_tile_walkable(pos: Vector2i) -> bool`
             - checks if tile is walkable on zoomed in map
         - `is_in_bounds(pos: Vector2i) -> bool`
-            - checks ifa tile is inside zoomed in map
+            - checks if a tile is inside zoomed in map
     - ***Map loading***:
 
     - ***Transition***:
@@ -81,3 +81,5 @@
     - `EntitySystems.movement_system to access MovementSystem class methods`
 - **Notes**:
     - `Systems that handle ECS related stuff goes here`
+
+## World Map Data

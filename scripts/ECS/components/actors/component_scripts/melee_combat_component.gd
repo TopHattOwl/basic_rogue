@@ -28,7 +28,6 @@ func update() -> void:
 		attack_type = 1
 		element = 0
 		to_hit_bonus = 0
-	
 
 
 func get_dodge() -> int:
