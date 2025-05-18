@@ -12,3 +12,19 @@
     - `get_player_comp(component_key: int) -> Node`
 
     - `get_player_pos() -> Vector2i`
+- **Notes**:
+    - `Loads in data for custom made Gdoot Resources`
+
+## Entity Systems
+- **Path**: `res://autoload\ECS_helper\entity_systems.gd`
+- **Key variables**:
+    - `movement_system`: reference to movement Entity Component System
+    - `combat_system`: reference to combat Entity Component System
+    - `inentory_system`: reference to inventory Entity Component System
+    - `entity_sapwner`: reference to Entity spawner system
+- **Usage**:
+    - `EntitySystems.movement_system to access MovementSystem class methods`
+- **Notes**:
+    - `Systems that handle ECS related stuff goes here`
+
+

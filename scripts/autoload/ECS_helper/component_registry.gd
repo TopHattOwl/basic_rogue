@@ -14,7 +14,7 @@ func get_player_pos() -> Vector2i:
 
 
 # --- INITIALIZERS ---
-func init_weapon_components(weapon_node: Node2D, d: Dictionary) ->void:
+func init_weapon_components(weapon_node: Node2D, d: Dictionary) -> void:
 
 	weapon_node.item_identity_comp.initialize(d[GameData.ComponentKeys.ITEM_IDENTITY])
 	weapon_node.weapon_stats_comp.initialize(d[GameData.ComponentKeys.WEAPON_STATS])
