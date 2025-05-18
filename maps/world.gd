@@ -66,7 +66,7 @@ func init_data(d: Dictionary) -> void:
 	# set rng machine
 	map_rng.seed = WorldMapData.world_map[current_map_pos.y][current_map_pos.x].generated_seed
 
-
+# generation gets called in map_generator.gd if something is not generated
 func generate_terrain_data() -> void:
 	match biome:
 		GameData.WORLD_TILE_TYPES.FIELD:
@@ -74,8 +74,15 @@ func generate_terrain_data() -> void:
 		GameData.WORLD_TILE_TYPES.FOREST:
 			generate_forest_terrain()
 
+# gets called when entering a map tile that is explored, so data gets loaded
+func load_data() -> void:
+	
+	pass
+
 
 func _ready() -> void:
+
+
 	# draw the map
 	for y in range(GameData.MAP_SIZE.y):
 		for x in range(GameData.MAP_SIZE.x):
@@ -100,6 +107,7 @@ func _ready() -> void:
 
 	GameData.terrain_map = terrain_data
 	set_world_map_data(current_map_pos)
+	MapFunction.initialize_astar_grid()
 
 #  --- GENERATORS ---
 

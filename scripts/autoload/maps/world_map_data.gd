@@ -18,7 +18,7 @@ var world_map_savagery = [] # effects monster spawn rate and dungeon spawns chan
 # 2d array corresponding to world map tile's civilization 1 -> civilization 0 -> not civilization, set when world map is loaded
 var world_map_civilization = []
 
-# var tile_template = {
+# var world_map_tile_template = {
 #	 "is_premade": false,
 #	 "map_path": "",
 #	 "generated_seed": 0,
@@ -101,6 +101,11 @@ func reset_world_map_tile(grid_pos: Vector2i) -> void:
 		"explored": 0,
 		"walkable": 1
 	}
+
+## Sets WorldMapData variables for a given world map tile,
+## called when map tile is generated
+func set_world_map_data() -> void:
+	pass
 
 # --- INIT ---
 func init_world_map_data() -> void:

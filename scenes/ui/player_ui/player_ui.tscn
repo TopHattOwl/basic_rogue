@@ -1,18 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://be4gwtu23s7n6"]
+[gd_scene load_steps=5 format=3 uid="uid://be4gwtu23s7n6"]
 
 [ext_resource type="Script" uid="uid://bk8wygn2yqos2" path="res://scripts/ui/player_ui/player_ui.gd" id="1_hrok7"]
 [ext_resource type="Texture2D" uid="uid://cm21jj8xixo86" path="res://assets/ui/HP_alt.png" id="2_ow2f4"]
 [ext_resource type="Texture2D" uid="uid://dd80msrdcnci" path="res://assets/ui/look_bg.png" id="3_m8cl3"]
+[ext_resource type="Texture2D" uid="uid://ls0rjmajqbol" path="res://assets/ui/sidebar_bg.png" id="4_vopia"]
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_hrok7")
 
-[node name="MessageLog" type="RichTextLabel" parent="."]
-offset_left = 496.0
-offset_top = 196.0
+[node name="SideBar" type="TextureRect" parent="."]
+offset_left = 504.0
 offset_right = 640.0
 offset_bottom = 360.0
-theme_override_font_sizes/normal_font_size = 8
+texture = ExtResource("4_vopia")
+expand_mode = 1
+
+[node name="MessageLog" type="RichTextLabel" parent="SideBar"]
+layout_mode = 0
+offset_top = 196.0
+offset_right = 136.0
+offset_bottom = 360.0
+theme_override_font_sizes/normal_font_size = 6
 vertical_alignment = 2
 
 [node name="HPBar" type="Label" parent="."]
@@ -35,7 +43,7 @@ offset_bottom = 24.0
 [node name="TextureRect" type="TextureRect" parent="HPBar"]
 z_index = -1
 layout_mode = 0
-offset_right = 64.0
+offset_left = -64.0
 offset_bottom = 24.0
 texture = ExtResource("2_ow2f4")
 
@@ -72,3 +80,9 @@ offset_top = 95.0
 offset_right = 120.0
 offset_bottom = 168.0
 theme_override_font_sizes/normal_font_size = 7
+
+[node name="BottomBar" type="TextureRect" parent="."]
+offset_left = 96.0
+offset_top = 176.0
+offset_right = 352.0
+offset_bottom = 216.0

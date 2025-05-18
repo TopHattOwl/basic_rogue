@@ -241,9 +241,13 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 
 	var world_tile = WorldMapData.world_map[new_world_map_pos.y][new_world_map_pos.x]
 	var is_transition_success = false
+
+	# if map is premade, load the map
 	if world_tile.is_premade:
 		load_premade_map(world_tile.map_path)
 		is_transition_success = true
+
+	# if not premade chekc if explored (if explored then it has been generated already)
 	else:
 		# TODO is explored load that data ininstead, not generate
 		Generators.generate_random_map(new_world_map_pos)
@@ -276,13 +280,8 @@ func enter_world_map():
 	# message log
 	UiFunc.log_message("You enter the world map")
 
-	# set camera limits
-	GameData.player.get_node("Camera2D").limit_right = GameData.WORLD_MAP_SIZE.x * GameData.TILE_SIZE.x
-	GameData.player.get_node("Camera2D").limit_bottom = GameData.WORLD_MAP_SIZE.y * GameData.TILE_SIZE.y
-
-	# set camera zoom
-	var camera = GameData.player.get_node("Camera2D")
-	camera.zoom = Vector2(0.4, 0.4)
+	# set camera data (zoom, limits)
+	UiFunc.update_camera_data()
 
 	# set player input mode
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).input_mode = GameData.INPUT_MODES.WORLD_MAP_MOVEMENT
@@ -311,13 +310,8 @@ func exit_world_map():
 
 	UiFunc.log_message("You exit the world map")
 
-	# set camera limits
-	GameData.player.get_node("Camera2D").limit_right = GameData.MAP_SIZE.x * GameData.TILE_SIZE.x
-	GameData.player.get_node("Camera2D").limit_bottom = GameData.MAP_SIZE.y * GameData.TILE_SIZE.y
-
-	# set camera zoom
-	var camera = GameData.player.get_node("Camera2D")
-	camera.zoom = Vector2(0.8, 0.8)
+	# set camera data (zoom, limits)
+	UiFunc.update_camera_data()
 
 	# queue free world map
 	if GameData.main_node.has_node("WorldMap"):

@@ -3,10 +3,10 @@ render_mode unshaded, skip_vertex_transform;
 
 
 
-const float curvature = 8.0;
+const float curvature = 4.5;
 const float vignette_multiplier = 0.1;
 
-const float scanline_width = 180.0;
+const float scanline_width = 170.0;
 const float scanline_width_multiplyer = 0.2;
 const float scanline_curve_multiplyer = 2.0;
 

@@ -21,7 +21,7 @@ func set_main_node(value: Node2D) -> void:
 
 # ___ Constants ___
 const TILE_SIZE = Vector2i(16, 24) # tile size in pixels
-const MAP_SIZE = Vector2i(65, 20) # map size in tiles
+const MAP_SIZE = Vector2i(82, 37) # map size in tiles
 const WORLD_MAP_SIZE = Vector2i(110, 75)
 const OFFSET = Vector2i(8, 12)
 
@@ -160,7 +160,7 @@ var TileDatas = {
 		"transparent": true,
 	},
 	TILE_TAGS.NATURE: {
-		"walkable": true,
+		"walkable": false,
 		"transparent": true,
 	}
 }
@@ -173,169 +173,6 @@ var TilemapLayers = {
 	TILE_TAGS.DOOR: "DoorLayer",
 	TILE_TAGS.DOOR_FRAME: "DoorFrameLayer",
 	TILE_TAGS.NATURE: "NatureLayer"
-}
-
-var TileSetDrawData = {
-	WORLD_TILE_TYPES.SWAMP: {
-		TILE_TAGS.FLOOR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 2), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.WALL: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 2), 
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.STAIR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 0),
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.DOOR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(0, 0),
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.DOOR_FRAME: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 0), 
-			"atlas_coords_min": Vector2i(1, 0),
-		},
-		TILE_TAGS.NATURE: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(0, 0), 
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-	},
-	WORLD_TILE_TYPES.FIELD: {
-		TILE_TAGS.FLOOR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 2), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.WALL: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 2), 
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.STAIR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 0),
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.DOOR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(0, 0),
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.DOOR_FRAME: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 0), 
-			"atlas_coords_min": Vector2i(1, 0),
-		},
-		TILE_TAGS.NATURE: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(0, 0), 
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-	},
-	WORLD_TILE_TYPES.DESERT: {
-		TILE_TAGS.FLOOR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 2), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.WALL: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 2), 
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.STAIR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 0),
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.DOOR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(0, 0),
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.DOOR_FRAME: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 0), 
-			"atlas_coords_min": Vector2i(1, 0),
-		},
-		TILE_TAGS.NATURE: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(0, 0), 
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-	},
-	WORLD_TILE_TYPES.MOUNTAIN: {
-		TILE_TAGS.FLOOR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 2), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.WALL: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 2), 
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.STAIR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 0),
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.DOOR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(0, 0),
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.DOOR_FRAME: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 0), 
-			"atlas_coords_min": Vector2i(1, 0),
-		},
-		TILE_TAGS.NATURE: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(0, 0), 
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-	},
-	WORLD_TILE_TYPES.FOREST: {
-		TILE_TAGS.FLOOR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 2), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.WALL: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 2), 
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.STAIR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 0),
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.DOOR: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(0, 0),
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-		TILE_TAGS.DOOR_FRAME: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(1, 0), 
-			"atlas_coords_min": Vector2i(1, 0),
-		},
-		TILE_TAGS.NATURE: {
-			"source_id": 0,
-			"atlas_coords_max": Vector2i(0, 0), 
-			"atlas_coords_min": Vector2i(0, 0),
-		},
-	},
 }
 
 
@@ -357,8 +194,6 @@ var WorldMapTileLayer = {
 
 func get_tile_data(tile_tag: int) -> Dictionary:
 	return TileDatas.get(tile_tag, {})
-
-
 
 # ___ Input ___
 
@@ -428,7 +263,8 @@ enum ATTRIBUTES {
 	STRENGTH,
 	DEXTERITY,
 	INTELLIGENCE,
-	CONSTITUTION
+	CONSTITUTION,
+	# PERCEPTION,
 }
 
 # ATTACK TYPE

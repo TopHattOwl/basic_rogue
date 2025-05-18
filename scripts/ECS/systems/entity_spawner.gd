@@ -29,6 +29,10 @@ func spawn_player():
 
 	else:
 		push_error("Player position component not found")
+	
+
+	# upate/set camera zoom and limints
+	UiFunc.update_camera_data()
 
 
 func spawn_monster(grid_pos: Vector2i, monster_key: int):

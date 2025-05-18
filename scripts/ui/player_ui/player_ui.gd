@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-@onready var message_log: RichTextLabel = $MessageLog
+@onready var message_log: RichTextLabel = $SideBar/MessageLog
 @onready var hp_bar: Label = $HPBar
 
 # look

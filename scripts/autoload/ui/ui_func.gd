@@ -91,3 +91,44 @@ func make_look_target_entry(texture: Texture2D, description: String, target_name
 		"description": description,
 		"name": target_name
 	}
+
+
+
+# --- PLAYER CAMERA ---
+
+func set_camera_limits():
+	if !ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map:
+		GameData.player.get_node("Camera2D").limit_right = (GameData.MAP_SIZE.x + 3)  * GameData.TILE_SIZE.x
+		GameData.player.get_node("Camera2D").limit_bottom = (GameData.MAP_SIZE.y + 2) * GameData.TILE_SIZE.y
+		GameData.player.get_node("Camera2D").limit_top = (-3) * GameData.TILE_SIZE.y
+		GameData.player.get_node("Camera2D").limit_left = (-2) * GameData.TILE_SIZE.x
+	else:
+		GameData.player.get_node("Camera2D").limit_right = GameData.WORLD_MAP_SIZE.x * GameData.TILE_SIZE.x
+		GameData.player.get_node("Camera2D").limit_bottom = GameData.WORLD_MAP_SIZE.y * GameData.TILE_SIZE.y
+		GameData.player.get_node("Camera2D").limit_top = 0
+		GameData.player.get_node("Camera2D").limit_left = 0
+
+
+func update_camera_data():
+	var cam = GameData.player.get_node("Camera2D")
+	if !ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map:
+		# limits
+		cam.limit_right = (GameData.MAP_SIZE.x + 14)  * GameData.TILE_SIZE.x
+		cam.limit_bottom = (GameData.MAP_SIZE.y + 2) * GameData.TILE_SIZE.y
+		cam.limit_top = (-3) * GameData.TILE_SIZE.y
+		cam.limit_left = (-10) * GameData.TILE_SIZE.x
+
+		# zoom 
+		cam.zoom = Vector2(0.65, 0.65)
+
+		# set offset
+		cam.offset.x = 100
+	else:
+		cam.limit_right = GameData.WORLD_MAP_SIZE.x * GameData.TILE_SIZE.x
+		cam.limit_bottom = GameData.WORLD_MAP_SIZE.y * GameData.TILE_SIZE.y
+		cam.limit_top = 0
+		cam.limit_left = 0
+
+		cam.zoom = Vector2(0.4, 0.4)
+
+		cam.offset.x = 0

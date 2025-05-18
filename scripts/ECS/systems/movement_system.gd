@@ -52,6 +52,7 @@ func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 
 		# visual update
 		entity.position = MapFunction.to_world_pos(new_pos)
+
 		return true
 
 	# Dungeon enter check
