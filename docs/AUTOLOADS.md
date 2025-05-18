@@ -28,3 +28,19 @@
     - `Systems that handle ECS related stuff goes here`
 
 
+# MAPS
+
+## Map function
+- **Path**: `res://autoload\maps\map_function.gd`
+- **Methods**:
+    - ***Misc***:
+        - `asd`
+        - `asd`
+        - `asd`
+        - `asd`
+    - ***Checks***:
+        - `asds`
+- **Usage**:
+    - `EntitySystems.movement_system to access MovementSystem class methods`
+- **Notes**:
+    - `Systems that handle ECS related stuff goes here`
