@@ -1,52 +1,52 @@
-## AUTOLOADS
+# AUTOLOADS
 |             Script            |                               Description                           |
 |-------------------------------|---------------------------------------------------------------------|
 
-# ECS HELPERS
+## ECS HELPERS
 
-|  Component Registry           | Gets components of entities, Initializes comonents
-|  Entity Systems               | Manages entity systems
+|  Component Registry           | Gets components of entities, Initializes comonents |
+|  Entity Systems               | Manages entity systems |
 
-# MAPS
+## MAPS
 
-|  Map functions                | Map related stuff (zoomed in map) and data maps, like terrain map, astar and such
-|  World Map Data               | World map related functions and data 
+|  Map functions                | Map related stuff (zoomed in map) and data maps, like terrain map, astar and such |
+|  World Map Data               | World map related functions and data |
 
 
-# SAVE/LOAD
+## SAVE/LOAD
 
 |  Data Registry                | Loads in custom Godot Resourcees
 |  Save Funcs                   | Handles data loading and saving
 
 
-# UI
+## UI
 
 |  UI Func                      | UI related functions 
 
 
-# OTHER
+## OTHER
 
 |  Component Registry           | Gets components of entities | Initializes comonents
 |  Entity Systems               | Manages entity systems
 
 
-## DEV TOOLS
+# DEV TOOLS
 |             Script            |                               Description                           |
 |-------------------------------|---------------------------------------------------------------------|
 
-## ECS
+# ECS
 |             Script            |                               Description                           |
 |-------------------------------|---------------------------------------------------------------------|
 
-## MAP GENERATION
+# MAP GENERATION
 |             Script            |                               Description                           |
 |-------------------------------|---------------------------------------------------------------------|
 
-## UI
+# UI
 |             Script            |                               Description                           |
 |-------------------------------|---------------------------------------------------------------------|
 
 
-## ALWAYS PRESENT (main node and it's child's scripts)
+# ALWAYS PRESENT (main node and it's child's scripts)
 |             Script            |                               Description                           |
 |-------------------------------|---------------------------------------------------------------------|

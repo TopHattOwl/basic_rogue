@@ -1,10 +1,11 @@
-## ECS HELPERS
+# ECS HELPERS
 
-# Component Registry
+## Component Registry
 - **Path**: `res://autoload\ECS_helper\component_registry.gd`
 - **Key variables**: -
 - **Methods**: 
     - `init_weapon_components(weapon_node: Node2D, d: Dictionary) -> void`
+        - initializes weapon item components
 
     - `get_component(entity: Node, component_key: int) -> Node`
 
