@@ -4,19 +4,19 @@
 
 ## ECS HELPERS
 
-|  Component Registry           | Gets components of entities, Initializes comonents |
-|  Entity Systems               | Manages entity systems |
+|  `Component Registry`           | Gets components of entities, Initializes comonents |
+|  `Entity Systems`               | Manages entity systems |
 
 ## MAPS
 
-|  Map functions                | Map related stuff (zoomed in map) and data maps, like terrain map, astar and such |
-|  World Map Data               | World map related functions and data |
+|  `Map functions`                | Map related stuff (zoomed in map) and data maps, like terrain map, astar and such |
+|  `World Map Data`               | World map related functions and data |
 
 
 ## SAVE/LOAD
 
-|  Data Registry                | Loads in custom Godot Resourcees
-|  Save Funcs                   | Handles data loading and saving
+|  `Data Registry`                | Loads in custom Godot Resourcees
+|  `Save Funcs`                   | Handles data loading and saving
 
 
 ## UI
@@ -26,8 +26,8 @@
 
 ## OTHER
 
-|  Component Registry           | Gets components of entities | Initializes comonents
-|  Entity Systems               | Manages entity systems
+|  `placeholder stuff`           | Gets components of entities | Initializes comonents
+|  `placeholder stuff 2`         | Manages entity systems
 
 
 # DEV TOOLS
