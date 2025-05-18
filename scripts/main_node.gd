@@ -11,7 +11,7 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 		# foraging vision -> based on perception and knowlege of plants (notice plants you know better)
 		# foraging mode -> regular vision decreeses but foraging vision increases 
 
-	# biome, make class for each biome
+	# finish biome integration to class objects
 
 # TODO:
 	# add perception attributes (find all references, some are string refereces, like "strenght" when saving and loading player data)

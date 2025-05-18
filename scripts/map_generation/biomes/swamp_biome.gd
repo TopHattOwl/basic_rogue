@@ -1,4 +1,4 @@
-class_name FieldBiome
+class_name SwampBiome
 
 var biome_type = GameData.WORLD_TILE_TYPES.FIELD
 var biome_name = "Field"

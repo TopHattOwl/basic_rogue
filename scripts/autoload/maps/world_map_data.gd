@@ -6,6 +6,9 @@ var world_map = []
 # biome types is a 2d array correspondng to each world map tile's biome type
 var biome_type = []
 
+
+var biome_map = []
+
 # world_map_monster_data is a 2d array holding data about monsters spawning in each world map tile
 var world_map_monster_data = []
 
@@ -50,7 +53,9 @@ var world_map_civilization = []
 func _ready() -> void:
 	SaveFuncs.load_world_map_data()
 
-	# parse_world_map_data()
+	init_biome_map()
+
+	parse_world_map_data()
 
 	
 	# init_world_map_civilization()
@@ -58,6 +63,8 @@ func _ready() -> void:
 	# init_biome_type()
 	# init_world_map_monster_data()
 	# init_world_map_savagery()
+
+	
 
 	# # add first outpost
 	# add_map_to_world_map(Vector2i(31, 16), DirectoryPaths.first_outpost, 0, true)
@@ -158,6 +165,13 @@ func init_world_map_civilization() -> void:
 				world_map_civilization[y].append(0)
 
 
+func init_biome_map() -> void:
+	biome_map = []
+	for y in range(GameData.WORLD_MAP_SIZE.y):
+		biome_map.append([])
+		for x in range(GameData.WORLD_MAP_SIZE.x):
+			biome_map[y].append(null)
+
 # --- PARSING ---
 # if it has water no other tile can be there
 
@@ -170,6 +184,9 @@ func parse_world_map_data() -> void:
 
 	# set biome type
 	# parse_biome_type(world_map_scene)
+
+	# set biome
+	parse_biome(world_map_scene)
 
 	# set monster data
 	# parse_monster_data()
@@ -190,6 +207,35 @@ func parse_biome_type(world_map_scene: Node2D) -> void:
 					if key == GameData.WORLD_TILE_TYPES.WATER:
 						world_map[y][x].walkable = 0
 					break
+
+func parse_biome(world_map_scene: Node2D) -> void:
+
+	for y in range(GameData.WORLD_MAP_SIZE.y):
+		for x in range(GameData.WORLD_MAP_SIZE.x):
+			var grid_pos = Vector2i(x, y)
+
+			for key in GameData.WorldMapTileLayer.keys():
+				var layer = world_map_scene.get_node(GameData.WorldMapTileLayer[key])
+				if layer and layer.get_cell_tile_data(grid_pos):
+
+					match key:
+						GameData.WORLD_TILE_TYPES.FIELD:
+							biome_map[y][x] = FieldBiome.new()
+						GameData.WORLD_TILE_TYPES.FOREST:
+							biome_map[y][x] = ForestBiome.new()
+						GameData.WORLD_TILE_TYPES.DESERT:
+							biome_map[y][x] = DesertBiome.new()
+						GameData.WORLD_TILE_TYPES.MOUNTAIN:
+							biome_map[y][x] = MountainBiome.new()
+						GameData.WORLD_TILE_TYPES.SWAMP:
+							biome_map[y][x] = SwampBiome.new()
+					biome_type[y][x] = key
+
+
+					if key == GameData.WORLD_TILE_TYPES.WATER:
+						world_map[y][x].walkable = 0
+					break
+		
 
 # func parse_monster_data() -> void:
 # 	for y in range(GameData.WORLD_MAP_SIZE.y):
