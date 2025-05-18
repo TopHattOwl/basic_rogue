@@ -40,9 +40,6 @@ func get_actor(grid_pos: Vector2i) -> Node2D:
 func get_items(grid_pos: Vector2i) -> Array:
 	return GameData.items_map[grid_pos.y][grid_pos.x]
 
-func get_terrain(grid_pos) -> Dictionary:
-	return GameData.terrain_map[grid_pos.y][grid_pos.x]
-
 # --- MAP DATA ---
 func initialize_map_data():
 	# reset variables
@@ -119,7 +116,7 @@ func remove_item_from_variables(item: Node2D) -> void:
 	GameData.items_map[grid_pos.y][grid_pos.x].erase(item)
 	GameData.all_items.erase(item)
 
-# --- TileSet ---
+# --- TileSets ---
 func get_tile_texture(tilemap_layer: TileMapLayer, grid_pos: Vector2i) -> Texture2D:
 
 	# get tile data

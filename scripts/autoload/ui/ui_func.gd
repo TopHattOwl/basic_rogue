@@ -24,7 +24,7 @@ func set_look_ui_target_array(grid_pos: Vector2i) -> void:
 	var actor = MapFunction.get_actor(grid_pos)
 	var items = MapFunction.get_items(grid_pos)
 	var tile_map_layers = MapFunction.get_tile_map_layers(grid_pos)
-	var terrain_data = MapFunction.get_terrain(grid_pos)
+	var terrain_data = MapFunction.get_tile_info(grid_pos)
 
 	var look_target_stuff = []
 
