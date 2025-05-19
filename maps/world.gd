@@ -64,7 +64,7 @@ func init_data(d: Dictionary) -> void:
 	wall_layer.tile_set = tilesets[GameData.TILE_TAGS.WALL]
 
 	# set rng machine
-	map_rng.seed = WorldMapData.world_map[current_map_pos.y][current_map_pos.x].generated_seed
+	map_rng.seed = WorldMapData.world_map2.map_data[current_map_pos.y][current_map_pos.x].generated_seed
 
 # generation gets called in map_generator.gd if something is not generated
 func generate_terrain_data() -> void:
@@ -183,7 +183,7 @@ func add_terrain_map_data(target_pos: Vector2i, tag: int, tile_info: Dictionary)
 
 func set_world_map_data(target_pos: Vector2i) -> void:
 	# explore
-	WorldMapData.world_map[target_pos.y][target_pos.x]["explored"] = true
+	WorldMapData.world_map2.map_data[target_pos.y][target_pos.x].explored = true
 
 	# monster data
 	WorldMapData.world_map_monster_data[target_pos.y][target_pos.x].spawn_points = monster_data.spawn_points

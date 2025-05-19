@@ -1,9 +1,15 @@
 class_name DesertBiome
+extends Resource
 
-var biome_type = GameData.WORLD_TILE_TYPES.FIELD
-var biome_name = "Field"
-
+@export var biome_type: int
+@export var biome_name: String
+@export var grid_pos: Vector2i
 # load data into world Node here and set variables
+
+func _init(pos: Vector2i) -> void:
+	biome_type = GameData.WORLD_TILE_TYPES.DESERT
+	biome_name = "Desert"
+	grid_pos = pos
 
 func load():
 	pass

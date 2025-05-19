@@ -17,8 +17,8 @@
 	"melee_combat_component": {
 		"attack_type": 0,
 		"damage": [
-			1.0,
-			6.0,
+			1,
+			6,
 			[]
 		],
 		"element": 0,
@@ -37,7 +37,7 @@
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 13,
+			"x": 27,
 			"y": 0
 		}
 	},

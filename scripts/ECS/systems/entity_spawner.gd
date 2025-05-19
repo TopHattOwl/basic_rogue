@@ -1,9 +1,6 @@
 class_name EntitySpawner
 extends Node
 
-var main_node: Node2D
-
-
 func spawn_player():
 	if GameData.player:
 		return
@@ -11,7 +8,7 @@ func spawn_player():
 	GameData.player = player_scene.instantiate()
 
 	GameData.main_node.add_child(GameData.player)
-	GameData.player.owner = main_node # for scene persistence
+	GameData.player.owner = GameData.main_node # for scene persistence
 
 	# give player ui to UiFunc
 	UiFunc.set_player_ui()
@@ -50,7 +47,7 @@ func spawn_monster(grid_pos: Vector2i, monster_key: int):
 
 
 	GameData.main_node.add_child(monster)
-	monster.owner = main_node # for scene persistence
+	monster.owner = GameData.main_node # for scene persistence
 
 	# var monster = load(DirectoryPaths.monsters1_scenes[monster_key]).instantiate()
 	# var monster_data = DataRegistry.monsters1[monster_key]
@@ -122,8 +119,8 @@ func spawn_item(grid_pos: Vector2i, item_scene_key: int):
 
 	else:
 		push_error("Item position component not found")
-	main_node.add_child(item)
-	item.owner = main_node # for scene persistence
+	GameData.main_node.add_child(item)
+	item.owner = GameData.main_node # for scene persistence
 
 ## spawns a random item based on item type given
 func spawn_random_item(_item_type: int):

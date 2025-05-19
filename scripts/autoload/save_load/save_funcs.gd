@@ -27,6 +27,8 @@ func save_world_map_data():
 	save_world_map.save_world_map_civilization()
 
 func load_world_map_data():
+
+	# load in the data that is easily stored
 	load_world_map.load_world_map_data()
 	load_world_map.load_biome_type_data()
 	load_world_map.load_world_map_monster_data()

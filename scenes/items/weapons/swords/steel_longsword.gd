@@ -44,3 +44,5 @@ func _ready():
 
 func get_componenet(key: int):
 	return components.get_node(GameData.get_component_name(key))
+
+

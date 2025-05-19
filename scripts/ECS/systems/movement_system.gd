@@ -1,9 +1,6 @@
 class_name MovementSystem
 extends Node
 
-# this main_node variable is set in main_node.gd's ready function by entity_systems.gd
-var main_node: Node2D
-
 ## attemps to move entity to new_pos, returns true if successful
 func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 
@@ -71,7 +68,7 @@ func process_world_map_movement(new_pos: Vector2i) -> bool:
 		return false
 	if not world_map_gird_pos:
 		return false
-	if not WorldMapData.world_map[new_pos.y][new_pos.x].walkable:
+	if not WorldMapData.world_map2.is_tile_walkable(new_pos) or not MapFunction.is_in_bounds(new_pos):
 		return false
 
 	if MapFunction.is_in_world_map(new_pos):

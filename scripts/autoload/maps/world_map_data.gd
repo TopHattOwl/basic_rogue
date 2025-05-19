@@ -3,14 +3,18 @@ extends Node
 # world_map will hold data about a world map tile ()
 var world_map = []
 
-# biome types is a 2d array correspondng to each world map tile's biome type
+var world_map2 = WorldMap.new()
+
+# biome types is a 2d array correspondng to each world map tile's biome type using enum WORLD_TILE_TYPES, all biome are here, even premade ones
 var biome_type = []
 
-
-var biome_map = []
+# 2d array filled with Biome objects, filled in after biome_type, used for generation only, if biome type is premade type (like village, city, etc) then biome_map's value will be null
+var biome_map = BiomeMap.new()
 
 # world_map_monster_data is a 2d array holding data about monsters spawning in each world map tile
 var world_map_monster_data = []
+
+var world_monster_map = WorldMonsterMap.new()
 
 # world_map_identity is a 2d array holding info about each world map tile
 var world_map_identity = []
@@ -53,61 +57,49 @@ var world_map_civilization = []
 func _ready() -> void:
 	SaveFuncs.load_world_map_data()
 
-	init_biome_map()
-
 	parse_world_map_data()
 
 	
 	# init_world_map_civilization()
-	# init_world_map_data()
 	# init_biome_type()
 	# init_world_map_monster_data()
 	# init_world_map_savagery()
 
-	
-
-	# # add first outpost
-	# add_map_to_world_map(Vector2i(31, 16), DirectoryPaths.first_outpost, 0, true)
-
-	# # add field with hideout
-	# add_map_to_world_map(Vector2i(31, 17), DirectoryPaths.field_with_hideout, 0, true)
-
-	# reset_world_map_tile(Vector2i(5, 8))
-	# reset_world_map_tile(Vector2i(31, 17))
+	world_map2.add_premade_map(DirectoryPaths.first_outpost, Vector2i(31, 16))
 
 	# SaveFuncs.save_world_map_data()
 
 # --- MAP DATA REGISTRY ---
-func add_map_to_world_map(world_map_pos: Vector2i, map_path: String = "", generated_seed: int = 0, explored: int = 0, walkable: int = 1) -> void:
-	if map_path:
-		world_map[world_map_pos.y][world_map_pos.x] = {
-			"is_premade": true,
-			"map_path": map_path,
-			"generated_seed": generated_seed,
-			"explored": explored,
-			"walkable": walkable
-		}
-	else:
-		world_map[world_map_pos.y][world_map_pos.x] = {
-			"is_premade": false,
-			"map_path": map_path,
-			"generated_seed": generated_seed,
-			"explored": explored,
-			"walkable": walkable
-		}
+# func add_map_to_world_map(world_map_pos: Vector2i, map_path: String = "", generated_seed: int = 0, explored: int = 0, walkable: int = 1) -> void:
+# 	if map_path:
+# 		world_map[world_map_pos.y][world_map_pos.x] = {
+# 			"is_premade": true,
+# 			"map_path": map_path,
+# 			"generated_seed": generated_seed,
+# 			"explored": explored,
+# 			"walkable": walkable
+# 		}
+# 	else:
+# 		world_map[world_map_pos.y][world_map_pos.x] = {
+# 			"is_premade": false,
+# 			"map_path": map_path,
+# 			"generated_seed": generated_seed,
+# 			"explored": explored,
+# 			"walkable": walkable
+# 		}
 
-func reset_world_map_tile(grid_pos: Vector2i) -> void:
-	if !MapFunction.is_in_world_map(grid_pos):
-		push_error("tile is not in world map")
-		return
+# func reset_world_map_tile(grid_pos: Vector2i) -> void:
+# 	if !MapFunction.is_in_world_map(grid_pos):
+# 		push_error("tile is not in world map")
+# 		return
 
-	world_map[grid_pos.y][grid_pos.x] = {
-		"is_premade": false,
-		"map_path": "",
-		"generated_seed": randi_range(111111, 999999),
-		"explored": 0,
-		"walkable": 1
-	}
+# 	world_map[grid_pos.y][grid_pos.x] = {
+# 		"is_premade": false,
+# 		"map_path": "",
+# 		"generated_seed": randi_range(111111, 999999),
+# 		"explored": 0,
+# 		"walkable": 1
+# 	}
 
 ## Sets WorldMapData variables for a given world map tile,
 ## called when map tile is generated
@@ -115,18 +107,18 @@ func set_world_map_data() -> void:
 	pass
 
 # --- INIT ---
-func init_world_map_data() -> void:
-	world_map = []
-	for y in range(GameData.WORLD_MAP_SIZE.y):
-		world_map.append([])
-		for x in range(GameData.WORLD_MAP_SIZE.x):
-			world_map[y].append({
-				"is_premade": false,
-				"map_path": "",
-				"generated_seed": randi_range(111111, 999999),
-				"explored": 0,
-				"walkable": 1
-			})
+# func init_world_map_data() -> void:
+# 	world_map = []
+# 	for y in range(GameData.WORLD_MAP_SIZE.y):
+# 		world_map.append([])
+# 		for x in range(GameData.WORLD_MAP_SIZE.x):
+# 			world_map[y].append({
+# 				"is_premade": false,
+# 				"map_path": "",
+# 				"generated_seed": randi_range(111111, 999999),
+# 				"explored": 0,
+# 				"walkable": 1
+# 			})
 
 func init_biome_type() -> void:
 	biome_type = []
@@ -164,14 +156,6 @@ func init_world_map_civilization() -> void:
 			else:
 				world_map_civilization[y].append(0)
 
-
-func init_biome_map() -> void:
-	biome_map = []
-	for y in range(GameData.WORLD_MAP_SIZE.y):
-		biome_map.append([])
-		for x in range(GameData.WORLD_MAP_SIZE.x):
-			biome_map[y].append(null)
-
 # --- PARSING ---
 # if it has water no other tile can be there
 
@@ -189,24 +173,25 @@ func parse_world_map_data() -> void:
 	parse_biome(world_map_scene)
 
 	# set monster data
-	# parse_monster_data()
+	parse_monster_data()
 
 	# set savagery rate, savagery is saved so this need to run only once
 	# parse_savagery()
 	
 
-func parse_biome_type(world_map_scene: Node2D) -> void:
-	for y in range(GameData.WORLD_MAP_SIZE.y):
-		for x in range(GameData.WORLD_MAP_SIZE.x):
-			var grid_pos = Vector2i(x, y)
+# func parse_biome_type(world_map_scene: Node2D) -> void:
+# 	for y in range(GameData.WORLD_MAP_SIZE.y):
+# 		for x in range(GameData.WORLD_MAP_SIZE.x):
+# 			var grid_pos = Vector2i(x, y)
 
-			for key in GameData.WorldMapTileLayer.keys():
-				var layer = world_map_scene.get_node(GameData.WorldMapTileLayer[key])
-				if layer and layer.get_cell_tile_data(grid_pos):
-					biome_type[y][x] = key
-					if key == GameData.WORLD_TILE_TYPES.WATER:
-						world_map[y][x].walkable = 0
-					break
+# 			for key in GameData.WorldMapTileLayer.keys():
+# 				var layer = world_map_scene.get_node(GameData.WorldMapTileLayer[key])
+# 				if layer and layer.get_cell_tile_data(grid_pos):
+# 					biome_type[y][x] = key
+# 					if key == GameData.WORLD_TILE_TYPES.WATER:
+# 						world_map[y][x].walkable = 0
+# 						world_map2.map_data[y][x].walkable = false
+# 					break
 
 func parse_biome(world_map_scene: Node2D) -> void:
 
@@ -220,42 +205,36 @@ func parse_biome(world_map_scene: Node2D) -> void:
 
 					match key:
 						GameData.WORLD_TILE_TYPES.FIELD:
-							biome_map[y][x] = FieldBiome.new()
+							biome_map.map_data[y][x] = FieldBiome.new(Vector2i(x, y))
 						GameData.WORLD_TILE_TYPES.FOREST:
-							biome_map[y][x] = ForestBiome.new()
+							biome_map.map_data[y][x] = ForestBiome.new(Vector2i(x, y))
 						GameData.WORLD_TILE_TYPES.DESERT:
-							biome_map[y][x] = DesertBiome.new()
+							biome_map.map_data[y][x] = DesertBiome.new(Vector2i(x, y))
 						GameData.WORLD_TILE_TYPES.MOUNTAIN:
-							biome_map[y][x] = MountainBiome.new()
+							biome_map.map_data[y][x] = MountainBiome.new(Vector2i(x, y))
 						GameData.WORLD_TILE_TYPES.SWAMP:
-							biome_map[y][x] = SwampBiome.new()
+							biome_map.map_data[y][x] = SwampBiome.new(Vector2i(x, y))
 					biome_type[y][x] = key
 
 
 					if key == GameData.WORLD_TILE_TYPES.WATER:
-						world_map[y][x].walkable = 0
+						world_map2.map_data[y][x].walkable = false
 					break
 		
 
-# func parse_monster_data() -> void:
-# 	for y in range(GameData.WORLD_MAP_SIZE.y):
-# 		for x in range(GameData.WORLD_MAP_SIZE.x):
-# 			var grid_pos = Vector2i(x, y)
+func parse_monster_data() -> void:
+	for y in range(GameData.WORLD_MAP_SIZE.y):
+		for x in range(GameData.WORLD_MAP_SIZE.x):
+			var grid_pos = Vector2i(x, y)
 
-# 			var tier = calc_monster_tier(grid_pos)
-# 			var biome = biome_type[y][x]
+			var tier = calc_monster_tier(grid_pos)
+			var biome = biome_type[y][x]
 
-# 			# if biome type does not upport monster spawning -> skip
-# 			if !GameData.MonstersAll[tier].has(biome):
-# 				continue
+			# if biome type does not upport monster spawning -> skip
+			if !GameData.MonstersAll[tier].has(biome):
+				continue
 
-# 			var types = GameData.MonstersAll[tier][biome_type[y][x]]
-# 			world_map_monster_data[y][x] = {
-# 				"monster_tier": tier,
-# 				"monster_types": types,
-# 				"spawn_points": [], # gets filled when map is generated
-# 				"has_dungeon": false # also gets filled when generated
-# 			}
+			world_monster_map.map_data[y][x] = WorldMonsterTile.new(Vector2i(x, y), tier)
 
 
 

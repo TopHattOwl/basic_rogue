@@ -225,10 +225,10 @@ func load_premade_map(map_path: String) -> void:
 #	when zoomed in and trying to move outside of world map
 func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 
-	if !WorldMapData.world_map:
+	if !WorldMapData.world_map2:
 		push_error("Error: No world map data, world_map is null")
 	# check world map borders
-	if not is_in_world_map(new_world_map_pos):
+	if not WorldMapData.world_map2.is_in_bounds(new_world_map_pos) or not WorldMapData.world_map2.is_tile_walkable(new_world_map_pos):
 		return
 
 	# TODO save current map data
@@ -236,7 +236,7 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 	# save player data
 	SaveFuncs.save_player_data(GameData.player)
 
-	var world_tile = WorldMapData.world_map[new_world_map_pos.y][new_world_map_pos.x]
+	var world_tile = WorldMapData.world_map2.map_data[new_world_map_pos.y][new_world_map_pos.x]
 	var is_transition_success = false
 
 	# if map is premade, load the map
@@ -297,7 +297,7 @@ func exit_world_map():
 	var player_world_pos = ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).world_map_pos
 	GameData.player.position = MapFunction.to_world_pos(player_pos_comp.grid_pos)
 
-	var current_map_data = WorldMapData.world_map[player_world_pos.y][player_world_pos.x]
+	var current_map_data = WorldMapData.world_map2.map_data[player_world_pos.y][player_world_pos.x]
 
 	if current_map_data.is_premade:
 		load_premade_map(current_map_data.map_path)

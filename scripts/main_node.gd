@@ -35,11 +35,7 @@ func _ready():
 
 	MapFunction.load_premade_map(DirectoryPaths.first_outpost)
 
-	# entity system manager initialization
-	EntitySystems.initialize_systems(self)
-
 	SaveFuncs.save_player_data(GameData.player)
-
 
 	EntitySystems.entity_spawner.spawn_item(Vector2i(6,6), GameData.ALL_ITEMS.STEEL_LONGSWORD)
 
