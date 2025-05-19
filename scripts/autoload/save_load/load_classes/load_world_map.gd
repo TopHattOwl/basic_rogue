@@ -30,3 +30,8 @@ func load_world_map_civilization():
 		var file = FileAccess.open_compressed(DirectoryPaths.world_map_civilization_save, FileAccess.READ)
 		WorldMapData.world_map_civilization = file.get_var()
 		file.close()
+
+static func load_world_maps() -> void:
+	WorldMapData.world_map2.load_world_map()
+	WorldMapData.biome_map.load_biome_map()
+	WorldMapData.world_monster_map.load_world_monster_map()

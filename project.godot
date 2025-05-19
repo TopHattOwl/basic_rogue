@@ -26,7 +26,6 @@ EntitySystems="*res://scripts/autoload/ECS_helper/entity_systems.gd"
 Dice="*res://scripts/autoload/dice.gd"
 DataRegistry="*res://scripts/autoload/save_load/data_registry.gd"
 WorldMapData="*res://scripts/autoload/maps/world_map_data.gd"
-Generators="*res://scripts/autoload/generators.gd"
 UiFunc="*res://scripts/autoload/ui/ui_func.gd"
 
 [display]

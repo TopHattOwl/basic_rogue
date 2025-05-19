@@ -26,3 +26,9 @@ func save_world_map_civilization() -> void:
 	var file = FileAccess.open_compressed(DirectoryPaths.world_map_civilization_save, FileAccess.WRITE)
 	file.store_var(WorldMapData.world_map_civilization)
 	file.close()
+
+
+static func save_world_maps() -> void:
+	WorldMapData.world_map2.save_world_map()
+	WorldMapData.biome_map.save_biome_map()
+	WorldMapData.world_monster_map.save_world_monster_map()

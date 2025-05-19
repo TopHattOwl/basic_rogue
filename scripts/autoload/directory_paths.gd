@@ -57,6 +57,8 @@ const world_map_savagery_save = "res://resources/world_map_data/world_save_savag
 const world_map_civilization_save = "res://resources/world_map_data/world_save_civilization.sav"
 
 const biome_map_save = "res://resources/world_map_data/biome/biome_map.tres"
+const world_map_save = "res://resources/world_map_data/world_map/world_map.tres"
+const world_monster_map_save = "res://resources/world_map_data/world_monster_map/world_monster_map.tres"
 
 
 # const load_data = "res://scripts/autoload/save_load/load_classes/load_data.gd"

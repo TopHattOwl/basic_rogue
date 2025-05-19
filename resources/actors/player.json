@@ -17,8 +17,8 @@
 	"melee_combat_component": {
 		"attack_type": 0,
 		"damage": [
-			1,
-			6,
+			1.0,
+			6.0,
 			[]
 		],
 		"element": 0,

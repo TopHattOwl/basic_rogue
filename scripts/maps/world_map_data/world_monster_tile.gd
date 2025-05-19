@@ -7,7 +7,7 @@ extends Resource
 @export var has_dungeon: bool
 @export var grid_pos: Vector2i
 
-func _init(pos: Vector2i, tier: int) -> void:
+func _init(pos: Vector2i = Vector2i.ZERO, tier: int = 1) -> void:
 	monster_tier = calc_monster_tier(pos)
 	monster_types = get_monster_types(pos, tier)
 	spawn_points = [] # filled when map is generated

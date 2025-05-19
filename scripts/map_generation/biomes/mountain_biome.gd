@@ -7,10 +7,14 @@ extends Resource
 
 # load data into world Node here and set variables
 
-func _init(pos: Vector2i) -> void:
+func _init(pos: Vector2i = Vector2i.ZERO) -> void:
+	pass
+
+func setup(pos: Vector2i = Vector2i.ZERO) -> void:
 	biome_type = GameData.WORLD_TILE_TYPES.MOUNTAIN
 	biome_name = "Mountain"
 	grid_pos = pos
+
 func load():
 	pass
 

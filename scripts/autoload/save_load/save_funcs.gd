@@ -26,6 +26,11 @@ func save_world_map_data():
 	save_world_map.save_world_map_savagery()
 	save_world_map.save_world_map_civilization()
 
+# new world map save
+func save_world_maps() -> void:
+	SaveWorldMap.save_world_maps()
+
+
 func load_world_map_data():
 
 	# load in the data that is easily stored
@@ -34,3 +39,8 @@ func load_world_map_data():
 	load_world_map.load_world_map_monster_data()
 	load_world_map.load_world_map_savagery()
 	load_world_map.load_world_map_civilization()
+
+# new world map load
+
+func load_world_maps() -> void:
+	LoadWorldMap.load_world_maps()

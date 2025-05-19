@@ -55,9 +55,13 @@ var world_map_civilization = []
 
 
 func _ready() -> void:
+	# old load world map
 	SaveFuncs.load_world_map_data()
 
-	parse_world_map_data()
+	# new load
+	SaveFuncs.load_world_maps()
+
+	# parse_world_map_data()
 
 	
 	# init_world_map_civilization()
@@ -65,60 +69,11 @@ func _ready() -> void:
 	# init_world_map_monster_data()
 	# init_world_map_savagery()
 
-	world_map2.add_premade_map(DirectoryPaths.first_outpost, Vector2i(31, 16))
+	# world_map2.add_premade_map(DirectoryPaths.first_outpost, Vector2i(31, 16))
 
-	# SaveFuncs.save_world_map_data()
-
-# --- MAP DATA REGISTRY ---
-# func add_map_to_world_map(world_map_pos: Vector2i, map_path: String = "", generated_seed: int = 0, explored: int = 0, walkable: int = 1) -> void:
-# 	if map_path:
-# 		world_map[world_map_pos.y][world_map_pos.x] = {
-# 			"is_premade": true,
-# 			"map_path": map_path,
-# 			"generated_seed": generated_seed,
-# 			"explored": explored,
-# 			"walkable": walkable
-# 		}
-# 	else:
-# 		world_map[world_map_pos.y][world_map_pos.x] = {
-# 			"is_premade": false,
-# 			"map_path": map_path,
-# 			"generated_seed": generated_seed,
-# 			"explored": explored,
-# 			"walkable": walkable
-# 		}
-
-# func reset_world_map_tile(grid_pos: Vector2i) -> void:
-# 	if !MapFunction.is_in_world_map(grid_pos):
-# 		push_error("tile is not in world map")
-# 		return
-
-# 	world_map[grid_pos.y][grid_pos.x] = {
-# 		"is_premade": false,
-# 		"map_path": "",
-# 		"generated_seed": randi_range(111111, 999999),
-# 		"explored": 0,
-# 		"walkable": 1
-# 	}
-
-## Sets WorldMapData variables for a given world map tile,
-## called when map tile is generated
-func set_world_map_data() -> void:
-	pass
+	# SaveFuncs.save_world_maps()
 
 # --- INIT ---
-# func init_world_map_data() -> void:
-# 	world_map = []
-# 	for y in range(GameData.WORLD_MAP_SIZE.y):
-# 		world_map.append([])
-# 		for x in range(GameData.WORLD_MAP_SIZE.x):
-# 			world_map[y].append({
-# 				"is_premade": false,
-# 				"map_path": "",
-# 				"generated_seed": randi_range(111111, 999999),
-# 				"explored": 0,
-# 				"walkable": 1
-# 			})
 
 func init_biome_type() -> void:
 	biome_type = []
@@ -173,7 +128,7 @@ func parse_world_map_data() -> void:
 	parse_biome(world_map_scene)
 
 	# set monster data
-	parse_monster_data()
+	# parse_monster_data()
 
 	# set savagery rate, savagery is saved so this need to run only once
 	# parse_savagery()
@@ -205,15 +160,25 @@ func parse_biome(world_map_scene: Node2D) -> void:
 
 					match key:
 						GameData.WORLD_TILE_TYPES.FIELD:
-							biome_map.map_data[y][x] = FieldBiome.new(Vector2i(x, y))
+							var biome = FieldBiome.new()
+							biome.setup(Vector2i(x, y))
+							biome_map.map_data[y][x] = biome
 						GameData.WORLD_TILE_TYPES.FOREST:
-							biome_map.map_data[y][x] = ForestBiome.new(Vector2i(x, y))
+							var biome = ForestBiome.new()
+							biome.setup(Vector2i(x, y))
+							biome_map.map_data[y][x] = biome
 						GameData.WORLD_TILE_TYPES.DESERT:
-							biome_map.map_data[y][x] = DesertBiome.new(Vector2i(x, y))
+							var biome = DesertBiome.new()
+							biome.setup(Vector2i(x, y))
+							biome_map.map_data[y][x] = biome
 						GameData.WORLD_TILE_TYPES.MOUNTAIN:
-							biome_map.map_data[y][x] = MountainBiome.new(Vector2i(x, y))
+							var biome = MountainBiome.new()
+							biome.setup(Vector2i(x, y))
+							biome_map.map_data[y][x] = biome
 						GameData.WORLD_TILE_TYPES.SWAMP:
-							biome_map.map_data[y][x] = SwampBiome.new(Vector2i(x, y))
+							var biome = SwampBiome.new()
+							biome.setup(Vector2i(x, y))
+							biome_map.map_data[y][x] = biome
 					biome_type[y][x] = key
 
 
