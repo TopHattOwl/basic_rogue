@@ -24,6 +24,7 @@ func reset_tile(pos: Vector2i) -> void:
 	map_data[pos.y][pos.x] = WorldMapTile.new(pos)
 
 
+# utils
 func is_tile_walkable(pos: Vector2i) -> bool:
 	return map_data[pos.y][pos.x].walkable
 
@@ -31,6 +32,7 @@ func is_in_bounds(pos: Vector2i) -> bool:
 	return pos.x >= 0 and pos.x < GameData.WORLD_MAP_SIZE.x and pos.y >= 0 and pos.y < GameData.WORLD_MAP_SIZE.y
 
 
+# save/load
 func save_world_map() -> void:
 	ResourceSaver.save(self, DirectoryPaths.world_map_save)
 

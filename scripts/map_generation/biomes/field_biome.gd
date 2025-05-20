@@ -5,15 +5,56 @@ extends Resource
 @export var biome_name: String
 @export var grid_pos: Vector2i
 
+var map_rng = RandomNumberGenerator.new()
+
+
+# varaibles that gets filled when generating
+@export var terrain_map: Array[Array]
+
+
 # load data into world Node here and set variables
 
-func _init(pos: Vector2i = Vector2i.ZERO) -> void:
+func _init(_pos: Vector2i = Vector2i.ZERO) -> void:
 	pass
 
 func setup(pos: Vector2i = Vector2i.ZERO) -> void:
 	biome_type = GameData.WORLD_TILE_TYPES.FIELD
 	biome_name = "Field"
 	grid_pos = pos
+
+# generation
+
+func generate_map() -> void:
+	map_rng.seed = WorldMapData.world_map2.map_data[grid_pos.y][grid_pos.x].generated_seed
+	terrain_map = MapFunction.make_base_terrain_map()
+
+	var savagery = WorldMapData.world_map_savagery[grid_pos.y][grid_pos.x]
+	var monster_data = WorldMapData.world_map_monster_data[grid_pos.y][grid_pos.x]
+	var biome_type = WorldMapData.biome_type[grid_pos.y][grid_pos.x]
+
+
+	generate_terrain_data()
+
+	var world_node_data = {
+		"a": 1,
+	}
+
+func generate_terrain_data() -> void:
+	add_walls()
+	add_nature()
+	# add_forage() # add when implemented foliage
+	add_monsters()
+
+# generation helpers
+
+func add_walls() -> void:
+	pass
+func add_nature() -> void:
+	pass
+func add_forage() -> void:
+	pass
+func add_monsters() -> void:
+	pass
 
 func load():
 	pass

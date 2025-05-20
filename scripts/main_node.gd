@@ -9,11 +9,14 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 # IDEAS:
 	# foraging map (like terrain map, 2d array) for placing foraging objects for player to forage for potions, food and stuff
 		# foraging vision -> based on perception and knowlege of plants (notice plants you know better)
-		# foraging mode -> regular vision decreeses but foraging vision increases 
+		# foraging mode -> regular vision decreeses but foraging vision increases
+		# add forage generation in Biome classes 
 
 	# finish biome integration to class objects
 
 # TODO:
+	# IMPORTANT: get rid of old world_map_data, world_map_monster_data in world_map_data.gd, migrated everything to objects
+		# but have to finish map generaton first -> each biome has own generation function, WorldMonsterMap has own monster setup function (spawn pos and dungeon setup)
 	# add perception attributes (find all references, some are string refereces, like "strenght" when saving and loading player data)
 	# Stamina and State componenet not finished
 	# IMPORTANT: make giant worm spawn the same way mask does (variables set in own ready script)

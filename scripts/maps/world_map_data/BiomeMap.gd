@@ -11,6 +11,10 @@ func _init() -> void:
         map_data[y].resize(GameData.WORLD_MAP_SIZE.x)
 
 
+func generate_map(pos: Vector2i) -> void:
+    map_data[pos.y][pos.x].generate_map()
+
+# save/load
 func save_biome_map() -> void:
     ResourceSaver.save(self, DirectoryPaths.biome_map_save)
 

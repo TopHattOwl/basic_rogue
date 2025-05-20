@@ -52,7 +52,7 @@ func init_data(d: Dictionary) -> void:
 	biome = d.get("biome_type", 0)
 	monster_data = d.get("monster_data", {})
 
-	if !MapFunction.is_in_world_map(current_map_pos):
+	if !WorldMapData.world_map2.is_tile_in_world_map(current_map_pos):
 		push_error("Tile is not in world map")
 		return
 	# set TileMapLayer Nodes' tilesets

@@ -60,23 +60,17 @@ func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 
 
 func process_world_map_movement(new_pos: Vector2i) -> bool:
-	var position_component = ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION)
 	var world_map_gird_pos = ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER)
 
-	if not position_component:
-		push_error("No position component found for player")
-		return false
 	if not world_map_gird_pos:
+		push_error("No player component found for player")
 		return false
-	if not WorldMapData.world_map2.is_tile_walkable(new_pos) or not MapFunction.is_in_bounds(new_pos):
+	if not WorldMapData.world_map2.is_tile_walkable(new_pos) or not WorldMapData.world_map2.is_in_bounds(new_pos):
 		return false
 
-	if MapFunction.is_in_world_map(new_pos):
-		world_map_gird_pos.world_map_pos = new_pos
-		GameData.player.position = MapFunction.to_world_pos(new_pos)
-		return true
-
-	return false
+	world_map_gird_pos.world_map_pos = new_pos
+	GameData.player.position = MapFunction.to_world_pos(new_pos)
+	return true
 
 
 func check__map_transition(new_pos: Vector2i, dir: Vector2i) -> bool:
@@ -86,6 +80,8 @@ func check__map_transition(new_pos: Vector2i, dir: Vector2i) -> bool:
 		var player_pos = ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION).grid_pos
 		var transition_dir: Vector2i
 		var new_player_grid_pos: Vector2i
+
+
 		if new_pos.x >= GameData.MAP_SIZE.x and new_pos.y >= GameData.MAP_SIZE.y:
 			transition_dir = Vector2i(1, 1)
 			new_player_grid_pos = Vector2i(0, 0)

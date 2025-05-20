@@ -8,15 +8,8 @@ extends Resource
 @export var walkable: bool
 @export var grid_pos: Vector2i
 
-func _init(pos: Vector2i = Vector2i.ZERO) -> void:
+func _init(_pos: Vector2i = Vector2i.ZERO) -> void:
 	pass
-
-	is_premade = false
-	map_path = ""
-	generated_seed = randi_range(111111, 999999)
-	explored = false
-	walkable = true
-	grid_pos = pos
 
 func setup(pos: Vector2i) -> void:
 	is_premade = false
