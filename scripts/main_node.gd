@@ -12,9 +12,20 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 		# foraging mode -> regular vision decreeses but foraging vision increases
 		# add forage generation in Biome classes 
 
+	# IMPORTANT: FOV how to
+		# add TileMapLayer node to player node
+		# in it's process function get player pos
+		# variables: in vision tiles, expored_map (2d array, value is 1 if expored, 0 if not explored)
+		# according to terrain_map transparency and player's vision range, map out what player sees, update explored map and in vision tiles
+		# tilemap layer setcell:
+			# none on tiles player actively sees
+			# explored but not in vision tile: 50% transparency background map
+			# not explored, not in vision tile: background tile full transparency
+
 	# finish biome integration to class objects
 
 # TODO:
+	# generate seed in WorldMap object using the world seed in GameData
 	# IMPORTANT: get rid of old world_map_data, world_map_monster_data in world_map_data.gd, migrated everything to objects
 		# but have to finish map generaton first -> each biome has own generation function, WorldMonsterMap has own monster setup function (spawn pos and dungeon setup)
 	# add perception attributes (find all references, some are string refereces, like "strenght" when saving and loading player data)
@@ -48,6 +59,8 @@ func _ready():
 	# SaveFuncs.save_player_data(GameData.player)
 
 	UiFunc.log_message("You arrive in ******")
+
+	# WorldMapData.biome_map.map_data[4][42].generate_map()
 
 
 func _process(_delta):

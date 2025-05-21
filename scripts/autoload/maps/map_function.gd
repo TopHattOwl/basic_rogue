@@ -247,7 +247,8 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 	# if not premade chekc if explored (if explored then it has been generated already)
 	else:
 		# TODO is explored load that data ininstead, not generate
-		MapGenerator.generate_random_map(new_world_map_pos)
+		# MapGenerator.generate_random_map(new_world_map_pos)
+		WorldMapData.biome_map.generate_map(new_world_map_pos)
 		is_transition_success = true
 		
 	if is_transition_success:
@@ -303,7 +304,7 @@ func exit_world_map():
 		load_premade_map(current_map_data.map_path)
 	else:
 		# TODO is explored load that data ininstead, not generate
-		MapGenerator.generate_random_map(player_world_pos)
+		WorldMapData.biome_map.generate_map(player_world_pos)
 
 
 	UiFunc.log_message("You exit the world map")
