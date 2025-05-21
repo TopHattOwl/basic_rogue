@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="WorldMap" load_steps=8253 format=3 uid="uid://diyvlulfryake"]
+[gd_resource type="Resource" script_class="WorldMap" load_steps=8253 format=3]
 
-[ext_resource type="Script" uid="uid://dpkm7gjdekyfw" path="res://scripts/maps/world_map_data/world_map_tile.gd" id="1_m2vku"]
-[ext_resource type="Script" uid="uid://dkgu3ji01vyu7" path="res://scripts/maps/world_map_data/WorldMap.gd" id="2_arbid"]
+[ext_resource type="Script" path="res://scripts/maps/world_map_data/world_map_tile.gd" id="1_m2vku"]
+[ext_resource type="Script" path="res://scripts/maps/world_map_data/WorldMap.gd" id="2_arbid"]
 
 [sub_resource type="Resource" id="Resource_m2vku"]
 script = ExtResource("1_m2vku")

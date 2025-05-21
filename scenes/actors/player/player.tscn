@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://xu1v46ex8vaq"]
+[gd_scene load_steps=24 format=3 uid="uid://xu1v46ex8vaq"]
 
 [ext_resource type="Texture2D" uid="uid://mk7q31h1b4rs" path="res://assets/player/player_knight.png" id="1_wmv1v"]
 [ext_resource type="PackedScene" uid="uid://duhsb81d10cy6" path="res://scripts/ECS/components/actors/component_scenes/abilities_component.tscn" id="2_inh5e"]
@@ -17,6 +17,24 @@
 [ext_resource type="PackedScene" uid="uid://dnbuk32inicvw" path="res://scenes/dev_tools/dev_tools.tscn" id="15_068wj"]
 [ext_resource type="PackedScene" uid="uid://be4gwtu23s7n6" path="res://scenes/ui/player_ui/player_ui.tscn" id="16_xducv"]
 [ext_resource type="PackedScene" uid="uid://bofi0u0bprhs8" path="res://scenes/ui/targeter/targeter.tscn" id="17_yab6n"]
+[ext_resource type="Texture2D" uid="uid://jv4ueuo86b30" path="res://assets/background.png" id="18_q2guw"]
+[ext_resource type="Texture2D" uid="uid://e10uv46cfe80" path="res://assets/background_half_transparent.png" id="19_npmmh"]
+[ext_resource type="Script" uid="uid://b3a28xskfs4rv" path="res://scenes/actors/player/fov.gd" id="20_npmmh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxscg"]
+texture = ExtResource("18_q2guw")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_biscu"]
+texture = ExtResource("19_npmmh")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8bu7j"]
+tile_size = Vector2i(16, 24)
+sources/0 = SubResource("TileSetAtlasSource_qxscg")
+sources/1 = SubResource("TileSetAtlasSource_biscu")
 
 [node name="Player" type="Node2D"]
 
@@ -65,3 +83,7 @@ visible = false
 visible = false
 z_index = 4
 z_as_relative = false
+
+[node name="FOV" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_8bu7j")
+script = ExtResource("20_npmmh")

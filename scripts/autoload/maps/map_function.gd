@@ -208,6 +208,7 @@ func load_premade_map(map_path: String) -> void:
 	# reset variables
 	initialize_map_data()
 	GameData.reset_entity_variables()
+	GameData.remove_entities_from_tree()
 	
 	GameData.current_map = load(map_path).instantiate()
 	GameData.main_node.add_child(GameData.current_map)
@@ -231,6 +232,8 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 	if not WorldMapData.world_map2.is_in_bounds(new_world_map_pos) or not WorldMapData.world_map2.is_tile_walkable(new_world_map_pos):
 		return
 
+	# remove entities from the tree
+	GameData.remove_entities_from_tree()
 	# TODO save current map data
 
 	# save player data
@@ -271,6 +274,8 @@ func enter_world_map():
 	if GameData.current_map:
 		GameData.current_map.queue_free()
 		GameData.current_map = null
+	
+	GameData.remove_entities_from_tree()
 
 	GameData.player.position = MapFunction.to_world_pos(ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).world_map_pos)
 	GameData.main_node.add_child(world_map)

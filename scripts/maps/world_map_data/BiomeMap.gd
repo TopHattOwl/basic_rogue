@@ -12,7 +12,12 @@ func _init() -> void:
 
 
 func generate_map(pos: Vector2i) -> void:
-	map_data[pos.y][pos.x].generate_map()
+	# if tile is explored just load in the data to World node
+	if WorldMapData.world_map2.map_data[pos.y][pos.x].explored:
+		map_data[pos.y][pos.x].load_map()
+	else:
+		# if tile is not explored, generate it
+		map_data[pos.y][pos.x].generate_map()
 
 # save/load
 func save_biome_map() -> void:

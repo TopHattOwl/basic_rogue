@@ -5,7 +5,10 @@ extends Resource
 @export var monster_types: Array
 @export var spawn_points: Array
 @export var has_dungeon: bool
+@export var dungeon_pos: Vector2i # dungeon are several tiles big, top left position is dungeon pos
 @export var grid_pos: Vector2i
+
+var dungeon: Dungeon
 
 func _init(pos: Vector2i = Vector2i.ZERO, tier: int = 1) -> void:
 	monster_tier = calc_monster_tier(pos)
@@ -21,6 +24,11 @@ func calc_monster_tier(pos: Vector2i) -> int:
 	tier = tier if tier > 0 else 1
 
 	return tier
+
+func add_dungeon_tile(pos: Vector2i) -> void:
+	has_dungeon = true
+	dungeon_pos = pos
+	dungeon = Dungeon.new()
 
 func get_monster_types(pos: Vector2i, tier: int) -> Array:
 	var biome = WorldMapData.biome_type[pos.y][pos.x]

@@ -1,8 +1,6 @@
 extends Node
 # one tile in world map is a screen if entered
-# world_map will hold data about a world map tile ()
-var world_map = []
-
+# world_map will hold data about a world map tile
 var world_map2 = WorldMap.new()
 
 # biome types is a 2d array correspondng to each world map tile's biome type using enum WORLD_TILE_TYPES, all biome are here, even premade ones
@@ -10,9 +8,6 @@ var biome_type = []
 
 # 2d array filled with Biome objects, filled in after biome_type, used for generation only, if biome type is premade type (like village, city, etc) then biome_map's value will be null
 var biome_map = BiomeMap.new()
-
-# world_map_monster_data is a 2d array holding data about monsters spawning in each world map tile
-var world_map_monster_data = []
 
 var world_monster_map = WorldMonsterMap.new()
 
@@ -82,18 +77,6 @@ func init_biome_type() -> void:
 		for x in range(GameData.WORLD_MAP_SIZE.x):
 			biome_type[y].append(0)
 
-func init_world_map_monster_data() -> void:
-	world_map_monster_data = []
-	for y in range(GameData.WORLD_MAP_SIZE.y):
-		world_map_monster_data.append([])
-		for x in range(GameData.WORLD_MAP_SIZE.x):
-			world_map_monster_data[y].append({
-				"monster_tier": 0,
-				"monster_types": [],
-				"spawn_points": [],
-				"has_dungeon": false,
-		})
-
 func init_world_map_savagery() -> void:
 	world_map_savagery = []
 	for y in range(GameData.WORLD_MAP_SIZE.y):
@@ -128,7 +111,7 @@ func parse_world_map_data() -> void:
 	parse_biome(world_map_scene)
 
 	# set monster data
-	# parse_monster_data()
+	parse_monster_data()
 
 	# set savagery rate, savagery is saved so this need to run only once
 	# parse_savagery()

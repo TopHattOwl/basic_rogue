@@ -1,0 +1,20 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dm21ju48yq021"]
+
+[ext_resource type="Texture2D" uid="uid://cnvvwo61xp2d2" path="res://assets/floor/desert/floor_tileset.png" id="1_cnj5h"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cnj5h"]
+texture = ExtResource("1_cnj5h")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[resource]
+tile_size = Vector2i(16, 24)
+sources/2 = SubResource("TileSetAtlasSource_cnj5h")

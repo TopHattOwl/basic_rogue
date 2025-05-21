@@ -20,9 +20,7 @@ func load_player_data(json):
 
 # world map
 func save_world_map_data():
-	save_world_map.save_world_map_data()
 	save_world_map.save_biome_type_data()
-	save_world_map.save_world_map_monster_data()
 	save_world_map.save_world_map_savagery()
 	save_world_map.save_world_map_civilization()
 
@@ -32,11 +30,7 @@ func save_world_maps() -> void:
 
 
 func load_world_map_data():
-
-	# load in the data that is easily stored
-	load_world_map.load_world_map_data()
 	load_world_map.load_biome_type_data()
-	load_world_map.load_world_map_monster_data()
 	load_world_map.load_world_map_savagery()
 	load_world_map.load_world_map_civilization()
 
