@@ -4,16 +4,31 @@ extends Node
 # base values for unarmed attack
 # var damage: String = "1d4"
 var damage: Array = [1, 4, []]
-var attack_type: int = 1
-var element: int = 0
 var to_hit_bonus: int = 0
+
+var damage_min: int = 0
+var damage_max: int = 0
+var attack_type: int = 1
+
+var accuracy: float = 0
+
+var element: int = 0
+var element_weight: float = 0
 
 
 func initialize(d: Dictionary) -> void:
 	damage = d.get("damage", [1, 4, []])
-	attack_type = d.get("attack_type", 1)
-	element = d.get("element", 0)
+	
 	to_hit_bonus = d.get("to_hit_bonus", 0)
+
+	damage_min = d.get("damage_min", 0)
+	damage_max = d.get("damage_max", 0)
+	attack_type = d.get("attack_type", 1)
+
+	accuracy = d.get("accuracy", 0)
+
+	element = d.get("element", 0)
+	element_weight = d.get("element_weight", 0)
 
 func update() -> void:
 
@@ -33,13 +48,6 @@ func update() -> void:
 func get_dodge() -> int:
 	var dodge = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.ATTRIBUTES)).dexterity_modifier
 	return dodge
-
-# TODO: set_to_hit_bonus
-
-# func get_to_hit_bonus() -> int:
-
-# 	if get_parent().get_node(GameData.COMPONENTS[GameData.ComponentKeys.IDENTITY]).faction == "monsters":
-# 		return get_parent().get_node(GameData.COMPONENTS[GameData.ComponentKeys.MONSTER_STATS]).to_hit_bonus
 
 func get_armor() -> int:
 
@@ -61,7 +69,26 @@ func get_full_damage() -> int:
 	var equipment  = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.EQUIPMENT))
 
 	# if no weapon, just use base attack 
-
 	return Dice.roll_dice(damage)
 
 
+
+# need to implement this
+func calc_damage() -> Dictionary:
+	var full_damage = {}
+
+
+	var dam = randi_range(damage_min, damage_max)
+
+	# if melee attack has element deal elemental damage
+	if !element == GameData.ELEMENT.PHYSICAL:
+		var dam_physical = dam * (1 - element_weight)
+		var dam_element = dam * element_weight
+
+		full_damage[GameData.ELEMENT.PHYSICAL] = dam_physical
+		full_damage[element] = dam_element
+	else:
+		full_damage[GameData.ELEMENT.PHYSICAL] = dam
+	
+
+	return full_damage

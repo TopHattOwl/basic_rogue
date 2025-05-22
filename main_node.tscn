@@ -51,5 +51,6 @@ material = SubResource("ShaderMaterial_bxfy6")
 mesh = SubResource("QuadMesh_lwogq")
 
 [node name="Border" type="TileMapLayer" parent="."]
+visible = false
 tile_set = SubResource("TileSet_07t30")
 script = ExtResource("7_yjirp")

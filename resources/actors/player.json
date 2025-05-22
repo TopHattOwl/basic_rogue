@@ -6,7 +6,7 @@
 		"strength": 16
 	},
 	"health_component": {
-		"hp": 211,
+		"hp": 86,
 		"max_hp": 500
 	},
 	"identity_component": {
@@ -31,14 +31,14 @@
 		"is_in_world_map": false,
 		"is_players_turn": true,
 		"world_map_pos": {
-			"x": 64,
-			"y": 20
+			"x": 69,
+			"y": 66
 		}
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 18,
-			"y": 36
+			"x": 81,
+			"y": 8
 		}
 	},
 	"skills_component": {

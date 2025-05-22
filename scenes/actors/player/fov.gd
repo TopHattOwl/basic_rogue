@@ -1,83 +1,56 @@
-extends TileMapLayer
+extends Node2D
 
-@export var vision_range := 6
-var explored_map := []
-var player_pos: Vector2i
+# @export var fov_radius: int = 8
+# @export var wall_layer: TileMapLayer
+# @export var visibility_tilemap_layer: TileMapLayer
 
-@export var unexplored_tile_data := {
-	"source_id": 0,
-	"atlas_coords": Vector2i(0, 0),
-}
+# var _tile_cache: Dictionary
 
-@export var explored_tile_data := {
-	"source_id": 1,
-	"atlas_coords": Vector2i(0, 0),
-}
+# func _ready():
+#     _build_tile_cache()
+#     wall_layer.changed.connect(calculate_fov)
 
-func _ready() -> void:
-	explored_map.resize(GameData.MAP_SIZE.y)
-	for y in GameData.MAP_SIZE.y:
-		explored_map[y] = []
-		explored_map[y].resize(GameData.MAP_SIZE.x)
-		explored_map[y].fill(false)
+# func _build_tile_cache():
+#     # Preprocess tile properties for quick lookup
+#     for cell in wall_layer.get_used_cells():
+#         var source_id = wall_layer.get_cell_source_id(cell)
+#         var tile_data = wall_layer.get_cell_tile_data(cell)
+#         _tile_cache[cell] = {
+#             "blocking": tile_data.get_custom_data("blocking") if tile_data else false,
+#             "source_id": source_id
+#         }
+
+# func calculate_fov(center: Vector2i):
+#     visibility_tilemap_layer.clear()
+#     var map_size = wall_layer.get_used_rect()
 	
+#     for dx in range(-fov_radius, fov_radius + 1):
+#         for dy in range(-fov_radius, fov_radius + 1):
+#             var target_cell = center + Vector2i(dx, dy)
+#             if _is_in_fov(center, target_cell):
+#                 visibility_tilemap_layer.set_cell(target_cell, 0, Vector2i.ZERO, 0)
 
-func _process(_delta: float) -> void:
-	update_player_position()
-	_update_fov()
-
-func update_player_position():
-	var pos_comp = ComponentRegistry.get_component(GameData.player, GameData.ComponentKeys.POSITION)
-	if pos_comp:
-		player_pos = pos_comp.grid_pos
-
-func _update_fov():
-	var cells_to_update := []
+# func _is_in_fov(origin: Vector2i, target: Vector2i) -> bool:
+#     if not wall_layer.is_existing_cell(target): 
+#         return false
 	
-	for y in GameData.MAP_SIZE.y:
-		for x in GameData.MAP_SIZE.x:
-			var grid_pos = Vector2i(x, y)
-			var in_vision = is_in_vision(grid_pos)
-			var was_explored = explored_map[y][x]
-			
-			if in_vision:
-				explored_map[y][x] = true
-				clear_cell_if_needed(grid_pos)
-			elif _needs_redraw(grid_pos):
-				cells_to_update.append(grid_pos)
+#     var space_state = get_world_2d().direct_space_state
+#     var origin_pos = wall_layer.map_to_local(origin)
+#     var target_pos = wall_layer.map_to_local(target)
 	
-	update_cells_batch(cells_to_update)
-
-func clear_cell_if_needed(grid_pos: Vector2i):
-	if get_cell_source_id(grid_pos) != -1:
-		set_cell(grid_pos,)
-
-func update_cells_batch(cells: Array):
-	for grid_pos in cells:
-		var tile_data = explored_tile_data if explored_map[grid_pos.y][grid_pos.x] else unexplored_tile_data
-		set_cell(grid_pos, tile_data.source_id, tile_data.atlas_coords)
-	update_internals()
-
-func is_in_vision(grid_pos: Vector2i) -> bool:
-	return grid_pos.distance_to(player_pos) <= vision_range
-
-func _needs_redraw(grid_pos: Vector2i) -> bool:
-	if grid_pos.x < 0 || grid_pos.y < 0 || grid_pos.x >= GameData.MAP_SIZE.x || grid_pos.y >= GameData.MAP_SIZE.y:
-		return false
+#     var params = PhysicsRayQueryParameters2D.new()
+#     params.from = origin_pos
+#     params.to = target_pos
+#     params.collision_mask = 1
 	
-	var is_explored = explored_map[grid_pos.y][grid_pos.x]
-	var cell_data = get_cell_tile_data(grid_pos)
-	
-	if not is_instance_valid(cell_data):
-		return true  # Missing tile that should exist
-	
-	var expected_data = explored_tile_data if is_explored else unexplored_tile_data
+#     var result = space_state.intersect_ray(params)
+#     return result.is_empty() || result.position.distance_to(target_pos) < wall_layer.tile_set.tile_size.x/2
 
-	if cell_data == null:
-		return true
-	if cell_data.source_id == expected_data.source_id && cell_data.atlas_coords == expected_data.atlas_coords:
-		return false
-	else:
-		return true
-	return (cell_data.source_id != expected_data.source_id ||
-			cell_data.atlas_coords != expected_data.atlas_coords)
+# func _on_tile_changed(cell: Vector2i):
+#     # Update cache when tiles change
+#     var tile_data = wall_layer.get_cell_tile_data(cell)
+#     _tile_cache[cell] = {
+#         "blocking": tile_data.get_custom_data("blocking") if tile_data else false,
+#         "source_id": wall_layer.get_cell_source_id(cell)
+#     }
+#     calculate_fov(ComponentRegistry.get_player_pos())
