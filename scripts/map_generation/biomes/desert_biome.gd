@@ -56,6 +56,7 @@ func generate_map() -> void:
 		GameData.current_map = null
 	MapFunction.initialize_map_data()
 	GameData.reset_entity_variables()
+	GameData.remove_entities_from_tree()
 
 	GameData.terrain_map = terrain_map
 	WorldMapData.world_map2.map_data[grid_pos.y][grid_pos.x].explored = true
@@ -108,9 +109,34 @@ func add_monsters(savagery: int, monster_data: WorldMonsterTile) -> void:
 
 	if savagery > 10:
 		monster_data.has_dungeon = true
+		make_dungeon()
+
+var dungeon_tile_size = Vector2i(2, 1)
+func make_dungeon() -> void:
+	var position_found = false
+
+	while !position_found:
+		# put dungeon somewhere in the middle
+		var random_pos = Vector2i(
+			map_rng.randi_range(GameData.MAP_SIZE.x / 4, GameData.MAP_SIZE.x - GameData.MAP_SIZE.x / 4),
+			map_rng.randi_range(GameData.MAP_SIZE.y / 4, GameData.MAP_SIZE.y - GameData.MAP_SIZE.y / 4)
+		)
+		# if tags size is grater than 1 it haas things other then a floor
+		# random_pos.x + 1 bc the dungeon enterance is 2 tiles wide 
+		if terrain_map[random_pos.y][random_pos.x].tags.size() > 1 or terrain_map[random_pos.y][random_pos.x + 1].tags.size() > 1:
+			continue
+		
+		position_found = true
+
+		for x_offset in dungeon_tile_size.x:
+			for y_offset in dungeon_tile_size.y:
+				var current_grid_pos = Vector2i(random_pos.x + x_offset, random_pos.y + y_offset)
+				add_terrain_map_data(current_grid_pos, GameData.TILE_TAGS.STAIR, GameData.get_tile_data(GameData.TILE_TAGS.STAIR))
+		# add_terrain_map_data(random_pos, GameData.TILE_TAGS.STAIR, GameData.get_tile_data(GameData.TILE_TAGS.STAIR))
+		WorldMapData.world_monster_map.map_data[grid_pos.y][grid_pos.x].add_dungeon_tile(random_pos)
+
 
 # utils
-
 func add_terrain_map_data(target_pos: Vector2i, tag: int, tile_info: Dictionary) -> void:
 	var target_tile = terrain_map[target_pos.y][target_pos.x]
 	target_tile["tags"].append(tag)

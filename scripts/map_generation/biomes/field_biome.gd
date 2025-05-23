@@ -22,7 +22,6 @@ func setup(pos: Vector2i = Vector2i.ZERO) -> void:
 	biome_name = "Field"
 	grid_pos = pos
 
-# loading if already generated the map
 func load_map() -> void:
 	var world_node = load(DirectoryPaths.world).instantiate()
 	world_node.init_data_new(make_world_node_data())

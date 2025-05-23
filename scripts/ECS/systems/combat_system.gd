@@ -1,53 +1,9 @@
 class_name CombatSystem
 extends Node
 
-# this main_node variable is set in main_node.gd's ready function by entity-systems-manager.gd
-
-func melee_attack(attacker: Node2D, target: Node2D) -> bool:
-	if attacker == target:
-		return false
-
-	var attacker_melee_combat_component = ComponentRegistry.get_component(attacker, GameData.ComponentKeys.MELEE_COMBAT)
-	var target_melee_combat_component = ComponentRegistry.get_component(target, GameData.ComponentKeys.MELEE_COMBAT)
-	var target_health_component = ComponentRegistry.get_component(target, GameData.ComponentKeys.HEALTH)
-
-	if !attacker_melee_combat_component:
-		push_error("attacker has no melee combat component")
-	if !target_melee_combat_component:
-		push_error("target has no melee combat component")
-	if !target_health_component:
-		push_error("target has no health component")
-
-	var accuracy_roll = Dice.roll_dice([1, 20, [attacker_melee_combat_component.to_hit_bonus]])
-
-	if accuracy_roll < target_melee_combat_component.get_dodge():
-		# tried to hit but missed so actor acted
-
-		return true
-
-	# damage calc
-	var damage_roll = attacker_melee_combat_component.get_full_damage()
-	var final_damage = max(0, damage_roll - target_melee_combat_component.get_armor())
-
-	target_health_component.take_damage(final_damage)
-	
-
-	# if player attacked do extra stuff
-	if ComponentRegistry.get_component(attacker, GameData.ComponentKeys.IDENTITY).is_player:
-		# increase player skill
-		var weapon = ComponentRegistry.get_player_comp(GameData.ComponentKeys.EQUIPMENT).weapon
-		if weapon:
-			var weapon_skill = ComponentRegistry.get_component(weapon, GameData.ComponentKeys.ITEM_SKILL).skill
-			ComponentRegistry.get_player_comp(GameData.ComponentKeys.SKILLS)._add_exp_to_skill(weapon_skill, final_damage)
-			print("player skill: ", ComponentRegistry.get_player_comp(GameData.ComponentKeys.SKILLS).skill_levels[weapon_skill])
-
-		# log message
-		var target_name = ComponentRegistry.get_component(target, GameData.ComponentKeys.IDENTITY).actor_name
-		UiFunc.log_message("You hit the %s for %s damage" % [target_name, final_damage])
 
 
-	return true
-
+# called from health component
 func die(actor: Node2D):
 
 	var actor_pos = ComponentRegistry.get_component(actor, GameData.ComponentKeys.POSITION).grid_pos

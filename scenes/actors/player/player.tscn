@@ -1,7 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://xu1v46ex8vaq"]
+[gd_scene load_steps=27 format=3 uid="uid://xu1v46ex8vaq"]
 
+[ext_resource type="Script" uid="uid://cvdxfs6ys8ftq" path="res://scenes/actors/player/player.gd" id="1_qxscg"]
 [ext_resource type="Texture2D" uid="uid://mk7q31h1b4rs" path="res://assets/player/player_knight.png" id="1_wmv1v"]
 [ext_resource type="PackedScene" uid="uid://duhsb81d10cy6" path="res://scripts/ECS/components/actors/component_scenes/abilities_component.tscn" id="2_inh5e"]
+[ext_resource type="Script" uid="uid://bhv2dtlsqdcan" path="res://scenes/actors/player/camera_2d.gd" id="3_8bu7j"]
 [ext_resource type="PackedScene" uid="uid://eys5a813xto2" path="res://scripts/ECS/components/actors/component_scenes/attributes_component.tscn" id="3_hcvpp"]
 [ext_resource type="PackedScene" uid="uid://bv8wcyppts1of" path="res://scripts/ECS/components/actors/component_scenes/equipment_component.tscn" id="4_4iwnj"]
 [ext_resource type="PackedScene" uid="uid://2kryyu4hwiir" path="res://scripts/ECS/components/actors/component_scenes/health_component.tscn" id="5_068wj"]
@@ -18,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://be4gwtu23s7n6" path="res://scenes/ui/player_ui/player_ui.tscn" id="16_xducv"]
 [ext_resource type="PackedScene" uid="uid://bofi0u0bprhs8" path="res://scenes/ui/targeter/targeter.tscn" id="17_yab6n"]
 [ext_resource type="Texture2D" uid="uid://jv4ueuo86b30" path="res://assets/background.png" id="18_q2guw"]
+[ext_resource type="Script" uid="uid://dcyqncqg4okh1" path="res://scenes/ui/targeter/targeter.gd" id="19_biscu"]
 [ext_resource type="Texture2D" uid="uid://e10uv46cfe80" path="res://assets/background_half_transparent.png" id="19_npmmh"]
 [ext_resource type="Script" uid="uid://b3a28xskfs4rv" path="res://scenes/actors/player/fov.gd" id="20_npmmh"]
 
@@ -36,7 +39,21 @@ tile_size = Vector2i(16, 24)
 sources/0 = SubResource("TileSetAtlasSource_qxscg")
 sources/1 = SubResource("TileSetAtlasSource_biscu")
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("HealthComp", "StaminaComp", "AbilitiesComp", "SpellsComp", "SkillsComp", "AttributesComp", "EquipmentComp", "InventoryComp", "MeleeCombatComp", "IdentityComp", "PositionComp", "StateComp", "PlayerComp") groups=["player"]]
+script = ExtResource("1_qxscg")
+HealthComp = NodePath("Components/HealthComponent")
+StaminaComp = NodePath("Components/StaminaComponent")
+AbilitiesComp = NodePath("Components/AbilitiesComponent")
+SpellsComp = NodePath("Components/SpellsComponent")
+SkillsComp = NodePath("Components/SkillsComponent")
+AttributesComp = NodePath("Components/AttributesComponent")
+EquipmentComp = NodePath("Components/EquipmentComponent")
+InventoryComp = NodePath("Components/InventoryComponent")
+MeleeCombatComp = NodePath("Components/MeleeCombatComponent")
+IdentityComp = NodePath("Components/IdentityComponent")
+PositionComp = NodePath("Components/PositionComponent")
+StateComp = NodePath("Components/StateComponent")
+PlayerComp = NodePath("Components/PlayerComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 3
@@ -45,6 +62,7 @@ texture = ExtResource("1_wmv1v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.65, 0.65)
+script = ExtResource("3_8bu7j")
 
 [node name="Components" type="Node" parent="."]
 
@@ -83,6 +101,7 @@ visible = false
 visible = false
 z_index = 4
 z_as_relative = false
+script = ExtResource("19_biscu")
 
 [node name="FOV" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_8bu7j")

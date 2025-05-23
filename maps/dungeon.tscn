@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx1b55dvse625"]
+
+[ext_resource type="Script" uid="uid://dko0g8rkdvjp5" path="res://maps/dungeon.gd" id="1_1xdq2"]
+
+[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("floor_layer", "stair_layer", "door_layer", "door_frame_layer", "nature_layer", "wall_layer")]
+script = ExtResource("1_1xdq2")
+floor_layer = NodePath("FloorLayer")
+stair_layer = NodePath("StairLayer")
+door_layer = NodePath("DoorLayer")
+door_frame_layer = NodePath("DoorFrameLayer")
+nature_layer = NodePath("NatureLayer")
+wall_layer = NodePath("WallLayer")
+
+[node name="FloorLayer" type="TileMapLayer" parent="."]
+
+[node name="WallLayer" type="TileMapLayer" parent="."]
+
+[node name="StairLayer" type="TileMapLayer" parent="."]
+
+[node name="DoorLayer" type="TileMapLayer" parent="."]
+
+[node name="DoorFrameLayer" type="TileMapLayer" parent="."]
+
+[node name="NatureLayer" type="TileMapLayer" parent="."]

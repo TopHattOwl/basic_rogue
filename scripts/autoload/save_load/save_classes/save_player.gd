@@ -58,10 +58,13 @@ func save_player_data(player: Node2D) -> bool:
 	var melee_comp = ComponentRegistry.get_component(player, GameData.ComponentKeys.MELEE_COMBAT)
 	if melee_comp:
 		save_data["melee_combat_component"] = {
-			"damage": melee_comp.damage,
+			"damage_min": melee_comp.damage_min,
+			"damage_max": melee_comp.damage_max,
 			"attack_type": melee_comp.attack_type,
+			"accuracy": melee_comp.accuracy,
 			"element": melee_comp.element,
-			"to_hit_bonus": melee_comp.to_hit_bonus
+			"element_weight": melee_comp.element_weight,
+			"melee_dodge": melee_comp.melee_dodge
 		}
 	
 	# Player Comonent

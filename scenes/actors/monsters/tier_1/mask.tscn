@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b8j8hecgel13" path="res://scripts/ECS/components/actors/component_scenes/monster_drops_component.tscn" id="13_sudut"]
 [ext_resource type="PackedScene" uid="uid://duhsb81d10cy6" path="res://scripts/ECS/components/actors/component_scenes/abilities_component.tscn" id="15_7drsu"]
 
-[node name="Mask" type="Node2D"]
+[node name="Mask" type="Node2D" groups=["monsters"]]
 script = ExtResource("1_j0ki7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

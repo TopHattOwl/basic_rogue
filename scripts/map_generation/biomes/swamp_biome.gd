@@ -56,6 +56,7 @@ func generate_map() -> void:
 		GameData.current_map = null
 	MapFunction.initialize_map_data()
 	GameData.reset_entity_variables()
+	GameData.remove_entities_from_tree()
 
 	GameData.terrain_map = terrain_map
 	WorldMapData.world_map2.map_data[grid_pos.y][grid_pos.x].explored = true

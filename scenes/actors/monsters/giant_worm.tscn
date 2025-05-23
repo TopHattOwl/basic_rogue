@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://biqagb3p4ub8g" path="res://scripts/ECS/components/actors/component_scenes/stamina_component.tscn" id="11_eaw2x"]
 [ext_resource type="PackedScene" uid="uid://cf1uus56vaws3" path="res://scripts/ECS/components/actors/component_scenes/state_component.tscn" id="12_ekuly"]
 
-[node name="GiantWorm" type="Node2D"]
+[node name="GiantWorm" type="Node2D" groups=["monsters"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

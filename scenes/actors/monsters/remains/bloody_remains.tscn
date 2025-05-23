@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ynate3j3emra" path="res://assets/monsters/remains/bloody_remains.png" id="1_qqmll"]
 [ext_resource type="PackedScene" uid="uid://dus1wv07rg63q" path="res://scripts/ECS/components/actors/component_scenes/position_component.tscn" id="2_h7mgg"]
 
-[node name="BloodyRemains" type="Node2D"]
+[node name="BloodyRemains" type="Node2D" groups=["remains"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_qqmll")

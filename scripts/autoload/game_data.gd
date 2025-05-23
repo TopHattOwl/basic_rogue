@@ -44,6 +44,11 @@ func remove_entities_from_tree() -> void:
 	if all_items.size() > 0:
 		for item in all_items:
 			item.queue_free()
+	
+	var remains = main_node.get_tree().get_nodes_in_group("remains")
+	if remains.size() > 0:
+		for remain in remains:
+			remain.queue_free()
 
 func reset_entity_variables() -> void:
 	all_hostile_actors = []
@@ -54,7 +59,13 @@ func reset_entity_variables() -> void:
 func get_actor(grid_pos: Vector2i) -> Node2D:
 	if not MapFunction.is_in_bounds(grid_pos):
 		return null
+	
+	if !actors_map[grid_pos.y][grid_pos.x]:
+		return null
+	
 	return actors_map[grid_pos.y][grid_pos.x]
+
+	
 
 # ___ MONSTERS ___
 

@@ -6,7 +6,7 @@
 		"strength": 16
 	},
 	"health_component": {
-		"hp": 86,
+		"hp": 468,
 		"max_hp": 500
 	},
 	"identity_component": {
@@ -15,14 +15,13 @@
 		"is_player": true
 	},
 	"melee_combat_component": {
+		"accuracy": 0.9,
 		"attack_type": 0,
-		"damage": [
-			1.0,
-			6.0,
-			[]
-		],
+		"damage_max": 28,
+		"damage_min": 20,
 		"element": 0,
-		"to_hit_bonus": 2
+		"element_weight": 0.0,
+		"melee_dodge": 0.1
 	},
 	"player_component": {
 		"input_mode": 0,
@@ -31,14 +30,14 @@
 		"is_in_world_map": false,
 		"is_players_turn": true,
 		"world_map_pos": {
-			"x": 69,
-			"y": 66
+			"x": 32,
+			"y": 30
 		}
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 81,
-			"y": 8
+			"x": 37,
+			"y": 36
 		}
 	},
 	"skills_component": {

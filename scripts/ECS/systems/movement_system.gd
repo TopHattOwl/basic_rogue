@@ -28,7 +28,7 @@ func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 
 	if actor_at_pos:
 		if faction != ComponentRegistry.get_component(actor_at_pos, GameData.ComponentKeys.IDENTITY).faction:
-			return EntitySystems.combat_system.melee_attack(entity, actor_at_pos)
+			return ComponentRegistry.get_component(entity, GameData.ComponentKeys.MELEE_COMBAT).melee_attack(actor_at_pos)
 
 
 	# general movement check

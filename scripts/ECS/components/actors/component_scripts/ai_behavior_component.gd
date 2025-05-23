@@ -32,6 +32,8 @@ func get_chase_position(current_pos: Vector2i, target_pos: Vector2i) -> Vector2i
 	
 	if current_path.size() == 0:
 		return current_pos
+	if current_path.size() == 1:
+		return current_pos
 	# Return next step or current position if no path
 	return current_path[1]
 

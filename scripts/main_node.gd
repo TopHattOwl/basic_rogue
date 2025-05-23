@@ -25,6 +25,7 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# finish biome integration to class objects
 
 # TODO:
+	# add camera2d to targeter, make it active when looking
 	# generate seed in WorldMap object using the world seed in GameData
 	# IMPORTANT: get rid of old world_map_data, world_map_monster_data in world_map_data.gd, migrated everything to objects
 		# but have to finish map generaton first -> each biome has own generation function, WorldMonsterMap has own monster setup function (spawn pos and dungeon setup)
@@ -51,10 +52,10 @@ func _ready():
 
 	SaveFuncs.save_player_data(GameData.player)
 
-	EntitySystems.entity_spawner.spawn_item(Vector2i(6,6), GameData.ALL_ITEMS.STEEL_LONGSWORD)
+	# EntitySystems.entity_spawner.spawn_item(Vector2i(6,6), GameData.ALL_ITEMS.STEEL_LONGSWORD)
 
 	# test weapon equip and save after
-	get_player_comp(GameData.ComponentKeys.EQUIPMENT).equip_weapon(GameData.all_items[0])
+	# get_player_comp(GameData.ComponentKeys.EQUIPMENT).equip_weapon(GameData.all_items[0])
 
 	# SaveFuncs.save_player_data(GameData.player)
 
@@ -62,10 +63,9 @@ func _ready():
 
 	# WorldMapData.biome_map.map_data[4][42].generate_map()
 
-
 func _process(_delta):
-# input handle autoload, gets input passed to it and depending on what input is pressed it calls different functions
-	if get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn:
+# input handler, gets input passed to it and depending on what input is pressed it calls different functions
+	if GameData.player.PlayerComp.is_players_turn:
 
 		input_manager.handle_input()
 

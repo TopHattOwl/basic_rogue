@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b8j8hecgel13" path="res://scripts/ECS/components/actors/component_scenes/monster_drops_component.tscn" id="12_pmf3y"]
 [ext_resource type="PackedScene" uid="uid://duhsb81d10cy6" path="res://scripts/ECS/components/actors/component_scenes/abilities_component.tscn" id="13_t1f3h"]
 
-[node name="IronWorm" type="Node2D"]
+[node name="IronWorm" type="Node2D" groups=["monsters"]]
 script = ExtResource("1_nxa1e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

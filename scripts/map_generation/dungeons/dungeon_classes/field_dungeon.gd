@@ -1,8 +1,8 @@
-class_name Dungeon
-extends Node
+class_name FieldDungeon
+extends Resource
 
 @export var levels: Array = []
-@export var boss: Node2D
+@export var boss_id: int 
 @export var monster_types: Array
 @export var world_map_pos: Vector2i
 

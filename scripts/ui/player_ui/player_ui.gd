@@ -25,12 +25,10 @@ func log_message(message: String) -> void:
 	message_log.append_text(full_message)
 	message_log.scroll_to_line(message_log.get_line_count()) # auto-scroll 
 
-
-
 # look ui
 func toggle_look_ui() -> void:
 	look_ui.visible = !look_ui.visible
-	GameData.player.get_node("Targeter").visible = !GameData.player.get_node("Targeter").visible
+	GameData.player.get_node("Targeter").toggle_targeter()
 
 func flip_look_ui() -> void:
 	if look_ui_side == -1:
@@ -51,4 +49,4 @@ func update_look_ui(grid_pos: Vector2i) -> void:
 	# update the position of the targeter
 	var targeter = GameData.player.get_node("Targeter")
 	targeter.top_level = true # this makes it not a child of the player so it's pos is not affected by player movement
-	GameData.player.get_node("Targeter").position = MapFunction.to_world_pos(grid_pos)
+	targeter.target_pos = grid_pos

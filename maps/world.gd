@@ -67,7 +67,6 @@ func _ready() -> void:
 				var selected_tree = Vector2i(0, 0) if map_rng.randf() < 0.8 else Vector2i(1, 0)
 				nature_layer.set_cell(Vector2i(x, y), nature_source_id, selected_tree)
 			if terrain_data[y][x]["tags"].has(GameData.TILE_TAGS.STAIR) and !is_dungeon_drawn:
-				print("drawwing stair")
 				draw_stairs(Vector2i(x, y))
 				is_dungeon_drawn = true
 				
@@ -82,7 +81,6 @@ func _ready() -> void:
 
 
 func draw_stairs(pos: Vector2i) -> void:
-	print("trying stair drawing")
 	var source_id = tile_set_draw_data[GameData.TILE_TAGS.STAIR].source_id
 	var atlas_max = tile_set_draw_data[GameData.TILE_TAGS.STAIR]["atlas_coords_max"]
 	
@@ -92,14 +90,6 @@ func draw_stairs(pos: Vector2i) -> void:
 			var atlas_coords = Vector2i(x_offset, y_offset)
 
 			stair_layer.set_cell(current_grid_pos, source_id, atlas_coords)
-
-	# for y in range(atlas_max.y):
-	# 	print("y: ",y)
-	# 	for x in range(atlas_max.x):
-	# 		print("x: ", x)
-	# 		stair_layer.set_cell(Vector2i(pos.x + x_extra, pos.y + y_extra), source_id, Vector2i(x, y))
-	# 		x_extra += 1
-	# 	y_extra += 1
 
 
 # tile set's draw data

@@ -25,10 +25,26 @@ func calc_monster_tier(pos: Vector2i) -> int:
 
 	return tier
 
+# called when entering not explored map so it gets generated
 func add_dungeon_tile(pos: Vector2i) -> void:
 	has_dungeon = true
 	dungeon_pos = pos
+
+	var biome_type = WorldMapData.biome_map.map_data[pos.y][pos.y].biome_type
+	match biome_type:
+		GameData.WORLD_TILE_TYPES.FIELD:
+			print("field dungeon")
+		GameData.WORLD_TILE_TYPES.DESERT:
+			print("DESERT dungeon")
+		GameData.WORLD_TILE_TYPES.SWAMP:
+			print("SWAMP dungeon")
+		GameData.WORLD_TILE_TYPES.MOUNTAIN:
+			print("MOUNTAIN dungeon")
+		GameData.WORLD_TILE_TYPES.FOREST:
+			print("FOREST dungeon")
+
 	dungeon = Dungeon.new()
+	dungeon.make_dungeon(pos)
 
 func get_monster_types(pos: Vector2i, tier: int) -> Array:
 	var biome = WorldMapData.biome_type[pos.y][pos.x]

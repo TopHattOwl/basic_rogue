@@ -3,12 +3,14 @@ extends Node2D
 var max_hp = 15
 
 var melee_combat_component = {
-	"damage": [1, 4, []],
+	"damage_min": 8,
+	"daamge_max": 14,
 	"attack_type": GameData.ATTACK_TYPE.BASH,
+	"accuracy": 0.9,
 	"element": GameData.ELEMENT.PHYSICAL,
-	"to_hit_bonus": 0
+	"element_weight": 0.0,
+	"melee_dodge": 0.1
 }
-
 var ai_behavior_component = {
 	"type": "chase",
 	"is_hostile": true,

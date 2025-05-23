@@ -1,8 +1,7 @@
 extends Node2D
 
-# @export var fov_radius: int = 8
-# @export var wall_layer: TileMapLayer
-# @export var visibility_tilemap_layer: TileMapLayer
+@export var fov_radius: int = 8
+@export var visibility_tilemap_layer: TileMapLayer
 
 # var _tile_cache: Dictionary
 

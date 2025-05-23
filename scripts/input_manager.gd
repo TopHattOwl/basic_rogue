@@ -1,6 +1,12 @@
 extends Node
 
+const INITIAL_DELAY = 2.5
+const REPEAT_DELAY = 0.15
+var _input_states := {}
+
 var player_look_pos: Vector2i
+
+
 
 # the difference between the look pos and the player pos in grid
 var look_diff_from_player: Vector2i = Vector2i.ZERO
@@ -21,21 +27,51 @@ func handle_input() -> void:
 # --- ZOOMED IN INPUTS ---
 func handle_zoomed_in_inputs():
 
+	var current_time = Time.get_ticks_msec()
+
 	# general movement
 	for action in GameData.INPUT_DIRECTIONS:
-		if Input.is_action_just_pressed(action): # if using is_action_pressed holding down the button will work but too fast
-			var dir = GameData.INPUT_DIRECTIONS[action]
-			var new_grid = ComponentRegistry.get_player_pos() + dir
+		var dir = GameData.INPUT_DIRECTIONS[action]
+
+		if Input.is_action_just_pressed(action):
+			# immidiate respone on first press
+			_process_movement(dir)
+
+			_input_states[action] = {
+				"last_press_time": current_time,
+				"in_repeat": false
+			}
+		elif Input.is_action_pressed(action):
+			# handle repeate after initial delay
+			print("repeat input")
+
+			var state = _input_states.get(action, {})
+
+			print(state)
+
+			if state:
+				var elapsed = current_time - state.last_press_time
+
+				if not state.in_repeat and elapsed > INITIAL_DELAY * 1000:
+					_process_movement(dir)
+					state.in_repeat = true
+					state.last_press_time = current_time
+				elif state.in_repeat and elapsed > REPEAT_DELAY * 1000:
+					_process_movement(dir)
+					state.last_press_time = current_time
+		else:
+			_input_states.erase(action)
+			
+			# var new_grid = ComponentRegistry.get_player_pos() + dir
 
 			# timer for using is_action_pressed
 			# await get_tree().create_timer(0.2).timeout
 
 			# moves player
 			# if player moved player's turn is false and it's enemies' turn
-			if EntitySystems.movement_system.process_movement(GameData.player, new_grid):
-				ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = false
-				handle_hostile_turn()
-			break
+			# if EntitySystems.movement_system.process_movement(GameData.player, new_grid):
+			# 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = false
+			# 	handle_hostile_turn()
 
 	# pick up 
 	if Input.is_action_just_pressed("pick_up") and GameData.items_map[ComponentRegistry.get_player_pos().y][ComponentRegistry.get_player_pos().x]:
@@ -116,6 +152,7 @@ func handle_ui_inputs():
 
 # --- HOSTILES ---
 func handle_hostile_turn():
+	set_process_input(false)
 
 	var player_pos = ComponentRegistry.get_player_pos()
 
@@ -130,6 +167,7 @@ func handle_hostile_turn():
 
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
 
+	set_process_input(true)
 
 # --- INPUT TRANSITIONS ---
 
@@ -149,3 +187,20 @@ func toggle_look_mode() -> void:
 
 func toggle_world_map_look_mode() -> void:
 	pass
+
+
+
+# --- UTILS ---
+
+func _process_movement(dir: Vector2i) -> void:
+	var new_grid = ComponentRegistry.get_player_pos() + dir
+	if EntitySystems.movement_system.process_movement(GameData.player, new_grid):
+		_end_player_turn()
+
+	
+
+func _end_player_turn() -> void:
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = false
+	handle_hostile_turn()
+	_input_states.clear()
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true

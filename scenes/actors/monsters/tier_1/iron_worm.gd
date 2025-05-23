@@ -3,10 +3,13 @@ extends Node2D
 var max_hp = 7
 
 var melee_combat_component = {
-	"damage": [1, 4, []],
+	"damage_min": 10,
+	"daamge_max": 19,
 	"attack_type": GameData.ATTACK_TYPE.SLASH,
+	"accuracy": 0.8,
 	"element": GameData.ELEMENT.PHYSICAL,
-	"to_hit_bonus": 0
+	"element_weight": 0.0,
+	"melee_dodge": 0.05
 }
 
 var ai_behavior_component = {
