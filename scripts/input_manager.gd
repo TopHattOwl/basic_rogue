@@ -21,6 +21,8 @@ func handle_input() -> void:
 			handle_look_inputs()
 		GameData.INPUT_MODES.UI_INPUT:
 			handle_ui_inputs()
+		GameData.INPUT_MODES.DUNGEON_INPUT:
+			handle_dungeon_inputs()
 
 
 # --- ZOOMED IN INPUTS ---
@@ -134,6 +136,40 @@ func handle_ui_inputs():
 	pass	
 
 
+# --- DUNGEON INPUTS ---
+
+func handle_dungeon_inputs():
+	var current_time = Time.get_ticks_msec()
+
+	# general movement
+	for action in GameData.INPUT_DIRECTIONS:
+		var dir = GameData.INPUT_DIRECTIONS[action]
+
+		if Input.is_action_just_pressed(action):
+			# immidiate respone on first press
+			_process_dungeon_movement(dir)
+
+			_input_states[action] = {
+				"last_press_time": current_time,
+				"next_repeat_time": current_time + INITIAL_DELAY * 1000,
+				"in_repeat": false
+			}
+		elif Input.is_action_pressed(action):
+
+			if action in _input_states:
+				# handle repeate
+				var state = _input_states[action]
+				if current_time >+ state.next_repeat_time:
+					_process_dungeon_movement(dir)
+					state.in_repeat = true
+					state.last_press_time = current_time
+					state.next_repeat_time = current_time + REPEAT_DELAY * 1000
+
+					_input_states[action] = state
+
+		else:
+			_input_states.erase(action)
+
 # --- HOSTILES ---
 func handle_hostile_turn():
 	set_process_input(false)
@@ -151,6 +187,12 @@ func handle_hostile_turn():
 
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
 
+	set_process_input(true)
+
+func handle_hostile_turn_dungeon():
+	set_process_input(false)
+	
+	
 	set_process_input(true)
 
 # --- INPUT TRANSITIONS ---
@@ -176,6 +218,8 @@ func toggle_world_map_look_mode() -> void:
 
 # --- UTILS ---
 
+
+# normal movement
 func _process_movement(dir: Vector2i) -> void:
 	var new_grid = ComponentRegistry.get_player_pos() + dir
 	if EntitySystems.movement_system.process_movement(GameData.player, new_grid):
@@ -186,5 +230,18 @@ func _process_movement(dir: Vector2i) -> void:
 func _end_player_turn() -> void:
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = false
 	handle_hostile_turn()
+	_input_states.clear()
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
+
+# dungeon movement
+
+func _process_dungeon_movement(dir: Vector2i) -> void:
+	var new_grid = ComponentRegistry.get_player_pos() + dir
+	if EntitySystems.movement_system.process_dungeon_movement(GameData.player, new_grid):
+		_ent_player_turn_dungeon()
+
+func _ent_player_turn_dungeon() -> void:
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = false
+	handle_hostile_turn_dungeon()
 	_input_states.clear()
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true

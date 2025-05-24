@@ -23,6 +23,7 @@ func setup(pos: Vector2i = Vector2i.ZERO) -> void:
 	grid_pos = pos
 
 func load_map() -> void:
+	print("loading map")
 	var world_node = load(DirectoryPaths.world).instantiate()
 	world_node.init_data_new(make_world_node_data())
 
@@ -38,6 +39,7 @@ func load_map() -> void:
 
 # generation
 func generate_map() -> void:
+	print("generating map")
 	map_rng.seed = WorldMapData.world_map2.map_data[grid_pos.y][grid_pos.x].generated_seed
 	terrain_map = MapFunction.make_base_terrain_map()
 
@@ -60,6 +62,7 @@ func generate_map() -> void:
 	WorldMapData.world_map2.map_data[grid_pos.y][grid_pos.x].explored = true
 	GameData.current_map = world_node
 	GameData.main_node.add_child(GameData.current_map)
+	
 
 func generate_terrain_data(savagery: int, monster_data: WorldMonsterTile) -> void:
 	add_walls()

@@ -25,23 +25,28 @@ func make_dungeon(_world_pos: Vector2i) -> void:
 
 
 func enter_dungeon() -> void:
-
-
 	print("entering dungeon")
 	print("world_pos: ", world_map_pos)
 	print("dungeon_type: ", name)
 
 	var _dungeon = load(DirectoryPaths.dungeon).instantiate()
 	_dungeon.init_data(make_dungeon_node_data())
+	GameData.current_dungeon = _dungeon
 
 	if GameData.current_map:
 		GameData.current_map.queue_free()
 		GameData.current_map = null
-	GameData.remove_entities()
+	GameData.remove_entities(true)
+
+	GameData.terrain_map = levels[0].terrain_map
 
 	GameData.player.PlayerComp.is_in_dungeon = true
-	GameData.current_dungeon = _dungeon
+	GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.DUNGEON_INPUT
 	GameData.main_node.add_child(GameData.current_dungeon)
+
+
+	# set camera stuff
+	UiFunc.update_camera_data()
 
 
 func make_dungeon_node_data() -> Dictionary:

@@ -52,6 +52,7 @@ func get_items(grid_pos: Vector2i) -> Array:
 
 # --- MAP DATA ---
 func initialize_map_data():
+	print("init map data")
 	# reset variables
 	GameData.reset_maps()
 	for y in range(GameData.MAP_SIZE.y):
@@ -60,6 +61,26 @@ func initialize_map_data():
 		GameData.actors_map.append([])
 		GameData.items_map.append([])
 		for x in range(GameData.MAP_SIZE.x):
+			var floor_data = GameData.get_tile_data(GameData.TILE_TAGS.FLOOR)
+			var tile_data = {
+				"tags": [GameData.TILE_TAGS.FLOOR],
+				"walkable": floor_data.walkable,
+				"transparent": floor_data.transparent,
+			}
+			GameData.terrain_map[y].append(tile_data)
+			GameData.actors_map[y].append(null)
+			GameData.items_map[y].append([])
+
+
+func initialize_dungeon_map_data():
+	print("init dungeon map data")
+	GameData.reset_maps()
+	var dungeon_size = GameData.current_dungeon.dungeon_level_size
+	for y in range(dungeon_size.y):
+		GameData.terrain_map.append([])
+		GameData.actors_map.append([])
+		GameData.items_map.append([])
+		for x in range(dungeon_size.x):
 			var floor_data = GameData.get_tile_data(GameData.TILE_TAGS.FLOOR)
 			var tile_data = {
 				"tags": [GameData.TILE_TAGS.FLOOR],

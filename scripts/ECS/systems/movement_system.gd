@@ -60,6 +60,8 @@ func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 	return false
 
 
+# --- WORLD MAP MOVEMENT ---
+
 func process_world_map_movement(new_pos: Vector2i) -> bool:
 	var world_map_gird_pos = ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER)
 
@@ -74,6 +76,43 @@ func process_world_map_movement(new_pos: Vector2i) -> bool:
 	return true
 
 
+# --- DUNGEON MOVEMENT ---
+
+func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
+	var position_component = ComponentRegistry.get_component(entity, GameData.ComponentKeys.POSITION)
+	var dungeon = GameData.current_dungeon
+
+	# Error check
+	if not position_component:
+		push_error("No position component found for entity: ", entity.name)
+		return false
+
+	# player component check
+	var is_current_actor_player = GameData.player == entity
+
+
+	if MapFunction.is_tile_walkable(new_pos) and dungeon.is_in_bounds(new_pos):
+		
+		var old_pos = position_component.grid_pos
+		# update component
+		position_component.grid_pos = new_pos
+
+		# update variables
+		GameData.actors_map[old_pos.y][old_pos.x] = null
+		GameData.actors_map[new_pos.y][new_pos.x] = entity
+
+		# update astar if not player (if player's pos in astar if solid, monsters will not 'see' them)
+		if not is_current_actor_player:
+			MapFunction.astar_toggle_walkable(old_pos)
+			MapFunction.astar_toggle_walkable(new_pos)
+
+		# visual update
+		entity.position = MapFunction.to_world_pos(new_pos)
+
+		return true
+	
+	return false
+# --- UTILS ---
 func check__map_transition(new_pos: Vector2i, dir: Vector2i) -> bool:
 
 	# if player is zoomed in and trying to move outside of world map (not in bounds)

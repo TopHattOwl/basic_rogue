@@ -57,3 +57,10 @@ func _ready() -> void:
 			if terrain_data[y][x]["tags"].has(GameData.TILE_TAGS.WALL):
 				var wall_source_id = tile_set_draw_data[GameData.TILE_TAGS.WALL].source_id
 				wall_layer.set_cell(Vector2i(x, y), wall_source_id, Vector2i(0, 0))
+
+	
+	MapFunction.initialize_astar_grid()
+
+
+func is_in_bounds(pos: Vector2i) -> bool:
+	return pos.x >= 0 and pos.x < dungeon_level_size.x and pos.y >= 0 and pos.y < dungeon_level_size.y

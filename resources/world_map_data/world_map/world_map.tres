@@ -38087,7 +38087,7 @@ script = ExtResource("1_m2vku")
 is_premade = false
 map_path = ""
 generated_seed = 903414
-explored = false
+explored = true
 walkable = true
 grid_pos = Vector2i(51, 38)
 
@@ -39077,7 +39077,7 @@ script = ExtResource("1_m2vku")
 is_premade = false
 map_path = ""
 generated_seed = 618327
-explored = false
+explored = true
 walkable = true
 grid_pos = Vector2i(51, 39)
 
@@ -42992,7 +42992,7 @@ script = ExtResource("1_m2vku")
 is_premade = false
 map_path = ""
 generated_seed = 925970
-explored = false
+explored = true
 walkable = true
 grid_pos = Vector2i(46, 43)
 
@@ -43982,7 +43982,7 @@ script = ExtResource("1_m2vku")
 is_premade = false
 map_path = ""
 generated_seed = 340239
-explored = false
+explored = true
 walkable = true
 grid_pos = Vector2i(46, 44)
 
@@ -44963,7 +44963,7 @@ script = ExtResource("1_m2vku")
 is_premade = false
 map_path = ""
 generated_seed = 350251
-explored = false
+explored = true
 walkable = true
 grid_pos = Vector2i(45, 45)
 

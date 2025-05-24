@@ -49,7 +49,9 @@ func _ready():
 	# passing main node to game data
 	GameData.main_node = self
 
-	MapFunction.load_premade_map(DirectoryPaths.first_outpost)
+	# MapFunction.load_premade_map(DirectoryPaths.first_outpost)
+
+	EntitySpawner.spawn_player()
 
 	SaveFuncs.save_player_data(GameData.player)
 

@@ -17,6 +17,7 @@ func save_world_map_civilization() -> void:
 	file.close()
 
 
+## saves world map data that changes
 static func save_world_maps() -> void:
 	WorldMapData.world_map2.save_world_map()
 	WorldMapData.biome_map.save_biome_map()

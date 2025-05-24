@@ -32,6 +32,17 @@ func is_in_bounds(pos: Vector2i) -> bool:
 	return pos.x >= 0 and pos.x < GameData.WORLD_MAP_SIZE.x and pos.y >= 0 and pos.y < GameData.WORLD_MAP_SIZE.y
 
 
+func enter_world_map(world_pos: Vector2i) -> void:
+	if map_data[world_pos.y][world_pos.x].is_premade:
+		MapFunction.load_premade_map(map_data[world_pos.y][world_pos.x].map_path)
+	else:
+		if map_data[world_pos.y][world_pos.x].explored:
+			WorldMapData.biome_map.map_data[world_pos.y][world_pos.x].load_map()
+		else:
+			WorldMapData.biome_map.map_data[world_pos.y][world_pos.x].generate_map()
+			
+
+
 # save/load
 func save_world_map() -> void:
 	ResourceSaver.save(self, DirectoryPaths.world_map_save)

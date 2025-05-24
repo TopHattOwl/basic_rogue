@@ -39,7 +39,7 @@ var all_items: Array = []
 
 ## removes all entities, resets and initializes maps.
 ## called when transitioning map
-func remove_entities() -> void:
+func remove_entities(is_player_in_dungeon: bool = false) -> void:
 	# remove entities from tree
 	if all_hostile_actors.size() > 0:
 		for actor in all_hostile_actors:
@@ -58,8 +58,13 @@ func remove_entities() -> void:
 	all_actors = []
 	all_items = []
 
-	# reset map data
-	MapFunction.initialize_map_data()
+	# reset map data dependig on player is in dungeon or not
+	if !is_player_in_dungeon:
+
+		MapFunction.initialize_map_data()
+	else:
+
+		MapFunction.initialize_dungeon_map_data()
 
 # func remove_entities_from_tree() -> void:
 # 	if all_hostile_actors.size() > 0:
@@ -259,7 +264,8 @@ enum INPUT_MODES {
 	WORLD_MAP_MOVEMENT,
 	LOOK,
 	WORLD_MAP_LOOK,
-	UI_INPUT
+	UI_INPUT,
+	DUNGEON_INPUT,
 }
 
 # ___ Component Data ___

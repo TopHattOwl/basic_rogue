@@ -1,7 +1,7 @@
 class_name EntitySpawner
 extends Node
 
-func spawn_player():
+static func spawn_player():
 	if GameData.player:
 		return
 	var player_scene = preload(DirectoryPaths.player_scene)
@@ -18,6 +18,11 @@ func spawn_player():
 	var json = JSON.parse_string(FileAccess.get_file_as_string(DirectoryPaths.player_data_json))
 	SaveFuncs.load_player_data(json)
 
+	# load correct map
+	var player_world_pos = GameData.player.PlayerComp.world_map_pos
+	WorldMapData.world_map2.enter_world_map(player_world_pos)
+
+	# position set
 	var position_comp = ComponentRegistry.get_component(GameData.player, GameData.ComponentKeys.POSITION)
 	if position_comp:
 		GameData.player.position = MapFunction.to_world_pos(ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION).grid_pos)
