@@ -105,7 +105,7 @@ func parse_world_map_data() -> void:
 	var world_map_scene = load(DirectoryPaths.world_map_scene).instantiate()
 
 	# set biome type
-	# parse_biome_type(world_map_scene)
+	parse_biome_type(world_map_scene)
 
 	# set biome
 	parse_biome(world_map_scene)
@@ -117,21 +117,22 @@ func parse_world_map_data() -> void:
 	# parse_savagery()
 	
 
-# func parse_biome_type(world_map_scene: Node2D) -> void:
-# 	for y in range(GameData.WORLD_MAP_SIZE.y):
-# 		for x in range(GameData.WORLD_MAP_SIZE.x):
-# 			var grid_pos = Vector2i(x, y)
+func parse_biome_type(world_map_scene: Node2D) -> void:
+	for y in range(GameData.WORLD_MAP_SIZE.y):
+		for x in range(GameData.WORLD_MAP_SIZE.x):
+			var grid_pos = Vector2i(x, y)
 
-# 			for key in GameData.WorldMapTileLayer.keys():
-# 				var layer = world_map_scene.get_node(GameData.WorldMapTileLayer[key])
-# 				if layer and layer.get_cell_tile_data(grid_pos):
-# 					biome_type[y][x] = key
-# 					if key == GameData.WORLD_TILE_TYPES.WATER:
-# 						world_map[y][x].walkable = 0
-# 						world_map2.map_data[y][x].walkable = false
-# 					break
+			for key in GameData.WorldMapTileLayer.keys():
+				var layer = world_map_scene.get_node(GameData.WorldMapTileLayer[key])
+				if layer and layer.get_cell_tile_data(grid_pos):
+					biome_type[y][x] = key
+					if key == GameData.WORLD_TILE_TYPES.WATER:
+						world_map2.map_data[y][x].walkable = false
+					break
 
 func parse_biome(world_map_scene: Node2D) -> void:
+
+
 
 	for y in range(GameData.WORLD_MAP_SIZE.y):
 		for x in range(GameData.WORLD_MAP_SIZE.x):

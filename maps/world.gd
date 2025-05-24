@@ -21,11 +21,12 @@ var tilesets = {
 var terrain_data = null
 
 # world map data
-var current_map_pos = Vector2i(0, 0)
-var savagery: int = 0
-var civilization: bool = false
-var biome: int = 0
-var monster_data: Dictionary = {}
+# var current_map_pos = Vector2i(0, 0)
+# var savagery: int = 0
+# var civilization: bool = false
+# var biome: int = 0
+# var monster_data: Dictionary = {}
+
 var monster_data_new: WorldMonsterTile
 
 var tile_set_draw_data = {}
@@ -35,7 +36,7 @@ var map_rng: RandomNumberGenerator
 
 func init_data_new(d: Dictionary) -> void:
 	terrain_data = d.get("terrain_map", MapFunction.make_base_terrain_map())
-	current_map_pos = d.get("pos", Vector2i(0, 0))
+	# current_map_pos = d.get("pos", Vector2i(0, 0))
 	tilesets = d.get("tile_sets", tilesets)
 	monster_data_new = d.get("monster_data", {})
 	tile_set_draw_data = d.get("tile_set_draw_data", {})

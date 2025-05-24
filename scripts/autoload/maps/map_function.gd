@@ -23,6 +23,8 @@ func is_in_bounds(pos: Vector2i) -> bool:
 
 # --- GETTERS ---
 func get_tile_info(grid_pos: Vector2i) -> Dictionary:
+	if !GameData.terrain_map:
+		return {}
 	if not is_in_bounds(grid_pos):
 		return {}
 
@@ -35,9 +37,17 @@ func manhattan_distance(a: Vector2i, b: Vector2i) -> int:
 	return abs(a.x - b.x) + abs(a.y - b.y)
 
 func get_actor(grid_pos: Vector2i) -> Node2D:
+	if !GameData.actors_map:
+		return null
+	if not is_in_bounds(grid_pos):
+		return null
 	return GameData.actors_map[grid_pos.y][grid_pos.x]
 
 func get_items(grid_pos: Vector2i) -> Array:
+	if !GameData.items_map:
+		return []
+	if not is_in_bounds(grid_pos):
+		return []
 	return GameData.items_map[grid_pos.y][grid_pos.x]
 
 # --- MAP DATA ---
@@ -205,10 +215,10 @@ func load_premade_map(map_path: String) -> void:
 	if GameData.current_map:
 		GameData.current_map.queue_free()
 		GameData.current_map = null
-	# reset variables
+	# GameData.reset_entity_variables()
+	# GameData.remove_entities_from_tree()
+	GameData.remove_entities()
 	initialize_map_data()
-	GameData.reset_entity_variables()
-	GameData.remove_entities_from_tree()
 	
 	GameData.current_map = load(map_path).instantiate()
 	GameData.main_node.add_child(GameData.current_map)
@@ -233,7 +243,8 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 		return
 
 	# remove entities from the tree
-	GameData.remove_entities_from_tree()
+	# GameData.remove_entities_from_tree()
+	GameData.remove_entities()
 	# TODO save current map data
 
 	# save player data
@@ -274,8 +285,7 @@ func enter_world_map():
 	if GameData.current_map:
 		GameData.current_map.queue_free()
 		GameData.current_map = null
-	
-	GameData.remove_entities_from_tree()
+	GameData.remove_entities()
 
 	GameData.player.position = MapFunction.to_world_pos(ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).world_map_pos)
 	GameData.main_node.add_child(world_map)

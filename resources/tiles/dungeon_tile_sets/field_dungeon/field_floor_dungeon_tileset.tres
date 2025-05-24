@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b1jk0h6yqg0bp"]
+
+[ext_resource type="Texture2D" uid="uid://sqcrp1akf2p6" path="res://assets/dungeon_tiles/field_dungeon/floor_tileset.png" id="1_j1djh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c6oec"]
+texture = ExtResource("1_j1djh")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[resource]
+tile_size = Vector2i(16, 24)
+sources/0 = SubResource("TileSetAtlasSource_c6oec")

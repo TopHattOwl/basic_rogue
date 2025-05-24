@@ -79,6 +79,8 @@ const field_with_hideout = "res://maps/premade_maps/field_with_hideout.tscn"
 # terrain data gets loaded into this Node when generating
 const world = "res://maps/world.tscn"
 
+const dungeon = "res://maps/dungeon.tscn"
+
 
 # --- WORLD MAP ---
 

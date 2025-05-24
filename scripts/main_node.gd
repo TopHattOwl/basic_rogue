@@ -25,6 +25,7 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# finish biome integration to class objects
 
 # TODO:
+	# IPORTANT: make general function to reset all actors, items, remains and stuff, that works for map transition, world map travel, dungeon enter etc
 	# add camera2d to targeter, make it active when looking
 	# generate seed in WorldMap object using the world seed in GameData
 	# IMPORTANT: get rid of old world_map_data, world_map_monster_data in world_map_data.gd, migrated everything to objects

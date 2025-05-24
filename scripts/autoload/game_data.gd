@@ -37,26 +37,52 @@ var all_actors: Array = []
 
 var all_items: Array = []
 
-func remove_entities_from_tree() -> void:
+## removes all entities, resets and initializes maps.
+## called when transitioning map
+func remove_entities() -> void:
+	# remove entities from tree
 	if all_hostile_actors.size() > 0:
 		for actor in all_hostile_actors:
 			actor.queue_free()
 	if all_items.size() > 0:
 		for item in all_items:
 			item.queue_free()
-	
 	var remains = main_node.get_tree().get_nodes_in_group("remains")
 	if remains.size() > 0:
 		for remain in remains:
 			remain.queue_free()
-
-func reset_entity_variables() -> void:
+	
+	# reset entity holders
 	all_hostile_actors = []
 	all_friendly_actors = []
 	all_actors = []
 	all_items = []
 
+	# reset map data
+	MapFunction.initialize_map_data()
+
+# func remove_entities_from_tree() -> void:
+# 	if all_hostile_actors.size() > 0:
+# 		for actor in all_hostile_actors:
+# 			actor.queue_free()
+# 	if all_items.size() > 0:
+# 		for item in all_items:
+# 			item.queue_free()
+	
+# 	var remains = main_node.get_tree().get_nodes_in_group("remains")
+# 	if remains.size() > 0:
+# 		for remain in remains:
+# 			remain.queue_free()
+
+# func reset_entity_variables() -> void:
+# 	all_hostile_actors = []
+# 	all_friendly_actors = []
+# 	all_actors = []
+# 	all_items = []
+
 func get_actor(grid_pos: Vector2i) -> Node2D:
+	if !actors_map:
+		return null
 	if not MapFunction.is_in_bounds(grid_pos):
 		return null
 	
@@ -139,7 +165,7 @@ var MonstersAll = {
 # ___ Maps ___
 
 var current_map: Node2D = null
-var current_dungeon = {}
+var current_dungeon: Node2D = null
 
 var terrain_map: Array = []
 var actors_map: Array = []

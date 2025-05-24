@@ -26,11 +26,9 @@ func save_biome_map() -> void:
 
 func load_biome_map() -> void:
 	if ResourceLoader.exists(DirectoryPaths.biome_map_save):
-		print("loading biome map")
 		var loaded_data = ResourceLoader.load(
 			DirectoryPaths.biome_map_save,
 			"",
 			ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
 		)
 		map_data = loaded_data.map_data
-		print("done")

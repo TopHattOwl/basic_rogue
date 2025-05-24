@@ -10764,7 +10764,7 @@ is_premade = false
 map_path = ""
 generated_seed = 952909
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(95, 10)
 
 [sub_resource type="Resource" id="Resource_godr5"]
@@ -11763,7 +11763,7 @@ is_premade = false
 map_path = ""
 generated_seed = 559317
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(96, 11)
 
 [sub_resource type="Resource" id="Resource_oml51"]
@@ -11772,7 +11772,7 @@ is_premade = false
 map_path = ""
 generated_seed = 829199
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(97, 11)
 
 [sub_resource type="Resource" id="Resource_pqcxt"]
@@ -12762,7 +12762,7 @@ is_premade = false
 map_path = ""
 generated_seed = 224698
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(97, 12)
 
 [sub_resource type="Resource" id="Resource_eue4c"]
@@ -15732,7 +15732,7 @@ is_premade = false
 map_path = ""
 generated_seed = 597993
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(97, 15)
 
 [sub_resource type="Resource" id="Resource_f7tfl"]
@@ -47601,7 +47601,7 @@ is_premade = false
 map_path = ""
 generated_seed = 544007
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(8, 48)
 
 [sub_resource type="Resource" id="Resource_2p7yc"]
@@ -48591,7 +48591,7 @@ is_premade = false
 map_path = ""
 generated_seed = 627521
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(8, 49)
 
 [sub_resource type="Resource" id="Resource_vvdl6"]
@@ -48600,7 +48600,7 @@ is_premade = false
 map_path = ""
 generated_seed = 817151
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(9, 49)
 
 [sub_resource type="Resource" id="Resource_jryvk"]
@@ -48609,7 +48609,7 @@ is_premade = false
 map_path = ""
 generated_seed = 974507
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(10, 49)
 
 [sub_resource type="Resource" id="Resource_dhrie"]
@@ -49581,7 +49581,7 @@ is_premade = false
 map_path = ""
 generated_seed = 346768
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(8, 50)
 
 [sub_resource type="Resource" id="Resource_86obj"]
@@ -49590,7 +49590,7 @@ is_premade = false
 map_path = ""
 generated_seed = 388676
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(9, 50)
 
 [sub_resource type="Resource" id="Resource_kyta8"]
@@ -49599,7 +49599,7 @@ is_premade = false
 map_path = ""
 generated_seed = 758320
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(10, 50)
 
 [sub_resource type="Resource" id="Resource_vladc"]
@@ -50346,7 +50346,7 @@ is_premade = false
 map_path = ""
 generated_seed = 487588
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(93, 50)
 
 [sub_resource type="Resource" id="Resource_exxqr"]
@@ -50571,7 +50571,7 @@ is_premade = false
 map_path = ""
 generated_seed = 804903
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(8, 51)
 
 [sub_resource type="Resource" id="Resource_1edam"]
@@ -50580,7 +50580,7 @@ is_premade = false
 map_path = ""
 generated_seed = 934830
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(9, 51)
 
 [sub_resource type="Resource" id="Resource_02dkm"]
@@ -51327,7 +51327,7 @@ is_premade = false
 map_path = ""
 generated_seed = 648678
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(92, 51)
 
 [sub_resource type="Resource" id="Resource_41dby"]
@@ -51336,7 +51336,7 @@ is_premade = false
 map_path = ""
 generated_seed = 230559
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(93, 51)
 
 [sub_resource type="Resource" id="Resource_b77bw"]
@@ -51561,7 +51561,7 @@ is_premade = false
 map_path = ""
 generated_seed = 283569
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(8, 52)
 
 [sub_resource type="Resource" id="Resource_kyq35"]
@@ -52317,7 +52317,7 @@ is_premade = false
 map_path = ""
 generated_seed = 964579
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(92, 52)
 
 [sub_resource type="Resource" id="Resource_ymrb3"]
@@ -52326,7 +52326,7 @@ is_premade = false
 map_path = ""
 generated_seed = 204879
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(93, 52)
 
 [sub_resource type="Resource" id="Resource_gh7ij"]
@@ -52551,7 +52551,7 @@ is_premade = false
 map_path = ""
 generated_seed = 999612
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(8, 53)
 
 [sub_resource type="Resource" id="Resource_cavsi"]
@@ -53316,7 +53316,7 @@ is_premade = false
 map_path = ""
 generated_seed = 431963
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(93, 53)
 
 [sub_resource type="Resource" id="Resource_rh02g"]
@@ -53541,7 +53541,7 @@ is_premade = false
 map_path = ""
 generated_seed = 730148
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(8, 54)
 
 [sub_resource type="Resource" id="Resource_rggiv"]
@@ -53550,7 +53550,7 @@ is_premade = false
 map_path = ""
 generated_seed = 431580
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(9, 54)
 
 [sub_resource type="Resource" id="Resource_vwvuk"]
@@ -54558,7 +54558,7 @@ is_premade = false
 map_path = ""
 generated_seed = 635018
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(11, 55)
 
 [sub_resource type="Resource" id="Resource_x1c6q"]
@@ -55548,7 +55548,7 @@ is_premade = false
 map_path = ""
 generated_seed = 139759
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(11, 56)
 
 [sub_resource type="Resource" id="Resource_cgw0l"]
@@ -56538,7 +56538,7 @@ is_premade = false
 map_path = ""
 generated_seed = 928270
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(11, 57)
 
 [sub_resource type="Resource" id="Resource_sqbmc"]
@@ -56547,7 +56547,7 @@ is_premade = false
 map_path = ""
 generated_seed = 755773
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(12, 57)
 
 [sub_resource type="Resource" id="Resource_wsmnp"]
@@ -57528,7 +57528,7 @@ is_premade = false
 map_path = ""
 generated_seed = 567779
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(11, 58)
 
 [sub_resource type="Resource" id="Resource_3l2gc"]
@@ -57537,7 +57537,7 @@ is_premade = false
 map_path = ""
 generated_seed = 540124
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(12, 58)
 
 [sub_resource type="Resource" id="Resource_nwnkf"]
@@ -58518,7 +58518,7 @@ is_premade = false
 map_path = ""
 generated_seed = 422872
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(11, 59)
 
 [sub_resource type="Resource" id="Resource_rd8uy"]
@@ -59508,7 +59508,7 @@ is_premade = false
 map_path = ""
 generated_seed = 979645
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(11, 60)
 
 [sub_resource type="Resource" id="Resource_8iuce"]
@@ -60498,7 +60498,7 @@ is_premade = false
 map_path = ""
 generated_seed = 369357
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(11, 61)
 
 [sub_resource type="Resource" id="Resource_52vym"]
@@ -60507,7 +60507,7 @@ is_premade = false
 map_path = ""
 generated_seed = 609693
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(12, 61)
 
 [sub_resource type="Resource" id="Resource_cnuhf"]
@@ -61497,7 +61497,7 @@ is_premade = false
 map_path = ""
 generated_seed = 605280
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(12, 62)
 
 [sub_resource type="Resource" id="Resource_4ym1m"]
@@ -66744,7 +66744,7 @@ is_premade = false
 map_path = ""
 generated_seed = 785682
 explored = false
-walkable = true
+walkable = false
 grid_pos = Vector2i(45, 67)
 
 [sub_resource type="Resource" id="Resource_bcemt"]

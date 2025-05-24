@@ -1,11 +1,10 @@
 extends Node
 
-const INITIAL_DELAY = 2.5
+const INITIAL_DELAY = 0.4
 const REPEAT_DELAY = 0.15
 var _input_states := {}
 
 var player_look_pos: Vector2i
-
 
 
 # the difference between the look pos and the player pos in grid
@@ -39,39 +38,24 @@ func handle_zoomed_in_inputs():
 
 			_input_states[action] = {
 				"last_press_time": current_time,
+				"next_repeat_time": current_time + INITIAL_DELAY * 1000,
 				"in_repeat": false
 			}
 		elif Input.is_action_pressed(action):
-			# handle repeate after initial delay
-			print("repeat input")
 
-			var state = _input_states.get(action, {})
-
-			print(state)
-
-			if state:
-				var elapsed = current_time - state.last_press_time
-
-				if not state.in_repeat and elapsed > INITIAL_DELAY * 1000:
+			if action in _input_states:
+				# handle repeate
+				var state = _input_states[action]
+				if current_time >+ state.next_repeat_time:
 					_process_movement(dir)
 					state.in_repeat = true
 					state.last_press_time = current_time
-				elif state.in_repeat and elapsed > REPEAT_DELAY * 1000:
-					_process_movement(dir)
-					state.last_press_time = current_time
+					state.next_repeat_time = current_time + REPEAT_DELAY * 1000
+
+					_input_states[action] = state
+
 		else:
 			_input_states.erase(action)
-			
-			# var new_grid = ComponentRegistry.get_player_pos() + dir
-
-			# timer for using is_action_pressed
-			# await get_tree().create_timer(0.2).timeout
-
-			# moves player
-			# if player moved player's turn is false and it's enemies' turn
-			# if EntitySystems.movement_system.process_movement(GameData.player, new_grid):
-			# 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = false
-			# 	handle_hostile_turn()
 
 	# pick up 
 	if Input.is_action_just_pressed("pick_up") and GameData.items_map[ComponentRegistry.get_player_pos().y][ComponentRegistry.get_player_pos().x]:
