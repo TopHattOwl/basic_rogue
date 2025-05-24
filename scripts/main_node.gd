@@ -67,6 +67,9 @@ func _ready():
 
 	UiFunc.log_message("You arrive in ******")
 
+	GameData.player.StanceComp.add_stance(load("res://resources/combat_stuff/stances/test.tres"))
+	GameData.player.StanceComp.enter_stance(GameData.player.StanceComp.known_stances[0])
+
 	# WorldMapData.biome_map.map_data[4][42].generate_map()
 
 func _process(_delta):
@@ -74,6 +77,8 @@ func _process(_delta):
 	if GameData.player.PlayerComp.is_players_turn:
 
 		input_manager.handle_input()
+
+		# print("player acted")
 
 
 func get_player_comp(comp_key: int) -> Node:

@@ -286,8 +286,7 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 
 	# if not premade chekc if explored (if explored then it has been generated already)
 	else:
-		# TODO is explored load that data ininstead, not generate
-		# MapGenerator.generate_random_map(new_world_map_pos)
+		# biome map generates map is not generated, but load map is already generated
 		WorldMapData.biome_map.generate_map(new_world_map_pos)
 		is_transition_success = true
 		

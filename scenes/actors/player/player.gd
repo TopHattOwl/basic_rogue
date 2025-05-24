@@ -18,6 +18,7 @@ extends Node2D
 @export var InventoryComp: Node
 
 @export var MeleeCombatComp: Node
+@export var StanceComp: Node
 
 @export var IdentityComp: Node
 
@@ -26,6 +27,8 @@ extends Node2D
 @export var StateComp: Node
 
 @export var PlayerComp: Node
+
+@export var ModifiersComp: Node
 
 
 func _ready():

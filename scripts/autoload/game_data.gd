@@ -291,6 +291,8 @@ const COMPONENTS = {
 	ComponentKeys.STATE: "Components/StateComponent",
 	ComponentKeys.PLAYER: "Components/PlayerComponent",
 	ComponentKeys.SKILLS: "Components/SkillsComponent",
+	ComponentKeys.STANCE: "Components/StanceComponent",
+	ComponentKeys.MODIFIERS: "Components/ModifiersComponent",
 
 	# ITEMS
 	ComponentKeys.ITEM_POSITION: "Components/ItemPositionComponent",
@@ -353,6 +355,9 @@ enum ComponentKeys {
 	STATE,
 	PLAYER,
 	SKILLS,
+	STANCE,
+	MODIFIERS,
+
 
 	# ITEMS
 	ITEM_POSITION,
@@ -475,4 +480,13 @@ enum ALL_ITEMS {
 	LEATHER_BOOTS,
 
 	# potions
+}
+
+
+# MODIFIERS OPERATION
+
+enum MODIFIER_OPERATION {
+	ADD,
+	MULTIPLY,
+	OVERRIDE,
 }

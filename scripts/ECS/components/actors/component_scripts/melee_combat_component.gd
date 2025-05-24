@@ -68,16 +68,10 @@ func melee_attack(target: Node2D) -> bool:
 		# tried to hit but missed so actor acted
 		return true 
 	
-	var dam: Dictionary = calc_damage()
+	var dam: int = calc_damage()
 
-	dam[GameData.ELEMENT.PHYSICAL] -= max(0, target_melee_combat.get_armor())
-
-	# if element damage implemented change 3 to 1
-	if dam.size() > 3:
-		# call element damage function here
-		pass
-	else:
-		target_health.take_damage(dam[GameData.ELEMENT.PHYSICAL])
+	dam -= max(0, target_melee_combat.get_armor())
+	target_health.take_damage(dam)
 
 
 	if get_parent().get_parent().is_in_group("player"):
@@ -85,7 +79,7 @@ func melee_attack(target: Node2D) -> bool:
 		# add skill xp for weapon if using weapon
 		# add skill xp for element if used elemental attack
 
-		UiFunc.log_message("You hit the %s for %s damage" % [target.name, dam[GameData.ELEMENT.PHYSICAL]])
+		UiFunc.log_message("You hit the %s for %s damage" % [target.name, dam])
 
 	
 	# animation goes here
@@ -109,21 +103,15 @@ func get_armor() -> int:
 
 
 # need to implement this
-func calc_damage() -> Dictionary:
-	var full_damage = {}
+func calc_damage() -> int:
+	var dam := 0
 
-
-	var dam = randi_range(damage_min, damage_max)
-
-	# if melee attack has element deal elemental damage
-	if !element == GameData.ELEMENT.PHYSICAL:
-		var dam_physical = dam * (1 - element_weight)
-		var dam_element = dam * element_weight
-
-		full_damage[GameData.ELEMENT.PHYSICAL] = dam_physical
-		full_damage[element] = dam_element
+	if get_parent().has_node(GameData.get_component_name(GameData.ComponentKeys.MODIFIERS)):
+		var dam_min = int(ModifierSystem.get_modified_melee_combat_value(get_parent().get_parent(), "damage_min"))
+		var dam_max = int(ModifierSystem.get_modified_melee_combat_value(get_parent().get_parent(), "damage_max"))
+		dam = randi_range(dam_min, dam_max)
 	else:
-		full_damage[GameData.ELEMENT.PHYSICAL] = dam
-	
+		# if no modifier component use base value
+		dam = randi_range(damage_min, damage_max)
 
-	return full_damage
+	return dam
