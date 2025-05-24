@@ -90,7 +90,15 @@ func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
 	# player component check
 	var is_current_actor_player = GameData.player == entity
 
+	# Combat check
+	var faction = ComponentRegistry.get_component(entity, GameData.ComponentKeys.IDENTITY).faction
+	var actor_at_pos = GameData.actors_map[new_pos.y][new_pos.x]
 
+	if actor_at_pos:
+		if faction != ComponentRegistry.get_component(actor_at_pos, GameData.ComponentKeys.IDENTITY).faction:
+			return ComponentRegistry.get_component(entity, GameData.ComponentKeys.MELEE_COMBAT).melee_attack(actor_at_pos)
+
+	# general movement check
 	if MapFunction.is_tile_walkable(new_pos) and dungeon.is_in_bounds(new_pos):
 		
 		var old_pos = position_component.grid_pos

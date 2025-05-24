@@ -6,6 +6,9 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 @export var input_manager: Node = null
 
 
+# finish:
+	# finish dungeon class and dungeon level class for everything, not just field
+
 # IDEAS:
 	# foraging map (like terrain map, 2d array) for placing foraging objects for player to forage for potions, food and stuff
 		# foraging vision -> based on perception and knowlege of plants (notice plants you know better)

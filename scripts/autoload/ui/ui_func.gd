@@ -108,7 +108,7 @@ func update_camera_data():
 		cam.limit_left = (-10) * GameData.TILE_SIZE.x
 
 		# zoom 
-		cam.zoom = Vector2(0.65, 0.65)
+		cam.zoom = Vector2(0.7, 0.7)
 
 		# set offset
 		cam.offset.x = 100

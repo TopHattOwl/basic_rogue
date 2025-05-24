@@ -11,6 +11,11 @@ func to_grid_pos(pos: Vector2) -> Vector2i:
 		floor((pos.y - GameData.OFFSET.y) / GameData.TILE_SIZE.y)
 	)
 
+func get_line(origin: Vector2i, dest: Vector2i) -> Array:
+	var line = []
+
+	
+	return line
 
 # --- CHECKS ---
 func is_tile_walkable(pos: Vector2i) -> bool:

@@ -1,12 +1,6 @@
 class_name FieldDungeonLevel
 extends Resource
 
-# - **level**: int, the level of the dungeon (starting from 0)
-# - **Map size**: Vector2i of the map size
-# - **Terrain map**: terrain map for the Dungeon node to draw map
-# - **Stair down pos**:: Vector2i, position of entrance leading further
-# - **Stair up pos**: Vector2i, position of entrance leading back
-
 @export var level: int # starting from 0
 @export var map_size: Vector2i
 @export var terrain_map: Array
@@ -118,16 +112,17 @@ func add_decal() -> void:
 func add_monsters() -> void:
 	pass
 
+
 # --- Utils ---
 
 func calc_map_size() -> Vector2i:
 
 	var _map_size := Vector2i.ZERO
 
-	var savagery = WorldMapData.world_map_savagery[world_map_pos.y][world_map_pos.x]
+	var _savagery = WorldMapData.world_map_savagery[world_map_pos.y][world_map_pos.x]
 
-	var x = GameData.MAP_SIZE.x / 2 + savagery * 3
-	var y = GameData.MAP_SIZE.y / 2 + savagery * 2
+	var x = GameData.MAP_SIZE.x
+	var y = GameData.MAP_SIZE.y
 
 	_map_size = Vector2i(x, y)
 

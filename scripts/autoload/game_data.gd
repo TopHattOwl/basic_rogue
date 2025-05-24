@@ -411,6 +411,8 @@ enum SKILLS {
 	BOW,
 }
 
+
+
 # ITEMS
 enum ARMOR_SLOTS {
 	HEAD,
@@ -420,6 +422,12 @@ enum ARMOR_SLOTS {
 	HANDS,
 	LEGS,
 	FEET
+}
+
+enum ARMOR_TYPES {
+	LIGHT,
+	MEDIUM,
+	HEAVY,
 }
 
 enum ITEM_TYPES {
@@ -437,6 +445,9 @@ enum WEAPON_TYPES {
 	SWORD,
 	AXE,
 	SPEAR,
+	MACE,
+	POLEAXE,
+	BOW,
 }
 
 enum WEAPON_SUBTYPES {

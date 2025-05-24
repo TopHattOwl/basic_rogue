@@ -41,8 +41,12 @@ func update() -> void:
 
 
 # combat system
-
 func melee_attack(target: Node2D) -> bool:
+	var attacker_pos = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.POSITION)).grid_pos
+	var target_pos = ComponentRegistry.get_component(target, GameData.ComponentKeys.POSITION).grid_pos
+	var dir: Vector2i = target_pos - attacker_pos
+
+
 	var target_melee_combat = ComponentRegistry.get_component(target, GameData.ComponentKeys.MELEE_COMBAT)
 	var target_health = ComponentRegistry.get_component(target, GameData.ComponentKeys.HEALTH)
 	if !target_melee_combat:
@@ -58,6 +62,7 @@ func melee_attack(target: Node2D) -> bool:
 		# tried to hit but missed so actor acted
 		return true
 	
+	# dodge check
 	if randf() < target_melee_combat.melee_dodge:
 		print("%s dodged" % target.name)
 		# tried to hit but missed so actor acted
@@ -81,6 +86,10 @@ func melee_attack(target: Node2D) -> bool:
 		# add skill xp for element if used elemental attack
 
 		UiFunc.log_message("You hit the %s for %s damage" % [target.name, dam[GameData.ELEMENT.PHYSICAL]])
+
+	
+	# animation goes here
+
 	return true
 
 # --- Utils ---
