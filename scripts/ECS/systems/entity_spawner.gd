@@ -54,61 +54,11 @@ func spawn_monster(grid_pos: Vector2i, monster_key: int):
 	GameData.main_node.add_child(monster)
 	monster.owner = GameData.main_node # for scene persistence
 
-	# var monster = load(DirectoryPaths.monsters1_scenes[monster_key]).instantiate()
-	# var monster_data = DataRegistry.monsters1[monster_key]
-
-	# init_monster_components(monster, monster_data)
-
-	# var position_comp = ComponentRegistry.get_component(monster, GameData.ComponentKeys.POSITION)
-
-	# if position_comp:
-	# 	# set position
-	# 	position_comp.grid_pos = grid_pos
-	# 	monster.position = MapFunction.to_world_pos(grid_pos)
-
-	# 	# set monster_id
-	# 	var monster_stats_comp = ComponentRegistry.get_component(monster, GameData.ComponentKeys.MONSTER_STATS)
-	# 	monster_stats_comp.monster_id = monster_key
-
-	# 	MapFunction.add_hostile_to_variables(monster)
-
-	# else:
-	# 	push_error("Monster position component not found")
-	
-
-	# GameData.main_node.add_child(monster)
-	# monster.owner = main_node # for scene persistence
-
-
-func init_monster_components(monster: Node2D, monster_data: Dictionary):
-	# health component
-	var health = monster.get_node(GameData.get_component_path(GameData.ComponentKeys.HEALTH))
-	health.initialize(monster_data.health_component.max_hp)
-
-	# attributes component
-	var attributes = monster.get_node(GameData.get_component_path(GameData.ComponentKeys.ATTRIBUTES))
-	attributes.initialize(monster_data.attributes_component)
-
-	# identity component
-	var identity = monster.get_node(GameData.get_component_path(GameData.ComponentKeys.IDENTITY))
-	identity.initialize(monster_data.identity_component)
-
-	# melee combat component
-	var melee_combat = monster.get_node(GameData.get_component_path(GameData.ComponentKeys.MELEE_COMBAT))
-	melee_combat.initialize(monster_data.melee_combat_component)
-
-	# monster stats component
-	var monster_stats = monster.get_node(GameData.get_component_path(GameData.ComponentKeys.MONSTER_STATS))
-	monster_stats.initialize(monster_data.monster_stats_component)
-
-	# ai behavior component
-	var ai_behavior = monster.get_node(GameData.get_component_path(GameData.ComponentKeys.AI_BEHAVIOR))
-	ai_behavior.initialize(monster_data.ai_behavior_component)
 
 # --- ITEMS ---
 
 ## Spawns a specific item
-func spawn_item(grid_pos: Vector2i, item_scene_key: int):
+static func spawn_item(grid_pos: Vector2i, item_scene_key: int):
 	var item = load(DirectoryPaths.item_scenes[item_scene_key]).instantiate()
 
 	var position_comp = ComponentRegistry.get_component(item, GameData.ComponentKeys.ITEM_POSITION)

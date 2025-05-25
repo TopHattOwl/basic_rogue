@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Stance" load_steps=6 format=3 uid="uid://d4axwjc6rwqnd"]
+
+[ext_resource type="Script" uid="uid://c6hqvujepfyxm" path="res://scripts/systems/modifier_system/stat_modifier_class.gd" id="1_7s074"]
+[ext_resource type="Script" uid="uid://cq8mad0mmyu8r" path="res://scripts/systems/conditions/base_condition.gd" id="2_2c2kf"]
+[ext_resource type="Script" uid="uid://cpememyp02ehk" path="res://resources/combat_stuff/stances/stance_class.gd" id="2_kvlpn"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kkd72"]
+size = Vector2(32, 48)
+
+[sub_resource type="Resource" id="Resource_2axnh"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_,in"
+target_component = 7
+operation = 0
+value = 5.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[resource]
+script = ExtResource("2_kvlpn")
+name = "test 2"
+description = "this is even testier than the one before this"
+icon = SubResource("PlaceholderTexture2D_kkd72")
+weapon_types = [0]
+armor_types = []
+modifiers = Array[ExtResource("1_7s074")]([SubResource("Resource_2axnh")])
+metadata/_custom_type_script = "uid://cpememyp02ehk"

@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="Stance" load_steps=6 format=3 uid="uid://dscexc0f628ng"]
+[gd_resource type="Resource" script_class="Stance" load_steps=7 format=3 uid="uid://dscexc0f628ng"]
 
 [ext_resource type="Script" uid="uid://cpememyp02ehk" path="res://resources/combat_stuff/stances/stance_class.gd" id="1_4v8me"]
 [ext_resource type="Script" uid="uid://c6hqvujepfyxm" path="res://scripts/systems/modifier_system/stat_modifier_class.gd" id="1_l76lu"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4v8me"]
+[ext_resource type="Texture2D" uid="uid://bbyk4akslomg1" path="res://assets/ui/stance_bar/test_stance.png" id="1_y1hjt"]
+[ext_resource type="Script" uid="uid://cq8mad0mmyu8r" path="res://scripts/systems/conditions/base_condition.gd" id="2_mhgvl"]
 
 [sub_resource type="Resource" id="Resource_mhgvl"]
 script = ExtResource("1_l76lu")
@@ -11,6 +11,7 @@ target_stat = &"damage_min"
 target_component = 7
 operation = 0
 value = 4.0
+conditions = Array[ExtResource("2_mhgvl")]([])
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_y1hjt"]
@@ -19,14 +20,15 @@ target_stat = &"damage_max"
 target_component = 7
 operation = 0
 value = 5.0
+conditions = Array[ExtResource("2_mhgvl")]([])
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [resource]
 script = ExtResource("1_4v8me")
 name = "Test"
 description = "Very much a test stance"
-icon = SubResource("PlaceholderTexture2D_4v8me")
+icon = ExtResource("1_y1hjt")
 weapon_types = [0]
 armor_types = []
-modifiers = [SubResource("Resource_mhgvl"), SubResource("Resource_y1hjt")]
+modifiers = Array[ExtResource("1_l76lu")]([SubResource("Resource_mhgvl"), SubResource("Resource_y1hjt")])
 metadata/_custom_type_script = "uid://cpememyp02ehk"

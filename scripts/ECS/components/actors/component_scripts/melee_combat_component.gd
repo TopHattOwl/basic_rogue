@@ -44,6 +44,8 @@ func update() -> void:
 func melee_attack(target: Node2D) -> bool:
 	var attacker_pos = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.POSITION)).grid_pos
 	var target_pos = ComponentRegistry.get_component(target, GameData.ComponentKeys.POSITION).grid_pos
+	
+	# dir used for animation
 	var dir: Vector2i = target_pos - attacker_pos
 
 
@@ -88,10 +90,6 @@ func melee_attack(target: Node2D) -> bool:
 
 # --- Utils ---
 
-func get_dodge() -> int:
-	var dodge = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.ATTRIBUTES)).dexterity_modifier
-	return dodge
-
 func get_armor() -> int:
 
 	if get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.IDENTITY)).faction == "monsters":
@@ -102,7 +100,6 @@ func get_armor() -> int:
 	return equipment.get_total_armor()
 
 
-# need to implement this
 func calc_damage() -> int:
 	var dam := 0
 

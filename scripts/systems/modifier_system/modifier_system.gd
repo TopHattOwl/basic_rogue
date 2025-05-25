@@ -29,5 +29,11 @@ static func _get_relevant_melee_combat_modifiers(entity: Node2D, stat: StringNam
 	var melee_combat_modifiers = ComponentRegistry.get_component(entity, GameData.ComponentKeys.MODIFIERS).melee_combat_modifiers
 
 	return melee_combat_modifiers.filter(
-		func(m): return m.target_stat == stat
+		func(m): return m.target_stat == stat and _check_conditions(m)
 	)
+
+static func _check_conditions(mod: StatModifier, _entity: Node2D = null) -> bool:
+	for condition in mod.conditions:
+		if not condition.is_met():
+			return false
+	return true

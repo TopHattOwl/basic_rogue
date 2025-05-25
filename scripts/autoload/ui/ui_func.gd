@@ -9,6 +9,7 @@ func set_player_ui():
 func log_message(text: String) -> void:
 	player_ui.log_message(text)
 
+# --- LOOK UI ---
 func toggle_look_ui() -> void:
 	player_ui.toggle_look_ui()
 
@@ -130,6 +131,18 @@ func update_camera_data():
 
 		cam.offset.x = 100
 
+
+# --- STANCE BAR ---
+
+# calls stance_bar.gd's toggle_stance_bar, 
+func toggle_stance_bar():
+	player_ui.stance_bar.toggle_stance_bar()
+
+
+# --- INVENTORY ---
+
+func toggle_inventory():
+	player_ui.inventory.toggle_inventory()
 
 # --- SIDEBAR ---
 

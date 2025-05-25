@@ -15,11 +15,11 @@ var stats = {
 	},
 
 	GameData.ComponentKeys.WEAPON_STATS: {
-		"damage": [1, 6, []],
+		"damage_min": 10,
+		"damage_max": 16,
 		"scaling": GameData.ATTRIBUTES.STRENGTH,
 		"attack_type": GameData.ATTACK_TYPE.SLASH,
 		"element": GameData.ELEMENT.PHYSICAL,
-		"to_hit_bonus": 2,
 		"weapon_type": GameData.WEAPON_TYPES.SWORD,
 		"weapon_subtype": GameData.WEAPON_SUBTYPES.SWORD_2H
 	},

@@ -6,9 +6,14 @@ var _input_states := {}
 
 var player_look_pos: Vector2i
 
+# emitted when player turn ended, used in GameTime
+signal player_acted
 
 # the difference between the look pos and the player pos in grid
 var look_diff_from_player: Vector2i = Vector2i.ZERO
+
+var prev_input_mode: int
+
 
 func handle_input() -> void:
 	match ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).input_mode:
@@ -19,10 +24,23 @@ func handle_input() -> void:
 			handle_world_map_inputs()
 		GameData.INPUT_MODES.LOOK:
 			handle_look_inputs()
-		GameData.INPUT_MODES.UI_INPUT:
-			handle_ui_inputs()
 		GameData.INPUT_MODES.DUNGEON_INPUT:
 			handle_dungeon_inputs()
+
+
+
+
+		# # UI Stuff
+		# ui inputs flow: 
+			# when entering a ui input mode, InputManager (this node) itself only handles the exit of the input mode to the prevous input mode
+			# the ui node's script handles the input process by setting the _process on
+			# this way InputManager only checks for exiting the ui input mode (cant move and shit like that) and UI node's own script handles all the input for the ui stuff
+
+		GameData.INPUT_MODES.STANCE_SELECTION:
+			handle_stance_selection_inputs()
+		GameData.INPUT_MODES.INVENTORY:
+			handle_inventory_inputs()
+
 
 
 # --- ZOOMED IN INPUTS ---
@@ -58,6 +76,17 @@ func handle_zoomed_in_inputs():
 
 		else:
 			_input_states.erase(action)
+
+	# enter stance selection mode
+	if Input.is_action_just_pressed("stance_change"):
+		UiFunc.toggle_stance_bar()
+		prev_input_mode = GameData.player.PlayerComp.input_mode
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.STANCE_SELECTION
+	
+	if Input.is_action_just_pressed("inventory"):
+		UiFunc.toggle_inventory()
+		prev_input_mode = GameData.player.PlayerComp.input_mode
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.INVENTORY
 
 	# pick up 
 	if Input.is_action_just_pressed("pick_up") and GameData.items_map[ComponentRegistry.get_player_pos().y][ComponentRegistry.get_player_pos().x]:
@@ -170,6 +199,27 @@ func handle_dungeon_inputs():
 		else:
 			_input_states.erase(action)
 
+
+# --- STANCE CHANGE ---
+
+func handle_stance_selection_inputs() -> void:
+	# if stance change button is pressed toggle back the stance bar and return to the previous input mode
+	if Input.is_action_just_pressed("stance_change"):
+		UiFunc.toggle_stance_bar()
+		GameData.player.PlayerComp.input_mode = prev_input_mode
+
+
+
+# --- INVENTORY ---
+
+func handle_inventory_inputs():
+
+	if Input.is_action_just_pressed("inventory"):
+		UiFunc.toggle_inventory()
+		GameData.player.PlayerComp.input_mode = prev_input_mode
+
+
+
 # --- HOSTILES ---
 func handle_hostile_turn():
 	set_process_input(false)
@@ -232,6 +282,7 @@ func _end_player_turn() -> void:
 	handle_hostile_turn()
 	_input_states.clear()
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
+	player_acted.emit()
 
 # dungeon movement
 
@@ -245,3 +296,5 @@ func _ent_player_turn_dungeon() -> void:
 	handle_hostile_turn_dungeon()
 	_input_states.clear()
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
+
+	player_acted.emit()

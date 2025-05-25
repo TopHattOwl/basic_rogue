@@ -3,6 +3,7 @@ extends Node
 
 
 var weapon: Node2D = null
+var weapon2: Node2D = null
 var shield: Dictionary = {}
 var ranged_weapon: Dictionary = {}
 var armor: Dictionary = {

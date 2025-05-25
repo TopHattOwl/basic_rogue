@@ -1,15 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://be4gwtu23s7n6"]
+[gd_scene load_steps=9 format=3 uid="uid://be4gwtu23s7n6"]
 
 [ext_resource type="Script" uid="uid://bk8wygn2yqos2" path="res://scripts/ui/player_ui/player_ui.gd" id="1_hrok7"]
 [ext_resource type="Texture2D" uid="uid://cm21jj8xixo86" path="res://assets/ui/HP_alt.png" id="2_ow2f4"]
 [ext_resource type="Texture2D" uid="uid://dd80msrdcnci" path="res://assets/ui/look_bg.png" id="3_m8cl3"]
 [ext_resource type="Texture2D" uid="uid://ls0rjmajqbol" path="res://assets/ui/sidebar_bg.png" id="4_vopia"]
+[ext_resource type="Script" uid="uid://c8l2kw4kej00a" path="res://scripts/ui/player_ui/stance_bar.gd" id="5_1ek40"]
+[ext_resource type="Script" uid="uid://dobnprsw10nxm" path="res://scripts/ui/player_ui/inventory.gd" id="6_23jyl"]
+
+[sub_resource type="Gradient" id="Gradient_23jyl"]
+offsets = PackedFloat32Array(0, 0.474138, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.327586, 0.327586, 0.327586, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_81j3l"]
+gradient = SubResource("Gradient_23jyl")
+width = 174
+height = 94
+fill_from = Vector2(0.846154, 0.25641)
+fill_to = Vector2(0.183761, 0.816239)
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_hrok7")
 
 [node name="SideBar" type="TextureRect" parent="."]
-offset_left = 504.0
+offset_left = 512.0
 offset_right = 640.0
 offset_bottom = 360.0
 texture = ExtResource("4_vopia")
@@ -18,7 +31,7 @@ expand_mode = 1
 [node name="MessageLog" type="RichTextLabel" parent="SideBar"]
 layout_mode = 0
 offset_top = 196.0
-offset_right = 136.0
+offset_right = 128.0
 offset_bottom = 360.0
 theme_override_font_sizes/normal_font_size = 6
 vertical_alignment = 2
@@ -32,13 +45,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="HPBar"]
-visible = false
-z_index = -1
-layout_mode = 0
-offset_right = 64.0
-offset_bottom = 24.0
 
 [node name="TextureRect" type="TextureRect" parent="HPBar"]
 z_index = -1
@@ -86,3 +92,117 @@ offset_left = 96.0
 offset_top = 176.0
 offset_right = 352.0
 offset_bottom = 216.0
+
+[node name="StanceBar" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 232.0
+offset_right = 448.0
+offset_bottom = 272.0
+script = ExtResource("5_1ek40")
+
+[node name="StanceContainer" type="HBoxContainer" parent="StanceBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Inventory" type="Control" parent="." node_paths=PackedStringArray("FilterButtons")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 48.0
+offset_right = 512.0
+offset_bottom = 304.0
+script = ExtResource("6_23jyl")
+FilterButtons = [NodePath("FilterContainer/MeleeWeaponsButton"), NodePath("FilterContainer/RangedWeaponsButton"), NodePath("FilterContainer/ArmorButton"), NodePath("FilterContainer/PotionsButton"), NodePath("FilterContainer/PowdersButton"), NodePath("FilterContainer/MonsterPartsButton"), NodePath("FilterContainer/AlchemyButton"), NodePath("FilterContainer/ResourceButton"), NodePath("FilterContainer/OtherButton")]
+
+[node name="Background" type="TextureRect" parent="Inventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_81j3l")
+
+[node name="FilterContainer" type="HBoxContainer" parent="Inventory"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.030303
+offset_bottom = 24.0
+grow_horizontal = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MeleeWeaponsButton" type="Button" parent="Inventory/FilterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+text = "Melee Weapons"
+autowrap_mode = 2
+
+[node name="RangedWeaponsButton" type="Button" parent="Inventory/FilterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+text = "Ranged Weapons"
+autowrap_mode = 2
+
+[node name="ArmorButton" type="Button" parent="Inventory/FilterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+text = "Armor"
+autowrap_mode = 2
+
+[node name="PotionsButton" type="Button" parent="Inventory/FilterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+text = "Potions"
+autowrap_mode = 2
+
+[node name="PowdersButton" type="Button" parent="Inventory/FilterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+text = "Powders"
+autowrap_mode = 2
+
+[node name="MonsterPartsButton" type="Button" parent="Inventory/FilterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+text = "Monster Parts"
+autowrap_mode = 2
+
+[node name="AlchemyButton" type="Button" parent="Inventory/FilterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+text = "Alchemy"
+autowrap_mode = 2
+
+[node name="ResourceButton" type="Button" parent="Inventory/FilterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+text = "Resources"
+autowrap_mode = 2
+
+[node name="OtherButton" type="Button" parent="Inventory/FilterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+text = "Other"
+autowrap_mode = 2

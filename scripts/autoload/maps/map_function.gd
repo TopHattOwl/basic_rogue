@@ -254,7 +254,7 @@ func load_premade_map(map_path: String) -> void:
 	# spawn player if not spawned already
 	if GameData.player:
 		return
-	EntitySystems.entity_spawner.spawn_player()
+	EntitySystems.spawn_player()
 
 
 

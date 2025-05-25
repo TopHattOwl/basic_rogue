@@ -15,6 +15,8 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 		# foraging mode -> regular vision decreeses but foraging vision increases
 		# add forage generation in Biome classes 
 
+
+
 	# IMPORTANT: FOV how to
 		# add TileMapLayer node to player node
 		# in it's process function get player pos
@@ -28,18 +30,10 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# finish biome integration to class objects
 
 # TODO:
-	# IPORTANT: make general function to reset all actors, items, remains and stuff, that works for map transition, world map travel, dungeon enter etc
 	# add camera2d to targeter, make it active when looking
 	# generate seed in WorldMap object using the world seed in GameData
-	# IMPORTANT: get rid of old world_map_data, world_map_monster_data in world_map_data.gd, migrated everything to objects
-		# but have to finish map generaton first -> each biome has own generation function, WorldMonsterMap has own monster setup function (spawn pos and dungeon setup)
 	# add perception attributes (find all references, some are string refereces, like "strenght" when saving and loading player data)
 	# Stamina and State componenet not finished
-	# IMPORTANT: make giant worm spawn the same way mask does (variables set in own ready script)
-	# IMPORTANT: WorldMapData TODO  if explored world map tile in map transition and exit world map, load that data ininstead, not generate
-	# load player into the correct world_map tile
-	# remove actor nodes when trasitioning maps and entering and exiting world map
-	# fix is_action_pressed timer to work properly with everything (right now, using is_action_just_pressed, so cant hold down button)
 	# in input_manager -> look input 
 		# get all terrain data and actor data at look target grid, get actor's sprite for displye, somhow get tile map's tile for display
 	# player_ui.gd make look ui array cycleable when looking at tile with more stuff
@@ -58,8 +52,6 @@ func _ready():
 
 	SaveFuncs.save_player_data(GameData.player)
 
-	# EntitySystems.entity_spawner.spawn_item(Vector2i(6,6), GameData.ALL_ITEMS.STEEL_LONGSWORD)
-
 	# test weapon equip and save after
 	# get_player_comp(GameData.ComponentKeys.EQUIPMENT).equip_weapon(GameData.all_items[0])
 
@@ -68,7 +60,10 @@ func _ready():
 	UiFunc.log_message("You arrive in ******")
 
 	GameData.player.StanceComp.add_stance(load("res://resources/combat_stuff/stances/test.tres"))
+	GameData.player.StanceComp.add_stance(load("res://resources/combat_stuff/stances/test2.tres"))
 	GameData.player.StanceComp.enter_stance(GameData.player.StanceComp.known_stances[0])
+
+	# GameData.player.get_node("PlayerUI").stance_bar.make_stance_buttons()
 
 	# WorldMapData.biome_map.map_data[4][42].generate_map()
 
