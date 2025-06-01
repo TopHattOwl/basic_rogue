@@ -66,25 +66,6 @@ func remove_entities(is_player_in_dungeon: bool = false) -> void:
 
 		MapFunction.initialize_dungeon_map_data()
 
-# func remove_entities_from_tree() -> void:
-# 	if all_hostile_actors.size() > 0:
-# 		for actor in all_hostile_actors:
-# 			actor.queue_free()
-# 	if all_items.size() > 0:
-# 		for item in all_items:
-# 			item.queue_free()
-	
-# 	var remains = main_node.get_tree().get_nodes_in_group("remains")
-# 	if remains.size() > 0:
-# 		for remain in remains:
-# 			remain.queue_free()
-
-# func reset_entity_variables() -> void:
-# 	all_hostile_actors = []
-# 	all_friendly_actors = []
-# 	all_actors = []
-# 	all_items = []
-
 func get_actor(grid_pos: Vector2i) -> Node2D:
 	if !actors_map:
 		return null
@@ -99,19 +80,6 @@ func get_actor(grid_pos: Vector2i) -> Node2D:
 	
 
 # ___ MONSTERS ___
-
-# tier 1 monsters
-enum MONSTERS1 {
-	# field
-	IRON_WORM,
-	MASK
-
-	# swamp
-}
-
-enum MONSTERS2 {
-	PLACEHOLDER,
-}
 
 enum MONSTERS_ALL {
 	# tier 1
@@ -291,6 +259,7 @@ const COMPONENTS = {
 	ComponentKeys.MONSTER_PROPERTIES: "Components/MonsterPropertiesComponent",
 	ComponentKeys.MONSTER_STATS: "Components/MonsterStatsComponent",
 	ComponentKeys.MONSTER_DROPS: "Components/MonsterDropsComponent",
+	ComponentKeys.MONSTER_COMBAT: "Components/MonsterCombatComponent",
 	ComponentKeys.SPELLS: "Components/SpellsComponent",
 	ComponentKeys.STAMINA: "Components/StaminaComponent",
 	ComponentKeys.STATE: "Components/StateComponent",
@@ -322,7 +291,7 @@ enum ATTRIBUTES {
 	DEXTERITY,
 	INTELLIGENCE,
 	CONSTITUTION,
-	# PERCEPTION,
+	PERCEPTION,
 }
 
 # ATTACK TYPE
@@ -336,7 +305,9 @@ enum ELEMENT {
 	PHYSICAL,
 	FIRE,
 	ICE,
-	ELECTRICITY,
+	LIGHTNING,
+	BLOOD,
+	POISON,
 }
 
 
@@ -354,6 +325,7 @@ enum ComponentKeys {
 	POSITION,
 	MONSTER_PROPERTIES,
 	MONSTER_STATS,
+	MONSTER_COMBAT,
 	MONSTER_DROPS,
 	SPELLS,
 	STAMINA,
@@ -424,6 +396,18 @@ enum SKILLS {
 
 
 # ITEMS
+
+enum ITEM_TYPES {
+	WEAPON,
+	RANGED_WEAPON,
+	ARMOR,
+	POTION,
+	POWDER,
+	MONSTER_PART,
+	ALCHEMY,
+	RESOURCE,
+	OTHER
+}
 enum ARMOR_SLOTS {
 	HEAD,
 	SHOULDERS,
@@ -440,17 +424,7 @@ enum ARMOR_TYPES {
 	HEAVY,
 }
 
-enum ITEM_TYPES {
-	WEAPON,
-	RANGED_WEAPON,
-	ARMOR,
-	POTION,
-	POWDER,
-	MONSTER_PART,
-	ALCHEMY,
-	RESOURCE,
-	OTHER
-}
+
 
 enum WEAPON_TYPES {
 	SWORD,
@@ -475,7 +449,6 @@ enum RANGED_WEAPONS {
 }
 
 # 	all items
-
 enum ALL_ITEMS {
 	# weapons
 	STEEL_LONGSWORD,

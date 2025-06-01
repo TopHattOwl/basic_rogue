@@ -1,3 +1,4 @@
+class_name AbilitiesComponent
 extends Node
 
 var abilities = []

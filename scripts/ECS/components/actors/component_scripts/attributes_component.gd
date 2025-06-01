@@ -13,17 +13,22 @@ var intelligence: int = 10:
 var constitution: int = 10:
     set(value):
         constitution = max(1, value)
+var perception: int = 10:
+    set(value):
+        perception = max(1, value)
 
 var strength_modifier: int = (strength - 10)/2
 var dexterity_modifier: int = (dexterity - 10)/2
 var intelligence_modifier: int = (intelligence - 10)/2
 var constitution_modifier: int = (constitution - 10)/2
+var perception_modifier: int = (perception - 10)/2
 
 func initialize(attributes: Dictionary):
-    strength = attributes.get("strength")
-    dexterity = attributes.get("dexterity")
-    intelligence = attributes.get("intelligence")
-    constitution = attributes.get("constitution")
+    strength = attributes.get("strength", 10)
+    dexterity = attributes.get("dexterity", 10)
+    intelligence = attributes.get("intelligence", 10)
+    constitution = attributes.get("constitution", 10)
+    perception = attributes.get("perception", 10)
 
     update_modifiers()
 
@@ -33,6 +38,7 @@ func update_modifiers():
     dexterity_modifier = (dexterity - 10)/2
     intelligence_modifier = (intelligence - 10)/2
     constitution_modifier = (constitution - 10)/2
+    perception_modifier = (perception - 10)/2
 
 func raise_attribute(attribute: int):
     match attribute:
@@ -44,14 +50,17 @@ func raise_attribute(attribute: int):
             intelligence += 1
         GameData.ATTRIBUTES.CONSTITUTION:
             constitution += 1
+        GameData.ATTRIBUTES.PERCEPTION:
+            perception += 1
 
     update_modifiers()
 
-func set_all_attributes(strength_value: int, dexterity_value: int, intelligence_value: int, constitution_value: int):
+func set_all_attributes(strength_value: int, dexterity_value: int, intelligence_value: int, constitution_value: int, perception_value: int):
     strength = max(1, strength_value)
     dexterity = max(1, dexterity_value)
     intelligence = max(1, intelligence_value)
     constitution = max(1, constitution_value)
+    perception = max(1, perception_value)
 
     update_modifiers()
 
@@ -65,6 +74,8 @@ func set_attribute(attribute: int, value: int):
             intelligence = max(1, value)
         GameData.ATTRIBUTES.CONSTITUTION:
             constitution = max(1, value)
+        GameData.ATTRIBUTES.PERCEPTION:
+            perception = max(1, value)
 
     update_modifiers()
 
@@ -78,5 +89,7 @@ func get_weapon_damage_bonus_from_scaling(scaling: int) -> int:
             return intelligence_modifier
         GameData.ATTRIBUTES.CONSTITUTION:
             return constitution_modifier
+        GameData.ATTRIBUTES.PERCEPTION:
+            return perception_modifier
     
     return 0

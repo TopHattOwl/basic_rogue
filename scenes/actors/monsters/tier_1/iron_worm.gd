@@ -1,8 +1,8 @@
 extends Node2D
 
-var max_hp = 7
+var max_hp = 30
 
-var melee_combat_component = {
+var monster_combat_component = {
 	"damage_min": 10,
 	"daamge_max": 19,
 	"attack_type": GameData.ATTACK_TYPE.SLASH,
@@ -31,14 +31,6 @@ var identity_component = {
 	"faction": "monsters"
 }
 
-var abilities_component = {
-	"abilities": []
-}
-
-var spells_component = {
-	"spells": []
-}
-
 var monster_properties_componenet = {
 	
 }
@@ -53,16 +45,15 @@ var monster_drops_component = {
 	"loot_pool": []
 }
 
+@export var text_color: String = "#dfdfdf"
+
 func _ready() -> void:
 
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.HEALTH).initialize(max_hp)
-	ComponentRegistry.get_component(self, GameData.ComponentKeys.MELEE_COMBAT).initialize(melee_combat_component)
+	ComponentRegistry.get_component(self, GameData.ComponentKeys.MONSTER_COMBAT).initialize(monster_combat_component)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.AI_BEHAVIOR).initialize(ai_behavior_component)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.ATTRIBUTES).initialize(attributes_component)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.IDENTITY).initialize(identity_component)
-	ComponentRegistry.get_component(self, GameData.ComponentKeys.ABILITIES).initialize(abilities_component)
-	ComponentRegistry.get_component(self, GameData.ComponentKeys.SPELLS).initialize(spells_component)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.MONSTER_PROPERTIES).initialize(monster_properties_componenet)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.MONSTER_STATS).initialize(monster_stats_component)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.MONSTER_DROPS).initialize(monster_drops_component)
-	pass

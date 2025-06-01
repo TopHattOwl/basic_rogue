@@ -4,8 +4,6 @@ extends Node
 @export var current_time: StringName
 @export var current_day_turn: int
 
-
-
 @export var year: int = 853
 @export var month: int = 4
 @export var day: int = 12
@@ -18,10 +16,8 @@ var time_cycle: Dictionary = {
 	"night": 2200,
 }
 
-@onready var time_emitter = get_parent().get_node("MainNode/InputManager")
-
 func _ready() -> void:
-	time_emitter.player_acted.connect(_on_pass_time)
+	SignalBus.player_acted.connect(_on_turn_end)
 
 func _process(_delta: float) -> void:
 	update_current_time()
@@ -56,6 +52,6 @@ func pass_day():
 		year += 1
 		month = 1
 
-func _on_pass_time() -> void:
+func _on_turn_end() -> void:
 	current_day_turn += 1
 	

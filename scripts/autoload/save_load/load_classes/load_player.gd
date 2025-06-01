@@ -18,6 +18,7 @@ func load_player_data(json):
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.ATTRIBUTES).dexterity = attributes.get("dexterity")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.ATTRIBUTES).intelligence = attributes.get("intelligence")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.ATTRIBUTES).constitution = attributes.get("constitution")
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.ATTRIBUTES).perception = attributes.get("perception")
 
 	# Identity component
 	var identity = json.get("identity_component")

@@ -24,7 +24,7 @@ func toggle_stance_bar() -> void:
 	
 	set_process(is_shift_toggled)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 
 	for i in range(stance_buttons.size()):
 		if Input.is_action_just_pressed("stance_" + str(i + 1)):
@@ -40,8 +40,12 @@ func make_stance_buttons():
 	stance_buttons.clear()
 	
 	var index = 0
+	var player_equipment = GameData.player.EquipmentComp
+	var weapon = player_equipment.weapon
+	
 	for stance in stances:
-		print("making button")
+
+		# check for weapon and armor type requirement -> only show stances that can be activated
 
 		var container = Container.new()
 		var button = Button.new()

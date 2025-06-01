@@ -1,3 +1,4 @@
+class_name ModifiersComponent
 extends Node
 
 var melee_combat_modifiers: Array[StatModifier]

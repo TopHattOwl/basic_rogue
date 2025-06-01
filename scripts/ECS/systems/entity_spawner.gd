@@ -37,7 +37,7 @@ static func spawn_player():
 	UiFunc.update_camera_data()
 
 
-func spawn_monster(grid_pos: Vector2i, monster_key: int):
+static func spawn_monster(grid_pos: Vector2i, monster_key: int):
 	var monster = null
 
 	monster = load(DirectoryPaths.monster_scenes[monster_key]).instantiate()

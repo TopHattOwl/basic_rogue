@@ -10,7 +10,7 @@ script = ExtResource("1_l76lu")
 target_stat = &"damage_min"
 target_component = 7
 operation = 0
-value = 4.0
+value = 5.0
 conditions = Array[ExtResource("2_mhgvl")]([])
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 

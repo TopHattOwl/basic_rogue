@@ -1,3 +1,4 @@
+class_name SkillsComponent
 extends Node
 
 var skill_levels: Dictionary = {

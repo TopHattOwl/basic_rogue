@@ -31,7 +31,8 @@ func save_player_data(player: Node2D) -> bool:
 			"strength": attributes_comp.strength,
 			"dexterity": attributes_comp.dexterity,
 			"intelligence": attributes_comp.intelligence,
-			"constitution": attributes_comp.constitution
+			"constitution": attributes_comp.constitution,
+			"perception": attributes_comp.perception,
 		}
 	
 	# # Equipment Component

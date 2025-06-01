@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dus1wv07rg63q" path="res://scripts/ECS/components/actors/component_scenes/position_component.tscn" id="2_h7mgg"]
 
 [node name="BloodyRemains" type="Node2D" groups=["remains"]]
+z_as_relative = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_qqmll")

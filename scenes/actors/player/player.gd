@@ -4,31 +4,31 @@ extends Node2D
 
 # --- COMPONENTS ---
 
-@export var HealthComp: Node
-@export var StaminaComp: Node
+@export var HealthComp: HealthComponent
+@export var StaminaComp: StaminaComponent
 
-@export var AbilitiesComp: Node
-@export var SpellsComp: Node
+@export var AbilitiesComp: AbilitiesComponent
+@export var SpellsComp: SpellsComponent
 
-@export var SkillsComp: Node
+@export var SkillsComp: SkillsComponent
 
-@export var AttributesComp: Node
+@export var AttributesComp: AttributesComponent
 
-@export var EquipmentComp: Node
-@export var InventoryComp: Node
+@export var EquipmentComp: EquipmentComponent
+@export var InventoryComp: InventoryComponent
 
-@export var MeleeCombatComp: Node
-@export var StanceComp: Node
+@export var MeleeCombatComp: MeleeCombatComponent
+@export var StanceComp: StanceComponent
 
-@export var IdentityComp: Node
+@export var IdentityComp: IdentityComponent
 
-@export var PositionComp: Node
+@export var PositionComp: PositionComponent
 
-@export var StateComp: Node
+@export var StateComp: StateComponent
 
-@export var PlayerComp: Node
+@export var PlayerComp: PlayerComponent
 
-@export var ModifiersComp: Node
+@export var ModifiersComp: ModifiersComponent
 
 
 func _ready():

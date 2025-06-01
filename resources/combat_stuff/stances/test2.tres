@@ -9,7 +9,7 @@ size = Vector2(32, 48)
 
 [sub_resource type="Resource" id="Resource_2axnh"]
 script = ExtResource("1_7s074")
-target_stat = &"damage_,in"
+target_stat = &"damage_min"
 target_component = 7
 operation = 0
 value = 5.0

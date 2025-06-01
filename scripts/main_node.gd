@@ -1,6 +1,4 @@
 extends Node2D
-
-
 # --- INPUT ---
 const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 @export var input_manager: Node = null
@@ -15,8 +13,6 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 		# foraging mode -> regular vision decreeses but foraging vision increases
 		# add forage generation in Biome classes 
 
-
-
 	# IMPORTANT: FOV how to
 		# add TileMapLayer node to player node
 		# in it's process function get player pos
@@ -30,6 +26,7 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# finish biome integration to class objects
 
 # TODO:
+	# stance_bar.gd: check for weapon and armor type requirement -> only show stances that can be activated
 	# add camera2d to targeter, make it active when looking
 	# generate seed in WorldMap object using the world seed in GameData
 	# add perception attributes (find all references, some are string refereces, like "strenght" when saving and loading player data)
@@ -46,34 +43,36 @@ func _ready():
 	# passing main node to game data
 	GameData.main_node = self
 
+	# GameTime.initialize()
+	# UiFunc.initialize()
+
 	# MapFunction.load_premade_map(DirectoryPaths.first_outpost)
 
 	EntitySpawner.spawn_player()
 
 	SaveFuncs.save_player_data(GameData.player)
 
-	# test weapon equip and save after
-	# get_player_comp(GameData.ComponentKeys.EQUIPMENT).equip_weapon(GameData.all_items[0])
-
 	# SaveFuncs.save_player_data(GameData.player)
 
 	UiFunc.log_message("You arrive in ******")
 
+	# test stances
 	GameData.player.StanceComp.add_stance(load("res://resources/combat_stuff/stances/test.tres"))
 	GameData.player.StanceComp.add_stance(load("res://resources/combat_stuff/stances/test2.tres"))
-	GameData.player.StanceComp.enter_stance(GameData.player.StanceComp.known_stances[0])
+	# GameData.player.StanceComp.enter_stance(GameData.player.StanceComp.known_stances[0])
 
-	# GameData.player.get_node("PlayerUI").stance_bar.make_stance_buttons()
+	# test weapon
+	var test_weapon = load("res://resources/items/item_instances/weapons/test_weapon.tres")
+	GameData.player.EquipmentComp.equip_main_hand(test_weapon)
 
-	# WorldMapData.biome_map.map_data[4][42].generate_map()
+	GameData.player.add_child(load("res://scenes/ui/damage_text.tscn").instantiate())
+
 
 func _process(_delta):
 # input handler, gets input passed to it and depending on what input is pressed it calls different functions
 	if GameData.player.PlayerComp.is_players_turn:
 
 		input_manager.handle_input()
-
-		# print("player acted")
 
 
 func get_player_comp(comp_key: int) -> Node:

@@ -60,6 +60,48 @@ func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 	return false
 
 
+func process_monster_movement(entity: Node, new_pos: Vector2i) -> bool:
+
+	var position_component = ComponentRegistry.get_component(entity, GameData.ComponentKeys.POSITION)
+
+	# Error check
+	if not position_component:
+		push_error("No position component found for entity: ", entity.name)
+		return false
+
+	
+	# Combat check
+	var faction = ComponentRegistry.get_component(entity, GameData.ComponentKeys.IDENTITY).faction
+	var actor_at_pos = GameData.actors_map[new_pos.y][new_pos.x]
+
+	if actor_at_pos:
+		if faction != ComponentRegistry.get_component(actor_at_pos, GameData.ComponentKeys.IDENTITY).faction:
+			return ComponentRegistry.get_component(entity, GameData.ComponentKeys.MONSTER_COMBAT).melee_attack(actor_at_pos)
+
+
+	# general movement check
+	if MapFunction.is_tile_walkable(new_pos) and MapFunction.is_in_bounds(new_pos):
+		
+		var old_pos = position_component.grid_pos
+		# update component
+		position_component.grid_pos = new_pos
+
+		# update variables
+		GameData.actors_map[old_pos.y][old_pos.x] = null
+		GameData.actors_map[new_pos.y][new_pos.x] = entity
+
+		# update astar if not player (if player's pos in astar if solid, monsters will not 'see' them)
+
+		MapFunction.astar_toggle_walkable(old_pos)
+		MapFunction.astar_toggle_walkable(new_pos)
+
+		# visual update
+		entity.position = MapFunction.to_world_pos(new_pos)
+
+		return true
+
+	return false
+
 # --- WORLD MAP MOVEMENT ---
 
 func process_world_map_movement(new_pos: Vector2i) -> bool:

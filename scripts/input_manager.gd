@@ -6,9 +6,6 @@ var _input_states := {}
 
 var player_look_pos: Vector2i
 
-# emitted when player turn ended, used in GameTime
-signal player_acted
-
 # the difference between the look pos and the player pos in grid
 var look_diff_from_player: Vector2i = Vector2i.ZERO
 
@@ -92,7 +89,7 @@ func handle_zoomed_in_inputs():
 	if Input.is_action_just_pressed("pick_up") and GameData.items_map[ComponentRegistry.get_player_pos().y][ComponentRegistry.get_player_pos().x]:
 		ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = false
 		var pos = ComponentRegistry.get_player_pos()
-		EntitySystems.inventory_system.pick_up_item(pos)
+		InventorySystem.pick_up_item(pos)
 
 		# TODO pickup window
 
@@ -233,7 +230,10 @@ func handle_hostile_turn():
 		if ai.is_in_range(player_pos, enemy_pos):
 
 			var target_pos = ai.get_next_position(enemy_pos, player_pos)
-			EntitySystems.movement_system.process_movement(enemy, target_pos)
+			EntitySystems.movement_system.process_monster_movement(enemy, target_pos)
+		else:
+			# handle other ai here, if player is not in vision
+			pass
 
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
 
@@ -282,7 +282,7 @@ func _end_player_turn() -> void:
 	handle_hostile_turn()
 	_input_states.clear()
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
-	player_acted.emit()
+	SignalBus.player_acted.emit()
 
 # dungeon movement
 
@@ -297,4 +297,4 @@ func _ent_player_turn_dungeon() -> void:
 	_input_states.clear()
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
 
-	player_acted.emit()
+	SignalBus.player_acted.emit()

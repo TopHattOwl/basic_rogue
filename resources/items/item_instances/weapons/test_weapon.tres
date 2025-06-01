@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://dbok6rixqej1p"]
+
+[ext_resource type="Script" uid="uid://bre0u70dtiask" path="res://resources/items/components/base_component.gd" id="1_t5t8r"]
+[ext_resource type="Script" uid="uid://c7nlkhtqiekyc" path="res://resources/items/components/combat_components/melee_weapon_component.gd" id="2_4svoq"]
+[ext_resource type="Script" uid="uid://14o1ycfagor4" path="res://resources/items/item_resource.gd" id="2_6n8ge"]
+
+[sub_resource type="Resource" id="Resource_6s6hs"]
+script = ExtResource("2_4svoq")
+damage_min = 15
+damage_max = 19
+weapon_type = 0
+weapon_sub_type = 0
+attack_type = 0
+element = 3
+metadata/_custom_type_script = "uid://c7nlkhtqiekyc"
+
+[resource]
+script = ExtResource("2_6n8ge")
+uid = "Test Weapon"
+description = "very cuul test weapon to smack enemies in the head with, trying out if this string can hold very long descriptions so I have to fill this wih something, are you still reading? please leav I am just testing if this shit can hold many and more letters, this seems to be enough"
+item_type = 0
+components = Array[ExtResource("1_t5t8r")]([SubResource("Resource_6s6hs")])
+metadata/_custom_type_script = "uid://14o1ycfagor4"

@@ -1,3 +1,4 @@
+class_name SpellsComponent
 extends Node
 
 var spells = []

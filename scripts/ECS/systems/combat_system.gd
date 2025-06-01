@@ -3,7 +3,7 @@ extends Node
 
 
 
-# called from health component
+# called from health component when entity dies
 func die(actor: Node2D):
 
 	var actor_pos = ComponentRegistry.get_component(actor, GameData.ComponentKeys.POSITION).grid_pos
@@ -21,7 +21,7 @@ func die(actor: Node2D):
 	# if monster drop monster remains TODO also drom monster loot
 	if actor_identity.faction == "monsters":
 		var monster_id = ComponentRegistry.get_component(actor, GameData.ComponentKeys.MONSTER_STATS).monster_id
-		var monster_remains = load(DirectoryPaths.monster1_remains_scene[monster_id]).instantiate()
+		var monster_remains = load(DirectoryPaths.monster_remains_scene[monster_id]).instantiate()
 		ComponentRegistry.get_component(monster_remains, GameData.ComponentKeys.POSITION).grid_pos = actor_pos
 		monster_remains.position = MapFunction.to_world_pos(actor_pos)
 		GameData.main_node.add_child(monster_remains)

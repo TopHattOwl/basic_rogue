@@ -1,3 +1,4 @@
+class_name StanceComponent
 extends Node
 
 
@@ -8,9 +9,6 @@ func add_stance(stance: Stance) -> void:
 	known_stances.append(stance)
 
 func enter_stance(stance: Stance) -> bool:
-	var equipment_comp = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.EQUIPMENT))
-	if equipment_comp.weapon == null:
-		return false
 	# checks
 	if stance == null:
 		return false
@@ -18,9 +16,11 @@ func enter_stance(stance: Stance) -> bool:
 		return false
 	if stance not in known_stances:
 		return false
-	if !stance.weapon_types.has(equipment_comp.weapon.weapon_type) or !stance.weapon_types.has(equipment_comp.weapon2.weapon_type):
+	
+	if !check_stance_requirements(stance):
 		return false
 
+	# if check passed enter stance
 	if current_stance != null:
 		exit_stance()
 	# enter the stance and add the modifiers to the modifiers component
@@ -44,3 +44,17 @@ func exit_stance() -> void:
 				get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.MODIFIERS)).remove_melee_combat_modifier(modifier)
 			_:
 				pass
+
+## check requirements for the stance, returns true if all requirements are met
+func check_stance_requirements(stance: Stance) -> bool:
+	var equipment_comp = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.EQUIPMENT))
+	var main_hand: ItemResource = equipment_comp.main_hand
+	var off_hand: ItemResource = equipment_comp.off_hand
+	
+	if !main_hand:
+		return false
+	
+	if !stance.weapon_types.has(main_hand.get_component(MeleeWeaponComponent).weapon_type):
+		return false
+
+	return true

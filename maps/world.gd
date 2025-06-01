@@ -76,7 +76,7 @@ func _ready() -> void:
 	# spawn monsters
 	if monster_data_new.spawn_points.size() > 0:
 		for spawn_point in monster_data_new.spawn_points:
-			EntitySystems.entity_spawner.spawn_monster(spawn_point, monster_data_new.monster_types[0])
+			EntitySpawner.spawn_monster(spawn_point, monster_data_new.monster_types[0])
 
 	MapFunction.initialize_astar_grid()
 

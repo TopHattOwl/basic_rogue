@@ -88,6 +88,7 @@ offset_bottom = 168.0
 theme_override_font_sizes/normal_font_size = 7
 
 [node name="BottomBar" type="TextureRect" parent="."]
+visible = false
 offset_left = 96.0
 offset_top = 176.0
 offset_right = 352.0
@@ -112,6 +113,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Inventory" type="Control" parent="." node_paths=PackedStringArray("FilterButtons")]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 64.0
