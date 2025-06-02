@@ -51,6 +51,7 @@ func melee_attack(target: Node2D) -> bool:
 	
 	# dir used for animation
 	var dir: Vector2i = target_pos - attacker_pos
+	dir.clamp(Vector2i(-1, -1), Vector2i(1, 1))
 
 	# get target health and melee cobat component
 	var target_melee_combat = ComponentRegistry.get_component(target, GameData.ComponentKeys.MELEE_COMBAT)

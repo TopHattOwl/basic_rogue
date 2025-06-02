@@ -65,9 +65,6 @@ func _ready():
 	var test_weapon = load("res://resources/items/item_instances/weapons/test_weapon.tres")
 	GameData.player.EquipmentComp.equip_main_hand(test_weapon)
 
-	GameData.player.add_child(load("res://scenes/ui/damage_text.tscn").instantiate())
-
-
 func _process(_delta):
 # input handler, gets input passed to it and depending on what input is pressed it calls different functions
 	if GameData.player.PlayerComp.is_players_turn:

@@ -7,7 +7,7 @@
 		"strength": 16
 	},
 	"health_component": {
-		"hp": 266,
+		"hp": 211,
 		"max_hp": 500
 	},
 	"identity_component": {
@@ -37,8 +37,8 @@
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 52,
-			"y": 25
+			"x": 36,
+			"y": 18
 		}
 	},
 	"skills_component": {

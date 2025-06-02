@@ -9,6 +9,7 @@ func _ready() -> void:
 
 
 func _on_actor_hit(target: Node2D, attacker: Node2D, damage: int, direction: Vector2i, element: int) -> void:
+	
 	floating_damage_text(target, attacker, damage, direction, element)
 
 	# play_attack_animation(attacker, direction)
@@ -42,9 +43,10 @@ func _on_attack_animation_finished(entity: Node2D):
 
 # --- DAMAGE NUMMBERS ---
 const DAMAGE_TEXT_SCENE = preload(DirectoryPaths.damage_text_scene)
+const ARCH_HEIGHT = GameData.TILE_SIZE.y / 1.2
+const DURATION = 0.3
 
 func floating_damage_text(target: Node2D, attacker: Node2D, damage: int, direction: Vector2i, element: int) -> void:
-	print(target, attacker, damage, direction, element)
 
 	if not is_instance_valid(target):
 		return
@@ -53,137 +55,72 @@ func floating_damage_text(target: Node2D, attacker: Node2D, damage: int, directi
 	get_tree().current_scene.add_child(damage_text)
 	
 	# position above target
-	var spawn_pos = target.globat_position + Vector2()
+	var target_center = target.position - Vector2(damage_text.size.x / 2, damage_text.size.y / 2)
+	var spawn_pos = target_center + Vector2(direction.x * GameData.TILE_SIZE.x / 2, direction.y * GameData.TILE_SIZE.y / 2)
+
+	damage_text.position = spawn_pos
+
+	# configure text
+	damage_text.text = "-" + str(damage)
+	damage_text.modulate = _get_element_color(element)
+
+	# modifiy and clamp fint size
+	var base_size = 16
+	var scaled_size = base_size * (1.0 + damage * 0.03)
+	damage_text.label_settings = LabelSettings.new()
+	# var font_size = damage_text.label_settings.font_size * damage * 0.1
+	# clampi(font_size, 15, 30)
+	damage_text.label_settings.font_size = clamp(scaled_size, 8, 30)
+
+
+	# animate
+	animate_damage_text(damage_text, direction, spawn_pos)
+
+
+func animate_damage_text(damage_text: Label, direction: Vector2i, start_pos: Vector2) -> void:
+	# tween
+	var tween = get_tree().current_scene.create_tween()
+	tween.set_parallel(false)
+
+	# arch movement
+	tween.tween_method(
+		func(progress: float):
+			var curve = progress * (1.0 - progress) * 4.0 # Quadratic curve
+			var height_offset = Vector2(0, -curve * ARCH_HEIGHT)
+			var horizontal_offset = Vector2(direction) * progress * 32.0
+			damage_text.position = start_pos + height_offset + horizontal_offset,
+		0.0, 1.0, DURATION
+	)
+
+	tween.tween_property(damage_text, "modulate:a", 0.0, DURATION)
+	tween.tween_callback(damage_text.queue_free)
 
 
 
+func _get_arch_offset(dir: Vector2i) -> Vector2:
+	var offset = Vector2.ZERO
+	offset.x = dir.x * GameData.TILE_SIZE.x * 2
+	offset.y = dir.y * GameData.TILE_SIZE.y * 1.5
 
+	# adjust for diagonal
+	if dir.x != 0 and dir.y != 0:
+		offset *= 0.7071 # 1/sqrt(2) for normalization
 
-# deepseek said so:
+	return offset
 
-
-# 1. Animation system implementation:
-# animation_system.gd
-# extends Node
-
-# const DAMAGE_TEXT_SCENE = preload("res://ui/damage_text.tscn")
-
-# func _ready() -> void:
-#     SignalBus.actor_hit.connect(_on_actor_hit)
-
-# func _on_actor_hit(target: Node2D, _attacker: Node2D, damage: int, 
-#                  direction: Vector2, element: String):
-#     spawn_damage_numbers(target, damage, element, direction)
-
-# func spawn_damage_numbers(target: Node2D, damage: int, element: String, 
-#                          direction: Vector2 = Vector2.ZERO):
-#     if not is_instance_valid(target):
-#         return
-    
-#     var damage_text = DAMAGE_TEXT_SCENE.instantiate()
-#     get_tree().current_scene.add_child(damage_text)
-    
-#     # Position above target with direction offset
-#     var spawn_pos = target.global_position
-#     damage_text.global_position = spawn_pos + direction * 8
-    
-#     # Configure text
-#     damage_text.text = str(damage)
-#     damage_text.modulate = _get_element_color(element)
-    
-#     # Animate
-#     var tween = damage_text.get_node("Tween")
-#     tween.set_parallel()
-#     tween.tween_property(damage_text, "position:y", 
-#                         damage_text.position.y - 32, 0.5)
-#     tween.tween_property(damage_text, "modulate:a", 0.0, 0.5)
-#     tween.tween_callback(damage_text.queue_free).set_delay(0.5)
-
-# func _get_element_color(element: String) -> Color:
-#     match element:
-#         "fire": return Color(1, 0.3, 0.1)
-#         "ice": return Color(0.3, 0.7, 1)
-#         "poison": return Color(0.5, 0.2, 1)
-#         _: return Color(1, 1, 1)
-
-
-
-# 2. Signal Emission Example (Combat System)
-
-# # combat_system.gd
-# func apply_damage(target: Entity, attacker: Entity, damage: int, 
-#                  element: String = "physical"):
-#     # Calculate attack direction
-#     var attack_dir = (target.position - attacker.position).normalized()
-    
-#     # Emit signal with all parameters
-#     SignalBus.actor_hit.emit(
-#         target,    # Node2D reference
-#         attacker,  # Node2D reference
-#         damage,    # int
-#         attack_dir,# Vector2
-#         element    # String
-#     )
-    
-#     # Apply actual damage
-#     target.health_component.take_damage(damage)
-
-
-
-# Key Features:
-# 1. Direction-Based Positioning
-# 	Damage text spawns in attack direction:
-# 	spawn_pos + direction * 8
-
-# 2. Element-Specific Coloring
-# 	Different colors for damage types using _get_element_color()
-
-# 3. Floating Animation
-# 	Tween moves text upward while fading out
-
-# 4. Automatic Cleanup
-# 	queue_free() called after animation completes
-
-
-# Enhanced version with advanced features:
-# func spawn_damage_numbers(target: Node2D, damage: int, element: String, 
-#                          direction: Vector2 = Vector2.ZERO):
-#     # ... [previous setup] ...
-    
-#     # Critical hit effect
-#     if damage >= 10:  # Example threshold
-#         damage_text.scale = Vector2(1.5, 1.5)
-#         damage_text.modulate = Color(1, 0.9, 0)
-#         damage_text.text += "!"
-        
-#         # Add shake effect
-#         var shake = ShakeEffect.new()
-#         damage_text.add_child(shake)
-#         shake.start(0.3, 4)
-    
-#     # Healing effect
-#     if damage < 0:
-#         damage_text.text = "+" + str(abs(damage))
-#         damage_text.modulate = Color(0.2, 1, 0.3)
-#         damage_text.position.y -= 24  # Start higher
-    
-#     # ... [tween animation] ...
-
-
-# Additional 
-
-# 1. Screen Shake Integration
-# Add subtle screen shake for large damage:
-
-# if damage > 20:
-#     CameraSystem.add_trauma(0.3)
-
-# 2. fonst sizing
-
-# var font_size = clamp(damage / 5, 12, 36)
-# damage_text.label_settings.font_size = font_size
-
-
-# 3. sound
-
-# AudioSystem.play_sound(_get_element_sound(element))
+func _get_element_color(element: int) -> String:
+	match element:
+		GameData.ELEMENT.PHYSICAL:
+			return "#bbbab5"
+		GameData.ELEMENT.FIRE:
+			return "#a62121"
+		GameData.ELEMENT.ICE:
+			return "#56dcb4"
+		GameData.ELEMENT.LIGHTNING:
+			return "#dee310"
+		GameData.ELEMENT.BLOOD:
+			return "#591e18"
+		GameData.ELEMENT.POISON:
+			return "#2e610f"
+		_:
+			return "#bbbab5"

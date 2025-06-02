@@ -84,6 +84,8 @@ func melee_attack(target: Node2D) -> bool:
 
 	AnimationSystem.play_attack_animation(get_parent().get_parent(), dir)
 
+	SignalBus.actor_hit.emit(target, get_parent().get_parent(), dam, dir, element)
+
 	return true
 
 # --- Utils ---
