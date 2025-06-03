@@ -10,7 +10,7 @@ damage_max = 19
 weapon_type = 0
 weapon_sub_type = 0
 attack_type = 0
-element = 5
+element = 3
 metadata/_custom_type_script = "uid://c7nlkhtqiekyc"
 
 [resource]

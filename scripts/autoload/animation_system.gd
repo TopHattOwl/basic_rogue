@@ -8,12 +8,10 @@ func _ready() -> void:
 	SignalBus.actor_hit.connect(_on_actor_hit)
 
 
-func _on_actor_hit(target: Node2D, attacker: Node2D, damage: int, direction: Vector2i, element: int) -> void:
+func _on_actor_hit(target: Node2D, attacker: Node2D, damage: int, direction: Vector2i, element: int, hit_action: int) -> void:
 	
-	floating_damage_text(target, attacker, damage, direction, element)
-
-	# play_attack_animation(attacker, direction)
-	# maybe put attack animation here as well
+	floating_damage_text(target, attacker, damage, direction, element, hit_action)
+	play_attack_animation(attacker, direction)
 
 # --- ATTACK ANIMATION ---
 func play_attack_animation(entity: Node2D, direction: Vector2i) -> void:
@@ -46,7 +44,7 @@ const DAMAGE_TEXT_SCENE = preload(DirectoryPaths.damage_text_scene)
 const ARCH_HEIGHT = GameData.TILE_SIZE.y / 1.2
 const DURATION = 0.3
 
-func floating_damage_text(target: Node2D, attacker: Node2D, damage: int, direction: Vector2i, element: int) -> void:
+func floating_damage_text(target: Node2D, _attacker: Node2D, damage: int, direction: Vector2i, element: int, hit_action: int) -> void:
 
 	if not is_instance_valid(target):
 		return
@@ -61,15 +59,21 @@ func floating_damage_text(target: Node2D, attacker: Node2D, damage: int, directi
 	damage_text.position = spawn_pos
 
 	# configure text
-	damage_text.text = "-" + str(damage)
-	damage_text.modulate = _get_element_color(element)
+	match hit_action:
+		GameData.HIT_ACTIONS.HIT: # hit
+			damage_text.text = str(damage)
+			damage_text.modulate = _get_element_color(element)
+		GameData.HIT_ACTIONS.MISS: # attacker missed
+			damage_text.text = "Miss"
+			damage_text.modulate = "#bbbab5"
+		GameData.HIT_ACTIONS.BLOCKED: # target dodged
+			damage_text.text = "Blocked"
+			damage_text.modulate = "#bbbab5"
 
 	# modifiy and clamp fint size
 	var base_size = 16
 	var scaled_size = base_size * (1.0 + damage * 0.03)
 	damage_text.label_settings = LabelSettings.new()
-	# var font_size = damage_text.label_settings.font_size * damage * 0.1
-	# clampi(font_size, 15, 30)
 	damage_text.label_settings.font_size = clamp(scaled_size, 8, 30)
 
 
@@ -97,16 +101,16 @@ func animate_damage_text(damage_text: Label, direction: Vector2i, start_pos: Vec
 
 
 
-func _get_arch_offset(dir: Vector2i) -> Vector2:
-	var offset = Vector2.ZERO
-	offset.x = dir.x * GameData.TILE_SIZE.x * 2
-	offset.y = dir.y * GameData.TILE_SIZE.y * 1.5
+# func _get_arch_offset(dir: Vector2i) -> Vector2:
+# 	var offset = Vector2.ZERO
+# 	offset.x = dir.x * GameData.TILE_SIZE.x * 2
+# 	offset.y = dir.y * GameData.TILE_SIZE.y * 1.5
 
-	# adjust for diagonal
-	if dir.x != 0 and dir.y != 0:
-		offset *= 0.7071 # 1/sqrt(2) for normalization
+# 	# adjust for diagonal
+# 	if dir.x != 0 and dir.y != 0:
+# 		offset *= 0.7071 # 1/sqrt(2) for normalization
 
-	return offset
+# 	return offset
 
 func _get_element_color(element: int) -> String:
 	match element:

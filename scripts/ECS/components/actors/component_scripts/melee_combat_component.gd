@@ -9,11 +9,6 @@ var attack_type: int = GameData.ATTACK_TYPE.BASH
 var element: int = GameData.ELEMENT.PHYSICAL
 var element_weight: float = 0 # remove element weight
 
-var damage_min_offhand: int = 0
-var damage_max_offhand: int = 0
-var attack_type_offhand: int = GameData.ATTACK_TYPE.BASH
-var element_offhand: int = GameData.ELEMENT.PHYSICAL
-
 
 # --- These stats don't get modified when equiping stuff ---
 # calculated from dexterity
@@ -23,7 +18,7 @@ var accuracy: float = 0
 # melee defensive stats 
 var melee_dodge: float = 0 # chanche to dodge a melee attack
 var melee_block: float = 0 # chance to block a melee attack
-var melee_repost: float = 0 # chance to do a repost attack after dodging or blocking a melee attack
+var melee_repost: float = 0 # chance to do a repost attack after dodging or blocking  or getting hit by a melee attack
 
 
 # melee offensive stats
@@ -41,6 +36,7 @@ func initialize(d: Dictionary) -> void:
 	element_weight = d.get("element_weight", 0)
 
 	melee_dodge = d.get("melee_dodge", 0)
+	melee_block = d.get("melee_block", 0)
 
 # combat system
 func melee_attack(target: Node2D) -> bool:
@@ -66,23 +62,24 @@ func melee_attack(target: Node2D) -> bool:
 		push_error("target has no health component")
 		return false
 
-	# accuracy check
-	if randf() > accuracy:
-		UiFunc.log_player_attack(target, 0, element, 1)
-		# tried to hit but missed so actor acted
-		AnimationSystem.play_attack_animation(get_parent().get_parent(), dir)
-		return true
-	
-	# dodge check
-	if randf() < target_melee_combat.melee_dodge:
-		UiFunc.log_player_attack(target, 0, element, 2)
-		# tried to hit but missed so actor acted
-		AnimationSystem.play_attack_animation(get_parent().get_parent(), dir)
-		return true 
-	
+	# damage of the attack
 	var dam: int = calc_damage()
 
+	# accuracy check against dodge
+	var target_dodge = target_melee_combat.melee_dodge
+	var hit_chance = clamp(accuracy - target_dodge, 0.05, 0.95)
+	var roll = randf()
+	if roll > hit_chance:
+		UiFunc.log_player_attack(target, 0, element, GameData.HIT_ACTIONS.MISS)
+		# tried to hit but missed so actor acted
+		SignalBus.actor_hit.emit(target, get_parent().get_parent(), 0, dir, element, GameData.HIT_ACTIONS.MISS)
+		return true
+	
+	# no block check, monster's can't block only have armor
+
+
 	dam -= max(0, target_melee_combat.get_armor())
+	dam = max(0, dam)
 	target_health.take_damage(dam)
 
 
@@ -90,20 +87,18 @@ func melee_attack(target: Node2D) -> bool:
 	# add skill xp for element if used elemental attack
 	if ComponentRegistry.get_component(get_parent().get_parent(), GameData.ComponentKeys.IDENTITY).actor_name == "player":
 		UiFunc.log_player_attack(target, dam, element)
-	
-	AnimationSystem.play_attack_animation(get_parent().get_parent(), dir)
 
-	SignalBus.actor_hit.emit(target, get_parent().get_parent(), dam, dir, element)
+	SignalBus.actor_hit.emit(target, get_parent().get_parent(), dam, dir, element, GameData.HIT_ACTIONS.HIT)
 
 	return true
+
+
+# func melee_block() -> void:
+# 	pass
 
 # --- Utils ---
 
 func get_armor() -> int:
-
-	if get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.IDENTITY)).faction == "monsters":
-		return get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.MONSTER_STATS)).armor
-
 
 	var equipment: EquipmentComponent  = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.EQUIPMENT))
 	return equipment.get_total_armor()

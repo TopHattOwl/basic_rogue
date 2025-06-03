@@ -4,6 +4,10 @@ var player_ui: CanvasLayer
 
 func _ready() -> void:
 	SignalBus.player_acted.connect(_on_pass_time)
+	SignalBus.block_power_changed.connect(_block_test)
+
+func _block_test(new_value, max_value):
+	player_ui.update_block_display(new_value, max_value)
 
 func _on_pass_time():
 	log_message("<<<<< --- Turn Ended --- >>>>>")
@@ -19,11 +23,11 @@ func set_player_ui():
 func log_message(text: String) -> void:
 	player_ui.log_message(text)
 
-## logs monster attack if target is player, `param` hit_action: 0 -> hit, 1 -> miss, 2 -> player dodged
+## logs monster attack if target is player, `param` hit_action: 0 -> hit, 1 -> miss, 2 -> player blocked
 func log_monster_attack(monster: Node2D, damage: int, hit_action: int = 0) -> void:
 	player_ui.log_message(LogMessage.make_monster_attack_message(monster, damage, hit_action))
 
-## logs player attack, `param` hit_action: 0 -> hit, 1 -> miss, 2 -> dodged
+## logs player attack, `param` hit_action: 0 -> hit, 1 -> miss, 2 -> blocked
 func log_player_attack(target: Node2D, damage: int, element: int, hit_action: int = 0) -> void:
 	player_ui.log_message(LogMessage.make_player_attack_message(target, damage, element, hit_action))
 

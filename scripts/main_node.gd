@@ -26,6 +26,12 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# finish biome integration to class objects
 
 # TODO:
+	# IMPORTANT:
+		# player data load and save rework, handle it in player's own script
+			# also make a save and load function for each component so that saveing and loading can be just iterating tru components and calling save and load functions
+		# rework armor: armor stat (integer) should translate to % damage reduction (max is 80%)
+	# ANIMATION:
+		# call attack animation by signals, not by calling the function itself
 	# stance_bar.gd: check for weapon and armor type requirement -> only show stances that can be activated
 	# add camera2d to targeter, make it active when looking
 	# generate seed in WorldMap object using the world seed in GameData

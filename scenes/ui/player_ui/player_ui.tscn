@@ -53,6 +53,23 @@ offset_right = 64.0
 offset_bottom = 24.0
 texture = ExtResource("2_ow2f4")
 
+[node name="BlockPower" type="Label" parent="."]
+offset_left = 328.0
+offset_top = 336.0
+offset_right = 392.0
+offset_bottom = 360.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="BlockPower"]
+z_index = -1
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 24.0
+texture = ExtResource("2_ow2f4")
+
 [node name="LookUI" type="TextureRect" parent="."]
 visible = false
 offset_left = 424.0
@@ -208,3 +225,10 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 8
 text = "Other"
 autowrap_mode = 2
+
+[node name="ItemsContainer" type="VBoxContainer" parent="Inventory"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 48.0
+offset_right = 441.0
+offset_bottom = 248.0

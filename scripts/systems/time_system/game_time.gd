@@ -1,5 +1,6 @@
 extends Node
 
+const DAY_LENGTH = 2400
 
 @export var current_time: StringName
 @export var current_day_turn: int
@@ -37,18 +38,18 @@ func update_current_time():
 		current_time = "night"
 
 func check_end_of_day():
-	if current_day_turn == 2400:
+	if current_day_turn >= DAY_LENGTH:
 		current_day_turn = 0
 		pass_day()
 
 func pass_day():
 	day += 1
 
-	if day == 30:
+	if day >= 30:
 		month += 1
 		day = 1
 	
-	if month == 15:
+	if month >= 14:
 		year += 1
 		month = 1
 

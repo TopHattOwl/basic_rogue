@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpw2hbpo6msp4"]
+
+[ext_resource type="Script" uid="uid://bx88ksahpprj1" path="res://scripts/ECS/components/actors/component_scripts/block_component.gd" id="1_4pgmm"]
+
+[node name="BlockComponent" type="Node"]
+script = ExtResource("1_4pgmm")

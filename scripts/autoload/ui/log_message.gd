@@ -6,7 +6,7 @@ static func make_player_attack_message(target: Node2D, damage: int, element: int
 	var target_name = ComponentRegistry.get_component(target, GameData.ComponentKeys.IDENTITY).actor_name 
 	var text : = ""
 	match hit_action:
-		0: # hit
+		GameData.HIT_ACTIONS.HIT: # hit
 			var damage_color = get_damage_color(element)
 			text = "You hit the [color={0}]{1}[/color] for [color={2}]{3}[/color] damage".format([
 				target.text_color,
@@ -14,13 +14,13 @@ static func make_player_attack_message(target: Node2D, damage: int, element: int
 				damage_color,
 				str(damage)
 			])
-		1: # miss
+		GameData.HIT_ACTIONS.MISS: # miss
 			text = "You missed the [color={0}]{1}[/color]".format([
 				target.text_color,
 				target_name
 			])
-		2: # target dodged
-			text = "The [color={0}]{1}[/color] dodged your attack".format([
+		GameData.HIT_ACTIONS.BLOCKED: # target blocked
+			text = "The [color={0}]{1}[/color] blocked your attack".format([
 				target.text_color,
 				target_name
 			])
@@ -53,20 +53,20 @@ static func make_monster_attack_message(monster: Node2D, damage: int, hit_action
 	var text: = ""
 
 	match hit_action:
-		0: # hit
+		GameData.HIT_ACTIONS.HIT: # hit
 			text = "The [color={0}]{1}[/color] hit you for [color={2}]{3}[/color] damage".format([
 				monster.text_color,
 				monster_name,
 				get_damage_color(element),
 				str(damage)
 			])
-		1: # miss
-			text = "The [color={0}]{1}[/color] missed you".format([
+		GameData.HIT_ACTIONS.MISS: # miss
+			text = "The [color={0}]{1}[/color] missed".format([
 				monster.text_color,
 				monster_name
 			])
-		2: # player dodged
-			text = "You dodged the [color={0}]{1}'s[/color] attack".format([
+		GameData.HIT_ACTIONS.BLOCKED: # player dodged
+			text = "You blocked the [color={0}]{1}'s[/color] attack".format([
 				monster.text_color,
 				monster_name
 			])

@@ -7,8 +7,7 @@ static func spawn_player():
 	var player_scene = preload(DirectoryPaths.player_scene)
 	GameData.player = player_scene.instantiate()
 
-	GameData.main_node.add_child(GameData.player)
-	GameData.player.owner = GameData.main_node # for scene persistence
+	
 
 	# give player ui to UiFunc
 	UiFunc.set_player_ui()
@@ -33,6 +32,9 @@ static func spawn_player():
 		push_error("Player position component not found")
 	
 
+	GameData.main_node.add_child(GameData.player)
+	GameData.player.owner = GameData.main_node # for scene persistence
+	
 	# upate/set camera zoom and limints
 	UiFunc.update_camera_data()
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Stance" load_steps=6 format=3 uid="uid://d4axwjc6rwqnd"]
+[gd_resource type="Resource" script_class="Stance" load_steps=21 format=3 uid="uid://d4axwjc6rwqnd"]
 
 [ext_resource type="Script" uid="uid://c6hqvujepfyxm" path="res://scripts/systems/modifier_system/stat_modifier_class.gd" id="1_7s074"]
 [ext_resource type="Script" uid="uid://cq8mad0mmyu8r" path="res://scripts/systems/conditions/base_condition.gd" id="2_2c2kf"]
@@ -12,16 +12,151 @@ script = ExtResource("1_7s074")
 target_stat = &"damage_min"
 target_component = 7
 operation = 0
-value = 5.0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_kvlpn"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_max"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_2c2kf"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_min"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_kkd72"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_max"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_pp3pa"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_min"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_xbt7o"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_max"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_cd4oi"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_min"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_46iyv"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_max"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_brg1o"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_min"
+target_component = 7
+operation = 0
+value = 0.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_6xai2"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_max"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_0gntu"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_min"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_q7piu"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_max"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_phxd1"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_min"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_8o4pn"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_max"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_2egqg"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_min"
+target_component = 7
+operation = 0
+value = 1.0
+conditions = Array[ExtResource("2_2c2kf")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_mqag3"]
+script = ExtResource("1_7s074")
+target_stat = &"damage_max"
+target_component = 7
+operation = 0
+value = 1.0
 conditions = Array[ExtResource("2_2c2kf")]([])
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [resource]
 script = ExtResource("2_kvlpn")
 name = "test 2"
-description = "this is even testier than the one before this"
+description = "lot of stat modifiers to test odifier system speed"
 icon = SubResource("PlaceholderTexture2D_kkd72")
 weapon_types = [0]
 armor_types = []
-modifiers = Array[ExtResource("1_7s074")]([SubResource("Resource_2axnh")])
+modifiers = Array[ExtResource("1_7s074")]([SubResource("Resource_2axnh"), SubResource("Resource_kvlpn"), SubResource("Resource_2c2kf"), SubResource("Resource_kkd72"), SubResource("Resource_pp3pa"), SubResource("Resource_xbt7o"), SubResource("Resource_cd4oi"), SubResource("Resource_46iyv"), SubResource("Resource_brg1o"), SubResource("Resource_6xai2"), SubResource("Resource_0gntu"), SubResource("Resource_q7piu"), SubResource("Resource_phxd1"), SubResource("Resource_8o4pn"), SubResource("Resource_2egqg"), SubResource("Resource_mqag3")])
 metadata/_custom_type_script = "uid://cpememyp02ehk"

@@ -255,6 +255,7 @@ const COMPONENTS = {
 	ComponentKeys.IDENTITY: "Components/IdentityComponent",
 	ComponentKeys.INVENTORY: "Components/InventoryComponent",
 	ComponentKeys.MELEE_COMBAT: "Components/MeleeCombatComponent",
+	ComponentKeys.BLOCK: "Components/BlockComponent",
 	ComponentKeys.POSITION: "Components/PositionComponent",
 	ComponentKeys.MONSTER_PROPERTIES: "Components/MonsterPropertiesComponent",
 	ComponentKeys.MONSTER_STATS: "Components/MonsterStatsComponent",
@@ -322,6 +323,7 @@ enum ComponentKeys {
 	IDENTITY,
 	INVENTORY,
 	MELEE_COMBAT,
+	BLOCK,
 	POSITION,
 	MONSTER_PROPERTIES,
 	MONSTER_STATS,
@@ -468,4 +470,11 @@ enum MODIFIER_OPERATION {
 	ADD,
 	MULTIPLY,
 	OVERRIDE,
+}
+
+
+enum HIT_ACTIONS {
+	HIT, # attacker hit
+	MISS, # attacker missed bc target dodged
+	BLOCKED, # target blocked the attack
 }

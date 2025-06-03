@@ -65,8 +65,18 @@ func save_player_data(player: Node2D) -> bool:
 			"accuracy": melee_comp.accuracy,
 			"element": melee_comp.element,
 			"element_weight": melee_comp.element_weight,
-			"melee_dodge": melee_comp.melee_dodge
+			"melee_dodge": melee_comp.melee_dodge,
+			"melee_block": melee_comp.melee_block,
 		}
+	
+	# Block component
+	var block_comp = ComponentRegistry.get_component(player, GameData.ComponentKeys.BLOCK)
+	if block_comp:
+		save_data["block_component"] = {
+			"block_chance": block_comp.block_chance,
+			"max_block_power": block_comp.max_block_power,
+			"block_recovery_rate": block_comp.block_recovery_rate,
+	}
 	
 	# Player Comonent
 	var player_comp = ComponentRegistry.get_component(player, GameData.ComponentKeys.PLAYER)

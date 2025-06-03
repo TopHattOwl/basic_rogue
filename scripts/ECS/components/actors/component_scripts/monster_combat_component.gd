@@ -10,8 +10,9 @@ var accuracy: float = 0
 var element: int = 0
 var element_weight: float = 0
 
-var melee_dodge: float = 0
-
+# melee defensive stats 
+var melee_dodge: float = 0 # chanche to dodge a melee attack
+var melee_repost: float = 0 # chance to do a repost attack after dodging or blocking a melee attack
 
 func initialize(d: Dictionary) -> void:
 	damage_min = d.get("damage_min", 0)
@@ -61,43 +62,41 @@ func melee_attack(target: Node2D) -> bool:
 		push_error("target has no health component")
 		return false
 
-	# accuracy check
-	if randf() > accuracy:
-		UiFunc.log_monster_attack(get_parent().get_parent(), 0, 1)
+	var dam: int = calc_damage()
+
+	# accuracy check against dodge
+	var target_dodge = target_melee_combat.melee_dodge
+	var hit_chance = clamp(accuracy - target_dodge, 0.05, 0.95)
+	var roll = randf()
+	if roll > hit_chance:
+		UiFunc.log_monster_attack(get_parent().get_parent(), 0, GameData.HIT_ACTIONS.MISS)
 		# tried to hit but missed so actor acted
-		AnimationSystem.play_attack_animation(get_parent().get_parent(), dir)
+		SignalBus.actor_hit.emit(target, get_parent().get_parent(), 0, dir, element, GameData.HIT_ACTIONS.MISS)
 		return true
 	
-	# dodge check
-	if randf() < target_melee_combat.melee_dodge:
-		UiFunc.log_monster_attack(get_parent().get_parent(), 0, 2)
+	# block check
+	var target_block_comp = ComponentRegistry.get_component(target, GameData.ComponentKeys.BLOCK)
+	if target_block_comp.try_block(dam):
+		UiFunc.log_monster_attack(get_parent().get_parent(), 0, GameData.HIT_ACTIONS.BLOCKED)
 		# tried to hit but missed so actor acted
-		AnimationSystem.play_attack_animation(get_parent().get_parent(), dir)
+		SignalBus.actor_hit.emit(target, get_parent().get_parent(), 0, dir, element, GameData.HIT_ACTIONS.BLOCKED)
 		return true 
 	
-	var dam: int = calc_damage()
+	
 
 	dam -= max(0, target_melee_combat.get_armor())
 	target_health.take_damage(dam)
 
 	UiFunc.log_monster_attack(get_parent().get_parent(), dam)
 
-	AnimationSystem.play_attack_animation(get_parent().get_parent(), dir)
-
-	SignalBus.actor_hit.emit(target, get_parent().get_parent(), dam, dir, element)
+	SignalBus.actor_hit.emit(target, get_parent().get_parent(), dam, dir, element, GameData.HIT_ACTIONS.HIT)
 
 	return true
 
 # --- Utils ---
 
 func get_armor() -> int:
-
-	if get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.IDENTITY)).faction == "monsters":
-		return get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.MONSTER_STATS)).armor
-
-
-	var equipment  = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.EQUIPMENT))
-	return equipment.get_total_armor()
+	return get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.MONSTER_STATS)).armor
 
 
 func calc_damage() -> int:

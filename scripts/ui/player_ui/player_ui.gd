@@ -2,7 +2,7 @@ extends CanvasLayer
 
 # --- MESSAGE ---
 @onready var message_log: RichTextLabel = $SideBar/MessageLog
-@onready var hp_bar: Label = $HPBar
+
 
 # --- LOOK ---
 @onready var look_ui: TextureRect = $LookUI
@@ -21,8 +21,15 @@ var look_target_stuff = []
 # --- INVENTORY ---
 @onready var inventory = $Inventory
 
+# --- BLOCK POWER ---
 
-# --- PROCESS ---
+@onready var block = $BlockPower
+
+func update_block_display(current: int, max: int) -> void:
+	block.text = "%s/%s" % [current, max]
+
+# --- HEALTH ---
+@onready var hp_bar: Label = $HPBar
 func _process(_delta: float) -> void:
 	hp_bar.text = "HP: %s/%s" % [ComponentRegistry.get_player_comp(GameData.ComponentKeys.HEALTH).hp, ComponentRegistry.get_player_comp(GameData.ComponentKeys.HEALTH).max_hp]
 
@@ -58,3 +65,8 @@ func update_look_ui(grid_pos: Vector2i) -> void:
 	var targeter = GameData.player.get_node("Targeter")
 	targeter.top_level = true # this makes it not a child of the player so it's pos is not affected by player movement
 	targeter.target_pos = grid_pos
+
+
+func _ready() -> void:
+	# init block power
+	block.text = "%s/%s" % [ComponentRegistry.get_player_comp(GameData.ComponentKeys.BLOCK).current_block_power, ComponentRegistry.get_player_comp(GameData.ComponentKeys.BLOCK).max_block_power]
