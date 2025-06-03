@@ -64,9 +64,7 @@ func save_player_data(player: Node2D) -> bool:
 			"attack_type": melee_comp.attack_type,
 			"accuracy": melee_comp.accuracy,
 			"element": melee_comp.element,
-			"element_weight": melee_comp.element_weight,
 			"melee_dodge": melee_comp.melee_dodge,
-			"melee_block": melee_comp.melee_block,
 		}
 	
 	# Block component

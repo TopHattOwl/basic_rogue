@@ -1,6 +1,6 @@
 extends Node2D
 
-var max_hp = 15
+var max_hp = 35
 
 # var melee_combat_component = {
 # 	"damage_min": 8,
@@ -14,7 +14,7 @@ var max_hp = 15
 
 var monster_combat_component = {
 	"damage_min": 8,
-	"daamge_max": 14,
+	"damage_max": 14,
 	"attack_type": GameData.ATTACK_TYPE.BASH,
 	"accuracy": 0.9,
 	"element": GameData.ELEMENT.PHYSICAL,
@@ -33,7 +33,8 @@ var attributes_component = {
 	"strength": 10,
 	"dexterity": 15,
 	"intelligence": 11,
-	"constitution": 12
+	"constitution": 12,
+	"perception": 12
 }
 
 var identity_component = {
@@ -61,7 +62,6 @@ var monster_drops_component = {
 func _ready() -> void:
 
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.HEALTH).initialize(max_hp)
-	# ComponentRegistry.get_component(self, GameData.ComponentKeys.MELEE_COMBAT).initialize(melee_combat_component)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.MONSTER_COMBAT).initialize(monster_combat_component)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.AI_BEHAVIOR).initialize(ai_behavior_component)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.ATTRIBUTES).initialize(attributes_component)

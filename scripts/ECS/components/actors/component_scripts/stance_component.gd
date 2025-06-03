@@ -30,7 +30,7 @@ func enter_stance(stance: Stance) -> bool:
 	for modifier in stance.modifiers:
 		match modifier.target_component:
 			GameData.ComponentKeys.MELEE_COMBAT:
-				get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.MODIFIERS)).add_melee_combat_modifier(modifier)
+				get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.MODIFIERS)).add_modifier(modifier)
 			_:
 				pass
 
@@ -41,15 +41,14 @@ func exit_stance() -> void:
 	for modifier in current_stance.modifiers:
 		match modifier.target_component:
 			GameData.ComponentKeys.MELEE_COMBAT:
-				get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.MODIFIERS)).remove_melee_combat_modifier(modifier)
+				get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.MODIFIERS)).remove_modifier(modifier)
 			_:
 				pass
 
 ## check requirements for the stance, returns true if all requirements are met
 func check_stance_requirements(stance: Stance) -> bool:
 	var equipment_comp = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.EQUIPMENT))
-	var main_hand: ItemResource = equipment_comp.main_hand
-	var off_hand: ItemResource = equipment_comp.off_hand
+	var main_hand: ItemResource = equipment_comp.equipment[GameData.EQUIPMENT_SLOTS.MAIN_HAND]
 	
 	if !main_hand:
 		return false

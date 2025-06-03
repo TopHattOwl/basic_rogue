@@ -63,6 +63,7 @@ func melee_attack(target: Node2D) -> bool:
 		return false
 
 	var dam: int = calc_damage()
+	var signal_hit_data := {}
 
 	# accuracy check against dodge
 	var target_dodge = target_melee_combat.melee_dodge
@@ -71,7 +72,15 @@ func melee_attack(target: Node2D) -> bool:
 	if roll > hit_chance:
 		UiFunc.log_monster_attack(get_parent().get_parent(), 0, GameData.HIT_ACTIONS.MISS)
 		# tried to hit but missed so actor acted
-		SignalBus.actor_hit.emit(target, get_parent().get_parent(), 0, dir, element, GameData.HIT_ACTIONS.MISS)
+		signal_hit_data = {
+			"target": target,
+			"attacker": get_parent().get_parent(),
+			"damage": 0,
+			"direction": dir,
+			"element": element,
+			"hit_action": GameData.HIT_ACTIONS.MISS
+		}
+		SignalBus.actor_hit.emit(signal_hit_data)
 		return true
 	
 	# block check
@@ -79,7 +88,15 @@ func melee_attack(target: Node2D) -> bool:
 	if target_block_comp.try_block(dam):
 		UiFunc.log_monster_attack(get_parent().get_parent(), 0, GameData.HIT_ACTIONS.BLOCKED)
 		# tried to hit but missed so actor acted
-		SignalBus.actor_hit.emit(target, get_parent().get_parent(), 0, dir, element, GameData.HIT_ACTIONS.BLOCKED)
+		signal_hit_data = {
+			"target": target,
+			"attacker": get_parent().get_parent(),
+			"damage": 0,
+			"direction": dir,
+			"element": element,
+			"hit_action": GameData.HIT_ACTIONS.BLOCKED
+		}
+		SignalBus.actor_hit.emit(signal_hit_data)
 		return true 
 	
 	
@@ -89,25 +106,37 @@ func melee_attack(target: Node2D) -> bool:
 
 	UiFunc.log_monster_attack(get_parent().get_parent(), dam)
 
-	SignalBus.actor_hit.emit(target, get_parent().get_parent(), dam, dir, element, GameData.HIT_ACTIONS.HIT)
+	signal_hit_data = {
+		"target": target,
+		"attacker": get_parent().get_parent(),
+		"damage": dam,
+		"direction": dir,
+		"element": element,
+		"hit_action": GameData.HIT_ACTIONS.HIT
+	}
+	SignalBus.actor_hit.emit(signal_hit_data)
 
+	print("monster attacks, damage: ", dam)
 	return true
 
 # --- Utils ---
 
 func get_armor() -> int:
-	return get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.MONSTER_STATS)).armor
 
+	return get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.MONSTER_STATS)).armor
+	
 
 func calc_damage() -> int:
 	var dam := 0
 
-	if get_parent().has_node(GameData.get_component_name(GameData.ComponentKeys.MODIFIERS)):
-		var dam_min = int(ModifierSystem.get_modified_monster_melee_combat_value(get_parent().get_parent(), "damage_min"))
-		var dam_max = int(ModifierSystem.get_modified_monster_melee_combat_value(get_parent().get_parent(), "damage_max"))
-		dam = randi_range(dam_min, dam_max)
+	if get_parent().has_node(GameData.get_component_name(GameData.ComponentKeys.MONSTER_MODIFIERS)):
+		pass
+		# var dam_min = int(ModifierSystem.get_modified_monster_melee_combat_value(get_parent().get_parent(), "damage_min"))
+		# var dam_max = int(ModifierSystem.get_modified_monster_melee_combat_value(get_parent().get_parent(), "damage_max"))
+		# dam = randi_range(dam_min, dam_max)
 	else:
 		# if no modifier component use base value
 		dam = randi_range(damage_min, damage_max)
+		print("damage calc, min-max: ", damage_min,"-" , damage_max)
 
 	return dam

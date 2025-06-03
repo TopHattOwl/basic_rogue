@@ -4,7 +4,7 @@ var max_hp = 30
 
 var monster_combat_component = {
 	"damage_min": 10,
-	"daamge_max": 19,
+	"damage_max": 19,
 	"attack_type": GameData.ATTACK_TYPE.SLASH,
 	"accuracy": 0.8,
 	"element": GameData.ELEMENT.PHYSICAL,
@@ -22,7 +22,8 @@ var attributes_component = {
 	"strength": 13,
 	"dexterity": 9,
 	"intelligence": 7,
-	"constitution": 14
+	"constitution": 14,
+	"perception": 8
 }
 
 var identity_component = {

@@ -261,6 +261,7 @@ const COMPONENTS = {
 	ComponentKeys.MONSTER_STATS: "Components/MonsterStatsComponent",
 	ComponentKeys.MONSTER_DROPS: "Components/MonsterDropsComponent",
 	ComponentKeys.MONSTER_COMBAT: "Components/MonsterCombatComponent",
+	ComponentKeys.MONSTER_MODIFIERS: "Components/MonsterModifiersComponent",
 	ComponentKeys.SPELLS: "Components/SpellsComponent",
 	ComponentKeys.STAMINA: "Components/StaminaComponent",
 	ComponentKeys.STATE: "Components/StateComponent",
@@ -328,6 +329,7 @@ enum ComponentKeys {
 	MONSTER_PROPERTIES,
 	MONSTER_STATS,
 	MONSTER_COMBAT,
+	MONSTER_MODIFIERS,
 	MONSTER_DROPS,
 	SPELLS,
 	STAMINA,
@@ -402,6 +404,7 @@ enum SKILLS {
 enum ITEM_TYPES {
 	WEAPON,
 	RANGED_WEAPON,
+	SHIELD,
 	ARMOR,
 	POTION,
 	POWDER,
@@ -410,6 +413,20 @@ enum ITEM_TYPES {
 	RESOURCE,
 	OTHER
 }
+
+enum EQUIPMENT_SLOTS {
+	MAIN_HAND,
+	OFF_HAND,
+	HEAD,
+	SHOULDERS,
+	CHEST,
+	ARMS,
+	HANDS,
+	LEGS,
+	FEET,
+	BELT,
+}
+
 enum ARMOR_SLOTS {
 	HEAD,
 	SHOULDERS,

@@ -42,9 +42,7 @@ func load_player_data(json):
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).attack_type = melee.get("attack_type")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).accuracy = melee.get("accuracy")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).element = melee.get("element")
-	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).element_weight = melee.get("element_weight")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).melee_dodge = melee.get("melee_dodge")
-	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).melee_block = melee.get("melee_block")
 
 	# block component
 	var block = json.get("block_component")

@@ -7,7 +7,6 @@ var damage_min: int = 0
 var damage_max: int = 0
 var attack_type: int = GameData.ATTACK_TYPE.BASH
 var element: int = GameData.ELEMENT.PHYSICAL
-var element_weight: float = 0 # remove element weight
 
 
 # --- These stats don't get modified when equiping stuff ---
@@ -17,8 +16,6 @@ var accuracy: float = 0
 
 # melee defensive stats 
 var melee_dodge: float = 0 # chanche to dodge a melee attack
-var melee_block: float = 0 # chance to block a melee attack
-var melee_repost: float = 0 # chance to do a repost attack after dodging or blocking  or getting hit by a melee attack
 
 
 # melee offensive stats
@@ -33,10 +30,8 @@ func initialize(d: Dictionary) -> void:
 	accuracy = d.get("accuracy", 0)
 
 	element = d.get("element", 0)
-	element_weight = d.get("element_weight", 0)
 
 	melee_dodge = d.get("melee_dodge", 0)
-	melee_block = d.get("melee_block", 0)
 
 # combat system
 func melee_attack(target: Node2D) -> bool:
@@ -65,6 +60,8 @@ func melee_attack(target: Node2D) -> bool:
 	# damage of the attack
 	var dam: int = calc_damage()
 
+	var signal_hit_data := {}
+
 	# accuracy check against dodge
 	var target_dodge = target_melee_combat.melee_dodge
 	var hit_chance = clamp(accuracy - target_dodge, 0.05, 0.95)
@@ -72,10 +69,20 @@ func melee_attack(target: Node2D) -> bool:
 	if roll > hit_chance:
 		UiFunc.log_player_attack(target, 0, element, GameData.HIT_ACTIONS.MISS)
 		# tried to hit but missed so actor acted
-		SignalBus.actor_hit.emit(target, get_parent().get_parent(), 0, dir, element, GameData.HIT_ACTIONS.MISS)
+		signal_hit_data = {
+			"target": target,
+			"attacker": get_parent().get_parent(),
+			"damage": 0,
+			"direction": dir,
+			"element": element,
+			"hit_action": GameData.HIT_ACTIONS.MISS
+		}
+		# SignalBus.actor_hit.emit(target, get_parent().get_parent(), 0, dir, element, GameData.HIT_ACTIONS.MISS)
+		SignalBus.actor_hit.emit(signal_hit_data)
 		return true
 	
 	# no block check, monster's can't block only have armor
+	# armor check
 
 
 	dam -= max(0, target_melee_combat.get_armor())
@@ -88,13 +95,18 @@ func melee_attack(target: Node2D) -> bool:
 	if ComponentRegistry.get_component(get_parent().get_parent(), GameData.ComponentKeys.IDENTITY).actor_name == "player":
 		UiFunc.log_player_attack(target, dam, element)
 
-	SignalBus.actor_hit.emit(target, get_parent().get_parent(), dam, dir, element, GameData.HIT_ACTIONS.HIT)
+	signal_hit_data = {
+		"target": target,
+		"attacker": get_parent().get_parent(),
+		"damage": dam,
+		"direction": dir,
+		"element": element,
+		"hit_action": GameData.HIT_ACTIONS.HIT
+	}
+	# SignalBus.actor_hit.emit(target, get_parent().get_parent(), dam, dir, element, GameData.HIT_ACTIONS.HIT)
+	SignalBus.actor_hit.emit(signal_hit_data)
 
 	return true
-
-
-# func melee_block() -> void:
-# 	pass
 
 # --- Utils ---
 
@@ -107,8 +119,8 @@ func calc_damage() -> int:
 	var dam := 0
 
 	if get_parent().has_node(GameData.get_component_name(GameData.ComponentKeys.MODIFIERS)):
-		var dam_min = int(ModifierSystem.get_modified_melee_combat_value(get_parent().get_parent(), "damage_min"))
-		var dam_max = int(ModifierSystem.get_modified_melee_combat_value(get_parent().get_parent(), "damage_max"))
+		var dam_min = int(ModifierSystem.get_modified_value(get_parent().get_parent(), "damage_min", GameData.ComponentKeys.MELEE_COMBAT))
+		var dam_max = int(ModifierSystem.get_modified_value(get_parent().get_parent(), "damage_max", GameData.ComponentKeys.MELEE_COMBAT))
 		dam = randi_range(dam_min, dam_max)
 	else:
 		# if no modifier component use base value
@@ -116,4 +128,12 @@ func calc_damage() -> int:
 
 	return dam
 
+
+func reset_to_unarmed() -> void:
+	var damage = get_parent().get_parent().AttributesComp.strength / 2
+
+	damage_min = damage * 0.9
+	damage_max = damage * 1.1
+	attack_type = GameData.ATTACK_TYPE.BASH
+	element = GameData.ELEMENT.PHYSICAL
 	

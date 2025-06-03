@@ -2,7 +2,8 @@ extends Control
 
 
 # filled in godot engine, holds all the filter buttons in order
-@export var FilterButtons: Array[Button]
+var FilterButtons: Array[Button]
+@onready var filter_container = $FilterContainer
 
 
 func toggle_inventory() -> void:
@@ -11,6 +12,11 @@ func toggle_inventory() -> void:
 	set_process(visible)
 
 func _ready() -> void:
+	# fill FilterButtons with button references
+	for child in filter_container.get_children():
+		FilterButtons.append(child)
+
+
 	# connect filter buttons to pressed signal
 	for button in FilterButtons:
 		button.pressed.connect(_on_filter_button_pressed.bind(FilterButtons.find(button)))

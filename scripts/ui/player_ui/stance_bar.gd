@@ -41,10 +41,8 @@ func make_stance_buttons():
 	
 	var index = 0
 	var player_equipment = GameData.player.EquipmentComp
-	var weapon = player_equipment.weapon
 	
 	for stance in stances:
-
 		# check for weapon and armor type requirement -> only show stances that can be activated
 
 		var container = Container.new()

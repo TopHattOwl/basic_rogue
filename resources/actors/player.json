@@ -12,7 +12,7 @@
 		"max_block_power": 50
 	},
 	"health_component": {
-		"hp": 825,
+		"hp": 619,
 		"max_hp": 1000
 	},
 	"identity_component": {
@@ -23,11 +23,9 @@
 	"melee_combat_component": {
 		"accuracy": 0.9,
 		"attack_type": 0,
-		"damage_max": 19,
-		"damage_min": 15,
+		"damage_max": 10,
+		"damage_min": 5,
 		"element": 3,
-		"element_weight": 0.0,
-		"melee_block": 0.2,
 		"melee_dodge": 0.1
 	},
 	"player_component": {
@@ -43,8 +41,8 @@
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 28,
-			"y": 12
+			"x": 27,
+			"y": 11
 		}
 	},
 	"skills_component": {

@@ -129,7 +129,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Inventory" type="Control" parent="." node_paths=PackedStringArray("FilterButtons")]
+[node name="Inventory" type="Control" parent="."]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -138,7 +138,6 @@ offset_top = 48.0
 offset_right = 512.0
 offset_bottom = 304.0
 script = ExtResource("6_23jyl")
-FilterButtons = [NodePath("FilterContainer/MeleeWeaponsButton"), NodePath("FilterContainer/RangedWeaponsButton"), NodePath("FilterContainer/ArmorButton"), NodePath("FilterContainer/PotionsButton"), NodePath("FilterContainer/PowdersButton"), NodePath("FilterContainer/MonsterPartsButton"), NodePath("FilterContainer/AlchemyButton"), NodePath("FilterContainer/ResourceButton"), NodePath("FilterContainer/OtherButton")]
 
 [node name="Background" type="TextureRect" parent="Inventory"]
 layout_mode = 1
@@ -175,6 +174,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 8
 text = "Ranged Weapons"
+autowrap_mode = 2
+
+[node name="ShieldsButton" type="Button" parent="Inventory/FilterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+text = "Shields"
 autowrap_mode = 2
 
 [node name="ArmorButton" type="Button" parent="Inventory/FilterContainer"]

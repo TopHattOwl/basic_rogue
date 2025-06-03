@@ -30,6 +30,8 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 		# player data load and save rework, handle it in player's own script
 			# also make a save and load function for each component so that saveing and loading can be just iterating tru components and calling save and load functions
 		# rework armor: armor stat (integer) should translate to % damage reduction (max is 80%)
+		# remove item component from ECS/components/items/ it's stored in resources now since items are resources
+		# make a modifiers component for the monsters as well
 	# ANIMATION:
 		# call attack animation by signals, not by calling the function itself
 	# stance_bar.gd: check for weapon and armor type requirement -> only show stances that can be activated
@@ -69,7 +71,7 @@ func _ready():
 
 	# test weapon
 	var test_weapon = load("res://resources/items/item_instances/weapons/test_weapon.tres")
-	GameData.player.EquipmentComp.equip_main_hand(test_weapon)
+	GameData.player.EquipmentComp.equip_item(test_weapon, GameData.EQUIPMENT_SLOTS.MAIN_HAND)
 
 func _process(_delta):
 # input handler, gets input passed to it and depending on what input is pressed it calls different functions
