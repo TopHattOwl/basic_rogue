@@ -33,20 +33,13 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 		# rework armor: armor stat (integer) should translate to % damage reduction (max is 80%)
 		# remove item component from ECS/components/items/ it's stored in resources now since items are resources
 		# make a modifiers component for the monsters as well
-	# ANIMATION:
-		# call attack animation by signals, not by calling the function itself
 	# stance_bar.gd: check for weapon and armor type requirement -> only show stances that can be activated
 	# add camera2d to targeter, make it active when looking
 	# generate seed in WorldMap object using the world seed in GameData
-	# add perception attributes (find all references, some are string refereces, like "strenght" when saving and loading player data)
 	# Stamina and State componenet not finished
-	# in input_manager -> look input 
-		# get all terrain data and actor data at look target grid, get actor's sprite for displye, somhow get tile map's tile for display
 	# player_ui.gd make look ui array cycleable when looking at tile with more stuff
 	# in world_map_data.gd add world_map_identity array, figure out what to put there, name, quests, notes, etc also add it to map generation
 	# make thiner road tile for smaller roads
-	# make world map save and load smaller (for loop tru each DirectoryPaths.world_save_file)
-	# IMPORTANT ui_func.gd -> set_look_ui_target_array() TODO: loop tru terrain_data.tags and add all terrains
 	# implement repost system for melee combat
 func _ready():
 

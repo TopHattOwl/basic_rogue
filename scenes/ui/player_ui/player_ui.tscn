@@ -130,7 +130,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Inventory" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 56.0
@@ -234,7 +233,7 @@ autowrap_mode = 2
 
 [node name="ItemsContainer" type="VBoxContainer" parent="Inventory"]
 layout_mode = 0
-offset_left = 104.0
+offset_left = 160.0
 offset_top = 48.0
 offset_right = 441.0
 offset_bottom = 248.0
