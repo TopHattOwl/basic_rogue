@@ -1,4 +1,6 @@
 extends Node
+
+
 # one tile in world map is a screen if entered
 # world_map will hold data about a world map tile
 var world_map2 = WorldMap.new()
@@ -33,16 +35,6 @@ var world_map_civilization = []
 # 	int, # int from enum WORLD_TILE_TYPES
 # ]
 
-# world_map_monster_data is a 2d array holding data about monsters spawning in each world map tile
-# everything is null, it all gets filled in and saved when map is generated
-# var world_map_monster_data_template = {
-#	"monster_tier": int, from 1 to 5
-# 	"monster_types": Array, # array of int from enum MONSTERS_ALL, what monsters can appear here
-# 	"spawn_points": Array, # array of Vector2i, gets filled in when map is generated and saved
-#	"has_dungeon": bool,
-# }
-
-
 # var world_map_identity_template = {
 # 	"name": string,
 #	"notes": Array, array of strings for notes
@@ -52,9 +44,6 @@ var world_map_civilization = []
 func _ready() -> void:
 	# old load world map
 	SaveFuncs.load_world_map_data()
-
-	# new load
-	SaveFuncs.load_world_maps()
 
 	# parse_world_map_data()
 
@@ -67,6 +56,14 @@ func _ready() -> void:
 	# world_map2.add_premade_map(DirectoryPaths.first_outpost, Vector2i(31, 16))
 
 	# SaveFuncs.save_world_maps()
+
+## initializes the world map when startin a new game (no world map data just the premade world map)
+func _on_new_game_start() -> void:
+
+	init_biome_type()
+	init_world_map_civilization()
+	init_world_map_savagery()
+
 
 # --- INIT ---
 
@@ -105,7 +102,7 @@ func parse_world_map_data() -> void:
 	var world_map_scene = load(DirectoryPaths.world_map_scene).instantiate()
 
 	# set biome type
-	parse_biome_type(world_map_scene)
+	# parse_biome_type(world_map_scene)
 
 	# set biome
 	parse_biome(world_map_scene)
@@ -131,9 +128,6 @@ func parse_biome_type(world_map_scene: Node2D) -> void:
 					break
 
 func parse_biome(world_map_scene: Node2D) -> void:
-
-
-
 	for y in range(GameData.WORLD_MAP_SIZE.y):
 		for x in range(GameData.WORLD_MAP_SIZE.x):
 			var grid_pos = Vector2i(x, y)

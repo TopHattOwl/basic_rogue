@@ -3,7 +3,7 @@ class_name LoadPlayer
 extends Node
 
 
-func load_player_data(json):
+static func load_player_data(json):
 	# Position component
 	var position = json.get("position_component")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION).grid_pos = Vector2i(position.get("grid_pos").get("x"), position.get("grid_pos").get("y"))

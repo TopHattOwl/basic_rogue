@@ -3,7 +3,7 @@ class_name SavePlayer
 extends Node
 
 
-func save_player_data(player: Node2D) -> bool:
+static func save_player_data(player: Node2D) -> bool:
 	var save_data := {}
 	
 	# Health Component
@@ -106,7 +106,7 @@ func save_player_data(player: Node2D) -> bool:
 	return _write_save_file(DirectoryPaths.player_data_json, save_data)
 
 # File handling with error checking
-func _write_save_file(path: String, data: Dictionary) -> bool:
+static func _write_save_file(path: String, data: Dictionary) -> bool:
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	if FileAccess.get_open_error() != OK:
 		push_error("Failed to open save file: %s" % path)
