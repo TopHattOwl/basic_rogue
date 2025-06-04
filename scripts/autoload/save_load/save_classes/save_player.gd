@@ -105,31 +105,6 @@ func save_player_data(player: Node2D) -> bool:
 	# Save to file
 	return _write_save_file(DirectoryPaths.player_data_json, save_data)
 
-# Helper functions for equipment serialization
-# func _get_weapon_data(weapon) -> Dictionary:
-#     if not weapon or weapon.is_empty():
-#         return {}
-	
-#     return {
-#         "base_type": weapon.base_type,
-#         "name": weapon.name,
-#         "base_stats": weapon.base_stats,
-#         "modifications": weapon.modifications,
-#         "full_stats": weapon.full_stats
-#     }
-
-# func _get_shield_data(shield) -> Dictionary:
-#     return shield if shield else {}
-
-# func _get_ranged_weapon_data(ranged_weapon) -> Dictionary:
-#     return ranged_weapon if ranged_weapon else {}
-
-# func _get_armor_data(armor_slots: Dictionary) -> Dictionary:
-#     var armor_data := {}
-#     for slot in GameData.ArmorSlots.values():
-#         armor_data[slot] = armor_slots.get(slot, null)
-#     return armor_data
-
 # File handling with error checking
 func _write_save_file(path: String, data: Dictionary) -> bool:
 	var file := FileAccess.open(path, FileAccess.WRITE)

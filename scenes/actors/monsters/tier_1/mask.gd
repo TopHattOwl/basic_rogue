@@ -2,16 +2,6 @@ extends Node2D
 
 var max_hp = 35
 
-# var melee_combat_component = {
-# 	"damage_min": 8,
-# 	"daamge_max": 14,
-# 	"attack_type": GameData.ATTACK_TYPE.BASH,
-# 	"accuracy": 0.9,
-# 	"element": GameData.ELEMENT.PHYSICAL,
-# 	"element_weight": 0.0,
-# 	"melee_dodge": 0.1
-# }
-
 var monster_combat_component = {
 	"damage_min": 8,
 	"damage_max": 14,

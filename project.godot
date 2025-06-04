@@ -30,6 +30,7 @@ UiFunc="*res://scripts/autoload/ui/ui_func.gd"
 GameTime="*res://scripts/systems/time_system/game_time.gd"
 AnimationSystem="*res://scripts/autoload/animation_system.gd"
 SignalBus="*res://scripts/autoload/signal_bus.gd"
+GameState="*res://scripts/autoload/game_state.gd"
 
 [display]
 
