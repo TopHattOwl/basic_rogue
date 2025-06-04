@@ -2,7 +2,7 @@ class_name MovementSystem
 extends Node
 
 ## attemps to move entity to new_pos, returns true if successful
-func process_movement(entity: Node, new_pos: Vector2i) -> bool:
+static func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 
 	var position_component = ComponentRegistry.get_component(entity, GameData.ComponentKeys.POSITION)
 
@@ -60,7 +60,7 @@ func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 	return false
 
 
-func process_monster_movement(entity: Node, new_pos: Vector2i) -> bool:
+static func process_monster_movement(entity: Node, new_pos: Vector2i) -> bool:
 
 	var position_component = ComponentRegistry.get_component(entity, GameData.ComponentKeys.POSITION)
 
@@ -104,7 +104,7 @@ func process_monster_movement(entity: Node, new_pos: Vector2i) -> bool:
 
 # --- WORLD MAP MOVEMENT ---
 
-func process_world_map_movement(new_pos: Vector2i) -> bool:
+static func process_world_map_movement(new_pos: Vector2i) -> bool:
 	var world_map_gird_pos = ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER)
 
 	if not world_map_gird_pos:
@@ -120,7 +120,7 @@ func process_world_map_movement(new_pos: Vector2i) -> bool:
 
 # --- DUNGEON MOVEMENT ---
 
-func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
+static func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
 	var position_component = ComponentRegistry.get_component(entity, GameData.ComponentKeys.POSITION)
 	var dungeon = GameData.current_dungeon
 
@@ -163,7 +163,7 @@ func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
 	
 	return false
 # --- UTILS ---
-func check__map_transition(new_pos: Vector2i, dir: Vector2i) -> bool:
+static func check__map_transition(new_pos: Vector2i, dir: Vector2i) -> bool:
 
 	# if player is zoomed in and trying to move outside of world map (not in bounds)
 	if not MapFunction.is_in_bounds(new_pos):

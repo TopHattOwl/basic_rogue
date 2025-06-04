@@ -11,7 +11,7 @@ extends Resource
 var dungeon
 
 func _init(_world_pos: Vector2i = Vector2i.ZERO, tier: int = 1) -> void:
-	monster_tier = calc_monster_tier(_world_pos)
+	monster_tier = tier
 	monster_types = get_monster_types(_world_pos, tier)
 	spawn_points = [] # filled when map is generated
 	has_dungeon = false # same

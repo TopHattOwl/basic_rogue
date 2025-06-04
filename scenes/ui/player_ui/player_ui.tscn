@@ -133,9 +133,9 @@ grow_vertical = 2
 visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 64.0
+offset_left = 56.0
 offset_top = 48.0
-offset_right = 512.0
+offset_right = 504.0
 offset_bottom = 304.0
 script = ExtResource("6_23jyl")
 

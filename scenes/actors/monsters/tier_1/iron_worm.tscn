@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cebk0c1w7lsy3"]
+[gd_scene load_steps=15 format=3 uid="uid://cebk0c1w7lsy3"]
 
 [ext_resource type="Texture2D" uid="uid://cpltciulevxmd" path="res://assets/monsters/giant_worm.png" id="1_0h8x2"]
 [ext_resource type="Script" uid="uid://cxjhyx6lx0s5" path="res://scenes/actors/monsters/tier_1/iron_worm.gd" id="1_nxa1e"]
@@ -12,7 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://biqagb3p4ub8g" path="res://scripts/ECS/components/actors/component_scenes/stamina_component.tscn" id="10_8oi1c"]
 [ext_resource type="PackedScene" uid="uid://cf1uus56vaws3" path="res://scripts/ECS/components/actors/component_scenes/state_component.tscn" id="11_am8kq"]
 [ext_resource type="PackedScene" uid="uid://b8j8hecgel13" path="res://scripts/ECS/components/actors/component_scenes/monster_drops_component.tscn" id="12_pmf3y"]
-[ext_resource type="PackedScene" uid="uid://b6mpj0d05bb3d" path="res://scripts/ECS/components/actors/component_scenes/monster_combat_component.tscn" id="15_nxa1e"]
+[ext_resource type="PackedScene" uid="uid://bax82ymxy2qjg" path="res://scripts/ECS/components/actors/component_scenes/defense_stats_component.tscn" id="14_0h8x2"]
+[ext_resource type="PackedScene" path="res://scripts/ECS/components/actors/component_scenes/monster_combat_component.tscn" id="15_nxa1e"]
 
 [node name="IronWorm" type="Node2D" groups=["monsters"]]
 z_index = 1
@@ -45,3 +46,5 @@ texture = ExtResource("1_0h8x2")
 [node name="MonsterDropsComponent" parent="Components" instance=ExtResource("12_pmf3y")]
 
 [node name="MonsterCombatComponent" parent="Components" instance=ExtResource("15_nxa1e")]
+
+[node name="DefenseStatsComponent" parent="Components" instance=ExtResource("14_0h8x2")]

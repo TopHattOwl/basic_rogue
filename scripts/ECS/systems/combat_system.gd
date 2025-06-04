@@ -1,6 +1,30 @@
-class_name CombatSystem
 extends Node
 
+func _ready() -> void:
+	SignalBus.actor_hit.connect(_damage_actor)
+
+
+func _damage_actor(hit_data: Dictionary) -> void:
+	var target = hit_data.target
+	var damage = hit_data.damage
+	var element = hit_data.element
+
+	var target_defense_comp = ComponentRegistry.get_component(target, GameData.ComponentKeys.DEFENSE_STATS)
+	var target_health = ComponentRegistry.get_component(target, GameData.ComponentKeys.HEALTH)
+	if !target_defense_comp:
+		push_error("target, {0} has no defense component".format(ComponentRegistry.get_component(target, GameData.ComponentKeys.IDENTITY).actor_name))
+		return
+	if !target_health:
+		push_error("target, {0} has no health component".format(ComponentRegistry.get_component(target, GameData.ComponentKeys.IDENTITY).actor_name))
+		return
+	
+	var reduced_damage = target_defense_comp.calc_reduced_damage(damage, element)
+	print("reduced damage: ", reduced_damage)
+	print("elemet: ", element)
+	target_health.take_damage(reduced_damage)
+
+	hit_data.damage = reduced_damage
+	SignalBus.actor_hit_final.emit(hit_data)
 
 
 # called from health component when entity dies

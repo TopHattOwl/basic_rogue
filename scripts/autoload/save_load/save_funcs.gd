@@ -27,7 +27,7 @@ func save_world_map_data():
 	# saves custom classes
 	SaveWorldMap.save_world_maps()
 
-func load_world_map_data():
+func load_base_world_map_data():
 	# loads stuff that are simple variables
 	LoadWorldMap.load_biome_type_data()
 	LoadWorldMap.load_world_map_savagery()

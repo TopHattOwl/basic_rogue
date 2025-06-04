@@ -12,6 +12,17 @@ var monster_combat_component = {
 	"melee_dodge": 0.1
 }
 
+var defense_stats_component = {
+	"armor": 35,
+	"resistances": {
+		GameData.ELEMENT.FIRE: 0.05,
+		GameData.ELEMENT.ICE: 0.05,
+		GameData.ELEMENT.LIGHTNING: 0.05,
+		GameData.ELEMENT.BLOOD: 0.5,
+		GameData.ELEMENT.POISON: 0.05,
+	}
+}
+
 
 var ai_behavior_component = {
 	"type": "chase",
@@ -53,6 +64,7 @@ func _ready() -> void:
 
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.HEALTH).initialize(max_hp)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.MONSTER_COMBAT).initialize(monster_combat_component)
+	ComponentRegistry.get_component(self, GameData.ComponentKeys.DEFENSE_STATS).initialize(defense_stats_component)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.AI_BEHAVIOR).initialize(ai_behavior_component)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.ATTRIBUTES).initialize(attributes_component)
 	ComponentRegistry.get_component(self, GameData.ComponentKeys.IDENTITY).initialize(identity_component)

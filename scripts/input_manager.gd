@@ -116,7 +116,7 @@ func handle_world_map_inputs():
 			var dir = GameData.INPUT_DIRECTIONS[action]
 			var new_grid = ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).world_map_pos + dir
 
-			if EntitySystems.movement_system.process_world_map_movement(new_grid):
+			if MovementSystem.process_world_map_movement(new_grid):
 				ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
 			break
 		if Input.is_action_just_pressed("open_world_map") and ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map:
@@ -230,7 +230,7 @@ func handle_hostile_turn():
 		if ai.is_in_range(player_pos, enemy_pos):
 
 			var target_pos = ai.get_next_position(enemy_pos, player_pos)
-			EntitySystems.movement_system.process_monster_movement(enemy, target_pos)
+			MovementSystem.process_monster_movement(enemy, target_pos)
 		else:
 			# handle other ai here, if player is not in vision
 			pass
@@ -272,7 +272,7 @@ func toggle_world_map_look_mode() -> void:
 # normal movement
 func _process_movement(dir: Vector2i) -> void:
 	var new_grid = ComponentRegistry.get_player_pos() + dir
-	if EntitySystems.movement_system.process_movement(GameData.player, new_grid):
+	if MovementSystem.process_movement(GameData.player, new_grid):
 		_end_player_turn()
 
 	
@@ -288,7 +288,7 @@ func _end_player_turn() -> void:
 
 func _process_dungeon_movement(dir: Vector2i) -> void:
 	var new_grid = ComponentRegistry.get_player_pos() + dir
-	if EntitySystems.movement_system.process_dungeon_movement(GameData.player, new_grid):
+	if MovementSystem.process_dungeon_movement(GameData.player, new_grid):
 		_ent_player_turn_dungeon()
 
 func _ent_player_turn_dungeon() -> void:

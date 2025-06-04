@@ -5,6 +5,7 @@ var player_ui: CanvasLayer
 func _ready() -> void:
 	SignalBus.player_acted.connect(_on_pass_time)
 	SignalBus.block_power_changed.connect(_block_test)
+	SignalBus.actor_hit_final.connect(_log_actor_hit)
 
 func _block_test(new_value, max_value):
 	player_ui.update_block_display(new_value, max_value)
@@ -18,6 +19,17 @@ func set_player_ui():
 
 
 # --- MESSAGE LOG ---
+
+func _log_actor_hit(hit_data: Dictionary) -> void:
+	var target = hit_data.target
+	var attacker = hit_data.attacker
+	var damage = hit_data.damage
+	var hit_action = hit_data.hit_action
+
+	if attacker == GameData.player:
+		log_player_attack(target, damage, hit_data.element, hit_action)
+	elif attacker.is_in_group("monsters"):
+		log_monster_attack(attacker, damage, hit_action)
 
 # logs generic message
 func log_message(text: String) -> void:

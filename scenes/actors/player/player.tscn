@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://xu1v46ex8vaq"]
+[gd_scene load_steps=31 format=3 uid="uid://xu1v46ex8vaq"]
 
 [ext_resource type="Script" uid="uid://cvdxfs6ys8ftq" path="res://scenes/actors/player/player.gd" id="1_qxscg"]
 [ext_resource type="Texture2D" uid="uid://mk7q31h1b4rs" path="res://assets/player/player_knight.png" id="1_wmv1v"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://dcyqncqg4okh1" path="res://scenes/ui/targeter/targeter.gd" id="19_biscu"]
 [ext_resource type="PackedScene" uid="uid://dpw2hbpo6msp4" path="res://scripts/ECS/components/actors/component_scenes/block_component.tscn" id="19_ffoq6"]
 [ext_resource type="Texture2D" uid="uid://e10uv46cfe80" path="res://assets/background_half_transparent.png" id="19_npmmh"]
+[ext_resource type="PackedScene" uid="uid://bax82ymxy2qjg" path="res://scripts/ECS/components/actors/component_scenes/defense_stats_component.tscn" id="20_cat03"]
 [ext_resource type="Script" uid="uid://b3a28xskfs4rv" path="res://scenes/actors/player/fov.gd" id="20_npmmh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxscg"]
@@ -103,6 +104,8 @@ script = ExtResource("3_8bu7j")
 [node name="StanceComponent" parent="Components" instance=ExtResource("18_ffoq6")]
 
 [node name="BlockComponent" parent="Components" instance=ExtResource("19_ffoq6")]
+
+[node name="DefenseStatsComponent" parent="Components" instance=ExtResource("20_cat03")]
 
 [node name="DevTools" parent="." instance=ExtResource("15_068wj")]
 visible = false

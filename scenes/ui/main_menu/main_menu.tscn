@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvsqudp7xh03o"]
+[gd_scene load_steps=5 format=3 uid="uid://bloydjlut44cj"]
 
-[ext_resource type="Script" uid="uid://dttmpnvm3yaub" path="res://scenes/ui/main_menu/main_menu.gd" id="1_1ch07"]
+[ext_resource type="Script" uid="uid://x4yt772tjvyr" path="res://scenes/ui/main_menu/main_menu.gd" id="1_1ch07"]
+[ext_resource type="Shader" uid="uid://cfb76lctdcisy" path="res://resources/shader/scan_lines_shader.gdshader" id="2_e8t4i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8t4i"]
+shader = ExtResource("2_e8t4i")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qt1dd"]
+size = Vector2(640, 360)
+center_offset = Vector3(320, 180, 0)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,7 +19,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ch07")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_e8t4i")
+mesh = SubResource("QuadMesh_qt1dd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.103744, 0.103744, 0.103744, 1)
+
+[node name="BackgroundImage" type="TextureRect" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,24 +43,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonVBox" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-alignment = 1
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="StartButton" type="Button" parent="HBoxContainer/ButtonVBox"]
+[node name="MenuItems" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-text = "Start"
 
-[node name="SettingsButton" type="Button" parent="HBoxContainer/ButtonVBox"]
+[node name="Title" type="Label" parent="CenterContainer/MenuItems"]
 layout_mode = 2
-text = "Settings"
+text = "Cuul Game"
+horizontal_alignment = 1
 
-[node name="QuitButton" type="Button" parent="HBoxContainer/ButtonVBox"]
+[node name="NewGameButton" type="Button" parent="CenterContainer/MenuItems"]
+layout_mode = 2
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="CenterContainer/MenuItems"]
+layout_mode = 2
+text = "Load Game"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/MenuItems"]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/MenuItems"]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="HBoxContainer/ButtonVBox/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/ButtonVBox/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/ButtonVBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="Transitions" type="AnimationPlayer" parent="."]

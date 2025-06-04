@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cvrns5gjkq5p3"]
+[gd_scene load_steps=15 format=3 uid="uid://cvrns5gjkq5p3"]
 
 [ext_resource type="Script" uid="uid://b20r6a64q7ibu" path="res://scenes/actors/monsters/tier_1/mask.gd" id="1_j0ki7"]
 [ext_resource type="PackedScene" uid="uid://c3op5dqs2jch1" path="res://scripts/ECS/components/actors/component_scenes/ai_behavior_component.tscn" id="2_sudut"]
@@ -12,7 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://biqagb3p4ub8g" path="res://scripts/ECS/components/actors/component_scenes/stamina_component.tscn" id="11_dsw8p"]
 [ext_resource type="PackedScene" uid="uid://cf1uus56vaws3" path="res://scripts/ECS/components/actors/component_scenes/state_component.tscn" id="12_ybyvd"]
 [ext_resource type="PackedScene" uid="uid://b8j8hecgel13" path="res://scripts/ECS/components/actors/component_scenes/monster_drops_component.tscn" id="13_sudut"]
-[ext_resource type="PackedScene" uid="uid://b6mpj0d05bb3d" path="res://scripts/ECS/components/actors/component_scenes/monster_combat_component.tscn" id="16_ggv4w"]
+[ext_resource type="PackedScene" uid="uid://bax82ymxy2qjg" path="res://scripts/ECS/components/actors/component_scenes/defense_stats_component.tscn" id="14_x5fpm"]
+[ext_resource type="PackedScene" path="res://scripts/ECS/components/actors/component_scenes/monster_combat_component.tscn" id="16_ggv4w"]
 
 [node name="Mask" type="Node2D" groups=["monsters"]]
 script = ExtResource("1_j0ki7")
@@ -45,3 +46,5 @@ texture = ExtResource("2_x5fpm")
 [node name="MonsterDropsComponent" parent="Components" instance=ExtResource("13_sudut")]
 
 [node name="MonsterCombatComponent" parent="Components" instance=ExtResource("16_ggv4w")]
+
+[node name="DefenseStatsComponent" parent="Components" instance=ExtResource("14_x5fpm")]

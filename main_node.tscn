@@ -1,12 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b423to0sh4ppm"]
+[gd_scene load_steps=6 format=3 uid="uid://b423to0sh4ppm"]
 
 [ext_resource type="Script" uid="uid://b25g1hme5htyn" path="res://scripts/main_node.gd" id="1_scfaf"]
 [ext_resource type="Script" uid="uid://dwxyxpv42x5jx" path="res://scripts/input_manager.gd" id="2_bxfy6"]
 [ext_resource type="Shader" uid="uid://cfb76lctdcisy" path="res://resources/shader/scan_lines_shader.gdshader" id="2_dhalm"]
-[ext_resource type="Texture2D" uid="uid://bepketjv4b6jj" path="res://assets/transition_border2.png" id="4_wywo8"]
-[ext_resource type="Texture2D" uid="uid://rkd3twibf28u" path="res://assets/transition_border.png" id="5_yjirp"]
-[ext_resource type="Texture2D" uid="uid://jv4ueuo86b30" path="res://assets/background.png" id="6_4vv7w"]
-[ext_resource type="Script" uid="uid://cqpbjio2hdtpm" path="res://scripts/ui/border.gd" id="7_yjirp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bxfy6"]
 shader = ExtResource("2_dhalm")
@@ -14,27 +10,6 @@ shader = ExtResource("2_dhalm")
 [sub_resource type="QuadMesh" id="QuadMesh_lwogq"]
 size = Vector2(640, 360)
 center_offset = Vector3(320, 180, 0)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_shna5"]
-texture = ExtResource("4_wywo8")
-texture_region_size = Vector2i(16, 24)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iw4ti"]
-texture = ExtResource("5_yjirp")
-texture_region_size = Vector2i(16, 24)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nmw0x"]
-texture = ExtResource("6_4vv7w")
-texture_region_size = Vector2i(16, 24)
-0:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_07t30"]
-tile_size = Vector2i(16, 24)
-sources/1 = SubResource("TileSetAtlasSource_shna5")
-sources/2 = SubResource("TileSetAtlasSource_iw4ti")
-sources/3 = SubResource("TileSetAtlasSource_nmw0x")
 
 [node name="MainNode" type="Node2D" node_paths=PackedStringArray("input_manager")]
 script = ExtResource("1_scfaf")
@@ -49,8 +24,3 @@ layer = 128
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_bxfy6")
 mesh = SubResource("QuadMesh_lwogq")
-
-[node name="Border" type="TileMapLayer" parent="."]
-visible = false
-tile_set = SubResource("TileSet_07t30")
-script = ExtResource("7_yjirp")

@@ -9,7 +9,6 @@ var hp: int = 10:
 		hp = clampi(value, 0, max_hp)
 
 
-
 func initialize(max_hp_value: int) -> void:
 	max_hp = max_hp_value
 	hp = max_hp
@@ -19,7 +18,7 @@ func take_damage(damage: int) -> int:
 	hp -= actual_damage
 
 	if hp <= 0:
-		EntitySystems.combat_system.die(get_parent().get_parent())
+		CombatSystem.die(get_parent().get_parent())
 	return actual_damage
 
 

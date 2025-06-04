@@ -5,16 +5,11 @@ const ATTACK_DURATION = 0.05
 signal attack_animation_finished(entiy)
 
 func _ready() -> void:
-	SignalBus.actor_hit.connect(_on_actor_hit)
+	SignalBus.actor_hit_final.connect(_on_actor_hit)
 
 func _on_actor_hit(hit_data: Dictionary) -> void:
 	floating_damage_text(hit_data.target, hit_data.attacker, hit_data.damage, hit_data.direction, hit_data.element, hit_data.hit_action)
 	play_attack_animation(hit_data.attacker, hit_data.direction)
-
-# func _on_actor_hit(target: Node2D, attacker: Node2D, damage: int, direction: Vector2i, element: int, hit_action: int) -> void:
-	
-# 	floating_damage_text(target, attacker, damage, direction, element, hit_action)
-# 	play_attack_animation(attacker, direction)
 
 # --- ATTACK ANIMATION ---
 func play_attack_animation(entity: Node2D, direction: Vector2i) -> void:

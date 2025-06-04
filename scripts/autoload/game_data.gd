@@ -256,6 +256,7 @@ const COMPONENTS = {
 	ComponentKeys.INVENTORY: "Components/InventoryComponent",
 	ComponentKeys.MELEE_COMBAT: "Components/MeleeCombatComponent",
 	ComponentKeys.BLOCK: "Components/BlockComponent",
+	ComponentKeys.DEFENSE_STATS: "Components/DefenseStatsComponent",
 	ComponentKeys.POSITION: "Components/PositionComponent",
 	ComponentKeys.MONSTER_PROPERTIES: "Components/MonsterPropertiesComponent",
 	ComponentKeys.MONSTER_STATS: "Components/MonsterStatsComponent",
@@ -325,6 +326,7 @@ enum ComponentKeys {
 	INVENTORY,
 	MELEE_COMBAT,
 	BLOCK,
+	DEFENSE_STATS,
 	POSITION,
 	MONSTER_PROPERTIES,
 	MONSTER_STATS,
@@ -396,7 +398,6 @@ enum SKILLS {
 	POLEAXE,
 	BOW,
 }
-
 
 
 # ITEMS

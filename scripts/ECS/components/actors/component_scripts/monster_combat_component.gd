@@ -12,7 +12,6 @@ var element_weight: float = 0
 
 # melee defensive stats 
 var melee_dodge: float = 0 # chanche to dodge a melee attack
-var melee_repost: float = 0 # chance to do a repost attack after dodging or blocking a melee attack
 
 func initialize(d: Dictionary) -> void:
 	damage_min = d.get("damage_min", 0)
@@ -25,21 +24,6 @@ func initialize(d: Dictionary) -> void:
 	element_weight = d.get("element_weight", 0)
 
 	melee_dodge = d.get("melee_dodge", 0)
-
-func update() -> void:
-	pass
-	# if get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.EQUIPMENT)).weapon:
-	# 	var weapon = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.EQUIPMENT)).weapon
-	# 	damage = ComponentRegistry.get_component(weapon, GameData.ComponentKeys.WEAPON_STATS).damage
-	# 	attack_type = ComponentRegistry.get_component(weapon, GameData.ComponentKeys.WEAPON_STATS).attack_type
-	# 	element = ComponentRegistry.get_component(weapon, GameData.ComponentKeys.WEAPON_STATS).element
-	# 	to_hit_bonus = ComponentRegistry.get_component(weapon, GameData.ComponentKeys.WEAPON_STATS).to_hit_bonus
-	# else:
-	# 	damage = [1, 4, []]
-	# 	attack_type = 1
-	# 	element = 0
-	# 	to_hit_bonus = 0
-
 
 # combat system
 func melee_attack(target: Node2D) -> bool:
@@ -70,7 +54,6 @@ func melee_attack(target: Node2D) -> bool:
 	var hit_chance = clamp(accuracy - target_dodge, 0.05, 0.95)
 	var roll = randf()
 	if roll > hit_chance:
-		UiFunc.log_monster_attack(get_parent().get_parent(), 0, GameData.HIT_ACTIONS.MISS)
 		# tried to hit but missed so actor acted
 		signal_hit_data = {
 			"target": target,
@@ -86,7 +69,6 @@ func melee_attack(target: Node2D) -> bool:
 	# block check
 	var target_block_comp = ComponentRegistry.get_component(target, GameData.ComponentKeys.BLOCK)
 	if target_block_comp.try_block(dam):
-		UiFunc.log_monster_attack(get_parent().get_parent(), 0, GameData.HIT_ACTIONS.BLOCKED)
 		# tried to hit but missed so actor acted
 		signal_hit_data = {
 			"target": target,
@@ -99,12 +81,8 @@ func melee_attack(target: Node2D) -> bool:
 		SignalBus.actor_hit.emit(signal_hit_data)
 		return true 
 	
-	
 
-	dam -= max(0, target_melee_combat.get_armor())
-	target_health.take_damage(dam)
-
-	UiFunc.log_monster_attack(get_parent().get_parent(), dam)
+	# target_health.take_damage(dam)
 
 	signal_hit_data = {
 		"target": target,
@@ -115,8 +93,6 @@ func melee_attack(target: Node2D) -> bool:
 		"hit_action": GameData.HIT_ACTIONS.HIT
 	}
 	SignalBus.actor_hit.emit(signal_hit_data)
-
-	print("monster attacks, damage: ", dam)
 	return true
 
 # --- Utils ---

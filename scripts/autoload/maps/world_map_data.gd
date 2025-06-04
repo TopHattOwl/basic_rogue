@@ -42,20 +42,15 @@ var world_map_civilization = []
 
 
 func _ready() -> void:
+	SignalBus.new_game_stared.connect(_on_new_game_start)
 	# old load world map
-	SaveFuncs.load_world_map_data()
+	SaveFuncs.load_base_world_map_data()
 
 	# parse_world_map_data()
 
-	
-	# init_world_map_civilization()
-	# init_biome_type()
-	# init_world_map_monster_data()
-	# init_world_map_savagery()
-
 	# world_map2.add_premade_map(DirectoryPaths.first_outpost, Vector2i(31, 16))
 
-	# SaveFuncs.save_world_maps()
+	# SaveFuncs.save_world_map_data()
 
 ## initializes the world map when startin a new game (no world map data just the premade world map)
 func _on_new_game_start() -> void:
@@ -63,6 +58,9 @@ func _on_new_game_start() -> void:
 	init_biome_type()
 	init_world_map_civilization()
 	init_world_map_savagery()
+	# custom classes (BiomeMap WorldMap etc gets initialized automatically when creating them (WorldMap.new()) -> dont have to do it here)
+
+	parse_world_map_data()
 
 
 # --- INIT ---
@@ -101,17 +99,19 @@ func parse_world_map_data() -> void:
 	# get world map scene
 	var world_map_scene = load(DirectoryPaths.world_map_scene).instantiate()
 
+
+
 	# set biome type
 	# parse_biome_type(world_map_scene)
 
 	# set biome
 	parse_biome(world_map_scene)
+	init_world_map_civilization()
+
+	parse_savagery()
 
 	# set monster data
 	parse_monster_data()
-
-	# set savagery rate, savagery is saved so this need to run only once
-	# parse_savagery()
 	
 
 func parse_biome_type(world_map_scene: Node2D) -> void:
@@ -157,6 +157,9 @@ func parse_biome(world_map_scene: Node2D) -> void:
 							var biome = SwampBiome.new()
 							biome.setup(Vector2i(x, y))
 							biome_map.map_data[y][x] = biome
+						_:
+							# if biome type is premade/water -> tile's biome is null
+							biome_map.map_data[y][x] = null
 					biome_type[y][x] = key
 
 
@@ -180,8 +183,6 @@ func parse_monster_data() -> void:
 			world_monster_map.map_data[y][x] = WorldMonsterTile.new(Vector2i(x, y), tier)
 
 
-
-
 func parse_savagery() -> void:
 	for y in range(GameData.WORLD_MAP_SIZE.y):
 		for x in range(GameData.WORLD_MAP_SIZE.x):
@@ -198,7 +199,6 @@ func is_tile_civilization(grid_pos: Vector2i) -> bool:
 			return true
 		GameData.WORLD_TILE_TYPES.OUTPOST:
 			return true
-
 	return false
 
 

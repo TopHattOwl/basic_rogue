@@ -27,6 +27,7 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 
 # TODO:
 	# IMPORTANT:
+		# revork Scripts/ECS/systems to be static functions instead of having to create instances of the classes
 		# player data load and save rework, handle it in player's own script
 			# also make a save and load function for each component so that saveing and loading can be just iterating tru components and calling save and load functions
 		# rework armor: armor stat (integer) should translate to % damage reduction (max is 80%)
@@ -46,23 +47,13 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# make thiner road tile for smaller roads
 	# make world map save and load smaller (for loop tru each DirectoryPaths.world_save_file)
 	# IMPORTANT ui_func.gd -> set_look_ui_target_array() TODO: loop tru terrain_data.tags and add all terrains
+	# implement repost system for melee combat
 func _ready():
 
 	# passing main node to game data
 	GameData.main_node = self
 
-	# GameTime.initialize()
-	# UiFunc.initialize()
-
-	# MapFunction.load_premade_map(DirectoryPaths.first_outpost)
-
 	EntitySpawner.spawn_player()
-
-	SaveFuncs.save_player_data(GameData.player)
-
-	# SaveFuncs.save_player_data(GameData.player)
-
-	UiFunc.log_message("You arrive in ******")
 
 	# test stances
 	GameData.player.StanceComp.add_stance(load("res://resources/combat_stuff/stances/test.tres"))
