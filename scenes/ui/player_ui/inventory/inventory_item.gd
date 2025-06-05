@@ -24,3 +24,4 @@ func _ready() -> void:
 # weapons you cna equip, potons use
 func _on_item_pressed(item: ItemResource) -> void:
 	print("item pressed: ", item.display_name)
+	# a
