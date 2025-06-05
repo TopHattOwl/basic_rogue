@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckn6j0406j6g3"]
+
+[ext_resource type="Script" uid="uid://badwlgx13jo2e" path="res://scenes/ui/player_ui/inventory/inventory_item.gd" id="1_radx0"]
+
+[node name="InventoryItem" type="Control" node_paths=PackedStringArray("item_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_radx0")
+item_button = NodePath("Item")
+
+[node name="Item" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 8

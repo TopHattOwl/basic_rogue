@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cf1uus56vaws3" path="res://scripts/ECS/components/actors/component_scenes/state_component.tscn" id="11_am8kq"]
 [ext_resource type="PackedScene" uid="uid://b8j8hecgel13" path="res://scripts/ECS/components/actors/component_scenes/monster_drops_component.tscn" id="12_pmf3y"]
 [ext_resource type="PackedScene" uid="uid://bax82ymxy2qjg" path="res://scripts/ECS/components/actors/component_scenes/defense_stats_component.tscn" id="14_0h8x2"]
-[ext_resource type="PackedScene" path="res://scripts/ECS/components/actors/component_scenes/monster_combat_component.tscn" id="15_nxa1e"]
+[ext_resource type="PackedScene" uid="uid://b6mpj0d05bb3d" path="res://scripts/ECS/components/actors/component_scenes/monster_combat_component.tscn" id="15_nxa1e"]
 
 [node name="IronWorm" type="Node2D" groups=["monsters"]]
 z_index = 1

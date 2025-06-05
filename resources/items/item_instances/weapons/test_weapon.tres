@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=9 format=3 uid="uid://dbok6rixqej1p"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=12 format=3 uid="uid://dbok6rixqej1p"]
 
 [ext_resource type="Script" uid="uid://c6hqvujepfyxm" path="res://scripts/systems/modifier_system/stat_modifier_class.gd" id="1_4svoq"]
+[ext_resource type="Script" uid="uid://bre0u70dtiask" path="res://resources/items/components/base_component.gd" id="1_tanuv"]
 [ext_resource type="Script" uid="uid://c7nlkhtqiekyc" path="res://resources/items/components/combat_components/melee_weapon_component.gd" id="2_4svoq"]
 [ext_resource type="Script" uid="uid://14o1ycfagor4" path="res://resources/items/item_resource.gd" id="2_6n8ge"]
 [ext_resource type="Script" uid="uid://cq8mad0mmyu8r" path="res://scripts/systems/conditions/base_condition.gd" id="2_6s6hs"]
 [ext_resource type="Texture2D" uid="uid://bevdoe4dwfmot" path="res://assets/items/weapons/steel_londsword.png" id="4_6s6hs"]
+[ext_resource type="Script" uid="uid://br5f2sw638bnu" path="res://resources/items/components/inventory_related_coponents/stackable_component.gd" id="5_e50ij"]
 
 [sub_resource type="Resource" id="Resource_a2i5e"]
 script = ExtResource("1_4svoq")
@@ -35,12 +37,18 @@ element = 3
 bonuses = Array[ExtResource("1_4svoq")]([SubResource("Resource_a2i5e"), SubResource("Resource_tanuv")])
 metadata/_custom_type_script = "uid://c7nlkhtqiekyc"
 
+[sub_resource type="Resource" id="Resource_edpq1"]
+script = ExtResource("5_e50ij")
+is_stackable = false
+max_stack_size = 0
+metadata/_custom_type_script = "uid://br5f2sw638bnu"
+
 [resource]
 script = ExtResource("2_6n8ge")
 uid = "Test Weapon"
-display_name = "Unnamed Item"
+display_name = "fhoss sword"
 description = "very cuul test weapon to smack enemies in the head with, trying out if this string can hold very long descriptions so I have to fill this wih something, are you still reading? please leav I am just testing if this shit can hold many and more letters, this seems to be enough"
 item_type = 0
-components = [SubResource("Resource_6s6hs")]
+components = Array[ExtResource("1_tanuv")]([SubResource("Resource_6s6hs"), SubResource("Resource_edpq1")])
 sprite = ExtResource("4_6s6hs")
 metadata/_custom_type_script = "uid://14o1ycfagor4"

@@ -89,6 +89,8 @@ const pick_up_window_script = "res://scenes/ui/items/pick_up_window.gd"
 
 const damage_text_scene = "res://scenes/ui/damage_text.tscn"
 
+const inventory_item = "res://scenes/ui/player_ui/inventory/inventory_item.tscn"
+
 
 
 # --- SPRITES/TILEMAPS ---

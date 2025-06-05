@@ -27,6 +27,7 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 
 # TODO:
 	# IMPORTANT:
+		# TODO in inventory_item.gd
 		# revork Scripts/ECS/systems to be static functions instead of having to create instances of the classes
 		# player data load and save rework, handle it in player's own script
 			# also make a save and load function for each component so that saveing and loading can be just iterating tru components and calling save and load functions
@@ -54,8 +55,20 @@ func _ready():
 	# GameData.player.StanceComp.enter_stance(GameData.player.StanceComp.known_stances[0])
 
 	# test weapon
-	var test_weapon = load("res://resources/items/item_instances/weapons/test_weapon.tres")
+	var test_weapon: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/weapons/test_weapon.tres")
 	GameData.player.EquipmentComp.equip_item(test_weapon, GameData.EQUIPMENT_SLOTS.MAIN_HAND)
+
+	var resource1: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 66)
+	var resource2: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres")
+	var resource3: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 5)
+
+	print(resource1.get_component(StackableComponent).count)
+	print(resource2.get_component(StackableComponent).count)
+	print(resource3.get_component(StackableComponent).count)
+	GameData.player.InventoryComp.add_item(resource1)
+	GameData.player.InventoryComp.add_item(resource2)
+	GameData.player.InventoryComp.add_item(test_weapon)
+
 
 func _process(_delta):
 # input handler, gets input passed to it and depending on what input is pressed it calls different functions

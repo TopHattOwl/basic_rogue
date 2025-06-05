@@ -130,11 +130,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Inventory" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 56.0
+offset_left = 40.0
 offset_top = 48.0
-offset_right = 504.0
+offset_right = 600.0
 offset_bottom = 304.0
 script = ExtResource("6_23jyl")
 
@@ -154,86 +155,32 @@ texture = SubResource("GradientTexture2D_81j3l")
 [node name="FilterContainer" type="HBoxContainer" parent="Inventory"]
 layout_mode = 1
 anchors_preset = -1
+anchor_left = 0.314286
 anchor_right = 1.0
-anchor_bottom = 0.030303
+anchor_bottom = 0.03125
 offset_bottom = 24.0
 grow_horizontal = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="MeleeWeaponsButton" type="Button" parent="Inventory/FilterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
-text = "Melee Weapons"
-autowrap_mode = 2
-
-[node name="RangedWeaponsButton" type="Button" parent="Inventory/FilterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
-text = "Ranged Weapons"
-autowrap_mode = 2
-
-[node name="ShieldsButton" type="Button" parent="Inventory/FilterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
-text = "Shields"
-autowrap_mode = 2
-
-[node name="ArmorButton" type="Button" parent="Inventory/FilterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
-text = "Armor"
-autowrap_mode = 2
-
-[node name="PotionsButton" type="Button" parent="Inventory/FilterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
-text = "Potions"
-autowrap_mode = 2
-
-[node name="PowdersButton" type="Button" parent="Inventory/FilterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
-text = "Powders"
-autowrap_mode = 2
-
-[node name="MonsterPartsButton" type="Button" parent="Inventory/FilterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
-text = "Monster Parts"
-autowrap_mode = 2
-
-[node name="AlchemyButton" type="Button" parent="Inventory/FilterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
-text = "Alchemy"
-autowrap_mode = 2
-
-[node name="ResourceButton" type="Button" parent="Inventory/FilterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
-text = "Resources"
-autowrap_mode = 2
-
-[node name="OtherButton" type="Button" parent="Inventory/FilterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
-text = "Other"
-autowrap_mode = 2
+[node name="TabName" type="Label" parent="Inventory"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.125
+anchor_right = 0.757
+anchor_bottom = 0.215
+offset_right = 0.0799866
+offset_bottom = -0.0400009
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ItemsContainer" type="VBoxContainer" parent="Inventory"]
-layout_mode = 0
-offset_left = 160.0
-offset_top = 48.0
-offset_right = 441.0
-offset_bottom = 248.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.429
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 0.969
+offset_left = -0.240005
+offset_bottom = -0.0640106
