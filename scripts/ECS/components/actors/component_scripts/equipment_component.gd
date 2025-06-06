@@ -18,8 +18,14 @@ var equipment = {
 func get_total_armor() -> int:
 	return 0
 
+func _ready() -> void:
+	if get_parent().get_parent().is_in_group("player"):
+		SignalBus.equipment_changing.connect(equip_item)
+
 
 func equip_item(item: ItemResource, slot: int) -> bool:
+
+	print("equiping item")
 	if not _can_equip_item(item, slot):
 		return false
 	

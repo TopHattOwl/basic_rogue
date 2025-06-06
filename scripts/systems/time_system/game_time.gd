@@ -1,6 +1,8 @@
 extends Node
 
-const DAY_LENGTH = 2400
+const DAY_LENGTH = 2400 # a day in turns
+const MONTH_LENGTH = 30 # a month in days
+const YEAR_LENGTH = 14 # a year in months
 
 @export var current_time: StringName
 @export var current_day_turn: int
@@ -17,7 +19,32 @@ var time_cycle: Dictionary = {
 	"night": 2200,
 }
 
+const MONTHS = {
+	1: "first month",
+	2: "second month",
+	3: "third month",
+	4: "fourth month",
+	5: "fifth month",
+	6: "sixth month",
+	7: "seventh month",
+	8: "eighth month",
+	9: "ninth month",
+	10: "tenth month",
+	11: "eleventh month",
+	12: "twelfth month",
+	13: "thirteenth month",
+	14: "fourteenth month",
+}
+
+## day names by week
+# CONST DAYS = {
+
+# }
+
+var current_month: StringName
+
 func _ready() -> void:
+	current_month = MONTHS.get(month)
 	SignalBus.player_acted.connect(_on_turn_end)
 
 func _process(_delta: float) -> void:
@@ -45,13 +72,18 @@ func check_end_of_day():
 func pass_day():
 	day += 1
 
-	if day >= 30:
+	SignalBus.day_passed.emit()
+
+	if day > MONTH_LENGTH:
 		month += 1
 		day = 1
+		SignalBus.month_passed.emit()
 	
-	if month >= 14:
+	if month > YEAR_LENGTH:
 		year += 1
 		month = 1
+		current_month = MONTHS.get(month)
+		SignalBus.year_passed.emit()
 
 func _on_turn_end() -> void:
 	current_day_turn += 1

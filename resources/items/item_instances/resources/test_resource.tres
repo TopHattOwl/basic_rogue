@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://brshtuaglw7bi"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=8 format=3 uid="uid://brshtuaglw7bi"]
 
 [ext_resource type="Script" uid="uid://bre0u70dtiask" path="res://resources/items/components/base_component.gd" id="1_lq5ve"]
 [ext_resource type="Script" uid="uid://br5f2sw638bnu" path="res://resources/items/components/inventory_related_coponents/stackable_component.gd" id="2_bkuhf"]
 [ext_resource type="Script" uid="uid://14o1ycfagor4" path="res://resources/items/item_resource.gd" id="2_c2s0b"]
+[ext_resource type="Script" uid="uid://m2g3sm5kwgfg" path="res://resources/items/components/ui/item_window.gd" id="3_bkuhf"]
+[ext_resource type="Texture2D" uid="uid://ckw1ljnub8lnh" path="res://assets/wall/field/rock.png" id="5_biu6u"]
 
 [sub_resource type="Resource" id="Resource_biu6u"]
 script = ExtResource("2_bkuhf")
@@ -10,11 +12,16 @@ is_stackable = true
 max_stack_size = 50
 metadata/_custom_type_script = "uid://br5f2sw638bnu"
 
+[sub_resource type="Resource" id="Resource_jo0xo"]
+script = ExtResource("3_bkuhf")
+metadata/_custom_type_script = "uid://m2g3sm5kwgfg"
+
 [resource]
 script = ExtResource("2_c2s0b")
 uid = "Iron ore"
 display_name = "Iron Ore"
 description = "Very cool iron lump, maybe you can craf with it, i guess"
 item_type = 8
-components = Array[ExtResource("1_lq5ve")]([SubResource("Resource_biu6u")])
+components = Array[ExtResource("1_lq5ve")]([SubResource("Resource_biu6u"), SubResource("Resource_jo0xo")])
+sprite = ExtResource("5_biu6u")
 metadata/_custom_type_script = "uid://14o1ycfagor4"

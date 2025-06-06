@@ -8,6 +8,12 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# finish dungeon class and dungeon level class for everything, not just field
 
 # IDEAS:
+	# messages:
+		# when player does something (like clear a dungeon, fulfill a contract etc) dont incearse
+	# reputation for cities and hunters and regions:
+		# regions:
+			# Regions have reputation, the regions bigest city is the region leader, each region has several citioes, villages etc
+			# doing stuff in a region's city, castle etc. gives reputation to the settlement and a part of it to the other settlements of the region
 	# foraging map (like terrain map, 2d array) for placing foraging objects for player to forage for potions, food and stuff
 		# foraging vision -> based on perception and knowlege of plants (notice plants you know better)
 		# foraging mode -> regular vision decreeses but foraging vision increases
@@ -42,6 +48,8 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# in world_map_data.gd add world_map_identity array, figure out what to put there, name, quests, notes, etc also add it to map generation
 	# make thiner road tile for smaller roads
 	# implement repost system for melee combat
+	# GameTime add weeks and day names for each day in a week
+	# Signal day_passed has no uses yet -> maybe for quests, messages, etc
 func _ready():
 
 	# passing main node to game data
@@ -56,7 +64,7 @@ func _ready():
 
 	# test weapon
 	var test_weapon: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/weapons/test_weapon.tres")
-	GameData.player.EquipmentComp.equip_item(test_weapon, GameData.EQUIPMENT_SLOTS.MAIN_HAND)
+	# GameData.player.EquipmentComp.equip_item(test_weapon, GameData.EQUIPMENT_SLOTS.MAIN_HAND)
 
 	var resource1: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 66)
 	var resource2: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres")
@@ -68,6 +76,12 @@ func _ready():
 	GameData.player.InventoryComp.add_item(resource1)
 	GameData.player.InventoryComp.add_item(resource2)
 	GameData.player.InventoryComp.add_item(test_weapon)
+
+	# SignalBus.equipment_changing.connect(func(item, slot):
+	# 	print("Signal emitted with: ", item.uid, " in slot: ", slot)
+	# )
+
+	# SignalBus.equipment_changing.emit(test_weapon, GameData.EQUIPMENT_SLOTS.MAIN_HAND)
 
 
 func _process(_delta):

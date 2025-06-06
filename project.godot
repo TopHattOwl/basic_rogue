@@ -32,6 +32,8 @@ AnimationSystem="*res://scripts/autoload/animation_system.gd"
 SignalBus="*res://scripts/autoload/signal_bus.gd"
 GameState="*res://scripts/autoload/game_state.gd"
 CombatSystem="*res://scripts/ECS/systems/combat_system.gd"
+TimeDifficulty="*res://scripts/systems/difficulty/time_difficulty.gd"
+ItemWindowMaker="*res://scenes/ui/ui_systems/item_window_maker.gd"
 
 [display]
 

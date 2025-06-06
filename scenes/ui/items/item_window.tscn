@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://babl0882ctsl5"]
+
+[ext_resource type="Script" uid="uid://csh2ft2g44mms" path="res://scenes/ui/items/item_window.gd" id="1_6ayta"]
+
+[sub_resource type="Gradient" id="Gradient_nxd4x"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.481908, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.357095, 0.248578, 0.139405, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3g2r6"]
+gradient = SubResource("Gradient_nxd4x")
+fill_to = Vector2(0.482906, 0.662393)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nxd4x"]
+size = Vector2(16, 24)
+
+[node name="ItemWindow" type="Control" node_paths=PackedStringArray("Sprite", "InteractionsContainer")]
+z_index = 20
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ayta")
+Sprite = NodePath("Sprite2D")
+InteractionsContainer = NodePath("InteractionsContainer")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 32.0
+offset_right = 408.0
+offset_bottom = 264.0
+texture = SubResource("GradientTexture2D_3g2r6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(288, 64)
+texture = SubResource("PlaceholderTexture2D_nxd4x")
+
+[node name="InteractionsContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 112.0
+offset_right = 376.0
+offset_bottom = 192.0

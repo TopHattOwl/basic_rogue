@@ -50,7 +50,7 @@ func _on_filter_button_pressed(index: int) -> void:
 	load_items(index)
 
 
-# --- making inventory ---
+# --- making inventory tab ---
 func make_inventory() -> void:
 	for key in GameData.ITEM_TAB_NAMES.keys():
 		var button = Button.new()
@@ -69,17 +69,18 @@ func connect_filter_buttons() -> void:
 	for button in FilterButtons:
 		button.pressed.connect(_on_filter_button_pressed.bind(FilterButtons.find(button)))
 
-
+# --- loading inventory items ---
 func load_items(index: int) -> void:
 	var inventory_comp = GameData.player.InventoryComp
 	var items = inventory_comp.get_items(index)
 
 	for item in items:
-		var label = load(DirectoryPaths.inventory_item).instantiate()
-		label.init(item)
-		items_container.add_child(label)
+		var _inventory_item = load(DirectoryPaths.inventory_item).instantiate()
+		_inventory_item.init(item)
+		items_container.add_child(_inventory_item)
+	
 
-		
+	
 func clear_items() -> void:
 	for child in items_container.get_children():
 		items_container.remove_child(child)

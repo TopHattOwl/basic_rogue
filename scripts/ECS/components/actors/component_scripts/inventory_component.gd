@@ -79,7 +79,8 @@ func add_item(item: ItemResource) -> bool:
 		else:
 			tab.append(item)
 			return true
-
+## Returns the items in the inventory.[br]
+## `param index` should come from enum ITEM_TYPES
 func get_items(index: int) -> Array:
 	order_inventory_tab(index)
 

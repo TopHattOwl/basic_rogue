@@ -91,6 +91,8 @@ const damage_text_scene = "res://scenes/ui/damage_text.tscn"
 
 const inventory_item = "res://scenes/ui/player_ui/inventory/inventory_item.tscn"
 
+const item_window_scene = "res://scenes/ui/items/item_window.tscn"
+
 
 
 # --- SPRITES/TILEMAPS ---

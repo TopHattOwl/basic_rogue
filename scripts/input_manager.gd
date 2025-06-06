@@ -214,6 +214,7 @@ func handle_inventory_inputs():
 	if Input.is_action_just_pressed("inventory"):
 		UiFunc.toggle_inventory()
 		GameData.player.PlayerComp.input_mode = prev_input_mode
+		SignalBus.inventory_closed.emit()
 
 
 
