@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var PlayerUI: CanvasLayer
 
 
 # --- COMPONENTS ---
@@ -32,9 +33,13 @@ extends Node2D
 @export var ModifiersComp: ModifiersComponent
 
 
+# --- PLAYER UI ---
+
+@export var player_ui: CanvasLayer
+
 func _ready():
 	pass
-
+	
 func _process(_delta: float) -> void:
 	pass
 
@@ -44,3 +49,5 @@ func load_player_data() -> void:
 	pass
 
 
+func get_component(component_key: int) -> Node:
+	return get_node("Components").get_node(GameData.get_component_name(component_key))

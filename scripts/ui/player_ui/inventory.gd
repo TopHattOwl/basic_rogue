@@ -13,16 +13,24 @@ var FilterButtons: Array[Button]
 
 var current_tab = DEFAULT_TAB
 
+var is_item_window_opened := false
 
 func toggle_inventory() -> void:
 	visible = !visible
 
 	set_process(visible)
 
-	_on_filter_button_pressed(DEFAULT_TAB)
+	if visible:
+		SignalBus.inventory_opened.emit()
+		_on_filter_button_pressed(DEFAULT_TAB)
+	else:
+		SignalBus.inventory_closed.emit()
 
 
 func _ready() -> void:
+	SignalBus.inventory_update.connect(_update)
+	SignalBus.item_window_opened.connect(_on_item_window_opened)
+	SignalBus.item_window_closed.connect(_on_item_window_closed)
 
 	make_inventory()
 	connect_filter_buttons()
@@ -40,6 +48,10 @@ func _process(_delta: float) -> void:
 		else:
 			_on_filter_button_pressed((current_tab - 1) % GameData.ITEM_TAB_NAMES.size())
 
+	if Input.is_action_just_pressed("ui_cancel"):
+		if is_item_window_opened:
+			return
+
 
 func _on_filter_button_pressed(index: int) -> void:
 	clear_items()
@@ -49,15 +61,18 @@ func _on_filter_button_pressed(index: int) -> void:
 
 	load_items(index)
 
+func _on_item_window_opened() -> void:
+	is_item_window_opened = true
+
+func _on_item_window_closed() -> void:
+	is_item_window_opened = false
 
 # --- making inventory tab ---
 func make_inventory() -> void:
 	for key in GameData.ITEM_TAB_NAMES.keys():
 		var button = Button.new()
-		# button.text = GameData.ITEM_TAB_NAMES[key]
 		button.name = GameData.ITEM_TAB_NAMES[key] + "Button"
 		
-
 		# make them look good
 		button.icon = PlaceholderTexture2D.new()
 		button.icon.size = Vector2(16, 24)
@@ -86,3 +101,6 @@ func clear_items() -> void:
 		items_container.remove_child(child)
 		child.queue_free()
 
+func _update() -> void:
+	clear_items()
+	load_items(current_tab)

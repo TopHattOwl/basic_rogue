@@ -38,7 +38,8 @@ func _on_year_passed() -> void:
 
 
 ## Calculates monster stats from time_difficulty [br]
-## Modifies the node's value directly
+## Modifies the node's value directly [br]
+## Dict setup: `{"monster_combat_component": monster_combat_component}`
 func calc_monster_stats(d: Dictionary, monster: Node2D) -> void:
 	var modified_values := d
 

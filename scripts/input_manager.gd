@@ -11,6 +11,9 @@ var look_diff_from_player: Vector2i = Vector2i.ZERO
 
 var prev_input_mode: int
 
+func _ready() -> void:
+	SignalBus.make_turn_pass.connect(_turn_passed)
+
 
 func handle_input() -> void:
 	match ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).input_mode:
@@ -214,7 +217,10 @@ func handle_inventory_inputs():
 	if Input.is_action_just_pressed("inventory"):
 		UiFunc.toggle_inventory()
 		GameData.player.PlayerComp.input_mode = prev_input_mode
-		SignalBus.inventory_closed.emit()
+	if Input.is_action_just_pressed("ui_cancel") and !GameData.player.player_ui.inventory.is_item_window_opened:
+		UiFunc.toggle_inventory()
+		GameData.player.PlayerComp.input_mode = prev_input_mode
+
 
 
 
@@ -274,7 +280,7 @@ func toggle_world_map_look_mode() -> void:
 func _process_movement(dir: Vector2i) -> void:
 	var new_grid = ComponentRegistry.get_player_pos() + dir
 	if MovementSystem.process_movement(GameData.player, new_grid):
-		_end_player_turn()
+		SignalBus.make_turn_pass.emit()
 
 	
 
@@ -290,12 +296,27 @@ func _end_player_turn() -> void:
 func _process_dungeon_movement(dir: Vector2i) -> void:
 	var new_grid = ComponentRegistry.get_player_pos() + dir
 	if MovementSystem.process_dungeon_movement(GameData.player, new_grid):
-		_ent_player_turn_dungeon()
+		SignalBus.make_turn_pass.emit()
 
-func _ent_player_turn_dungeon() -> void:
+func _end_player_turn_dungeon() -> void:
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = false
 	handle_hostile_turn_dungeon()
 	_input_states.clear()
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
 
 	SignalBus.player_acted.emit()
+
+
+func _end_player_turn_world_map() -> void:
+	pass
+
+
+func _turn_passed() -> void:
+	var player_comp = GameData.player.PlayerComp
+
+	if player_comp.is_in_dungeon:
+		_end_player_turn_dungeon()
+	elif !player_comp.is_in_dungeon and !player_comp.is_in_world_map:
+		_end_player_turn()
+	elif player_comp.is_in_world_map:
+		_end_player_turn_world_map()

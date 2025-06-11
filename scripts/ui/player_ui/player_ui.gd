@@ -68,5 +68,9 @@ func update_look_ui(grid_pos: Vector2i) -> void:
 
 
 func _ready() -> void:
+	# hide/show ui
+	inventory.visible = false
+	stance_bar.visible = false
+
 	# init block power
 	block.text = "%s/%s" % [ComponentRegistry.get_player_comp(GameData.ComponentKeys.BLOCK).current_block_power, ComponentRegistry.get_player_comp(GameData.ComponentKeys.BLOCK).max_block_power]

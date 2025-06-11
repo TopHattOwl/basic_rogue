@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1ow4kr7lfmm6"]
+
+[ext_resource type="Script" uid="uid://qfjdoyi113tw" path="res://scenes/ui/hud/buffs/buff_icon.gd" id="1_1kofn"]
+
+[sub_resource type="Gradient" id="Gradient_auy74"]
+offsets = PackedFloat32Array(0.106908, 0.347039, 0.606908, 0.929276)
+colors = PackedColorArray(0.47063, 0.320766, 0.126763, 1, 0.604773, 0.183068, 0.239571, 1, 0.475689, 0.263426, 0.47756, 1, 0.398225, 0.254568, 0.341976, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3i1dp"]
+gradient = SubResource("Gradient_auy74")
+width = 16
+height = 24
+fill_from = Vector2(0.811966, 0.790598)
+fill_to = Vector2(0.183761, 0.299145)
+
+[node name="BuffIcon" type="Control" node_paths=PackedStringArray("buff_icon", "mouseover_area", "duration")]
+custom_minimum_size = Vector2(20, 24)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1kofn")
+buff_icon = NodePath("Icon")
+mouseover_area = NodePath("MouseoverArea")
+duration = NodePath("Duration")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 18.0
+offset_bottom = 24.0
+texture = SubResource("GradientTexture2D_3i1dp")
+
+[node name="MouseoverArea" type="Control" parent="."]
+custom_minimum_size = Vector2(16, 24)
+anchors_preset = 0
+offset_left = 2.0
+offset_right = 18.0
+offset_bottom = 24.0
+
+[node name="Duration" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 14.0
+offset_right = 18.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 6
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1

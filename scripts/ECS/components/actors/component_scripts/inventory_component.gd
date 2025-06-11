@@ -37,11 +37,11 @@ func add_item(item: ItemResource) -> bool:
 	var tab = inventory[item_type]
 	var tab_limit = inventory_tab_size[item_type]
 
-	# --stackable item check
+	# -- STACKABLE ---
 	if is_stackable:
 		print("--stackable item--")
 		for existing_item in tab:
-
+			# --------------------------------------------------------------
 			# if item is already in inventory add to stack
 			if existing_item.uid == item.uid:
 				print("item already in inventory")
@@ -70,15 +70,60 @@ func add_item(item: ItemResource) -> bool:
 		tab.append(new_item)
 		return true
 	
-	# if not stackable just add it to correct tab if there is space
+	# --- NOT STACKABLE ---
 	else:
 		print("--not stackable item--")
+
+		# if the tab limit is 0 on not stackable items -> all item can appear exactly once
+		if tab_limit == 0:
+			for existing_item in tab:
+				if existing_item.uid == item.uid:
+					print("item already in inventory")
+					return false
+
+			# if this item is not in inventory add it
+			tab.append(item)
+			return true
+
+
 		if tab.size() == tab_limit:
 			print("tab is full, can't pick up item")
 			return false
 		else:
 			tab.append(item)
 			return true
+
+
+func remove_item(item: ItemResource) -> void:
+	var tab = inventory[item.item_type]
+	var stackable_comp = item.get_component(StackableComponent)
+
+	# if stackable remove from stak, depending on how much we remove
+	if stackable_comp.is_stackable:
+		pass
+
+	# if not stackable just remove from inventory
+	else:
+		tab.erase(item)
+
+
+# --- ITEM USE ---
+
+func use_item(_item: ItemResource) -> bool:
+
+	if not can_use_item(_item):
+		return false
+
+	_item._call_component_method({
+		"method_name": "on_use",
+		"entity": get_parent().get_parent(),
+		"target": get_parent().get_parent()
+	})
+	return true
+
+
+# --- MISC ---
+
 ## Returns the items in the inventory.[br]
 ## `param index` should come from enum ITEM_TYPES
 func get_items(index: int) -> Array:
@@ -89,3 +134,6 @@ func get_items(index: int) -> Array:
 func order_inventory_tab(index: int) -> void:
 	var tab = inventory[index]
 	tab.sort_custom(func(a, b): return a.uid > b.uid)
+
+func can_use_item(_item: ItemResource) -> bool:
+	return true

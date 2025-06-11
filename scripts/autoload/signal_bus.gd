@@ -1,7 +1,8 @@
 extends Node
 
 
-signal player_acted
+signal player_acted()
+signal make_turn_pass()
 
 
 # called when actor tries hitting another, used for calculations
@@ -9,6 +10,12 @@ signal actor_hit(hit_data: Dictionary)
 
 # called when calculations are done and damage is applied -> for animation and stuff
 signal actor_hit_final(hit_data: Dictionary)
+
+
+
+signal buff_added(buff: Buff, actor: Node2D)
+signal buff_removed(buff: Buff, actor: Node2D)
+
 
 # emited when player blocks and block power changes
 signal block_power_changed(new_value, max_value)
@@ -31,4 +38,11 @@ signal year_passed()
 
 
 # --- INVENTORY ---
+signal inventory_opened()
 signal inventory_closed()
+
+# emied when inventory ui window need to update
+signal inventory_update()
+
+signal item_window_opened()
+signal item_window_closed()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://be4gwtu23s7n6"]
+[gd_scene load_steps=10 format=3 uid="uid://be4gwtu23s7n6"]
 
 [ext_resource type="Script" uid="uid://bk8wygn2yqos2" path="res://scripts/ui/player_ui/player_ui.gd" id="1_hrok7"]
 [ext_resource type="Texture2D" uid="uid://cm21jj8xixo86" path="res://assets/ui/HP_alt.png" id="2_ow2f4"]
@@ -6,17 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://ls0rjmajqbol" path="res://assets/ui/sidebar_bg.png" id="4_vopia"]
 [ext_resource type="Script" uid="uid://c8l2kw4kej00a" path="res://scripts/ui/player_ui/stance_bar.gd" id="5_1ek40"]
 [ext_resource type="Script" uid="uid://dobnprsw10nxm" path="res://scripts/ui/player_ui/inventory.gd" id="6_23jyl"]
+[ext_resource type="Script" uid="uid://2tj2dlsumkbw" path="res://scenes/ui/player_ui/buffs_container.gd" id="7_81j3l"]
 
 [sub_resource type="Gradient" id="Gradient_23jyl"]
 offsets = PackedFloat32Array(0, 0.474138, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.327586, 0.327586, 0.327586, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.158472, 0.158472, 0.158472, 1, 0.0552024, 0.165105, 0.191099, 1, 0.241156, 0.241156, 0.241156, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_81j3l"]
 gradient = SubResource("Gradient_23jyl")
 width = 174
 height = 94
-fill_from = Vector2(0.846154, 0.25641)
-fill_to = Vector2(0.183761, 0.816239)
+fill_from = Vector2(0.798801, 0.303419)
+fill_to = Vector2(0.120051, 0.692308)
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_hrok7")
@@ -133,10 +134,10 @@ grow_vertical = 2
 visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 40.0
-offset_top = 48.0
-offset_right = 600.0
-offset_bottom = 304.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 624.0
+offset_bottom = 344.0
 script = ExtResource("6_23jyl")
 
 [node name="Background" type="TextureRect" parent="Inventory"]
@@ -166,12 +167,14 @@ metadata/_edit_use_anchors_ = true
 [node name="TabName" type="Label" parent="Inventory"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.125
-anchor_right = 0.757
+anchor_left = 0.605
+anchor_top = 0.122
+anchor_right = 0.862
 anchor_bottom = 0.215
-offset_right = 0.0799866
-offset_bottom = -0.0400009
+offset_left = 0.159973
+offset_top = -0.0160027
+offset_right = 0.23999
+offset_bottom = -1.04
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -184,3 +187,27 @@ anchor_right = 1.0
 anchor_bottom = 0.969
 offset_left = -0.240005
 offset_bottom = -0.0640106
+
+[node name="BuffsContainer" type="HBoxContainer" parent="."]
+offset_left = 136.0
+offset_top = 304.0
+offset_right = 480.0
+offset_bottom = 328.0
+script = ExtResource("7_81j3l")
+
+[node name="Buffs" type="HBoxContainer" parent="BuffsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Debuffs" type="HBoxContainer" parent="BuffsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PassivesContainer" type="HBoxContainer" parent="."]
+offset_left = 160.0
+offset_top = 280.0
+offset_right = 456.0
+offset_bottom = 304.0
+alignment = 1

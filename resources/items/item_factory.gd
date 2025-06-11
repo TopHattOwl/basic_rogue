@@ -23,10 +23,5 @@ static func create_item(item_resource_path: String, count: int = 1) -> ItemResou
 		var stackable_component = new_item.get_component(StackableComponent)
 		if stackable_component:
 			stackable_component.count = count
-
-	# init items item window component
-	var item_window_comp = new_item.get_component(ItemWindowComponent)
-	if item_window_comp:
-		new_item.get_component(ItemWindowComponent).fill_interaction_options(new_item)
-	
+			
 	return new_item

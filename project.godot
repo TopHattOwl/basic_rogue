@@ -33,7 +33,8 @@ SignalBus="*res://scripts/autoload/signal_bus.gd"
 GameState="*res://scripts/autoload/game_state.gd"
 CombatSystem="*res://scripts/ECS/systems/combat_system.gd"
 TimeDifficulty="*res://scripts/systems/difficulty/time_difficulty.gd"
-ItemWindowMaker="*res://scenes/ui/ui_systems/item_window_maker.gd"
+AmbushManager="*res://scripts/systems/world_managers/ambush_manager.gd"
+DungeonManager="*res://scripts/systems/world_managers/dungeon_manager.gd"
 
 [display]
 

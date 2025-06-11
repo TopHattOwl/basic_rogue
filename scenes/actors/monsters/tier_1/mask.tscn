@@ -17,6 +17,7 @@
 
 [node name="Mask" type="Node2D" groups=["monsters"]]
 script = ExtResource("1_j0ki7")
+metadata/_custom_type_script = "uid://cj8vm0ikqf5cy"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

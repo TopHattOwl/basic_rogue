@@ -39,6 +39,10 @@ func equip_item(item: ItemResource, slot: int) -> bool:
 				"item": null
 			})
 	
+	# remove item from inventory
+	var inventory = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.INVENTORY))
+	inventory.remove_item(item)
+
 	return true
 	
 

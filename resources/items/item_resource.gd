@@ -25,7 +25,7 @@ func get_component(_type: Variant) -> Variant:
 	if component:
 		return component
 	else:
-		push_error("Item {0} has no component of type {1}".format([str(uid), str(_type)]))
+		push_warning("Item {0} has no component of type {1}. If no error for null reference, this may be ignored".format([str(uid), str(_type)]))
 		return null
 
 ## Overriden default duplicate to proper component copying [br]
@@ -39,3 +39,22 @@ func create_instance(subresources: bool = false) -> Resource:
 		instance.components.append(comp.duplicate(true))
 	return instance
 	
+## Calls the given `method_name` on all components [br]
+## given dictionary needs: `entity`, `method_name`[br]
+## Can have: `target`
+func _call_component_method(d: Dictionary) -> void:
+	var entity = d.get("entity", null)
+	var method_name = d.get("method_name", "")
+	var target = d.get("target", null)
+	for comp in components:
+		if comp.has_method(method_name):
+			print("comp has method: ", method_name)
+
+			# base methods need item and entity
+			# where more is required make special case
+			match method_name:
+				"on_use":
+					comp.call(method_name, self, entity, target)
+
+				_:
+					comp.call(method_name, self, entity)

@@ -19,6 +19,7 @@
 z_index = 1
 z_as_relative = false
 script = ExtResource("1_nxa1e")
+metadata/_custom_type_script = "uid://cj8vm0ikqf5cy"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_0h8x2")

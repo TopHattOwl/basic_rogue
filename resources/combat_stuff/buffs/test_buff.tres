@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=8 format=3 uid="uid://cxinn1w048dkl"]
+
+[ext_resource type="Script" uid="uid://cqey1b1dwflt4" path="res://scripts/systems/modifier_system/buff.gd" id="1_2x4sa"]
+[ext_resource type="Script" uid="uid://c6hqvujepfyxm" path="res://scripts/systems/modifier_system/stat_modifier_class.gd" id="1_pvcux"]
+[ext_resource type="Script" uid="uid://cq8mad0mmyu8r" path="res://scripts/systems/conditions/base_condition.gd" id="2_odrqc"]
+
+[sub_resource type="Gradient" id="Gradient_pvcux"]
+offsets = PackedFloat32Array(0.206452, 0.790323)
+colors = PackedColorArray(0.143958, 0.363317, 0.347118, 1, 0.844792, 0.686357, 0.481804, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_odrqc"]
+gradient = SubResource("Gradient_pvcux")
+width = 16
+height = 24
+fill_from = Vector2(0.320513, 0.222222)
+fill_to = Vector2(0.760684, 0.722222)
+
+[sub_resource type="Resource" id="Resource_i1fdv"]
+script = ExtResource("1_pvcux")
+target_stat = &"damage_min"
+target_component = 7
+operation = 0
+value = 5.0
+conditions = Array[ExtResource("2_odrqc")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[sub_resource type="Resource" id="Resource_468wa"]
+script = ExtResource("1_pvcux")
+target_stat = &"damage_max"
+target_component = 7
+operation = 0
+value = 15.0
+conditions = Array[ExtResource("2_odrqc")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
+[resource]
+script = ExtResource("1_2x4sa")
+duration = 10
+modifiers = Array[ExtResource("1_pvcux")]([SubResource("Resource_i1fdv"), SubResource("Resource_468wa")])
+buff_name = "Test buff"
+buff_sprite = SubResource("GradientTexture2D_odrqc")

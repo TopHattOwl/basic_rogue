@@ -6,6 +6,13 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 
 # finish:
 	# finish dungeon class and dungeon level class for everything, not just field
+	# biome class for everything, not just field
+	# every type of buff and stat modifier and relevant stuff, connected to it:
+		# ui elements for buffs: buff_hover_tooltip, buff_icon
+		# modifier system
+		# modifier component
+	
+
 
 # IDEAS:
 	# messages:
@@ -32,6 +39,12 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# finish biome integration to class objects
 
 # TODO:
+	# VERY IMPORTANT:
+		# make player unable to use powders that are already applied
+		# make world map much larger, to the east, the longer you go east the less civilizations (settlements) there are -> stronger monsters
+			# this way there can be more regions and more settlements, more dungeons and more contracts
+		# scripts/systems/world_manager/ autoload make
+
 	# IMPORTANT:
 		# TODO in inventory_item.gd
 		# revork Scripts/ECS/systems to be static functions instead of having to create instances of the classes
@@ -66,8 +79,8 @@ func _ready():
 	var test_weapon: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/weapons/test_weapon.tres")
 	# GameData.player.EquipmentComp.equip_item(test_weapon, GameData.EQUIPMENT_SLOTS.MAIN_HAND)
 
-	var resource1: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 66)
-	var resource2: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres")
+	var resource1: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 11)
+	var resource2: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 3)
 	var resource3: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 5)
 
 	print(resource1.get_component(StackableComponent).count)
@@ -75,13 +88,18 @@ func _ready():
 	print(resource3.get_component(StackableComponent).count)
 	GameData.player.InventoryComp.add_item(resource1)
 	GameData.player.InventoryComp.add_item(resource2)
+	GameData.player.InventoryComp.add_item(resource3)
 	GameData.player.InventoryComp.add_item(test_weapon)
 
-	# SignalBus.equipment_changing.connect(func(item, slot):
-	# 	print("Signal emitted with: ", item.uid, " in slot: ", slot)
-	# )
 
-	# SignalBus.equipment_changing.emit(test_weapon, GameData.EQUIPMENT_SLOTS.MAIN_HAND)
+	# powder test
+	var powder: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/powders/test_powder.tres")
+	var powder2: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/powders/test_powder2.tres")
+
+	GameData.player.InventoryComp.add_item(powder)
+	GameData.player.InventoryComp.add_item(powder2)
+
+
 
 
 func _process(_delta):

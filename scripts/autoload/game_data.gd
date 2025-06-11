@@ -270,18 +270,12 @@ const COMPONENTS = {
 	ComponentKeys.SKILLS: "Components/SkillsComponent",
 	ComponentKeys.STANCE: "Components/StanceComponent",
 	ComponentKeys.MODIFIERS: "Components/ModifiersComponent",
-
-	# ITEMS
-	ComponentKeys.ITEM_POSITION: "Components/ItemPositionComponent",
-	ComponentKeys.ITEM_IDENTITY: "Components/ItemIdentityComponent",
-	ComponentKeys.ITEM_SKILL: "Components/ItemSkillComponent",
-
-	ComponentKeys.WEAPON_STATS: "Components/WeaponStatsComponent",
 }
 
 func get_component_path(component_key: int) -> String:
 	return COMPONENTS.get(component_key, "")
 
+## Returns the name of the component (e.g. "MeleeCombatComponent")
 func get_component_name(component_key: int) -> String:
 	var component_name = COMPONENTS.get(component_key, "").replace("Components/", "")
 	return component_name

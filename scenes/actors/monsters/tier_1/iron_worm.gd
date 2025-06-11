@@ -1,4 +1,4 @@
-extends Node2D
+extends Monster
 
 var max_hp = 30
 
@@ -63,15 +63,15 @@ func _ready() -> void:
 
 	calculate_stats()
 
-	ComponentRegistry.get_component(self, GameData.ComponentKeys.HEALTH).initialize(max_hp)
-	ComponentRegistry.get_component(self, GameData.ComponentKeys.MONSTER_COMBAT).initialize(monster_combat_component)
-	ComponentRegistry.get_component(self, GameData.ComponentKeys.DEFENSE_STATS).initialize(defense_stats_component)
-	ComponentRegistry.get_component(self, GameData.ComponentKeys.AI_BEHAVIOR).initialize(ai_behavior_component)
-	ComponentRegistry.get_component(self, GameData.ComponentKeys.ATTRIBUTES).initialize(attributes_component)
-	ComponentRegistry.get_component(self, GameData.ComponentKeys.IDENTITY).initialize(identity_component)
-	ComponentRegistry.get_component(self, GameData.ComponentKeys.MONSTER_PROPERTIES).initialize(monster_properties_componenet)
-	ComponentRegistry.get_component(self, GameData.ComponentKeys.MONSTER_STATS).initialize(monster_stats_component)
-	ComponentRegistry.get_component(self, GameData.ComponentKeys.MONSTER_DROPS).initialize(monster_drops_component)
+	get_component(GameData.ComponentKeys.HEALTH).initialize(max_hp)
+	get_component(GameData.ComponentKeys.MONSTER_COMBAT).initialize(monster_combat_component)
+	get_component(GameData.ComponentKeys.DEFENSE_STATS).initialize(defense_stats_component)
+	get_component(GameData.ComponentKeys.AI_BEHAVIOR).initialize(ai_behavior_component)
+	get_component(GameData.ComponentKeys.ATTRIBUTES).initialize(attributes_component)
+	get_component(GameData.ComponentKeys.IDENTITY).initialize(identity_component)
+	get_component(GameData.ComponentKeys.MONSTER_PROPERTIES).initialize(monster_properties_componenet)
+	get_component(GameData.ComponentKeys.MONSTER_STATS).initialize(monster_stats_component)
+	get_component(GameData.ComponentKeys.MONSTER_DROPS).initialize(monster_drops_component)
 
 func calculate_stats() -> void:
 

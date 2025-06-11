@@ -93,6 +93,9 @@ const inventory_item = "res://scenes/ui/player_ui/inventory/inventory_item.tscn"
 
 const item_window_scene = "res://scenes/ui/items/item_window.tscn"
 
+const buff_icon_scene = "res://scenes/ui/hud/buffs/buff_icon.tscn"
+const buff_hover_tooltip_scene = "res://scenes/ui/hud/buffs/buff_hover_tooltip.tscn"
+
 
 
 # --- SPRITES/TILEMAPS ---

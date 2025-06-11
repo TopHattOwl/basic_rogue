@@ -43,8 +43,9 @@ tile_size = Vector2i(16, 24)
 sources/0 = SubResource("TileSetAtlasSource_qxscg")
 sources/1 = SubResource("TileSetAtlasSource_biscu")
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("HealthComp", "StaminaComp", "AbilitiesComp", "SpellsComp", "SkillsComp", "AttributesComp", "EquipmentComp", "InventoryComp", "MeleeCombatComp", "BlockComp", "StanceComp", "IdentityComp", "PositionComp", "StateComp", "PlayerComp", "ModifiersComp") groups=["player"]]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("PlayerUI", "HealthComp", "StaminaComp", "AbilitiesComp", "SpellsComp", "SkillsComp", "AttributesComp", "EquipmentComp", "InventoryComp", "MeleeCombatComp", "BlockComp", "StanceComp", "IdentityComp", "PositionComp", "StateComp", "PlayerComp", "ModifiersComp", "player_ui") groups=["player"]]
 script = ExtResource("1_qxscg")
+PlayerUI = NodePath("PlayerUI")
 HealthComp = NodePath("Components/HealthComponent")
 StaminaComp = NodePath("Components/StaminaComponent")
 AbilitiesComp = NodePath("Components/AbilitiesComponent")
@@ -61,6 +62,7 @@ PositionComp = NodePath("Components/PositionComponent")
 StateComp = NodePath("Components/StateComponent")
 PlayerComp = NodePath("Components/PlayerComponent")
 ModifiersComp = NodePath("Components/ModifiersComponent")
+player_ui = NodePath("PlayerUI")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 3
