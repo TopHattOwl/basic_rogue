@@ -6,6 +6,11 @@ var health_multiplier: float = 1.01
 var damage_multiplier: float = 1.01
 
 
+## time passed in number of month, years for difficulty 
+var months_passed: int = 0
+var years_passed: int = 0
+
+
 func _ready() -> void:
 	SignalBus.month_passed.connect(_on_month_passed)
 	SignalBus.year_passed.connect(_on_year_passed)
@@ -13,16 +18,16 @@ func _ready() -> void:
 func _on_month_passed() -> void:
 	print("month passed")
 
-
+	months_passed += 1
 	# helth multiplier
-	var x = health_multiplier
+	var x = months_passed
 
-	x = -0.0000146503 * pow(x, 3) - 0.00202007 * pow(x, 2) + 0.033369 * x + 1.09487
+	x = -0.0000146503 * pow(x, 3) + 0.00202007 * pow(x, 2) + 0.033369 * x + 1.09487
 	# x = pow(x, 2.97)
 	health_multiplier = x
 
 	# damage multiplier
-	x = damage_multiplier
+	x = months_passed
 	x = 3.421491522659 * pow(10, -6) * pow(x, 3) - 0.000378077 * pow(x, 2) + 0.0443807 * x + 0.923532
 	damage_multiplier = x
 
@@ -31,6 +36,7 @@ func _on_month_passed() -> void:
 	print("damage multiplier: ", damage_multiplier)
 
 func _on_year_passed() -> void:
+	years_passed += 1
 	print("year passed")
 	health_multiplier += 0.1
 	damage_multiplier += 0.1

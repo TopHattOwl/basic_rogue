@@ -87,7 +87,11 @@ enum MONSTERS_ALL {
 	MASK,
 
 	# tier 2
-	PLACEHOLDER
+	PLACEHOLDER,
+
+
+	# special
+	BIG_B,
 }
 
 # monster tiers (1-5) -> monster biome (what biome it can appear in) -> monster key array
@@ -516,3 +520,8 @@ enum HIT_ACTIONS {
 	MISS, # attacker missed bc target dodged
 	BLOCKED, # target blocked the attack
 }
+
+
+
+# debug options
+var melee_combat_debug := false

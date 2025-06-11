@@ -5,6 +5,10 @@ func _ready() -> void:
 
 
 func _damage_actor(hit_data: Dictionary) -> void:
+	var debug = GameData.melee_combat_debug
+	if debug:
+		print("----- damageing actor -----")
+
 	var target = hit_data.target
 	var damage = hit_data.damage
 	var element = hit_data.element
@@ -19,8 +23,12 @@ func _damage_actor(hit_data: Dictionary) -> void:
 		return
 	
 	var reduced_damage = target_defense_comp.calc_reduced_damage(damage, element)
-	print("reduced damage: ", reduced_damage)
-	print("elemet: ", element)
+
+	if debug:
+		print("base damage: ", damage)
+		print("reduced damage: ", reduced_damage)
+		print("elemet: ", element)
+		
 	target_health.take_damage(reduced_damage)
 
 	hit_data.damage = reduced_damage

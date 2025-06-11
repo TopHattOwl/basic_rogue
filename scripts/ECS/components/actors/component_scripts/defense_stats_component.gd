@@ -2,8 +2,8 @@ class_name DefenseStatsComponent
 extends Node
 
 
-# armor for physical resistance
-var armor: int = 0
+## armor -> converted to percentage between 0% and 80% [br]
+var armor: int
 
 # elemental resists, percentage
 var resistances: Dictionary = {
@@ -20,15 +20,23 @@ func initialize(d: Dictionary) -> void:
 
 
 func calc_reduced_damage(damage: int, element: int) -> int:
+
+    # if attack is physical, use armor
     if element == GameData.ELEMENT.PHYSICAL:
-        var armor_percent = calc_armor_resistance(damage)
+        var armor_percent = calc_armor_resistance()
         return int(damage * (1.0 - armor_percent))
+
+    # if attack is not physical, use reduces armor value and resistance
+    # armor also useful against elements somewhat
     else:
+        # var armor_percent = calc_armor_resistance()
         var resist = resistances.get(element, 0.0)
         return int(damage * (1.0 - resist))
 
 
-func calc_armor_resistance(dam: int) -> float:
-    var armor_percent: float = armor / (armor + 100)
+func calc_armor_resistance() -> float:
+    var armor_float = float(armor)
+    var armor_percent: float = armor_float / (armor_float + 100)
 
-    return armor_percent
+
+    return clamp(armor_percent, 0.0, 0.8)

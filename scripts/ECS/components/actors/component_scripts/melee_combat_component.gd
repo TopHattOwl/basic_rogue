@@ -34,6 +34,13 @@ func initialize(d: Dictionary) -> void:
 
 # combat system
 func melee_attack(target: Node2D) -> bool:
+	var debug = GameData.melee_combat_debug
+
+	if debug:
+		print("----- melee attack -----")
+		print("Attacker: ", get_parent().get_parent().get_component(GameData.ComponentKeys.IDENTITY).actor_name)
+
+	
 
 	# get attacker and target position
 	var attacker_pos: Vector2i = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.POSITION)).grid_pos
@@ -58,6 +65,10 @@ func melee_attack(target: Node2D) -> bool:
 
 	# damage of the attack
 	var dam: int = calc_damage()
+
+	if debug:
+		print("Base damage: {0}-{1}".format([damage_min, damage_max]))
+		print("Damage with modifiers: ", dam)
 
 	var signal_hit_data := {}
 
@@ -93,6 +104,9 @@ func melee_attack(target: Node2D) -> bool:
 		"hit_action": GameData.HIT_ACTIONS.HIT
 	}
 	SignalBus.actor_hit.emit(signal_hit_data)
+
+	if debug:
+		print("actor hit target, signal emitted")
 
 	return true
 

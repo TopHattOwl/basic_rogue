@@ -11,6 +11,7 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 		# ui elements for buffs: buff_hover_tooltip, buff_icon
 		# modifier system
 		# modifier component
+	# from monster nodes remove armor from monster stats and remove element weight
 	
 
 
@@ -98,6 +99,8 @@ func _ready():
 
 	GameData.player.InventoryComp.add_item(powder)
 	GameData.player.InventoryComp.add_item(powder2)
+
+	GameData.player.get_component(GameData.ComponentKeys.MELEE_COMBAT).reset_to_unarmed()
 
 
 

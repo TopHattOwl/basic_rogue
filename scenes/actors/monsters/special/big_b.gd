@@ -5,15 +5,14 @@ var max_hp = 30
 var monster_combat_component = {
 	"damage_min": 10,
 	"damage_max": 19,
-	"attack_type": GameData.ATTACK_TYPE.SLASH,
+	"attack_type": GameData.ATTACK_TYPE.BASH,
 	"accuracy": 0.8,
 	"element": GameData.ELEMENT.PHYSICAL,
-	"element_weight": 0.0,
 	"melee_dodge": 0.05
 }
 
 var defense_stats_component = {
-	"armor": 23,
+	"armor": 90,
 	"resistances": {
 		GameData.ELEMENT.FIRE: 0.05,
 		GameData.ELEMENT.ICE: 0.05,
@@ -26,20 +25,20 @@ var defense_stats_component = {
 var ai_behavior_component = {
 	"type": "chase",
 	"is_hostile": true,
-	"vision_range": 8,
+	"vision_range": 12,
 }
 
 var attributes_component = {
-	"strength": 13,
-	"dexterity": 9,
-	"intelligence": 7,
+	"strength": 16,
+	"dexterity": 8,
+	"intelligence": 4,
 	"constitution": 14,
 	"perception": 8
 }
 
 var identity_component = {
 	"is_player": false,
-	"actor_name": "Iron Worm",
+	"actor_name": "Big B",
 	"faction": "monsters"
 }
 
@@ -50,14 +49,14 @@ var monster_properties_componenet = {
 var monster_stats_component = {
 	"armor": 2,
 	"monster_tier": 1,
-	"monster_id": GameData.MONSTERS_ALL.IRON_WORM,
+	"monster_id": GameData.MONSTERS_ALL.BIG_B,
 }
 
 var monster_drops_component = {
 	"loot_pool": []
 }
 
-@export var text_color: String = "#dfdfdf"
+@export var text_color: String = "#00a41a"
 
 func _ready() -> void:
 
