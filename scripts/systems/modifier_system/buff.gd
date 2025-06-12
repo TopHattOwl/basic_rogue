@@ -11,4 +11,7 @@ extends Resource
 @export var buff_sprite: Texture2D
 
 
+@export var description: String
+
+
 

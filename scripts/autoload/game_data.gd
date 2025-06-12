@@ -66,6 +66,8 @@ func remove_entities(is_player_in_dungeon: bool = false) -> void:
 
 		MapFunction.initialize_dungeon_map_data()
 
+
+## returns actor at given grid position
 func get_actor(grid_pos: Vector2i) -> Node2D:
 	if !actors_map:
 		return null
@@ -311,6 +313,20 @@ enum ELEMENT {
 	POISON,
 }
 
+# SPELLS
+
+enum SPELL_TYPE {OFFENSIVE, DEFENSIVE}
+enum SPELL_SUBTYPE {
+	# OFFENSIVE
+	SINGLE_TARGET,
+	AOE,
+	ARMAMENT_BOOST,
+
+	# DEFENSIVE
+
+	ARMOR_INFUSE,
+
+}
 
 # COMPONENTS
 enum ComponentKeys {
@@ -346,14 +362,6 @@ enum ComponentKeys {
 	ITEM_SKILL,
 
 	WEAPON_STATS,
-}
-
-enum ENTITY_TAGS {
-	NONE,
-	PLAYER,
-	MONSTER,
-	NPC,
-	ITEM,
 }
 
 # MAP
@@ -492,19 +500,6 @@ enum RANGED_WEAPONS {
 
 }
 
-# 	all items
-enum ALL_ITEMS {
-	# weapons
-	STEEL_LONGSWORD,
-
-	# armor
-	LEATHER_CHEST,
-	LEATHER_LEGS,
-	LEATHER_BOOTS,
-
-	# potions
-}
-
 
 # MODIFIERS OPERATION
 
@@ -524,4 +519,4 @@ enum HIT_ACTIONS {
 
 
 # debug options
-var melee_combat_debug := false
+var melee_combat_debug := true

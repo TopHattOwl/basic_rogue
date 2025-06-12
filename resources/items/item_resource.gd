@@ -27,20 +27,9 @@ func get_component(_type: Variant) -> Variant:
 	else:
 		push_warning("Item {0} has no component of type {1}. If no error for null reference, this may be ignored".format([str(uid), str(_type)]))
 		return null
-
-## Overriden default duplicate to proper component copying [br]
-## if `param subresources` is ture deep copy is created -> duplicates subresources as well 
-func create_instance(subresources: bool = false) -> Resource:
-	var instance = self.duplicate(subresources)
-
-	# deep copy components array
-	instance.components = Array()
-	for comp in components:
-		instance.components.append(comp.duplicate(true))
-	return instance
 	
 ## Calls the given `method_name` on all components [br]
-## given dictionary needs: `entity`, `method_name`[br]
+## given dictionary needs:`method_name`, `entity`[br]
 ## Can have: `target`
 func _call_component_method(d: Dictionary) -> void:
 	var entity = d.get("entity", null)
@@ -48,7 +37,6 @@ func _call_component_method(d: Dictionary) -> void:
 	var target = d.get("target", null)
 	for comp in components:
 		if comp.has_method(method_name):
-			print("comp has method: ", method_name)
 
 			# base methods need item and entity
 			# where more is required make special case

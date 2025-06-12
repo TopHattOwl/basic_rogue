@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bknccyo38q2v2" path="res://scenes/ui/hud/buffs/buff_hover_tooltip.gd" id="1_uf5l0"]
 
-[node name="BuffHoverTooltip" type="Control" node_paths=PackedStringArray("sprite", "duration", "modifires_container")]
+[node name="BuffHoverTooltip" type="Control" node_paths=PackedStringArray("sprite", "modifires_container")]
 custom_minimum_size = Vector2(112, 144)
 layout_mode = 3
 anchor_left = 0.112
@@ -17,7 +17,6 @@ grow_vertical = 0
 mouse_filter = 2
 script = ExtResource("1_uf5l0")
 sprite = NodePath("Sprite")
-duration = NodePath("")
 modifires_container = NodePath("ModifiresContainer")
 
 [node name="Sprite" type="TextureRect" parent="."]
@@ -27,7 +26,6 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 24.0
 offset_bottom = 32.0
-metadata/_edit_group_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false

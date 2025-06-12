@@ -7,6 +7,7 @@ signal attack_animation_finished(entiy)
 func _ready() -> void:
 	SignalBus.actor_hit_final.connect(_on_actor_hit)
 
+
 func _on_actor_hit(hit_data: Dictionary) -> void:
 	floating_damage_text(hit_data.target, hit_data.attacker, hit_data.damage, hit_data.direction, hit_data.element, hit_data.hit_action)
 	play_attack_animation(hit_data.attacker, hit_data.direction)
@@ -126,3 +127,4 @@ func _get_element_color(element: int) -> String:
 			return "#2e610f"
 		_:
 			return "#bbbab5"
+

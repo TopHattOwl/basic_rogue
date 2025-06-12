@@ -27,8 +27,11 @@ static func _apply_modifier(_current: Variant, _mod: StatModifier) -> float:
 			return _current + _mod.value
 		GameData.MODIFIER_OPERATION.MULTIPLY:
 			return _current * _mod.value
+
+		# can only override values represented by numbers (even if value is represented by enum, like element type)
 		GameData.MODIFIER_OPERATION.OVERRIDE:
 			return _mod.value
+			
 		_:
 			return _current
 

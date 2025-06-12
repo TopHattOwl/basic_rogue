@@ -17,7 +17,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2h8mx"]
 size = Vector2(16, 24)
 
-[node name="BigB" type="Node2D"]
+[node name="BigB" type="Node2D" groups=["monsters"]]
 script = ExtResource("1_2h8mx")
 metadata/_custom_type_script = "uid://cj8vm0ikqf5cy"
 

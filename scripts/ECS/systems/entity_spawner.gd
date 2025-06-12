@@ -59,9 +59,12 @@ static func spawn_monster(grid_pos: Vector2i, monster_key: int):
 
 # --- ITEMS ---
 
-## Spawns a specific item
-static func spawn_item(grid_pos: Vector2i, item_scene_key: int):
-	var item = load(DirectoryPaths.item_scenes[item_scene_key]).instantiate()
+## Spawns a specific item [br]
+## Based on given 
+
+# decrepit
+static func spawn_item(grid_pos: Vector2i, itme_uid: String):
+	var item = load(DirectoryPaths.item_scenes[itme_uid]).instantiate()
 
 	var position_comp = ComponentRegistry.get_component(item, GameData.ComponentKeys.ITEM_POSITION)
 	if position_comp:

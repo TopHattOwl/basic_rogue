@@ -5,17 +5,31 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 
 
 # finish:
+	# IMPORTANT:
+		# finish ELEMENT enum to what elements are in the game
+
+	# in entity_systems item spawner is decrepit
+
 	# finish dungeon class and dungeon level class for everything, not just field
 	# biome class for everything, not just field
-	# every type of buff and stat modifier and relevant stuff, connected to it:
+	# every type of buff and stat modifier and relevant stuff, connected to it, right now mostly only melee combat modifiers is done:
 		# ui elements for buffs: buff_hover_tooltip, buff_icon
 		# modifier system
 		# modifier component
 	# from monster nodes remove armor from monster stats and remove element weight
+	# DEFENSIVE SPELLS SUBTYPES in GameData enum 
 	
 
 
 # IDEAS:
+	# craftable component:
+		# known: bool, dows player know this recepie
+		# crating_cost: Dictionary of resources and amounts
+		# crafting_station: int from enum CRAFTING_STATIONS (alchemy for powder, potions | cooking station for food)
+		# craftable_by_player: bool if player can craft it themself or have to bring it to a special crafter (like monster weapons need to be made with a specaial crafter)
+
+	# player can do things like clear a dungeon, fulfill contracts, etc 
+	# stances could alter attack type: mordhau grip on sword changes to bash, dagger could change to pirece from slash if stabbing stance
 	# messages:
 		# when player does something (like clear a dungeon, fulfill a contract etc) dont incearse
 	# reputation for cities and hunters and regions:
@@ -101,6 +115,13 @@ func _ready():
 	GameData.player.InventoryComp.add_item(powder2)
 
 	GameData.player.get_component(GameData.ComponentKeys.MELEE_COMBAT).reset_to_unarmed()
+
+
+	# spell test
+	var test_spell = SpellFactory.create_spell("res://resources/spells/spell_instances/test_spell.tres")
+	GameData.player.SpellsComp.learnt_spells.append(test_spell)
+
+	GameData.player.SpellsComp.cast_spell(test_spell, Vector2i(10, 10))
 
 
 

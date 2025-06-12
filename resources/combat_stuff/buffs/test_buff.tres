@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Buff" load_steps=8 format=3 uid="uid://cxinn1w048dkl"]
+[gd_resource type="Resource" script_class="Buff" load_steps=9 format=3 uid="uid://cxinn1w048dkl"]
 
 [ext_resource type="Script" uid="uid://cqey1b1dwflt4" path="res://scripts/systems/modifier_system/buff.gd" id="1_2x4sa"]
 [ext_resource type="Script" uid="uid://c6hqvujepfyxm" path="res://scripts/systems/modifier_system/stat_modifier_class.gd" id="1_pvcux"]
@@ -33,9 +33,18 @@ value = 15.0
 conditions = Array[ExtResource("2_odrqc")]([])
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
+[sub_resource type="Resource" id="Resource_pvcux"]
+script = ExtResource("1_pvcux")
+target_stat = &"element"
+target_component = 7
+operation = 2
+value = 1.0
+conditions = Array[ExtResource("2_odrqc")]([])
+metadata/_custom_type_script = "uid://c6hqvujepfyxm"
+
 [resource]
 script = ExtResource("1_2x4sa")
 duration = 10
-modifiers = Array[ExtResource("1_pvcux")]([SubResource("Resource_i1fdv"), SubResource("Resource_468wa")])
+modifiers = Array[ExtResource("1_pvcux")]([SubResource("Resource_i1fdv"), SubResource("Resource_468wa"), SubResource("Resource_pvcux")])
 buff_name = "Test buff"
 buff_sprite = SubResource("GradientTexture2D_odrqc")

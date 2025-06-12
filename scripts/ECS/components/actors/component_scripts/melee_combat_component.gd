@@ -21,6 +21,13 @@ var melee_repost: float = 0
 var melee_crit_chance: float = 0
 var melee_crit_damage: float = 1 
 
+
+
+var debug: bool
+
+func _ready() -> void:
+	debug = GameData.melee_combat_debug
+
 func initialize(d: Dictionary) -> void:
 	damage_min = d.get("damage_min", 0)
 	damage_max = d.get("damage_max", 0)
@@ -34,7 +41,6 @@ func initialize(d: Dictionary) -> void:
 
 # combat system
 func melee_attack(target: Node2D) -> bool:
-	var debug = GameData.melee_combat_debug
 
 	if debug:
 		print("----- melee attack -----")
@@ -63,8 +69,11 @@ func melee_attack(target: Node2D) -> bool:
 		push_error("target has no health component")
 		return false
 
-	# damage of the attack
+	# damage of the attack, with modifiers
 	var dam: int = calc_damage()
+
+	# element with modifiers (if it gets overridden)
+	var _element: int = get_element()
 
 	if debug:
 		print("Base damage: {0}-{1}".format([damage_min, damage_max]))
@@ -83,7 +92,7 @@ func melee_attack(target: Node2D) -> bool:
 			"attacker": get_parent().get_parent(),
 			"damage": 0,
 			"direction": dir,
-			"element": element,
+			"element": _element,
 			"hit_action": GameData.HIT_ACTIONS.MISS
 		}
 		SignalBus.actor_hit.emit(signal_hit_data)
@@ -100,7 +109,7 @@ func melee_attack(target: Node2D) -> bool:
 		"attacker": get_parent().get_parent(),
 		"damage": dam,
 		"direction": dir,
-		"element": element,
+		"element": _element,
 		"hit_action": GameData.HIT_ACTIONS.HIT
 	}
 	SignalBus.actor_hit.emit(signal_hit_data)
@@ -117,12 +126,17 @@ func get_armor() -> int:
 	var equipment: EquipmentComponent  = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.EQUIPMENT))
 	return equipment.get_total_armor()
 
+
+## claclulates damage with modifiers applied
 func calc_damage() -> int:
 	var dam := 0
 
 	if get_parent().has_node(GameData.get_component_name(GameData.ComponentKeys.MODIFIERS)):
 		var dam_min = int(ModifierSystem.get_modified_value(get_parent().get_parent(), "damage_min", GameData.ComponentKeys.MELEE_COMBAT))
 		var dam_max = int(ModifierSystem.get_modified_value(get_parent().get_parent(), "damage_max", GameData.ComponentKeys.MELEE_COMBAT))
+
+		if debug:
+			print("damage min-max after modifiers:{0}/{1} ".format([dam_min, dam_max]))
 		dam = randi_range(dam_min, dam_max)
 	else:
 		# if no modifier component use base value
@@ -130,6 +144,14 @@ func calc_damage() -> int:
 
 	return dam
 
+
+## returns element of melee attack, with modifiers applied
+func get_element() -> int:
+	var _element = element
+	if get_parent().has_node(GameData.get_component_name(GameData.ComponentKeys.MODIFIERS)):
+		_element = ModifierSystem.get_modified_value(get_parent().get_parent(), "element", GameData.ComponentKeys.MELEE_COMBAT)
+	
+	return _element
 
 func reset_to_unarmed() -> void:
 	var damage = get_parent().get_parent().AttributesComp.strength / 2

@@ -34,13 +34,6 @@ const monster_scenes = {
 	GameData.MONSTERS_ALL.BIG_B: "res://scenes/actors/monsters/special/big_b.tscn",
 }
 
-# --- ITEMS ---
-
-const item_scenes = {
-	# weapons
-	GameData.ALL_ITEMS.STEEL_LONGSWORD: "res://scenes/items/weapons/swords/steel_longsword.tscn",
-}
-
 # --- SCRIPT CLASSES ---
 
 #     -- save/load --
