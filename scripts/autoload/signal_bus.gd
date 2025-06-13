@@ -5,15 +5,24 @@ signal player_acted()
 signal make_turn_pass()
 
 
-# called when actor tries hitting another, used for calculations
+## emitted when actor tries hitting another, used for calculations
 signal actor_hit(hit_data: Dictionary)
+# var hit_data_template = {
+#     "target": Node2D,
+#     "attacker": Node2D,
+#     "damage": int damage that will be calculated,
+#     "direction": Vector2i, direction for animation
+#     "element": int from enum ELEMENT,
+#     "hit_action": int from enum HIT_ACTIONS,
+#     "combat_type": int from enum COMBAT_TYPE
+# }
 
-# called when calculations are done and damage is applied -> for animation and stuff
+## emitted when calculations are done and damage is applied -> for animation and stuff
 signal actor_hit_final(hit_data: Dictionary)
 
 
 
-# spells
+# SPELLS
 
 ## emited when spell has been cast, not when trying to cast
 signal spell_casted(spell_dat: Dictionary)
@@ -40,7 +49,10 @@ signal equipment_changed(data: Dictionary)
 # emited when player trying to change equipment
 signal equipment_changing(item: ItemResource, slot: int)
 
-signal new_game_stared
+signal new_game_stared()
+
+
+signal game_state_changed(new_state: int)
 
 
 

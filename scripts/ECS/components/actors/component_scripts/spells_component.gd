@@ -21,7 +21,7 @@ func cast_spell(_spell: SpellResource, _target_grid: Vector2i = Vector2i.ZERO) -
 
 	_spell._call_component_method({
 		"method_name": "on_cast",
-		"entity": _caster,
+		"caster": _caster,
 		"target": _target_grid
 	})
 

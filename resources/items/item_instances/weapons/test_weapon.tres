@@ -36,7 +36,7 @@ damage_max = 19
 weapon_type = 0
 weapon_sub_type = 0
 attack_type = 0
-element = 3
+element = 2
 bonuses = Array[ExtResource("1_4svoq")]([SubResource("Resource_a2i5e"), SubResource("Resource_tanuv")])
 metadata/_custom_type_script = "uid://c7nlkhtqiekyc"
 
@@ -63,7 +63,7 @@ max_capacity = 59
 script = ExtResource("2_6n8ge")
 uid = "steel_longsword"
 display_name = "Steel long sword"
-description = "very cuul test weapon to smack enemies in the head with, trying out if this string can hold very long descriptions so I have to fill this wih something, are you still reading? please leav I am just testing if this shit can hold many and more letters, this seems to be enough"
+description = "very cuul test weapon \\nto smack enemies in the head with, trying out if this string can hold very long descriptions so I have to fill this wih something, are you still reading? please leav I am just testing if this shit can hold many and more letters, this seems to be enough"
 item_type = 0
 components = Array[ExtResource("1_tanuv")]([SubResource("Resource_6s6hs"), SubResource("Resource_edpq1"), SubResource("Resource_ufc1n"), SubResource("Resource_elgm5"), SubResource("Resource_qanej")])
 sprite = ExtResource("4_6s6hs")

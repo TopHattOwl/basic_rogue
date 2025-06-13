@@ -5,6 +5,8 @@ func _ready() -> void:
 
 
 func _damage_actor(hit_data: Dictionary) -> void:
+
+	# debug ---------------------
 	var debug = GameData.melee_combat_debug
 	if debug:
 		print("----- damaging actor -----")
@@ -22,10 +24,13 @@ func _damage_actor(hit_data: Dictionary) -> void:
 			_:
 				pass
 		print("Hit action: ", hit_action)
+	# debug ---------------------
 
-	var target = hit_data.target
-	var damage = hit_data.damage
-	var element = hit_data.element
+	var combat_type = hit_data.get("combat_type", GameData.COMBAT_TYPE.MELEE)
+
+	var target = hit_data.get("target", null)
+	var damage = hit_data.get("damage", 0)	
+	var element = hit_data.get("element", GameData.ELEMENT.PHYSICAL)
 
 	var target_defense_comp = ComponentRegistry.get_component(target, GameData.ComponentKeys.DEFENSE_STATS)
 	var target_health = ComponentRegistry.get_component(target, GameData.ComponentKeys.HEALTH)
@@ -45,7 +50,11 @@ func _damage_actor(hit_data: Dictionary) -> void:
 		
 	target_health.take_damage(reduced_damage)
 
+	# edit hit data's damage
 	hit_data.damage = reduced_damage
+	# add combat type
+	hit_data.combat_type = combat_type
+
 	SignalBus.actor_hit_final.emit(hit_data)
 
 

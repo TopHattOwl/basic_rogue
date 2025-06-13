@@ -115,7 +115,6 @@ visible = false
 [node name="PlayerUI" parent="." instance=ExtResource("16_xducv")]
 
 [node name="Targeter" parent="." instance=ExtResource("17_yab6n")]
-visible = false
 z_index = 4
 z_as_relative = false
 script = ExtResource("19_biscu")

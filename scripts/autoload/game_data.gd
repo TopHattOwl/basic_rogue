@@ -516,6 +516,13 @@ enum HIT_ACTIONS {
 	BLOCKED, # target blocked the attack
 }
 
+## default is melee
+enum COMBAT_TYPE {
+	MELEE,
+	RANGED,
+	SPELL,
+}
+
 
 
 # debug options

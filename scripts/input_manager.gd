@@ -112,6 +112,14 @@ func handle_zoomed_in_inputs():
 		toggle_look_mode()
 
 
+	# test spell casting
+
+	if Input.is_action_just_pressed("test_spell"):
+		var player_spells = GameData.player.SpellsComp.learnt_spells
+		if MapFunction.chebyshev_distance(GameData.player.PositionComp.grid_pos, MapFunction.zoomed_in_mouse_pos) <= 10:
+			GameData.player.SpellsComp.cast_spell(player_spells[0], MapFunction.zoomed_in_mouse_pos)
+
+
 # --- WORLD MAP INPUTS ---
 func handle_world_map_inputs():
 	for action in GameData.INPUT_DIRECTIONS:

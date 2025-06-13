@@ -10,7 +10,9 @@ func _ready() -> void:
 
 func _on_actor_hit(hit_data: Dictionary) -> void:
 	floating_damage_text(hit_data.target, hit_data.attacker, hit_data.damage, hit_data.direction, hit_data.element, hit_data.hit_action)
-	play_attack_animation(hit_data.attacker, hit_data.direction)
+
+	if hit_data.combat_type == GameData.COMBAT_TYPE.MELEE:
+		play_attack_animation(hit_data.attacker, hit_data.direction)
 
 # --- ATTACK ANIMATION ---
 func play_attack_animation(entity: Node2D, direction: Vector2i) -> void:
@@ -62,10 +64,10 @@ func floating_damage_text(target: Node2D, _attacker: Node2D, damage: int, direct
 		GameData.HIT_ACTIONS.HIT: # hit
 			damage_text.text = str(damage)
 			damage_text.modulate = _get_element_color(element)
-		GameData.HIT_ACTIONS.MISS: # attacker missed
+		GameData.HIT_ACTIONS.MISS:
 			damage_text.text = "Miss"
 			damage_text.modulate = "#bbbab5"
-		GameData.HIT_ACTIONS.BLOCKED: # target dodged
+		GameData.HIT_ACTIONS.BLOCKED:
 			damage_text.text = "Blocked"
 			damage_text.modulate = "#bbbab5"
 
@@ -127,4 +129,3 @@ func _get_element_color(element: int) -> String:
 			return "#2e610f"
 		_:
 			return "#bbbab5"
-

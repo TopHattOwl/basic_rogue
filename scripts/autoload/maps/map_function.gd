@@ -1,6 +1,54 @@
 extends Node
 
 
+
+func _ready() -> void:
+	set_process(false)
+	SignalBus.game_state_changed.connect(_process_toggle)
+
+func _process_toggle(new_state: int) -> void:
+	match new_state:
+		GameState.GAME_STATES.PLAYING:
+			set_process(true)
+		_:
+			set_process(false)
+
+func _process(_delta: float) -> void:
+	if GameData.player.PlayerComp.is_in_world_map:
+		set_world_map_mouse_pos()
+	else:
+		set_zoomed_in_mouse_pos()
+
+# --- MOUSE GRID POS ---
+
+var zoomed_in_mouse_pos: Vector2i
+var world_map_mouse_pos: Vector2i
+		
+func set_world_map_mouse_pos():
+	var player_pos = ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).world_map_pos
+
+	var camera := get_viewport().get_camera_2d()
+	if camera == null:
+		return
+	var mouse_screen_pos = get_viewport().get_mouse_position()
+	var mouse_world_pos = camera.get_screen_transform().affine_inverse() * mouse_screen_pos
+	var mouse_grid_pos = MapFunction.to_grid_pos(mouse_world_pos) + player_pos + Vector2i(1,1)
+
+	world_map_mouse_pos = mouse_grid_pos.clamp(Vector2i(0,0), GameData.WORLD_MAP_SIZE - Vector2i(1,1))
+
+func set_zoomed_in_mouse_pos():
+	var player_pos = ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION).grid_pos
+
+	var camera := get_viewport().get_camera_2d()
+	if camera == null:
+		return
+	var mouse_screen_pos = get_viewport().get_mouse_position()
+	var mouse_world_pos = camera.get_screen_transform().affine_inverse() * mouse_screen_pos
+	var mouse_grid_pos = MapFunction.to_grid_pos(mouse_world_pos) + player_pos + Vector2i(1,1)
+	# mouse_grid_pos.clamp(Vector2i(0,0), GameData.MAP_SIZE - Vector2i(1,1))
+
+	zoomed_in_mouse_pos = mouse_grid_pos.clamp(Vector2i(0,0), GameData.MAP_SIZE - Vector2i(1,1))
+
 # --- Misc ---
 func to_world_pos(pos: Vector2i) -> Vector2:
 	return Vector2(pos.x * GameData.TILE_SIZE.x + GameData.OFFSET.x, pos.y * GameData.TILE_SIZE.y + GameData.OFFSET.y)

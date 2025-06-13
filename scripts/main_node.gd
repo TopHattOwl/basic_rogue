@@ -10,6 +10,8 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 
 	# in entity_systems item spawner is decrepit
 
+	# ui_func.gd finnish message log, when using spells write spell etc.
+
 	# finish dungeon class and dungeon level class for everything, not just field
 	# biome class for everything, not just field
 	# every type of buff and stat modifier and relevant stuff, connected to it, right now mostly only melee combat modifiers is done:
@@ -82,6 +84,7 @@ func _ready():
 
 	# passing main node to game data
 	GameData.main_node = self
+	SignalBus.game_state_changed.emit(GameState.GAME_STATES.PLAYING)
 
 	EntitySpawner.spawn_player()
 
@@ -92,19 +95,17 @@ func _ready():
 
 	# test weapon
 	var test_weapon: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/weapons/test_weapon.tres")
-	# GameData.player.EquipmentComp.equip_item(test_weapon, GameData.EQUIPMENT_SLOTS.MAIN_HAND)
 
 	var resource1: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 11)
 	var resource2: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 3)
 	var resource3: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 5)
 
-	print(resource1.get_component(StackableComponent).count)
-	print(resource2.get_component(StackableComponent).count)
-	print(resource3.get_component(StackableComponent).count)
 	GameData.player.InventoryComp.add_item(resource1)
 	GameData.player.InventoryComp.add_item(resource2)
 	GameData.player.InventoryComp.add_item(resource3)
 	GameData.player.InventoryComp.add_item(test_weapon)
+
+	GameData.player.EquipmentComp.equip_item(test_weapon, GameData.EQUIPMENT_SLOTS.MAIN_HAND)
 
 
 	# powder test
@@ -114,14 +115,12 @@ func _ready():
 	GameData.player.InventoryComp.add_item(powder)
 	GameData.player.InventoryComp.add_item(powder2)
 
-	GameData.player.get_component(GameData.ComponentKeys.MELEE_COMBAT).reset_to_unarmed()
+	# GameData.player.get_component(GameData.ComponentKeys.MELEE_COMBAT).reset_to_unarmed()
 
 
 	# spell test
 	var test_spell = SpellFactory.create_spell("res://resources/spells/spell_instances/test_spell.tres")
 	GameData.player.SpellsComp.learnt_spells.append(test_spell)
-
-	GameData.player.SpellsComp.cast_spell(test_spell, Vector2i(10, 10))
 
 
 
