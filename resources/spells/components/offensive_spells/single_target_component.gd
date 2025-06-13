@@ -6,8 +6,11 @@ extends SpellComponent
 @export var damage_mod: float
 @export var spell_range: int
 
+## speed in tiles per second
+@export var speed: int
 
-func on_cast(_spell: SpellResource, _caster: Node2D, _target_grid: Variant = null) -> void:
+
+func on_cast(_spell: SpellResource, _spell_instance: SpellNode, _caster: Node2D, _target_grid: Variant = null) -> void:
 	var target = GameData.get_actor(_target_grid)
 
 	if null == target:
@@ -36,6 +39,8 @@ func on_cast(_spell: SpellResource, _caster: Node2D, _target_grid: Variant = nul
 		actual_damage_mod = damage_mod * 0.85
 
 	var dam = base_dam * actual_damage_mod
+
+	
 
 	
 	print("--- signle target offensive spell ---")

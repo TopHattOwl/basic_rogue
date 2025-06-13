@@ -321,6 +321,7 @@ enum SPELL_SUBTYPE {
 	SINGLE_TARGET,
 	AOE,
 	ARMAMENT_BOOST,
+	TURRET,
 
 	# DEFENSIVE
 
@@ -526,4 +527,5 @@ enum COMBAT_TYPE {
 
 
 # debug options
-var melee_combat_debug := true
+var melee_combat_debug := false
+var spell_debug := true

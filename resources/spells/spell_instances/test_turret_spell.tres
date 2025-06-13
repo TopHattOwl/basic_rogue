@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=4 format=3 uid="uid://ctpihh0tkcxx1"]
+
+[ext_resource type="Script" uid="uid://dps42voim3s7s" path="res://resources/spells/components/base_comp.gd" id="1_mmsp8"]
+[ext_resource type="Script" uid="uid://q5kf36wxn21u" path="res://resources/spells/spell_resource.gd" id="2_6dbxm"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mmsp8"]
+size = Vector2(16, 24)
+
+[resource]
+script = ExtResource("2_6dbxm")
+uid = "test_turret_spell"
+display_name = "Test turret spell"
+description = "testing still..."
+element = 3
+capacity_cost = 25
+components = Array[ExtResource("1_mmsp8")]([])
+icon = SubResource("PlaceholderTexture2D_mmsp8")
+needs_weapon = false
+needs_armor = false
+metadata/_custom_type_script = "uid://q5kf36wxn21u"

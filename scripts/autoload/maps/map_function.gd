@@ -1,7 +1,6 @@
 extends Node
 
 
-
 func _ready() -> void:
 	set_process(false)
 	SignalBus.game_state_changed.connect(_process_toggle)
@@ -58,12 +57,6 @@ func to_grid_pos(pos: Vector2) -> Vector2i:
 		floor((pos.x - GameData.OFFSET.x) / GameData.TILE_SIZE.x),
 		floor((pos.y - GameData.OFFSET.y) / GameData.TILE_SIZE.y)
 	)
-
-func get_line(origin: Vector2i, dest: Vector2i) -> Array:
-	var line = []
-
-	
-	return line
 
 # --- CHECKS ---
 func is_tile_walkable(pos: Vector2i) -> bool:
@@ -276,10 +269,16 @@ func astar_toggle_walkable(grid_pos: Vector2i) -> void:
 	else:
 		astar_grid.set_point_solid(grid_pos, true)
 
+
+## Returns path from a grid position to another [br]
+## returned PackedVector2Array contains the from grid pos as well[br]
+## returned PackedVector2Array is empty if path is not found [br]
 func astar_get_path(from: Vector2i, to: Vector2i) -> PackedVector2Array:
-	if astar_grid.is_in_boundsv(from) and astar_grid.is_in_boundsv(to):
-		return astar_grid.get_id_path(from, to)
-	return PackedVector2Array()
+	# if astar_grid.is_in_boundsv(from) and astar_grid.is_in_boundsv(to):
+	# 	return astar_grid.get_id_path(from, to)
+	# return PackedVector2Array()
+
+	return astar_grid.get_id_path(from, to, true)
 
 # --- Map loading ---
 

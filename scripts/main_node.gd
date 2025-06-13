@@ -5,6 +5,8 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 
 
 # finish:
+	# VERY IMPORTANT:
+		# SingleTargetSpell dont check current grid when spell is travling, check next grid position instead 
 	# IMPORTANT:
 		# finish ELEMENT enum to what elements are in the game
 
@@ -82,6 +84,9 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# Signal day_passed has no uses yet -> maybe for quests, messages, etc
 func _ready():
 
+	SignalBus.pause_input.connect(_on_pause_input)
+	SignalBus.unpause_input.connect(_on_unpause_input)
+
 	# passing main node to game data
 	GameData.main_node = self
 	SignalBus.game_state_changed.emit(GameState.GAME_STATES.PLAYING)
@@ -105,7 +110,7 @@ func _ready():
 	GameData.player.InventoryComp.add_item(resource3)
 	GameData.player.InventoryComp.add_item(test_weapon)
 
-	GameData.player.EquipmentComp.equip_item(test_weapon, GameData.EQUIPMENT_SLOTS.MAIN_HAND)
+	# GameData.player.EquipmentComp.equip_item(test_weapon, GameData.EQUIPMENT_SLOTS.MAIN_HAND)
 
 
 	# powder test
@@ -119,10 +124,8 @@ func _ready():
 
 
 	# spell test
-	var test_spell = SpellFactory.create_spell("res://resources/spells/spell_instances/test_spell.tres")
+	var test_spell = SpellFactory.create_spell("res://resources/spells/spell_instances/test_spell.tres", "res://scenes/spells/test_spell/test_spell.tscn")
 	GameData.player.SpellsComp.learnt_spells.append(test_spell)
-
-
 
 
 func _process(_delta):
@@ -137,3 +140,10 @@ func get_player_comp(comp_key: int) -> Node:
 
 func get_player_pos() -> Vector2i:
 	return ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION).grid_pos
+
+
+func _on_pause_input() -> void:
+	set_process(false)
+
+func _on_unpause_input() -> void:
+	set_process(true)

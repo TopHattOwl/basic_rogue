@@ -118,6 +118,7 @@ func handle_zoomed_in_inputs():
 		var player_spells = GameData.player.SpellsComp.learnt_spells
 		if MapFunction.chebyshev_distance(GameData.player.PositionComp.grid_pos, MapFunction.zoomed_in_mouse_pos) <= 10:
 			GameData.player.SpellsComp.cast_spell(player_spells[0], MapFunction.zoomed_in_mouse_pos)
+			SignalBus.make_turn_pass.emit()
 
 
 # --- WORLD MAP INPUTS ---
@@ -235,6 +236,7 @@ func handle_inventory_inputs():
 # --- HOSTILES ---
 func handle_hostile_turn():
 	set_process_input(false)
+	SignalBus.pause_input.emit()
 
 	var player_pos = ComponentRegistry.get_player_pos()
 
@@ -253,6 +255,7 @@ func handle_hostile_turn():
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
 
 	set_process_input(true)
+	SignalBus.unpause_input.emit()
 
 func handle_hostile_turn_dungeon():
 	set_process_input(false)

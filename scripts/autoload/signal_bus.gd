@@ -1,6 +1,9 @@
 extends Node
 
 
+signal pause_input()
+signal unpause_input()
+
 signal player_acted()
 signal make_turn_pass()
 

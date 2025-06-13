@@ -15,16 +15,13 @@ extends Resource
 
 @export var icon: Texture2D
 
-@export var spell_type: int # from enum SPELL_TYPE
-@export var spell_subtype: int # from enum SPELL_SUBTYPE
-
 # casting requirements
 @export var needs_weapon: bool = false
 @export var needs_armor: bool = false
 
 
-
-## Returns the component of the spell. param _type should be the class_name of the component
+## Returns the component of the spell. param _type should be the class_name of the component [br]
+## returns null if not found
 func get_component(_type: Variant) -> Variant:
 	var component: Variant = null
 	for comp in components:
@@ -46,14 +43,14 @@ func _call_component_method(d: Dictionary) -> void:
 	var caster = d.get("caster", null)
 	var method_name = d.get("method_name", "")
 	var target = d.get("target", null)
+	var spell_instance = d.get("spell_instance", null)
 	for comp in components:
 		if comp.has_method(method_name):
 
 			# base methods need item and caster
 			# where more is required make special case
 			match method_name:
-				"on_cast":
-					comp.call(method_name, self, caster, target)
 				_:
-					comp.call(method_name, self, caster)
+					comp.call(method_name, self, spell_instance, caster, target)
+
 

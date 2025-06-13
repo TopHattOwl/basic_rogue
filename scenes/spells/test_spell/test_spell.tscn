@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcis2ugxqx7pj"]
+
+[ext_resource type="Script" uid="uid://y0e27g5vieup" path="res://scenes/spells/custom_classes/SingleTargetSpell.gd" id="1_v2qmk"]
+[ext_resource type="SpriteFrames" uid="uid://c8er61wd11vv7" path="res://resources/spells/spell_visuals/test_spell/travel_frames.tres" id="3_68488"]
+
+[node name="TestSpell" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("1_v2qmk")
+animated_sprite = NodePath("AnimatedSprite2D")
+metadata/_custom_type_script = "uid://y0e27g5vieup"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("3_68488")

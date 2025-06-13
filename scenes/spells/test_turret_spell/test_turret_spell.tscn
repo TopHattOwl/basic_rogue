@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://3ly6fosyxm2k"]
+
+[ext_resource type="Script" uid="uid://jh4r6q35gxu5" path="res://scenes/spells/custom_classes/TurretSpell.gd" id="1_uwwry"]
+[ext_resource type="SpriteFrames" uid="uid://1ulat80rsm02" path="res://resources/spells/spell_visuals/test_turret_spell/test_turret_spell.tres" id="2_2olx1"]
+
+[node name="TestTurretSpell" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("1_uwwry")
+animated_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_2olx1")
