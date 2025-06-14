@@ -12,6 +12,8 @@ func _process(_delta: float) -> void:
 		global_position = MapFunction.to_world_pos(MapFunction.zoomed_in_mouse_pos)
 
 
+
+
 func toggle_targeter() -> void:
 	visible = !visible
 	set_process(visible)

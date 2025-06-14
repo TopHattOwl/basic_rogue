@@ -15,11 +15,10 @@ func _ready() -> void:
 
 	animated_sprite.play()
 
-	SignalBus.player_acted.connect(_on_player_acted)
-
 
 func _on_player_acted() -> void:
 	print("spell moved")
+	check_spell_path()
 
 
 func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
@@ -29,7 +28,7 @@ func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 
 	# grid direction
 	var start_grid = _caster.get_component(GameData.ComponentKeys.POSITION).grid_pos
-	var grid_dir = clamp(target_grid - start_grid, Vector2i(-1, -1), Vector2i(1, 1))
+	# var grid_dir = clamp(target_grid - start_grid, Vector2i(-1, -1), Vector2i(1, 1))
 
 
 	# real direction
@@ -42,7 +41,7 @@ func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 	rotation = dir.angle() + deg_to_rad(spell_data.get_component(TravelVisualComponent).rotation_adjust)
 
 	# the grid pos the spell will move to when cast (since it moves on the same turn it is cast on)
-	var _full_path: PackedVector2Array = MapFunction.astar_get_path(start_grid, target_grid)
+	var _full_path: PackedVector2Array = MapFunction.get_line(start_grid, target_grid)
 	# remove the first grid from the path, since it's the casters own grid
 	_full_path.remove_at(0)
 
@@ -51,23 +50,37 @@ func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 	# set first grid
 	current_grid = Vector2i(full_path[0])	
 
-	position = start_pos
+	position = MapFunction.to_world_pos(current_grid)
 	GameData.main_node.add_child(self)
 
-	check_spell_path()
-
 	if debug:
-		print("spawned single target spell: ", spell_data.uid)
+		print("spawned single target spell: ", uid)
+		print("target grid: ", target_grid)
 		print("full path: ", full_path)
+
+
+	# check if it hits instantly
+	# check_grid(current_grid)
+
+	SignalBus.player_acted.connect(_on_player_acted)
 	
 
 func check_spell_path() -> void:
 
+	# speed -> how many grids the spell moves per turn
 	var speed = spell_data.get_component(SingleTargetComponent).speed
 
-	# check each grid in path
+	# check if current grid hits something
+	if !check_grid(current_grid):
+		return
+
+	# check each next grid in path
 	for i in range(speed):
-		check_current_grid()
+
+		# if checking the next grid hits something break
+		if !check_next_grid():
+			break
+		
 
 		distance_traveled += 1
 
@@ -75,41 +88,78 @@ func check_spell_path() -> void:
 
 	pass
 
-func check_next_grid() -> void:
-	pass
+func check_next_grid() -> bool:
 
-func check_current_grid() -> void:
-
-	# check if spell is at end of path
-	if distance_traveled >= full_path.size():
+	if distance_traveled + 1 >= full_path.size():
 		print("spell at end of path, queue free")
 		self.queue_free()
-		return
+		return false
 
+	var next_grid = Vector2i(full_path[distance_traveled + 1])
 
-	var actor_at_pos = GameData.get_actor(current_grid)
+	return check_grid(Vector2i(next_grid))
+
+func check_grid(gird_pos: Vector2i) -> bool:
+
+	var actor_at_pos = GameData.get_actor(gird_pos)
 	if actor_at_pos:
-		print("actor at pos, spell hit")
-		self.queue_free()
-		return
-	
-	if not MapFunction.is_tile_walkable(current_grid):
-		print("tile not walkable, spell hit tile")
-		self.queue_free()
-		return
-	
-	if not MapFunction.is_in_bounds(current_grid):
-		print("tile not in bounds, spell queue free")
-		self.queue_free()
-		return
+		print("actor at next pos, spell hit")
 
-	# if not hit anything, move to next grid
-	position = MapFunction.to_world_pos(current_grid)
+		# call hit function
+		hit_actor(actor_at_pos)
+		self.queue_free()
+		return false
+
+	
+	if not MapFunction.is_tile_walkable(gird_pos):
+		print("next tile not walkable, spell hits tile")
+
+		# call collide function
+		self.queue_free()
+		return false
+
+	if not MapFunction.is_in_bounds(gird_pos):
+		print("next tile not in bounds, spell queue free")
+
+		
+		self.queue_free()
+		return false
+
+	
+	# if next grid is avalible move to there
+	position = MapFunction.to_world_pos(gird_pos)
+
+	return true
 
 
 func set_data() -> void:
 	spell_type = GameData.SPELL_TYPE.OFFENSIVE
 	spell_subtype = GameData.SPELL_SUBTYPE.SINGLE_TARGET
 
+
 	if debug:
 		print("single target spell data set")
+
+
+func hit_actor(actor: Node2D) -> void:
+
+	var dam: int = spell_data.get_component(SingleTargetComponent).calc_damage(self)
+	var dir = clamp(actor.get_component(GameData.ComponentKeys.POSITION).grid_pos - caster.get_component(GameData.ComponentKeys.POSITION).grid_pos, Vector2i(-1, -1), Vector2i(1, 1))
+
+	var signal_hit_data = {
+		"target": actor,
+		"attacker": caster,
+		"damage": dam,
+		"direction": dir,
+		"element": spell_data.element,
+		"hit_action": GameData.HIT_ACTIONS.HIT,
+		"combat_type": GameData.COMBAT_TYPE.SPELL
+	}
+
+	# do on hit animations
+
+	# particles
+	spell_data.get_component(HitPariclesComponent).spawn_hit_particles(actor.get_component(GameData.ComponentKeys.POSITION).grid_pos)
+
+	SignalBus.actor_hit.emit(signal_hit_data)
+	pass

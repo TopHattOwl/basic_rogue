@@ -61,7 +61,8 @@ func melee_attack(target: Node2D) -> bool:
 			"damage": 0,
 			"direction": dir,
 			"element": element,
-			"hit_action": GameData.HIT_ACTIONS.MISS
+			"hit_action": GameData.HIT_ACTIONS.MISS,
+			"combat_type": GameData.COMBAT_TYPE.MELEE
 		}
 		SignalBus.actor_hit.emit(signal_hit_data)
 		return true
@@ -76,7 +77,8 @@ func melee_attack(target: Node2D) -> bool:
 			"damage": 0,
 			"direction": dir,
 			"element": element,
-			"hit_action": GameData.HIT_ACTIONS.BLOCKED
+			"hit_action": GameData.HIT_ACTIONS.BLOCKED,
+			"combat_type": GameData.COMBAT_TYPE.MELEE
 		}
 		SignalBus.actor_hit.emit(signal_hit_data)
 		return true 
@@ -90,7 +92,8 @@ func melee_attack(target: Node2D) -> bool:
 		"damage": dam,
 		"direction": dir,
 		"element": element,
-		"hit_action": GameData.HIT_ACTIONS.HIT
+		"hit_action": GameData.HIT_ACTIONS.HIT,
+		"combat_type": GameData.COMBAT_TYPE.MELEE
 	}
 	SignalBus.actor_hit.emit(signal_hit_data)
 	return true

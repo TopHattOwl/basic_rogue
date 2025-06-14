@@ -33,12 +33,6 @@ func play_attack_animation(entity: Node2D, direction: Vector2i) -> void:
 	# return to original pos
 	tween.tween_property(entity_sprite, "position", Vector2.ZERO, ATTACK_DURATION)
 
-	# completion signal
-	tween.finished.connect(_on_attack_animation_finished.bind(entity))
-
-func _on_attack_animation_finished(entity: Node2D):
-	attack_animation_finished.emit(entity)
-
 
 # --- DAMAGE NUMMBERS ---
 const DAMAGE_TEXT_SCENE = preload(DirectoryPaths.damage_text_scene)

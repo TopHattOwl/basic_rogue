@@ -34,6 +34,27 @@ const monster_scenes = {
 	GameData.MONSTERS_ALL.BIG_B: "res://scenes/actors/monsters/special/big_b.tscn",
 }
 
+
+# --- SPELLS ---
+
+# path to spell resources using spell udi
+const spell_resources = {
+	# single target spells
+	"test_spell": "res://resources/spells/spell_instances/test_spell.tres",
+
+
+	# turret spells
+	"test_turret_spell": "res://resources/spells/spell_instances/test_turret_spell.tres",
+}
+
+const spell_scenes = {
+	# single target spells
+	"test_spell": "res://scenes/spells/test_spell/test_spell.tscn",
+
+	# turret spells
+	"test_turret_spell": "res://scenes/spells/test_turret_spell/test_turret_spell.tscn"
+}
+
 # --- SCRIPT CLASSES ---
 
 #     -- save/load --

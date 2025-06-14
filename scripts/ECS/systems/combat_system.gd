@@ -7,7 +7,7 @@ func _ready() -> void:
 func _damage_actor(hit_data: Dictionary) -> void:
 
 	# debug ---------------------
-	var debug = GameData.melee_combat_debug
+	var debug = GameData.combat_system_debug
 	if debug:
 		print("----- damaging actor -----")
 		print("Attacker: ", hit_data.attacker.get_component(GameData.ComponentKeys.IDENTITY).actor_name)

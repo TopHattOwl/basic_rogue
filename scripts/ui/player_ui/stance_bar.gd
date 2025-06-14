@@ -77,5 +77,5 @@ func _activate_stance(index: int):
 
 		toggle_stance_bar()
 
-		GameData.main_node.get_node("InputManager")._end_player_turn()
+		SignalBus.make_turn_pass.emit()
 		

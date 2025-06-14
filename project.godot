@@ -54,6 +54,7 @@ window/stretch/scale_mode="integer"
 
 monsters=""
 remains=""
+spell_projectile=""
 
 [input]
 

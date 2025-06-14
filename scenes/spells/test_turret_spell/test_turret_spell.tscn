@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://jh4r6q35gxu5" path="res://scenes/spells/custom_classes/TurretSpell.gd" id="1_uwwry"]
 [ext_resource type="SpriteFrames" uid="uid://1ulat80rsm02" path="res://resources/spells/spell_visuals/test_turret_spell/test_turret_spell.tres" id="2_2olx1"]
 
-[node name="TestTurretSpell" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
+[node name="TestTurretSpell" type="Node2D" node_paths=PackedStringArray("animated_sprite") groups=["spell_projectile"]]
 script = ExtResource("1_uwwry")
 animated_sprite = NodePath("AnimatedSprite2D")
 

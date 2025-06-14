@@ -68,6 +68,53 @@ func is_in_bounds(pos: Vector2i) -> bool:
 
 
 # --- GETTERS ---
+
+func get_line(from: Vector2i, to: Vector2i) -> PackedVector2Array:
+
+	var line = PackedVector2Array()
+	var _to = Vector2(to)
+	var _from = Vector2(from)
+	var current = Vector2(from)
+	
+	line.append(current)
+	
+	if current == _to:
+		return line
+	
+	var dx = _to.x - _from.x
+	var dy = _to.y - _from.y
+	var abs_dx = absi(dx)
+	var abs_dy = absi(dy)
+	var steps = maxi(abs_dx, abs_dy)  # Chebyshev distance determines steps
+	var step_x = sign(dx) if dx != 0 else 0
+	var step_y = sign(dy) if dy != 0 else 0
+	
+	# Handle single-step moves (adjacent tiles)
+	if steps == 1:
+		line.append(_to)
+		return line
+	
+	# Digital Differential Analyzer (DDA) with Chebyshev adaptation
+	var x_accumulator: float = 0.0
+	var y_accumulator: float = 0.0
+	var x_increment = abs_dx / float(steps)
+	var y_increment = abs_dy / float(steps)
+	
+	for _step in range(steps):
+		x_accumulator += x_increment
+		y_accumulator += y_increment
+		var x_move = floori(x_accumulator + 0.5)  # Round to nearest integer
+		var y_move = floori(y_accumulator + 0.5)
+		x_accumulator -= x_move
+		y_accumulator -= y_move
+		
+		current += Vector2(x_move * step_x, y_move * step_y)
+		if current != line[line.size() - 1]:
+			line.append(current)
+	
+	return line
+
+
 func get_tile_info(grid_pos: Vector2i) -> Dictionary:
 	if !GameData.terrain_map:
 		return {}

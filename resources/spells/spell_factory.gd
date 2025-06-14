@@ -47,9 +47,10 @@ static func create_spell(spell_resource_path: String, spell_scene_path: String) 
 		new_spell.components.append(component.duplicate(true))
 
 
-	var new_spell_node: SpellNode = load(spell_scene_path).instantiate()
+	var new_spell_node: SpellNode = load(spell_scene_path).instantiate().duplicate()
 
 	new_spell_node.spell_data = new_spell
+	new_spell_node.set_uid()
 
 	new_spell_node.set_data()
 	

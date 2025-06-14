@@ -124,8 +124,15 @@ func _ready():
 
 
 	# spell test
-	var test_spell = SpellFactory.create_spell("res://resources/spells/spell_instances/test_spell.tres", "res://scenes/spells/test_spell/test_spell.tscn")
+	# var test_spell = SpellFactory.create_spell("res://resources/spells/spell_instances/test_spell.tres", "res://scenes/spells/test_spell/test_spell.tscn")
+
+	var test_spell = SpellFactory.create_spell(DirectoryPaths.spell_resources.test_spell, DirectoryPaths.spell_scenes.test_spell)
+	var test_turret_spell = SpellFactory.create_spell(DirectoryPaths.spell_resources.test_turret_spell, DirectoryPaths.spell_scenes.test_turret_spell)
 	GameData.player.SpellsComp.learnt_spells.append(test_spell)
+	GameData.player.SpellsComp.learnt_spells.append(test_turret_spell)
+
+
+	print(MapFunction.astar_grid)
 
 
 func _process(_delta):

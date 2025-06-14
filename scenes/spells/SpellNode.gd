@@ -3,7 +3,8 @@ extends Node2D
 ## all premade spell data is stored in spell_data except
 ## spell_type and spell_subtype
 
-
+## same as SpellResource's uid, set when spell gets made in spell factory
+@export var uid: String
 
 ## Premade spell resource get loaded in here
 ## from the spell factory, after deep copying the SpellResource
@@ -11,6 +12,8 @@ extends Node2D
 
 @export var spell_type: int # from enum SPELL_TYPE
 @export var spell_subtype: int # from enum SPELL_SUBTYPE
+
+
 
 
 ## Do not override, get set when spell spawned
@@ -39,6 +42,11 @@ func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 ## overriden by child Spell Nodes
 func set_data() -> void:
     pass
+
+
+## sets the spell's uid to spell_data.uid
+func set_uid() -> void:
+    uid = spell_data.uid
 
 # NOT USED
 ## overriden by child Spell Nodes
