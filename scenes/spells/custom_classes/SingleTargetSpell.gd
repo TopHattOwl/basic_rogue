@@ -1,5 +1,7 @@
 class_name SingleTargetSpell
 extends SpellNode
+## single target spell moves in a line and hits the first obstacle
+## fast spells, low damage, single target, low capacity cost
 
 ## The distance the spell has moved 
 @export var distance_traveled: int
@@ -10,26 +12,30 @@ extends SpellNode
 var full_path: PackedVector2Array
 
 func _ready() -> void:
-	print("spell ready")
+	if debug:
+		print("single target spell ready")
+	SignalBus.projectile_spawned.emit({
+		"spell": self
+	})
 	distance_traveled = 0
 
 	animated_sprite.play()
 
+func _process(_delta: float) -> void:
+	check_grid(current_grid)
 
-func _on_player_acted() -> void:
-	print("spell moved")
+func process_turn() -> void:
+	if debug:
+		print("spell moving")
 	check_spell_path()
-
 
 func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 	caster = _caster
 	target_grid = _target_grid
 	
 
-	# grid direction
+	# grid
 	var start_grid = _caster.get_component(GameData.ComponentKeys.POSITION).grid_pos
-	# var grid_dir = clamp(target_grid - start_grid, Vector2i(-1, -1), Vector2i(1, 1))
-
 
 	# real direction
 	var start_pos = MapFunction.to_world_pos(start_grid)
@@ -58,11 +64,14 @@ func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 		print("target grid: ", target_grid)
 		print("full path: ", full_path)
 
+	
+	# emit spell casted signal
 
-	# check if it hits instantly
-	# check_grid(current_grid)
-
-	SignalBus.player_acted.connect(_on_player_acted)
+	SignalBus.spell_casted.emit({
+		"caster": caster,
+		"spell": self,
+		"target_grid": target_grid
+	})
 	
 
 func check_spell_path() -> void:
@@ -85,8 +94,6 @@ func check_spell_path() -> void:
 		distance_traveled += 1
 
 		current_grid = Vector2i(full_path[distance_traveled])
-
-	pass
 
 func check_next_grid() -> bool:
 

@@ -117,7 +117,7 @@ func handle_zoomed_in_inputs():
 	if Input.is_action_just_pressed("test_spell"):
 		var player_spells = GameData.player.SpellsComp.learnt_spells
 		if MapFunction.chebyshev_distance(GameData.player.PositionComp.grid_pos, MapFunction.zoomed_in_mouse_pos) <= 20:
-			GameData.player.SpellsComp.cast_spell(player_spells[0], MapFunction.zoomed_in_mouse_pos)
+			GameData.player.SpellsComp.cast_spell("test_turret_spell", MapFunction.zoomed_in_mouse_pos)
 			SignalBus.make_turn_pass.emit()
 
 
@@ -287,7 +287,7 @@ func toggle_world_map_look_mode() -> void:
 # --- UTILS ---
 
 
-# normal movement
+# --- NORMAL MOVEMENT
 func _process_movement(dir: Vector2i) -> void:
 	var new_grid = ComponentRegistry.get_player_pos() + dir
 	if MovementSystem.process_movement(GameData.player, new_grid):
@@ -297,13 +297,13 @@ func _process_movement(dir: Vector2i) -> void:
 
 func _end_player_turn() -> void:
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = false
-	handle_hostile_turn()
+	# handle_hostile_turn()
 	_input_states.clear()
-	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
-	SignalBus.player_acted.emit()
 
-# dungeon movement
+	# ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
+	# SignalBus.player_acted.emit()
 
+# --- DUNGEON MOVEMENT
 func _process_dungeon_movement(dir: Vector2i) -> void:
 	var new_grid = ComponentRegistry.get_player_pos() + dir
 	if MovementSystem.process_dungeon_movement(GameData.player, new_grid):
@@ -311,11 +311,12 @@ func _process_dungeon_movement(dir: Vector2i) -> void:
 
 func _end_player_turn_dungeon() -> void:
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = false
-	handle_hostile_turn_dungeon()
+	# handle_hostile_turn_dungeon()
 	_input_states.clear()
-	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
 
-	SignalBus.player_acted.emit()
+	# ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
+
+	# SignalBus.player_acted.emit()
 
 
 func _end_player_turn_world_map() -> void:
@@ -323,6 +324,8 @@ func _end_player_turn_world_map() -> void:
 
 
 func _turn_passed() -> void:
+	if GameData.input_manager_debug:
+		print("turn passed in input manager")
 	var player_comp = GameData.player.PlayerComp
 
 	if player_comp.is_in_dungeon:

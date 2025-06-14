@@ -25,7 +25,7 @@ signal actor_hit_final(hit_data: Dictionary)
 
 
 
-# SPELLS
+# --- SPELLS ---
 
 ## emited when spell has been cast, not when trying to cast
 signal spell_casted(spell_dat: Dictionary)
@@ -36,6 +36,19 @@ signal spell_casted(spell_dat: Dictionary)
 #     "target_grid": Vector2i # not always needed
 # }
 
+# --- ---
+# --- PROJECTILES ---
+
+signal projectile_spawned(projectile_data: Dictionary)
+signal projectile_finished(projectile_data: Dictionary)
+
+# projectile_data will hold projectile node instance
+# dictionary key will be projectile type name
+# "spell": SpellNode
+# "arrow": ArrowNode
+# etc.
+
+# --- ---
 
 
 signal buff_added(buff: Buff, actor: Node2D)

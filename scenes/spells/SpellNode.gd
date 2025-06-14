@@ -32,27 +32,34 @@ extends Node2D
 var debug = GameData.spell_debug
 
 func _ready() -> void:
-    pass
+	print("projectile spawned signale emited")
 
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		SignalBus.projectile_finished.emit({
+			"spell": self
+		})
+		print("spell removed")
 
 ## overriden by child Spell Nodes
 func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
-    pass
+	pass
 
 ## overriden by child Spell Nodes
 func set_data() -> void:
-    pass
+	pass
 
 
 ## sets the spell's uid to spell_data.uid
 func set_uid() -> void:
-    uid = spell_data.uid
+	uid = spell_data.uid
 
 # NOT USED
 ## overriden by child Spell Nodes
 func set_spawn_data(_caster: Node2D, _target_grid: Vector2i) -> void:
-    caster = _caster
-    target_grid = _target_grid
+	caster = _caster
+	target_grid = _target_grid
 
-    if debug:
-        print("base spell node set spawn data")
+	if debug:
+		print("base spell node set spawn data")

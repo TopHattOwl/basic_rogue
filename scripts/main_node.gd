@@ -128,8 +128,8 @@ func _ready():
 
 	var test_spell = SpellFactory.create_spell(DirectoryPaths.spell_resources.test_spell, DirectoryPaths.spell_scenes.test_spell)
 	var test_turret_spell = SpellFactory.create_spell(DirectoryPaths.spell_resources.test_turret_spell, DirectoryPaths.spell_scenes.test_turret_spell)
-	GameData.player.SpellsComp.learnt_spells.append(test_spell)
-	GameData.player.SpellsComp.learnt_spells.append(test_turret_spell)
+	GameData.player.SpellsComp.learn_spell(test_spell)
+	GameData.player.SpellsComp.learn_spell(test_turret_spell)
 
 
 	print(MapFunction.astar_grid)

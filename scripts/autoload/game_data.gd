@@ -527,6 +527,8 @@ enum COMBAT_TYPE {
 
 
 # debug options
-var combat_system_debug : = true
+var combat_system_debug : = false
 var melee_combat_debug := false
-var spell_debug := true
+var spell_debug := false
+var turn_manager_debug := true
+var input_manager_debug := true

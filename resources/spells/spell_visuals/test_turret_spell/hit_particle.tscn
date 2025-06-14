@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd8ctvx1v0ho2"]
+
+[ext_resource type="Script" uid="uid://bgnlfs1qasrcs" path="res://resources/spells/spell_visuals/SpellParticleNode.gd" id="1_xrry6"]
+[ext_resource type="Texture2D" uid="uid://dbxxgkrh28kf1" path="res://assets/spells/test_turret_spell/hit_particle2.png" id="2_rr6gu"]
+
+[node name="SpellParticle" type="Node2D"]
+script = ExtResource("1_xrry6")
+metadata/_custom_type_script = "uid://bgnlfs1qasrcs"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 2
+emitting = false
+amount = 10
+texture = ExtResource("2_rr6gu")
+lifetime = 0.11
+one_shot = true
+speed_scale = 0.7
+explosiveness = 0.8
+spread = 180.0
+gravity = Vector2(0, -98)
+initial_velocity_min = 200.0
+initial_velocity_max = 244.0
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_max = 1.5
