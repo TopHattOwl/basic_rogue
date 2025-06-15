@@ -2,7 +2,7 @@ class_name TurretSpell
 extends SpellNode
 ## turret spells spawn down a slow moving spell that stops one tile before the first obstacle 
 ## slow moving, high capacity cost
-## the turret spell hits enemies with it's own spells like a lighning ball that zaps enemies
+## the turret spell hits enemies with it's own spells (projectiles) like a lighning ball that zaps enemies
 
 
 @export var animated_sprite: AnimatedSprite2D
@@ -10,6 +10,10 @@ extends SpellNode
 var distance_traveled: int
 
 var full_path: PackedVector2Array
+
+## the current cooldown, when it reaches
+## when it reaches turret spell component's cooldown the turret spell will fire projectiles  
+var current_cd: int 
 
 ## base damage used for turret spell projectile's damage calculation
 ## calculated from melee combat component's damage calculation, modifiers applied
@@ -28,15 +32,24 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	check_grid(current_grid)
 
+
+## Turret spell process turn flow -> checks path, if turret spell needs to and can move move the turret spell [br]
+## Then checks cooldown of spell, if needs to fire fires projectiles
 func process_turn() -> void:
 	if debug:
-		print("spell moving")
+		print("spell moving: ", uid)
 	check_spell_path()
+	check_cooldown()
 
-
+## TurretSpell casting. [br]
+## Sets the full path for the turret spell. [br]
+## Spawns the spell at the first position. [br]
+## Calculates base damage for the turret spell projectile (this will be used to calculate projectiles'. damage)
+## Emits spell casted signal
 func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 	caster = _caster
 	target_grid = _target_grid
+
 
 	var start_grid = _caster.get_component(GameData.ComponentKeys.POSITION).grid_pos
 
@@ -51,9 +64,17 @@ func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 	# set first grid
 	current_grid = Vector2i(full_path[0])
 
+
+	# spell will not fire at first turn
+	# only when it reaches the cooldown will it fire
+	current_cd = 0
+
+
+	# set base damage
+	spell_data.get_component(TurretSpellComponent).calc_base_damage(self)
+
 	position = MapFunction.to_world_pos(current_grid)
 	GameData.main_node.add_child(self)
-
 
 
 	if debug:
@@ -63,15 +84,30 @@ func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 
 	
 	# emit spell casted signal
-
 	SignalBus.spell_casted.emit({
 		"caster": caster,
 		"spell": self,
 		"target_grid": target_grid
 	})
-		
+
+
+## checks spell path and moves the spell
+## moves one tile at a time but in one turn moves multiple tiles (equal to speed)
 func check_spell_path():
-	pass
+	var speed = spell_data.get_component(TurretSpellComponent).speed
+
+	for i in range(speed):
+		if debug:
+			print("turret spell traveling 1 tile")
+
+		if !can_move():
+			# stay in place
+			break
+			
+
+
+		# distance_traveled += 1
+
 
 func check_grid(gird_pos: Vector2i) -> bool:
 
@@ -111,3 +147,17 @@ func set_data() -> void:
 
 	if debug:
 		print("turret spell data set")
+
+
+func can_move() -> bool:
+	return true
+
+func check_cooldown() -> void:
+	current_cd += 1
+
+	if current_cd == spell_data.get_component(TurretSpellComponent).cooldown:
+		if debug:
+			print("Turret spell cooldown reached, casting projectiles")
+
+		current_cd = 0
+		

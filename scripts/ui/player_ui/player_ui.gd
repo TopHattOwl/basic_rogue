@@ -43,7 +43,6 @@ func log_message(message: String) -> void:
 # --- LOOK UI ---
 func toggle_look_ui() -> void:
 	look_ui.visible = !look_ui.visible
-	# GameData.player.get_node("Targeter").toggle_targeter()
 
 func flip_look_ui() -> void:
 	if look_ui_side == -1:

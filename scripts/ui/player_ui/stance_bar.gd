@@ -70,10 +70,12 @@ func _activate_stance(index: int):
 		# TODO: set the player's current stance
 
 		if !GameData.player.StanceComp.enter_stance(selected_stance):
+			GameData.player.PlayerComp.restore_input_mode()
+			toggle_stance_bar()
 			return
 
 		# end player's turn and exit stance selection
-		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.ZOOMED_IN_MOVEMENT # only in zoomed in mode can player change stances so prev input was that for sure
+		GameData.player.PlayerComp.restore_input_mode() # only in zoomed in mode can player change stances so prev input was that for sure
 
 		toggle_stance_bar()
 

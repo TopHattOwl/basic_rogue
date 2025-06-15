@@ -25,6 +25,8 @@ func toggle_inventory() -> void:
 		_on_filter_button_pressed(DEFAULT_TAB)
 	else:
 		SignalBus.inventory_closed.emit()
+		print("inventory closed")
+		GameData.player.PlayerComp.restore_input_mode()
 
 
 func _ready() -> void:

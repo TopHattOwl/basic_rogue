@@ -221,7 +221,7 @@ func get_tile_data(tile_tag: int) -> Dictionary:
 
 # ___ Input ___
 
-const INPUT_DIRECTIONS ={
+const INPUT_DIRECTIONS = {
 	"numpad_1": Vector2i(-1, 1),
 	"numpad_2": Vector2i(0, 1),
 	"numpad_3": Vector2i(1, 1),
@@ -233,12 +233,29 @@ const INPUT_DIRECTIONS ={
 	"numpad_9": Vector2i(1, -1),
 }
 
+const HOTBAR_INPUTS = [
+	"hotbar_1",
+	"hotbar_2",
+	"hotbar_3",
+	"hotbar_4",
+	"hotbar_5",
+	"hotbar_6",
+	"hotbar_7",
+	"hotbar_8",
+	"hotbar_9",
+	"hotbar_0",
+]
+
 enum INPUT_MODES {
 	ZOOMED_IN_MOVEMENT,
 	WORLD_MAP_MOVEMENT,
 	LOOK,
 	WORLD_MAP_LOOK,
 	DUNGEON_INPUT,
+
+
+	# aiming
+	SPELL_AIMING,
 
 
 	# UI stuff
@@ -273,9 +290,11 @@ const COMPONENTS = {
 	ComponentKeys.STAMINA: "Components/StaminaComponent",
 	ComponentKeys.STATE: "Components/StateComponent",
 	ComponentKeys.PLAYER: "Components/PlayerComponent",
+	ComponentKeys.HOTBAR: "Components/HotbarComponent",
 	ComponentKeys.SKILLS: "Components/SkillsComponent",
 	ComponentKeys.STANCE: "Components/StanceComponent",
 	ComponentKeys.MODIFIERS: "Components/ModifiersComponent",
+
 }
 
 func get_component_path(component_key: int) -> String:
@@ -352,6 +371,7 @@ enum ComponentKeys {
 	STAMINA,
 	STATE,
 	PLAYER,
+	HOTBAR,
 	SKILLS,
 	STANCE,
 	MODIFIERS,
@@ -529,6 +549,7 @@ enum COMBAT_TYPE {
 # debug options
 var combat_system_debug : = false
 var melee_combat_debug := false
-var spell_debug := false
+var spell_debug := true
 var turn_manager_debug := true
-var input_manager_debug := true
+var input_manager_debug := false
+var hot_bar_debug := true

@@ -11,6 +11,8 @@ extends SpellNode
 
 var full_path: PackedVector2Array
 
+var dam: int
+
 func _ready() -> void:
 	if debug:
 		print("single target spell ready")
@@ -26,9 +28,16 @@ func _process(_delta: float) -> void:
 
 func process_turn() -> void:
 	if debug:
-		print("spell moving")
+		print("spell moving: ", uid)
 	check_spell_path()
 
+
+## SingleTargetSpell casting. [br]
+## Sets the full path for the single target spell. [br]
+## Spawns the spell at the first position. [br]
+## Rotates the spell to face the target position. [br]
+## Sets damage of the spell (this will be used when hitting an actor) [br]
+## Emits spell casted signal
 func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 	caster = _caster
 	target_grid = _target_grid
@@ -54,7 +63,10 @@ func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 	full_path = _full_path
 
 	# set first grid
-	current_grid = Vector2i(full_path[0])	
+	current_grid = Vector2i(full_path[0])
+
+	dam = spell_data.get_component(SingleTargetComponent).calc_damage(self)
+
 
 	position = MapFunction.to_world_pos(current_grid)
 	GameData.main_node.add_child(self)
@@ -66,14 +78,16 @@ func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 
 	
 	# emit spell casted signal
-
 	SignalBus.spell_casted.emit({
 		"caster": caster,
 		"spell": self,
 		"target_grid": target_grid
 	})
-	
 
+	
+	
+## checks spell path and moves the spell
+## moves one tile at a time but in one turn moves multiple tiles (equal to speed)
 func check_spell_path() -> void:
 
 	# speed -> how many grids the spell moves per turn
@@ -149,8 +163,6 @@ func set_data() -> void:
 
 
 func hit_actor(actor: Node2D) -> void:
-
-	var dam: int = spell_data.get_component(SingleTargetComponent).calc_damage(self)
 	var dir = clamp(actor.get_component(GameData.ComponentKeys.POSITION).grid_pos - caster.get_component(GameData.ComponentKeys.POSITION).grid_pos, Vector2i(-1, -1), Vector2i(1, 1))
 
 	var signal_hit_data = {

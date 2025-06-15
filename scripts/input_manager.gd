@@ -14,7 +14,6 @@ var prev_input_mode: int
 func _ready() -> void:
 	SignalBus.make_turn_pass.connect(_turn_passed)
 
-
 func handle_input() -> void:
 	match ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).input_mode:
 
@@ -27,7 +26,8 @@ func handle_input() -> void:
 		GameData.INPUT_MODES.DUNGEON_INPUT:
 			handle_dungeon_inputs()
 
-
+		GameData.INPUT_MODES.SPELL_AIMING:
+			handle_spell_aiming_inputs()
 
 
 		# # UI Stuff
@@ -40,6 +40,7 @@ func handle_input() -> void:
 			handle_stance_selection_inputs()
 		GameData.INPUT_MODES.INVENTORY:
 			handle_inventory_inputs()
+		
 
 
 
@@ -80,21 +81,18 @@ func handle_zoomed_in_inputs():
 	# enter stance selection mode
 	if Input.is_action_just_pressed("stance_change"):
 		UiFunc.toggle_stance_bar()
-		prev_input_mode = GameData.player.PlayerComp.input_mode
+		GameData.player.PlayerComp.set_prev_input_mode()
+		# prev_input_mode = GameData.player.PlayerComp.input_mode
 		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.STANCE_SELECTION
 	
 	if Input.is_action_just_pressed("inventory"):
 		UiFunc.toggle_inventory()
-		prev_input_mode = GameData.player.PlayerComp.input_mode
+		GameData.player.PlayerComp.set_prev_input_mode()
+		# prev_input_mode = GameData.player.PlayerComp.input_mode
 		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.INVENTORY
 
-	# pick up 
-	if Input.is_action_just_pressed("pick_up") and GameData.items_map[ComponentRegistry.get_player_pos().y][ComponentRegistry.get_player_pos().x]:
-		ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = false
-		var pos = ComponentRegistry.get_player_pos()
-		InventorySystem.pick_up_item(pos)
+	# TODO pick up 
 
-		# TODO pickup window
 
 	# enter world map 
 	if Input.is_action_just_pressed("open_world_map") and not ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map:
@@ -112,12 +110,22 @@ func handle_zoomed_in_inputs():
 		toggle_look_mode()
 
 
-	# test spell casting
+	# hotbar inputs
+	for hotbar_input in GameData.HOTBAR_INPUTS:
+		if Input.is_action_just_pressed(hotbar_input):
 
-	if Input.is_action_just_pressed("test_spell"):
-		var player_spells = GameData.player.SpellsComp.learnt_spells
+			GameData.player.PlayerComp.set_prev_input_mode()
+			# prev_input_mode = GameData.player.PlayerComp.input_mode
+
+			# use hotbar will handle seting the player input mode and emitting make turn pass signal if rquired
+			GameData.player.HotbarComp.use_hotbar(hotbar_input)
+
+
+
+	# test spell casting
+	if Input.is_action_just_pressed("click_left"):
 		if MapFunction.chebyshev_distance(GameData.player.PositionComp.grid_pos, MapFunction.zoomed_in_mouse_pos) <= 20:
-			GameData.player.SpellsComp.cast_spell("test_turret_spell", MapFunction.zoomed_in_mouse_pos)
+			GameData.player.SpellsComp.cast_spell("test_spell", MapFunction.zoomed_in_mouse_pos)
 			SignalBus.make_turn_pass.emit()
 
 
@@ -215,7 +223,8 @@ func handle_stance_selection_inputs() -> void:
 	# if stance change button is pressed toggle back the stance bar and return to the previous input mode
 	if Input.is_action_just_pressed("stance_change"):
 		UiFunc.toggle_stance_bar()
-		GameData.player.PlayerComp.input_mode = prev_input_mode
+		# GameData.player.PlayerComp.input_mode = prev_input_mode
+		GameData.player.PlayerComp.restore_input_mode()
 
 
 
@@ -225,12 +234,22 @@ func handle_inventory_inputs():
 
 	if Input.is_action_just_pressed("inventory"):
 		UiFunc.toggle_inventory()
-		GameData.player.PlayerComp.input_mode = prev_input_mode
+		# GameData.player.PlayerComp.input_mode = prev_input_mode
+		GameData.player.PlayerComp.restore_input_mode()
+
 	if Input.is_action_just_pressed("ui_cancel") and !GameData.player.player_ui.inventory.is_item_window_opened:
 		UiFunc.toggle_inventory()
-		GameData.player.PlayerComp.input_mode = prev_input_mode
+		# GameData.player.PlayerComp.input_mode = prev_input_mode
+		GameData.player.PlayerComp.restore_input_mode()
 
 
+# --- SPELL AIMING ---
+
+func handle_spell_aiming_inputs():
+
+	if Input.is_action_just_pressed("ui_cancel"):
+		# GameData.player.PlayerComp.input_mode = prev_input_mode
+		GameData.player.PlayerComp.restore_input_mode()
 
 
 # --- HOSTILES ---

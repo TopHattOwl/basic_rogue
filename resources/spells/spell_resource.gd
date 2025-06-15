@@ -18,6 +18,10 @@ extends Resource
 # casting requirements
 @export var needs_weapon: bool = false
 @export var needs_armor: bool = false
+@export var needs_shield: bool = false
+
+## wheather the spell needs to be aimed by player when trying to cast it from hotbar
+@export var needs_aiming: bool = false
 
 
 ## Returns the component of the spell. param _type should be the class_name of the component [br]

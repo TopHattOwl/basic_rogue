@@ -1,11 +1,13 @@
 extends Node
-## turn phases go in order each function that handles turns will call the next one
+## turn phases go in order
+
 
 
 enum TURN_PHASES {
 	PLAYER,
 	PROJECTILES,
 	MONSTERS,
+	TURN_END,
 }
 
 var current_turn_phase: int = TURN_PHASES.PLAYER
@@ -17,16 +19,34 @@ func _ready() -> void:
 	SignalBus.projectile_spawned.connect(_on_projectile_spawned)
 	SignalBus.projectile_finished.connect(_on_projectile_finished)
 
+# --- TURN END HANDELERS ---
 
-# --- PLAYER TURN HANDLERS ---
-func _process_player_turn():
-
+func _process_turn_end():
 	if GameData.turn_manager_debug:
-		print("processing players phase")
+		print("processing turn end phase")
 	# Player is already acting, just wait for actions
 
 	SignalBus.player_acted.emit()
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
+
+
+# --- PLAYER TURN HANDLERS ---
+func _process_player_turn():
+
+	# TODO implement acton queues for movement and pass turns (to pass several turns)
+	# check if there are queued actions
+	# var player_comp: PlayerComponent = GameData.player.PlayerComp
+	# if player_comp.is_queue_active:
+	# 	print("need to exetute queued actions")
+
+	call_deferred("advance_turn_phase")
+
+	# if GameData.turn_manager_debug:
+	# 	print("processing players phase")
+	# # Player is already acting, just wait for actions
+
+	# SignalBus.player_acted.emit()
+	# ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
 
 # --- PROJECTILE TURN HANDLERS ----
 func _process_projectiles():
@@ -63,6 +83,8 @@ func _process_monsters():
 		var ai = ComponentRegistry.get_component(enemy, GameData.ComponentKeys.AI_BEHAVIOR)
 		var enemy_pos = ComponentRegistry.get_component(enemy, GameData.ComponentKeys.POSITION).grid_pos
 
+
+
 		if ai.is_in_range(player_pos, enemy_pos):
 
 			var target_pos = ai.get_next_position(enemy_pos, player_pos)
@@ -74,7 +96,7 @@ func _process_monsters():
 	call_deferred("advance_turn_phase")
 
 
-# --- SINGLA HANDLERS ---
+# --- SIGNAL HANDLERS ---
 func _on_make_turn_pass():
 	if GameData.turn_manager_debug:
 		print("--- processing turn pass in turn manager ---")
@@ -113,5 +135,7 @@ func advance_turn_phase():
 			_process_projectiles()
 		TURN_PHASES.MONSTERS:
 			_process_monsters()
+		TURN_PHASES.TURN_END:
+			_process_turn_end()
 
 

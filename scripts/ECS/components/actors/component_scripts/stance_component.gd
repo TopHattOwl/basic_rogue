@@ -8,6 +8,10 @@ var current_stance: Stance = null
 func add_stance(stance: Stance) -> void:
 	known_stances.append(stance)
 
+
+## enter a stance [br]
+## if cant enter retrun false [br]
+## if can enter return true 
 func enter_stance(stance: Stance) -> bool:
 	# checks
 	if stance == null:

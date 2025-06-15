@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=14 format=3 uid="uid://cu8vlrh1cbijs"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=16 format=3 uid="uid://cu8vlrh1cbijs"]
 
 [ext_resource type="Script" uid="uid://dps42voim3s7s" path="res://resources/spells/components/base_comp.gd" id="1_qhlpv"]
 [ext_resource type="Script" uid="uid://q5kf36wxn21u" path="res://resources/spells/spell_resource.gd" id="2_gjo0y"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b1kipn6kesp2s" path="res://resources/spells/components/visuals/travel_visual.gd" id="4_8pm2p"]
 [ext_resource type="PackedScene" uid="uid://c7exh48qd00uj" path="res://resources/spells/spell_visuals/test_spell/hit_particles.tscn" id="5_8pm2p"]
 [ext_resource type="Script" uid="uid://bornptv0nulp" path="res://resources/spells/components/visuals/hit_particles.gd" id="5_lwjoc"]
+[ext_resource type="Script" uid="uid://b5ktgxrf3a5ng" path="res://resources/spells/components/visuals/aiming_component.gd" id="7_0xshh"]
 
 [sub_resource type="Resource" id="Resource_0xshh"]
 script = ExtResource("2_wt4hk")
@@ -29,6 +30,9 @@ script = ExtResource("5_lwjoc")
 hit_particles = ExtResource("5_8pm2p")
 metadata/_custom_type_script = "uid://bornptv0nulp"
 
+[sub_resource type="Resource" id="Resource_nd2u4"]
+script = ExtResource("7_0xshh")
+
 [sub_resource type="Gradient" id="Gradient_qhlpv"]
 colors = PackedColorArray(0.146445, 0.37294, 0.510734, 1, 0.859388, 0.869123, 0.459607, 1)
 
@@ -46,8 +50,10 @@ display_name = "Testtt Spell"
 description = "A basic fire thing /n"
 element = 1
 capacity_cost = 12
-components = Array[ExtResource("1_qhlpv")]([SubResource("Resource_0xshh"), SubResource("Resource_ejqqj"), SubResource("Resource_nb5q1"), SubResource("Resource_8pm2p")])
+components = Array[ExtResource("1_qhlpv")]([SubResource("Resource_0xshh"), SubResource("Resource_ejqqj"), SubResource("Resource_nb5q1"), SubResource("Resource_8pm2p"), SubResource("Resource_nd2u4")])
 icon = SubResource("GradientTexture2D_gjo0y")
 needs_weapon = true
 needs_armor = false
+needs_shield = false
+needs_aiming = true
 metadata/_custom_type_script = "uid://q5kf36wxn21u"

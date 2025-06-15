@@ -10,6 +10,7 @@ extends Node2D
 
 @export var AbilitiesComp: AbilitiesComponent
 @export var SpellsComp: SpellsComponent
+@export var HotbarComp: HotbarComponent
 
 @export var SkillsComp: SkillsComponent
 

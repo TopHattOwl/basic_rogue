@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://yg8kkrm1kjy2"]
+
+[ext_resource type="Script" uid="uid://88tppfuukiym" path="res://scripts/ECS/components/actors/component_scripts/hotbar_component.gd" id="1_o7mn6"]
+
+[node name="HotbarComponent" type="Node"]
+script = ExtResource("1_o7mn6")

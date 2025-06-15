@@ -59,14 +59,16 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 
 # TODO:
 	# VERY IMPORTANT:
+		# finish spell aiming system
 		# make player unable to use powders that are already applied
 		# make world map much larger, to the east, the longer you go east the less civilizations (settlements) there are -> stronger monsters
 			# this way there can be more regions and more settlements, more dungeons and more contracts
-		# scripts/systems/world_manager/ autoload make
+		# scripts/systems/world_manager/  make the autoloads in this folder
+		# 
 
 	# IMPORTANT:
+		# TODO in turn manager and PlayerComponent to finish action queueing
 		# TODO in inventory_item.gd
-		# revork Scripts/ECS/systems to be static functions instead of having to create instances of the classes
 		# player data load and save rework, handle it in player's own script
 			# also make a save and load function for each component so that saveing and loading can be just iterating tru components and calling save and load functions
 		# rework armor: armor stat (integer) should translate to % damage reduction (max is 80%)
@@ -82,6 +84,8 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# implement repost system for melee combat
 	# GameTime add weeks and day names for each day in a week
 	# Signal day_passed has no uses yet -> maybe for quests, messages, etc
+	# pick up item
+	# 
 func _ready():
 
 	SignalBus.pause_input.connect(_on_pause_input)
@@ -132,7 +136,10 @@ func _ready():
 	GameData.player.SpellsComp.learn_spell(test_turret_spell)
 
 
-	print(MapFunction.astar_grid)
+	GameData.player.HotbarComp.add_to_hotbar("spell", test_spell.spell_data.uid, "hotbar_1")
+	GameData.player.HotbarComp.add_to_hotbar("spell", test_turret_spell.spell_data.uid, "hotbar_2")
+
+
 
 
 func _process(_delta):

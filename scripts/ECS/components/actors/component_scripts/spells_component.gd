@@ -1,9 +1,11 @@
 class_name SpellsComponent
 extends Node
 
-var learnt_spellss: Array[SpellNode]
-
 var learnt_spells: Dictionary
+# each key value pair is a spell uid -> SpellNode
+# var learnt_spell_template = {
+# 	"uid": SpellNode,
+# }
 
 
 func learn_spell(spell_node: SpellNode) -> void:
@@ -26,15 +28,6 @@ func cast_spell(uid: String, _target_grid: Vector2i = Vector2i.ZERO) -> bool:
 
 	if !can_be_cast(_spell, _caster):
 		return false
-
-	# make casted spell data
-
-	var spell_casted_data = {
-		"spell": _spell,
-		"caster": _caster,
-		"target_grid": _target_grid
-	}
-
 
 	var spell_instance: SpellNode = _spell.duplicate()
 

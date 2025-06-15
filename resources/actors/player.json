@@ -12,7 +12,7 @@
 		"max_block_power": 50
 	},
 	"health_component": {
-		"hp": 259,
+		"hp": 1000,
 		"max_hp": 1000
 	},
 	"identity_component": {
@@ -41,8 +41,8 @@
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 32,
-			"y": 10
+			"x": 47,
+			"y": 5
 		}
 	},
 	"skills_component": {
