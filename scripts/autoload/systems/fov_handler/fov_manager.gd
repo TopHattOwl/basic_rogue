@@ -31,6 +31,7 @@ const MULTIPLIERS = [
 	[1, 0, 0, 1, -1, 0, 0, -1]
 ]
 
+
 func _ready() -> void:
 	SignalBus.game_state_changed.connect(_process_toggle)
 	SignalBus.player_acted.connect(_update_fov)

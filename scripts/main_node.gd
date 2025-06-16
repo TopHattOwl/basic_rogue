@@ -8,6 +8,10 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 # fov autoload
 # holds player's fov range
 # when turn updates itself (connect player acted signal)
+# look up Bresenham's line algorithm, is it the same as get_line in MapFunction?
+# check this: https://aikoncwd.itch.io/godot-fov-algorithms-for-roguelikes
+# thisi s the same but gihub https://github.com/aikoncwd/Godot-FOV-algorithms-roguelike
+
 
 # makes currently visible tiles array, it will hold all grids that player can see currently
 
