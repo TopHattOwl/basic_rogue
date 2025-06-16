@@ -21,7 +21,8 @@ var base_damage: int
 
 func _ready() -> void:
 	if debug:
-		print("turret spell ready")
+		print(" --- SingleTargetSpell ready ---")
+		print("Data set for spell: ", uid)
 	SignalBus.projectile_spawned.emit({
 		"spell": self
 	})
@@ -81,14 +82,21 @@ func cast_spell(_caster: Node2D, _target_grid: Vector2i) -> void:
 		print("spawned single target spell: ", uid)
 		print("target grid: ", target_grid)
 		print("full path: ", full_path)
+		print("Spell type (enum value/name of type) {0}/{1} | sub type: {2}/{3}".format([
+			spell_type,
+			GameData.SPELL_TYPE_NAMES.get(spell_type),
+			spell_subtype,
+			GameData.SPELL_SUBTYPE_NAMES.get(spell_subtype)
+		]))
 
 	
 	# emit spell casted signal
-	SignalBus.spell_casted.emit({
-		"caster": caster,
-		"spell": self,
-		"target_grid": target_grid
-	})
+	# NOT USED
+	# SignalBus.spell_casted.emit({
+	# 	"caster": caster,
+	# 	"spell": self,
+	# 	"target_grid": target_grid
+	# })
 
 
 ## checks spell path and moves the spell
@@ -144,9 +152,6 @@ func check_grid(gird_pos: Vector2i) -> bool:
 func set_data() -> void:
 	spell_type = GameData.SPELL_TYPE.OFFENSIVE
 	spell_subtype = GameData.SPELL_SUBTYPE.TURRET
-
-	if debug:
-		print("turret spell data set")
 
 
 func can_move() -> bool:

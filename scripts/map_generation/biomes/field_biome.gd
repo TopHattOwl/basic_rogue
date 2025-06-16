@@ -30,7 +30,7 @@ func load_map() -> void:
 	if GameData.current_map:
 		GameData.current_map.queue_free()
 		GameData.current_map = null
-	MapFunction.initialize_map_data()
+	# MapFunction.initialize_map_data()
 	GameData.remove_entities()
 
 	GameData.terrain_map = terrain_map
@@ -55,6 +55,8 @@ func generate_map() -> void:
 	if GameData.current_map:
 		GameData.current_map.queue_free()
 		GameData.current_map = null
+
+		
 	GameData.remove_entities()
 	
 

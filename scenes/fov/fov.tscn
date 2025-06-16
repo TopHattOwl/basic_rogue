@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcn2hw7fpnd0l"]
+
+[ext_resource type="Texture2D" uid="uid://ntih1b7s1072" path="res://assets/fov/fov_tileset_small.png" id="1_4p1ia"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_4p1ia"]
+tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 2, 1, 0, 65538, 1, 0, 131074, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_2fdc7"]
+tile_data = PackedInt32Array(0, 65537, 0, 65536, 65537, 0, 131072, 65537, 0, 1, 65537, 0, 65537, 65537, 0, 131073, 65537, 0, 2, 65537, 0, 65538, 65537, 0, 131074, 65537, 0, 3, 65537, 0, 65539, 65537, 0, 131075, 65537, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2fdc7"]
+texture = ExtResource("1_4p1ia")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+0:0/0/terrains_peering_bit/bottom_left_corner = 0
+0:0/0/terrains_peering_bit/left_side = 0
+0:0/0/terrains_peering_bit/top_left_corner = 0
+0:0/0/terrains_peering_bit/top_side = 0
+0:0/0/terrains_peering_bit/top_right_corner = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 1
+1:0/0/terrains_peering_bit/right_side = 1
+1:0/0/terrains_peering_bit/bottom_right_corner = 1
+1:0/0/terrains_peering_bit/bottom_side = 1
+1:0/0/terrains_peering_bit/bottom_left_corner = 1
+1:0/0/terrains_peering_bit/left_side = 1
+1:0/0/terrains_peering_bit/top_left_corner = 1
+1:0/0/terrains_peering_bit/top_side = 1
+1:0/0/terrains_peering_bit/top_right_corner = 1
+
+[sub_resource type="TileSet" id="TileSet_tj5np"]
+tile_size = Vector2i(16, 24)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Unexplored"
+terrain_set_0/terrain_0/color = Color(0.102832, 0.0567218, 0.0296997, 1)
+terrain_set_0/terrain_1/name = "Explored"
+terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
+sources/1 = SubResource("TileSetAtlasSource_2fdc7")
+pattern_0 = SubResource("TileMapPattern_4p1ia")
+pattern_1 = SubResource("TileMapPattern_2fdc7")
+
+[node name="FOV" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_index = 25
+z_as_relative = false
+tile_set = SubResource("TileSet_tj5np")

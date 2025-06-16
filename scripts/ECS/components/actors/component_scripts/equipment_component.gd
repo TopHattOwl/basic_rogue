@@ -31,7 +31,12 @@ func equip_item(item: ItemResource, slot: int) -> bool:
 	
 	unequip_item(slot)
 	equipment[slot] = item
-	_call_component_method(item, "on_equip", get_parent().get_parent())
+
+	item._call_component_method({
+		"method_name": "on_equip",
+		"entity": get_parent().get_parent(),
+	})
+	# _call_component_method(item, "on_equip", get_parent().get_parent())
 	
 	if get_parent().has_node(GameData.get_component_name(GameData.ComponentKeys.PLAYER)):	
 		SignalBus.equipment_changed.emit({
@@ -51,17 +56,22 @@ func unequip_item(slot: int) -> void:
 	if not item:
 		return
 
-	_call_component_method(item, "on_unequip", get_parent().get_parent())
-	equipment[slot] = null
-	SignalBus.equipment_changed.emit({
-			"slot": slot,
-			"item": null
-		})
+	item._call_component_method({
+		"method_name": "on_unequip",
+		"entity": get_parent().get_parent(),
+	})
 
-func _call_component_method(item: ItemResource, method_name: String, entity: Node2D = null) -> void:
-	for comp in item.components:
-		if comp.has_method(method_name):
-			comp.call(method_name, item, entity)
+	# _call_component_method(item, "on_unequip", get_parent().get_parent())
+	# equipment[slot] = null
+	# SignalBus.equipment_changed.emit({
+	# 		"slot": slot,
+	# 		"item": null
+	# 	})
+
+# func _call_component_method(item: ItemResource, method_name: String, entity: Node2D = null) -> void:
+# 	for comp in item.components:
+# 		if comp.has_method(method_name):
+# 			comp.call(method_name, item, entity)
 
 func _can_equip_item(item: ItemResource, slot: int) -> bool:
 	return true

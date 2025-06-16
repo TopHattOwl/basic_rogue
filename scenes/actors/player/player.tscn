@@ -63,6 +63,7 @@ PositionComp = NodePath("Components/PositionComponent")
 StateComp = NodePath("Components/StateComponent")
 PlayerComp = NodePath("Components/PlayerComponent")
 ModifiersComp = NodePath("Components/ModifiersComponent")
+text_color = "#bbbab5"
 player_ui = NodePath("PlayerUI")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

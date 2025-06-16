@@ -50,7 +50,6 @@ func init_data_new(d: Dictionary) -> void:
 	wall_layer.tile_set = load(tilesets[GameData.TILE_TAGS.WALL])
 
 func _ready() -> void:
-
 	var is_dungeon_drawn = false
 	# draw the map
 	for y in range(GameData.MAP_SIZE.y):
@@ -79,6 +78,8 @@ func _ready() -> void:
 			EntitySpawner.spawn_monster(spawn_point, monster_data_new.monster_types[0])
 
 	MapFunction.initialize_astar_grid()
+
+	SignalBus.calculate_fov.emit()
 
 
 func draw_stairs(pos: Vector2i) -> void:

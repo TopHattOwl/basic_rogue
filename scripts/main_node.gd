@@ -4,6 +4,13 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 @export var input_manager: Node = null
 
 
+# FOV SYSTEM
+# fov autoload
+# holds player's fov range
+# when turn updates itself (connect player acted signal)
+
+# makes currently visible tiles array, it will hold all grids that player can see currently
+
 # finish:
 	# VERY IMPORTANT:
 		# SingleTargetSpell dont check current grid when spell is travling, check next grid position instead 
@@ -26,6 +33,10 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 
 
 # IDEAS:
+	# IMPORTANT:
+		# LAST TARGET autoload:
+			# autoload for handling player's combat targets, when player attacks an actor set last target to it
+			# when player aims offensive spell/ability set the target to the last target
 	# craftable component:
 		# known: bool, dows player know this recepie
 		# crating_cost: Dictionary of resources and amounts
@@ -67,6 +78,7 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 		# 
 
 	# IMPORTANT:
+		# TODO in SpellTargeter 
 		# TODO in turn manager and PlayerComponent to finish action queueing
 		# TODO in inventory_item.gd
 		# player data load and save rework, handle it in player's own script

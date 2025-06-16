@@ -22,7 +22,7 @@ var melee_crit_chance: float = 0
 var melee_crit_damage: float = 1 
 
 
-
+# debug
 var debug: bool
 
 func _ready() -> void:

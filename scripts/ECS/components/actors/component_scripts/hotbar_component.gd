@@ -143,7 +143,7 @@ func use_spell(uid: String) -> void:
 	
 	# if spell needs aiming then enter aiming mode
 	GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.SPELL_AIMING
-	SpellAimingSystem.enter_spell_aiming()
+	SpellAimingSystem.enter_spell_aiming(spell)
 
 	# spell_to_be_cast = spell
 

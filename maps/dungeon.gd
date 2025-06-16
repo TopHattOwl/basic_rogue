@@ -28,7 +28,7 @@ var map_rng: RandomNumberGenerator
 
 
 func init_data(d: Dictionary) -> void:
-	terrain_data = d.get("terrain_map", MapFunction.make_base_terrain_map())
+	terrain_data = d.get("terrain_map", [])
 	dungeon_level_size = d.get("dungeon_level_size", Vector2i.ZERO)
 	tilesets = d.get("tile_sets", tilesets)
 	tile_set_draw_data = d.get("tile_set_draw_data", {})
@@ -60,6 +60,8 @@ func _ready() -> void:
 
 	
 	MapFunction.initialize_astar_grid()
+
+	SignalBus.calculate_fov.emit()
 
 
 func is_in_bounds(pos: Vector2i) -> bool:

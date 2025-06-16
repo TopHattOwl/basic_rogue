@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b423to0sh4ppm"]
+[gd_scene load_steps=8 format=3 uid="uid://b423to0sh4ppm"]
 
 [ext_resource type="Script" uid="uid://b25g1hme5htyn" path="res://scripts/main_node.gd" id="1_scfaf"]
 [ext_resource type="Script" uid="uid://dwxyxpv42x5jx" path="res://scripts/input_manager.gd" id="2_bxfy6"]
 [ext_resource type="Shader" uid="uid://cfb76lctdcisy" path="res://resources/shader/scan_lines_shader.gdshader" id="2_dhalm"]
 [ext_resource type="PackedScene" uid="uid://wajrqdqs5k4i" path="res://turn_manager.tscn" id="3_scfaf"]
+[ext_resource type="PackedScene" uid="uid://bcn2hw7fpnd0l" path="res://scenes/fov/fov.tscn" id="4_621oa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bxfy6"]
 shader = ExtResource("2_dhalm")
@@ -20,6 +21,8 @@ input_manager = NodePath("InputManager")
 script = ExtResource("2_bxfy6")
 
 [node name="TurnManager" parent="." instance=ExtResource("3_scfaf")]
+
+[node name="FOV" parent="." instance=ExtResource("4_621oa")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 128

@@ -38,7 +38,8 @@ var all_actors: Array = []
 var all_items: Array = []
 
 ## removes all entities, resets and initializes maps.
-## called when transitioning map
+## called when transitioning map, entering world map tile, entering dungeon
+## also initializes fov data
 func remove_entities(is_player_in_dungeon: bool = false) -> void:
 	# remove entities from tree
 	if all_hostile_actors.size() > 0:
@@ -185,7 +186,7 @@ var TileDatas = {
 	},
 	TILE_TAGS.NATURE: {
 		"walkable": false,
-		"transparent": true,
+		"transparent": false,
 	}
 }
 
@@ -345,7 +346,19 @@ enum SPELL_SUBTYPE {
 	# DEFENSIVE
 
 	ARMOR_INFUSE,
+}
 
+const SPELL_TYPE_NAMES = {
+	SPELL_TYPE.OFFENSIVE: "offensive",
+	SPELL_TYPE.DEFENSIVE: "defensive",
+}
+
+const SPELL_SUBTYPE_NAMES = {
+	SPELL_SUBTYPE.SINGLE_TARGET: "single target",
+	SPELL_SUBTYPE.AOE: "area of effect",
+	SPELL_SUBTYPE.ARMAMENT_BOOST: "armament boost",
+	SPELL_SUBTYPE.TURRET: "turret",
+	SPELL_SUBTYPE.ARMOR_INFUSE: "armor infuse",
 }
 
 # COMPONENTS
@@ -549,7 +562,9 @@ enum COMBAT_TYPE {
 # debug options
 var combat_system_debug : = false
 var melee_combat_debug := false
-var spell_debug := true
-var turn_manager_debug := true
+var spell_debug := false
+var turn_manager_debug := false
 var input_manager_debug := false
-var hot_bar_debug := true
+var hot_bar_debug := false
+var map_functions_debug := true
+var fov_manager_debug := true

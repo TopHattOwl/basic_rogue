@@ -55,6 +55,17 @@ const spell_scenes = {
 	"test_turret_spell": "res://scenes/spells/test_turret_spell/test_turret_spell.tscn"
 }
 
+
+# --- TARGETERS ---
+
+const base_targeter_art = "res://assets/targeter.png"
+const base_targeter_path_art = "res://assets/targeter_path_line.png"
+
+
+# 	   -- range sprite stuff --
+
+const in_range_art = "res://assets/targeter_stuff/in_range_tiles.png"
+const will_hit_tile_art = "res://assets/targeter_stuff/hit_tiles.png"
 # --- SCRIPT CLASSES ---
 
 #     -- save/load --

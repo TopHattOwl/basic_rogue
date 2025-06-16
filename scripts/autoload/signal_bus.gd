@@ -1,6 +1,5 @@
 extends Node
 
-
 signal pause_input()
 signal unpause_input()
 
@@ -28,8 +27,8 @@ signal actor_hit_final(hit_data: Dictionary)
 # --- SPELLS ---
 
 ## emited when spell has been cast, not when trying to cast
-signal spell_casted(spell_dat: Dictionary)
-
+## NOT USED, projectile spawned used instead when spell node is _ready
+signal spell_casted(spell_data: Dictionary)
 # var spell_data_setup = {
 #     "caster": Node2D,
 #     "spell": SpellResource,
@@ -49,6 +48,16 @@ signal projectile_finished(projectile_data: Dictionary)
 # etc.
 
 # --- ---
+
+# --- FOV ---
+
+# emitted when world map is loaded in and terrain map is filled or
+# when dungeon map is loaded
+# used in fov manager to initialize fov
+signal calculate_fov()
+
+
+
 
 
 signal buff_added(buff: Buff, actor: Node2D)
@@ -87,3 +96,12 @@ signal inventory_update()
 
 signal item_window_opened()
 signal item_window_closed()
+
+
+
+# --- INPUT ---
+
+## emited when player inputs directional input, [br]
+## NOT used for movement. [br]
+## Used for aiming, looking, etc.
+signal directional_input(direction: Vector2i)

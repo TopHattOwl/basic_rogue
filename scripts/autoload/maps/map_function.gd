@@ -1,6 +1,8 @@
 extends Node
 
 
+var debug := GameData.map_functions_debug
+
 func _ready() -> void:
 	set_process(false)
 	SignalBus.game_state_changed.connect(_process_toggle)
@@ -60,10 +62,20 @@ func to_grid_pos(pos: Vector2) -> Vector2i:
 
 # --- CHECKS ---
 func is_tile_walkable(pos: Vector2i) -> bool:
+	if !is_in_bounds(pos):
+		return false
 	return GameData.terrain_map[pos.y][pos.x]["walkable"]
 
+func is_tile_transparent(pos: Vector2i) -> bool:
+	if !is_in_bounds(pos):
+		return false
+	return GameData.terrain_map[pos.y][pos.x]["transparent"]
 
 func is_in_bounds(pos: Vector2i) -> bool:
+
+	# cehck for dungeon if in dungeon
+	# if GameData.player.PlayerComp.is_in_dungeon:
+	# 	return pos.x >= 0 and pos.x < currentDungeonSize.x and pos.y >= 0 and pos.y < currentDUngeonSize.y
 	return pos.x >= 0 and pos.x < GameData.MAP_SIZE.x and pos.y >= 0 and pos.y < GameData.MAP_SIZE.y
 
 
@@ -144,8 +156,12 @@ func get_items(grid_pos: Vector2i) -> Array:
 	return GameData.items_map[grid_pos.y][grid_pos.x]
 
 # --- MAP DATA ---
+
+## Initializes all map data (filles it with floor, null etc.)
+## also initializes fov data, fov autoload will handle reading the loaded in terrain_map
 func initialize_map_data():
-	print("init map data")
+	if debug:
+		print("init map data")
 	# reset variables
 	GameData.reset_maps()
 	for y in range(GameData.MAP_SIZE.y):
@@ -166,7 +182,8 @@ func initialize_map_data():
 
 
 func initialize_dungeon_map_data():
-	print("init dungeon map data")
+	if debug:
+		print("init dungeon map data")
 	GameData.reset_maps()
 	var dungeon_size = GameData.current_dungeon.dungeon_level_size
 	for y in range(dungeon_size.y):
@@ -335,15 +352,18 @@ func load_premade_map(map_path: String) -> void:
 	if GameData.current_map:
 		GameData.current_map.queue_free()
 		GameData.current_map = null
-	# GameData.reset_entity_variables()
-	# GameData.remove_entities_from_tree()
+
+
 	GameData.remove_entities()
-	initialize_map_data()
-	
+
 	GameData.current_map = load(map_path).instantiate()
 	GameData.main_node.add_child(GameData.current_map)
 
 	parse_tile_layers_from_scene(GameData.current_map)
+
+
+	# after tile layers are parsed emit fov update
+	SignalBus.calculate_fov.emit()
 
 	# spawn player if not spawned already
 	if GameData.player:
@@ -362,10 +382,9 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 	if not WorldMapData.world_map2.is_in_bounds(new_world_map_pos) or not WorldMapData.world_map2.is_tile_walkable(new_world_map_pos):
 		return
 
-	# remove entities from the tree
-	# GameData.remove_entities_from_tree()
-	GameData.remove_entities()
-	# TODO save current map data
+	# No need to remove entities, they will be removed when map is premade and premade map is loaded
+	# or when biome map generates or loads a map
+	# GameData.remove_entities()
 
 	# save player data
 	SaveFuncs.save_player_data(GameData.player)

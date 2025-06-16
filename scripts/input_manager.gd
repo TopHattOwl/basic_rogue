@@ -122,13 +122,6 @@ func handle_zoomed_in_inputs():
 
 
 
-	# test spell casting
-	if Input.is_action_just_pressed("click_left"):
-		if MapFunction.chebyshev_distance(GameData.player.PositionComp.grid_pos, MapFunction.zoomed_in_mouse_pos) <= 20:
-			GameData.player.SpellsComp.cast_spell("test_spell", MapFunction.zoomed_in_mouse_pos)
-			SignalBus.make_turn_pass.emit()
-
-
 # --- WORLD MAP INPUTS ---
 func handle_world_map_inputs():
 	for action in GameData.INPUT_DIRECTIONS:

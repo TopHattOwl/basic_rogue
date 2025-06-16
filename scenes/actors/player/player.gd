@@ -34,6 +34,8 @@ extends Node2D
 @export var ModifiersComp: ModifiersComponent
 
 
+@export var text_color: String
+
 # --- PLAYER UI ---
 
 @export var player_ui: CanvasLayer

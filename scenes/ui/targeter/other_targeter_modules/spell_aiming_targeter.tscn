@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://dahjnt2mree08"]
+
+[ext_resource type="Script" uid="uid://de5v7yaougujg" path="res://modules/targeter_module/SpellAimingTargeter.gd" id="1_uk4re"]
+[ext_resource type="Texture2D" uid="uid://c3c2qobtixiam" path="res://assets/targeter.png" id="2_7atqs"]
+[ext_resource type="Texture2D" uid="uid://cmtmcogwjt5pg" path="res://assets/targeter_path_line.png" id="3_v3ox2"]
+
+[node name="SpellAimingTargeter" type="Node2D"]
+script = ExtResource("1_uk4re")
+targeter_texture = ExtResource("2_7atqs")
+path_texture = ExtResource("3_v3ox2")
