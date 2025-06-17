@@ -14,53 +14,36 @@ extends Node2D
 
 ## When TargeterModule is activated sprites will be made
 var targeter_sprite: Sprite2D
-var path_sprite: Sprite2D
+var path_sprites: Array[Sprite2D] = []
 
 
 ## the position of the targeter
 var target_pos: Vector2i = Vector2i.ZERO
+var path_line: Array[Vector2i] = []
+var path_
 
+## NOT USED
+## range limit is set in spell aiming system
 ## max range the targeter can be moved to
 ## if set to 0 no range limit
-var max_range: int = 0
+# var max_range: int = 0
+
+## removes the prevous path sprites, resets the path line and adds the new one
+func add_path_line(_path_line: Array[Vector2i]) -> void:
+
+	for sprite in path_sprites:
+		sprite.queue_free()
+	path_sprites.clear()
+	path_line.clear()
+
+	path_line = _path_line
 
 
-## min and max grids get calculated from max_range if given
-var min_grid: Vector2i = Vector2i.ZERO
-var max_grid: Vector2i = Vector2i.ZERO
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		if !path_sprites:
+			return
+		for sprite in path_sprites:
+			sprite.queue_free()
 
-
-var avalible_tiles: Array
-
-
-func set_available_tiles() -> void:
-	if max_range == 0:
-		return
-
-	set_min_grid()
-	set_max_grid()
-
-
-
-
-
-## --- Min and Max grid calculators
-## Only gets called if max_range is not 0 
-func set_min_grid() -> Vector2i:
-	var _min_grid := Vector2i.ZERO
-
-	var player_pos = ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION).grid_pos
-
-
-
-
-	MapFunction
-
-	return _min_grid
-
-
-func set_max_grid() -> Vector2i:
-	var _max_grid := Vector2i.ZERO
-
-
-	return _max_grid
+		path_sprites.clear()

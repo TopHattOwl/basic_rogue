@@ -156,6 +156,10 @@ func _ready():
 	GameData.player.HotbarComp.add_to_hotbar("spell", test_turret_spell.spell_data.uid, "hotbar_2")
 
 
+	# var player_pos = get_player_pos()
+	# var radius = FovManager.player_vision_range
+	# print(MapFunction.get_tiles_in_radius(player_pos, radius, true))
+
 func _process(_delta):
 # input handler, gets input passed to it and depending on what input is pressed it calls different functions
 	if GameData.player.PlayerComp.is_players_turn:

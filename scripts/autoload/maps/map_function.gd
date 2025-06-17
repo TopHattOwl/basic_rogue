@@ -81,6 +81,8 @@ func is_in_bounds(pos: Vector2i) -> bool:
 
 # --- GETTERS ---
 
+## Returns PackedVector2Array of line between two grid positions [br]
+## Includes start and end positions, if start pos is not needed use PackedVector2Array.remove_at(0)
 func get_line(from: Vector2i, to: Vector2i) -> PackedVector2Array:
 
 	var line = PackedVector2Array()
@@ -140,6 +142,75 @@ func chebyshev_distance(a: Vector2i, b: Vector2i) -> int:
 
 func manhattan_distance(a: Vector2i, b: Vector2i) -> int:
 	return abs(a.x - b.x) + abs(a.y - b.y)
+
+
+func get_tiles_in_radius(origin: Vector2i, radius: int, check_for_vision = false, include_origin: bool = true, calc_method: String = "chebyshev") -> Array:
+	var tiles: Array[Vector2i] = []
+
+	# Validate inputs
+	if radius < 0:
+		push_error("Radius must be non-negative. Received: " + str(radius))
+		return tiles
+	
+	if calc_method not in ["chebyshev", "manhattan"]:
+		push_error("Invalid calc_method: " + calc_method + ". Defaulting to 'chebyshev'")
+		calc_method = "chebyshev"
+
+	var map_height = GameData.terrain_map.size()
+	var map_width = GameData.terrain_map[0].size() if map_height > 0 else 0
+
+	if map_height <= 0 or map_width <= 0:
+		push_error("Map dimensions are non positive: " + str(map_width) +"x"+ str(map_height))
+		return tiles
+
+
+	# pre calc vision check if needed
+	var visible_tiles_set: Dictionary
+	if check_for_vision:
+		visible_tiles_set = {}
+		for tile in FovManager.visible_tiles:
+			visible_tiles_set[tile] = true
+
+
+	# get base bounding box (later check distance from origin depending on calc_method and discard parts of the bounding box, if not `chebyshev`) 
+	var min_x = maxi(0, origin.x - radius)
+	var max_x = mini(origin.x + radius, map_width - 1)
+	var min_y = maxi(0, origin.y - radius)
+	var max_y = mini(origin.y + radius, map_height - 1)
+
+	# max_y + 1 bc range() does not include the last value
+	for y in range(min_y, max_y + 1):
+		for x in range(min_x, max_x + 1):
+			var tile = Vector2i(x, y)
+			var distance: float
+
+			# skip origin if not needed
+			if !include_origin and tile == origin:
+				continue
+			
+			match calc_method:
+				"chebyshev":
+					distance = float(chebyshev_distance(origin, tile))
+				"manhattan":
+					distance = float(manhattan_distance(origin, tile))
+			
+			if distance <= float(radius):
+				# apply vision check if needed
+				if check_for_vision:
+					if tile in visible_tiles_set:
+						tiles.append(tile)
+				else:
+					tiles.append(tile)
+
+	return tiles
+	# returns an array of all tiles in radius from the origin
+	# should check for out of bounds using GameData.terrain_map.size() for y, and GameData.terrain_map[0].size() for x to get map size
+	# if check_for_vision is true, only include grid positions that are in FovManager.visible_tiles
+	# if include_origin is true, include the origin in the returned array
+	# if calc_method is "chebyshev", use chebyshev distance, if "manhattan", use manhattan distance (chebyshev_distance(a, b) or manhattan_distance(a, b) where a and b are Vector2i)
+	
+
+
 
 func get_actor(grid_pos: Vector2i) -> Node2D:
 	if !GameData.actors_map:

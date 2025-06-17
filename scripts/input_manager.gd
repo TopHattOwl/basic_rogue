@@ -241,9 +241,9 @@ func handle_inventory_inputs():
 
 func handle_spell_aiming_inputs():
 
+	# input managger only handles exiting from input modes
 	if Input.is_action_just_pressed("ui_cancel"):
-		# GameData.player.PlayerComp.input_mode = prev_input_mode
-		GameData.player.PlayerComp.restore_input_mode()
+		SpellAimingSystem.exit_spell_aiming(false)
 
 
 # --- HOSTILES ---

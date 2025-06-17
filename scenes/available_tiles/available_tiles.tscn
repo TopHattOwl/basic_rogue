@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd4anu2oosemf"]
+
+[ext_resource type="TileSet" uid="uid://hba7f0kuqwpi" path="res://resources/avalible_tiles/avalible_tiles_for_aiming.tres" id="1_dxt46"]
+[ext_resource type="Script" uid="uid://bk1fbojhurc36" path="res://scenes/available_tiles/available_tiles.gd" id="2_o74mt"]
+
+[node name="AvailableTiles" type="TileMapLayer"]
+z_index = 10
+z_as_relative = false
+tile_set = ExtResource("1_dxt46")
+script = ExtResource("2_o74mt")

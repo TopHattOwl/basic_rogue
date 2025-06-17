@@ -86,7 +86,7 @@ func update_fov() -> void:
 		return
 	
 	# Store previous visible tiles
-	var prev_visible = visible_tiles.duplicate()
+	# var prev_visible = visible_tiles.duplicate()
 	visible_tiles.clear()
 	
 	# Get player position
@@ -103,23 +103,6 @@ func update_fov() -> void:
 		scan(first_row, quadrant, max_scan_depth)
 
 
-	
-	
-	# # Update tilemap based on visibility changes
-	# for pos in prev_visible:
-	# 	if !pos in visible_tiles:
-	# 		# Tile is no longer visible but was explored
-	# 		if pos in explored_tiles:
-	# 			fov_tilemap.set_cell(pos, FOV_SOURCE_ID, EXPLORED_ATLAS)
-	
-	# for pos in visible_tiles:
-	# 	# Tile is visible - remove fog
-	# 	fov_tilemap.set_cell(pos, -1)
-	# 	# Mark as explored
-	# 	if !pos in explored_tiles:
-	# 		explored_tiles.append(pos)
-
-	# --- new
 	# Update tilemap based on visibility changes
 	for y in range(map_height):
 		for x in range(map_width):

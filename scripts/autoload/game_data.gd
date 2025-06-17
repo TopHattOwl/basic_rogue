@@ -564,9 +564,9 @@ enum COMBAT_TYPE {
 # debug options
 var combat_system_debug : = false
 var melee_combat_debug := false
-var spell_debug := false
+var spell_debug := true
 var turn_manager_debug := false
 var input_manager_debug := false
 var hot_bar_debug := false
-var map_functions_debug := true
-var fov_manager_debug := true
+var map_functions_debug := false
+var fov_manager_debug := false

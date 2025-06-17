@@ -62,6 +62,9 @@ const base_targeter_art = "res://assets/targeter.png"
 const base_targeter_path_art = "res://assets/targeter_path_line.png"
 
 
+const available_tile_scene = "res://scenes/available_tiles/available_tiles.tscn"
+
+
 # 	   -- range sprite stuff --
 
 const in_range_art = "res://assets/targeter_stuff/in_range_tiles.png"
