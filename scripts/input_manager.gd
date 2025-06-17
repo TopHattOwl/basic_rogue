@@ -94,9 +94,10 @@ func handle_zoomed_in_inputs():
 	# TODO pick up 
 
 
-	# enter world map 
+	# enter world map where you can freely move, only in dev_mode
 	if Input.is_action_just_pressed("open_world_map") and not ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map:
-		MapFunction.enter_world_map()
+		if GameData.dev_mode:
+			MapFunction.enter_world_map()
 
 	if Input.is_action_just_pressed("quit"):
 		print("quitting")

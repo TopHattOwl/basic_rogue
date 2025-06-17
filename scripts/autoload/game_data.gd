@@ -1,5 +1,7 @@
 extends Node
 
+const dev_mode := true
+
 var world_seed: int = 2840132 # set when starting new game
 
 # ___ Main Node ___

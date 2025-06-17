@@ -12,7 +12,15 @@ var is_queue_active: bool = false
 var is_in_dungeon: bool = false
 var is_players_turn: bool = true
 var is_in_world_map: bool = false
-var world_map_pos: Vector2i = Vector2i.ZERO
+
+
+var world_map_pos: Vector2i = Vector2i.ZERO:
+	set(value):
+		var prev = world_map_pos
+		world_map_pos = value
+		SignalBus.world_map_pos_changed.emit(world_map_pos, prev)
+
+
 var is_dead: bool = false
 var input_mode: int = 0 # from enum INPUT_MODES
 var prev_input_mode: int = 0

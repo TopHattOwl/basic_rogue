@@ -73,6 +73,8 @@ func _ready() -> void:
 	get_component(GameData.ComponentKeys.MONSTER_STATS).initialize(monster_stats_component)
 	get_component(GameData.ComponentKeys.MONSTER_DROPS).initialize(monster_drops_component)
 
+	connect_signals()
+
 func calculate_stats() -> void:
 
 	# Time difficulty calcualtion

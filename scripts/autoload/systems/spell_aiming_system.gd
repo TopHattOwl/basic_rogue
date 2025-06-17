@@ -43,7 +43,6 @@ func _process(_delta: float) -> void:
 func update_targeter_position():
 	pass
 
-
 ## Enters spell aiming mode
 ## Player's targeter is turned off until player's input mode is restored to previous mode automatically in targeter's script
 func enter_spell_aiming(_spell:  SpellNode) -> void:

@@ -56,8 +56,15 @@ signal projectile_finished(projectile_data: Dictionary)
 # used in fov manager to initialize fov
 signal calculate_fov()
 
+# emitted when fov finished calculating
+# used for monster visibility
+signal fov_calculated()
 
 
+# --- WORLD MAP ---
+
+# emitted when player's world_map_pos is set
+signal world_map_pos_changed(to: Vector2i, from: Vector2i)
 
 
 signal buff_added(buff: Buff, actor: Node2D)

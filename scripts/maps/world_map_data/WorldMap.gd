@@ -43,7 +43,9 @@ func enter_world_map(world_pos: Vector2i) -> void:
 			
 
 
-# save/load
+# --- SAVE/LOAD ---
+
+# save and load the WorldMap to save files
 func save_world_map() -> void:
 	ResourceSaver.save(self, DirectoryPaths.world_map_save)
 
@@ -59,3 +61,11 @@ func load_world_map() -> void:
 		return
 	
 	map_data = loader.map_data
+
+
+
+func save_explored_tiles(world_pos: Vector2i, tiles: Array) -> void:
+	map_data[world_pos.y][world_pos.x].save_explored_tiles(tiles)
+
+func get_explored_tiles(world_pos: Vector2i) -> Array:
+	return map_data[world_pos.y][world_pos.x].explored_tiles.duplicate()

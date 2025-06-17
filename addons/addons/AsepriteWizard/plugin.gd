@@ -4,12 +4,12 @@ extends EditorPlugin
 # importers
 const NoopImportPlugin = preload("importers/noop_import_plugin.gd")
 const SpriteFramesImportPlugin = preload("importers/sprite_frames_import_plugin.gd")
-const SpriteFramesSplitImportPlugin = preload("res://addons/AsepriteWizard/importers/sprite_frames_multiple_import_plugin.gd")
+const SpriteFramesSplitImportPlugin = preload("res://addons/addons/AsepriteWizard/importers/sprite_frames_multiple_import_plugin.gd")
 const TilesetTextureImportPlugin = preload("importers/tileset_texture_import_plugin.gd")
 const TextureImportPlugin = preload("importers/static_texture_import_plugin.gd")
-const TextureSplitImportPlugin = preload("res://addons/AsepriteWizard/importers/static_texture_multiple_import_plugin.gd")
-const LayerSpriteFramesImportPlugin = preload("res://addons/AsepriteWizard/importers/split_layer_importers/layer_import_plugin.gd")
-const LayerTextureImportPlugin = preload("res://addons/AsepriteWizard/importers/split_layer_importers/layer_texture_import_plugin.gd")
+const TextureSplitImportPlugin = preload("res://addons/addons/AsepriteWizard/importers/static_texture_multiple_import_plugin.gd")
+const LayerSpriteFramesImportPlugin = preload("res://addons/addons/AsepriteWizard/importers/split_layer_importers/layer_import_plugin.gd")
+const LayerTextureImportPlugin = preload("res://addons/addons/AsepriteWizard/importers/split_layer_importers/layer_texture_import_plugin.gd")
 const FileSystemHelper = preload("importers/helpers/file_system_helper.gd")
 # export
 const ExportPlugin = preload("export/export_plugin.gd")

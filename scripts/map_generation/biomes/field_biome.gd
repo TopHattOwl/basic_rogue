@@ -90,6 +90,8 @@ func add_nature() -> void:
 		for x in range(GameData.MAP_SIZE.x):
 			if terrain_map[y][x].tags.has(GameData.TILE_TAGS.WALL):
 				continue
+			if x == 0 or x == GameData.MAP_SIZE.x - 1 or y == 0 or y == GameData.MAP_SIZE.y - 1:
+				continue
 			if map_rng.randf() < nature_chance:
 				add_terrain_map_data(Vector2i(x, y), GameData.TILE_TAGS.NATURE, GameData.get_tile_data(GameData.TILE_TAGS.NATURE))
 

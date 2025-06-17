@@ -382,35 +382,29 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 	if not WorldMapData.world_map2.is_in_bounds(new_world_map_pos) or not WorldMapData.world_map2.is_tile_walkable(new_world_map_pos):
 		return
 
-	# No need to remove entities, they will be removed when map is premade and premade map is loaded
-	# or when biome map generates or loads a map
-	# GameData.remove_entities()
+	# No need to remove entities, they will be removed if
+		# map is premade and premade map is loaded
+		# or when biome map generates or loads a map
 
 	# save player data
 	SaveFuncs.save_player_data(GameData.player)
 
 	var world_tile = WorldMapData.world_map2.map_data[new_world_map_pos.y][new_world_map_pos.x]
-	var is_transition_success = false
+
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).world_map_pos = new_world_map_pos
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION).grid_pos = new_player_grid_pos
+	GameData.player.position = MapFunction.to_world_pos(new_player_grid_pos)
 
 	# if map is premade, load the map
 	if world_tile.is_premade:
 		load_premade_map(world_tile.map_path)
-		is_transition_success = true
 
 	# if not premade chekc if explored (if explored then it has been generated already)
 	else:
-		# biome map generates map is not generated, but load map is already generated
+		# biome map generates map is not generated, but load map if already generated
 		WorldMapData.biome_map.generate_map(new_world_map_pos)
-		is_transition_success = true
-		
-	if is_transition_success:
 
-		# update variables and player pos
-		ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).world_map_pos = new_world_map_pos
-		ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION).grid_pos = new_player_grid_pos
-		GameData.player.position = MapFunction.to_world_pos(new_player_grid_pos)
-	else:
-		print("transition failed")
+
 
 # --- World Map ---
 	
