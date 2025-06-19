@@ -20,7 +20,10 @@ var path_sprites: Array[Sprite2D] = []
 ## the position of the targeter
 var target_pos: Vector2i = Vector2i.ZERO
 var path_line: Array[Vector2i] = []
-var path_
+
+
+# avalible tiles for the targeter
+var avalible_tiles_node: TileMapLayer
 
 ## NOT USED
 ## range limit is set in spell aiming system
@@ -47,3 +50,5 @@ func _notification(what: int) -> void:
 			sprite.queue_free()
 
 		path_sprites.clear()
+
+		avalible_tiles_node.queue_free()

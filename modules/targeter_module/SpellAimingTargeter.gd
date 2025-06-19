@@ -21,10 +21,12 @@ func _init(avalible_tiles: Array[Vector2i], _aoe: int = 0, _targeter_texture: Te
 	if !_path_texture:
 		path_texture = load(DirectoryPaths.base_targeter_path_art)
 
-	# add in avalible tiles scene
+	# Add in avalible tiles scene and it to TargererModule's variable
 	var avalible_tiles_scene = load(DirectoryPaths.available_tile_scene)
-	var avalible_tiles_node = avalible_tiles_scene.instantiate()
-	avalible_tiles_node.set_avalible_tiles(avalible_tiles)
+	var _avalible_tiles_node = avalible_tiles_scene.instantiate()
+	_avalible_tiles_node.set_avalible_tiles(avalible_tiles)
+	avalible_tiles_node = _avalible_tiles_node
+
 
 	GameData.main_node.add_child(avalible_tiles_node)
 

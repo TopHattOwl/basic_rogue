@@ -22,8 +22,6 @@ var targeter: TargeterModule
 
 var max_range: int
 
-# this is from fov manager
-var avalible_tiles: Array[Vector2i]
 
 
 func _ready() -> void:
@@ -75,6 +73,7 @@ func enter_spell_aiming(_spell:  SpellNode) -> void:
 	var player_pos = ComponentRegistry.get_player_pos()
 	var player_range = FovManager.player_vision_range
 	var avalible_tiles = MapFunction.get_tiles_in_radius(player_pos, player_range, true)
+
 
 	# determine spell type and use correct targeting module
 	# for now just test if works

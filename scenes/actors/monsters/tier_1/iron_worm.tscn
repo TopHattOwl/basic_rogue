@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b6mpj0d05bb3d" path="res://scripts/ECS/components/actors/component_scenes/monster_combat_component.tscn" id="15_nxa1e"]
 
 [node name="IronWorm" type="Node2D" groups=["monsters"]]
-z_index = 1
+z_index = 10
 z_as_relative = false
 script = ExtResource("1_nxa1e")
 metadata/_custom_type_script = "uid://cj8vm0ikqf5cy"

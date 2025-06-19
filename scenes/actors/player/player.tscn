@@ -44,6 +44,8 @@ sources/0 = SubResource("TileSetAtlasSource_qxscg")
 sources/1 = SubResource("TileSetAtlasSource_biscu")
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("PlayerUI", "HealthComp", "StaminaComp", "AbilitiesComp", "SpellsComp", "HotbarComp", "SkillsComp", "AttributesComp", "EquipmentComp", "InventoryComp", "MeleeCombatComp", "BlockComp", "StanceComp", "IdentityComp", "PositionComp", "StateComp", "PlayerComp", "ModifiersComp", "player_ui") groups=["player"]]
+z_index = 10
+z_as_relative = false
 script = ExtResource("1_qxscg")
 PlayerUI = NodePath("PlayerUI")
 HealthComp = NodePath("Components/HealthComponent")
