@@ -43,12 +43,13 @@ func set_zoomed_in_mouse_pos():
 	var camera := get_viewport().get_camera_2d()
 	if camera == null:
 		return
+
 	var mouse_screen_pos = get_viewport().get_mouse_position()
 	var mouse_world_pos = camera.get_screen_transform().affine_inverse() * mouse_screen_pos
 	var mouse_grid_pos = MapFunction.to_grid_pos(mouse_world_pos) + player_pos + Vector2i(1,1)
-	# mouse_grid_pos.clamp(Vector2i(0,0), GameData.MAP_SIZE - Vector2i(1,1))
 
 	zoomed_in_mouse_pos = mouse_grid_pos.clamp(Vector2i(0,0), GameData.MAP_SIZE - Vector2i(1,1))
+
 
 # --- Misc ---
 func to_world_pos(pos: Vector2i) -> Vector2:

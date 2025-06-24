@@ -27,7 +27,6 @@ func _init(avalible_tiles: Array[Vector2i], _aoe: int = 0, _targeter_texture: Te
 	_avalible_tiles_node.set_avalible_tiles(avalible_tiles)
 	avalible_tiles_node = _avalible_tiles_node
 
-
 	GameData.main_node.add_child(avalible_tiles_node)
 
 ## activates the targeter
@@ -71,8 +70,3 @@ func update_visuals() -> void:
 
 		GameData.main_node.add_child(_path_sprite)
 
-
-# func needs_update() -> bool:
-# 	if target_pos == MapFunction.zoomed_in_mouse_pos:
-# 		return false
-# 	return true

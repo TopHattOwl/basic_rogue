@@ -2,11 +2,11 @@ extends Camera2D
 
 
 @export var zoom_increment = Vector2(0.1, 0.1)
-@export var min_zoom = Vector2(0.5, 0.5)
-@export var max_zoom = Vector2(1.5, 1.5)
+@export var min_zoom = Vector2(0.40, 0.4)
+@export var max_zoom = Vector2(1.0, 1.0)
 
-@export var min_zoom_world_map = Vector2(0.4, 0.4)
-@export var max_zoom_world_map = Vector2(1.0, 1.0)
+@export var min_zoom_world_map = Vector2(0.3, 0.3)
+@export var max_zoom_world_map = Vector2(0.7, 0.7)
 
 var can_zoom = true
 

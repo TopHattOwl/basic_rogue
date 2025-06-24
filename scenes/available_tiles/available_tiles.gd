@@ -16,6 +16,7 @@ func _ready() -> void:
 
 
 func draw_terrain() -> void:
+    modulate = Color(1, 1, 1, 0.306275)
     if avalible_tiles.is_empty():
         return
 

@@ -82,6 +82,7 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 		# 
 
 	# IMPORTANT:
+		# Fix ouse grid pos, right now bc of the CTR monitor effect, the mouse grid pos is off at the screne edges
 		# TODO in SpellTargeter 
 		# TODO in turn manager and PlayerComponent to finish action queueing
 		# TODO in inventory_item.gd
