@@ -23,6 +23,10 @@ var targeter: TargeterModule
 var max_range: int
 
 
+## tiles that can be targeted by spell
+var avalible_tiles: Array[Vector2i]
+
+
 
 func _ready() -> void:
 	set_process(is_active)
@@ -72,13 +76,12 @@ func enter_spell_aiming(_spell:  SpellNode) -> void:
 	# set boundaries for aiming
 	var player_pos = ComponentRegistry.get_player_pos()
 	var player_range = FovManager.player_vision_range
-	var avalible_tiles = MapFunction.get_tiles_in_radius(player_pos, player_range, true, false)
+	avalible_tiles = MapFunction.get_tiles_in_radius(player_pos, player_range, true, false)
 
 
 	# determine spell type and use correct targeting module
-	# for now just test if works
-	var spell_aiming_targeter = SpellAimingTargeter.new(avalible_tiles)
-	spell_aiming_targeter.activate()
+	activate_spell_aiming_targeter()
+
 
 
 	set_process(is_active)
@@ -116,9 +119,24 @@ func exit_spell_aiming(is_success: bool) -> void:
 	# enter previous input mode
 	GameData.player.PlayerComp.restore_input_mode()
 
+	# clear current spell
+	current_spell = null
+
 	if targeter:
 		targeter.queue_free()
 
 	# if casting is successfull make turn pass
 	if is_success:
 		SignalBus.make_turn_pass.emit()
+
+
+func activate_spell_aiming_targeter() -> void:
+	var spell_type = current_spell.get_script()
+	match spell_type:
+		SingleTargetSpell:
+			var spell_aiming_targeter = SingleTargetSpellTargeter.new(avalible_tiles)
+			spell_aiming_targeter.activate()
+		TurretSpell:
+			pass
+		_:
+			push_error("SpellAimingSystem: spell type not supported: ", spell_type)

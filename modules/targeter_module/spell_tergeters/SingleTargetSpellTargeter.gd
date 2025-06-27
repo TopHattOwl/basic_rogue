@@ -1,4 +1,4 @@
-class_name SpellAimingTargeter
+class_name SingleTargetSpellTargeter
 extends TargeterModule
 
 

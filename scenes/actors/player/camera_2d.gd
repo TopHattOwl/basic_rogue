@@ -18,6 +18,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 
+	set_can_zoom()
+
 	if can_zoom:
 		if GameData.player.PlayerComp.is_in_world_map:
 			if Input.is_action_just_released("scroll_up"):
@@ -35,3 +37,11 @@ func _process(_delta: float) -> void:
 
 func toggle_can_zoom() -> void:
 	can_zoom = !can_zoom
+
+func set_can_zoom() -> void:
+	var input_mode = GameData.player.PlayerComp.input_mode
+
+	if input_mode == GameData.INPUT_MODES.ZOOMED_IN_MOVEMENT or input_mode == GameData.INPUT_MODES.WORLD_MAP_MOVEMENT:
+		can_zoom = true
+	else:
+		can_zoom = false

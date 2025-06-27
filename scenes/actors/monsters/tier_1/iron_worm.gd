@@ -48,9 +48,9 @@ var monster_properties_componenet = {
 }
 
 var monster_stats_component = {
-	"armor": 2,
 	"monster_tier": 1,
 	"monster_id": GameData.MONSTERS_ALL.IRON_WORM,
+	"monster_uid": GameData.MONSTER_UIDS[GameData.MONSTERS_ALL.IRON_WORM]
 }
 
 var monster_drops_component = {

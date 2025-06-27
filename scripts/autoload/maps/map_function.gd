@@ -80,6 +80,16 @@ func is_in_bounds(pos: Vector2i) -> bool:
 	return pos.x >= 0 and pos.x < GameData.MAP_SIZE.x and pos.y >= 0 and pos.y < GameData.MAP_SIZE.y
 
 
+func can_spawn_monster_at_pos(pos: Vector2i) -> bool:
+
+	if !is_tile_walkable(pos):
+		return false
+	if !is_in_bounds(pos):
+		return false
+	if GameData.actors_map[pos.y][pos.x] != null:
+		return false
+	return true
+
 # --- GETTERS ---
 
 ## Returns PackedVector2Array of line between two grid positions [br]
@@ -144,8 +154,18 @@ func chebyshev_distance(a: Vector2i, b: Vector2i) -> int:
 func manhattan_distance(a: Vector2i, b: Vector2i) -> int:
 	return abs(a.x - b.x) + abs(a.y - b.y)
 
+func euclidean_distance(a: Vector2i, b: Vector2i) -> float:
+	return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y))
 
-func get_tiles_in_radius(origin: Vector2i, radius: int, check_for_vision = false, include_origin: bool = true, calc_method: String = "chebyshev") -> Array:
+
+func get_tiles_in_radius(
+	origin: Vector2i, radius: int,
+	check_for_vision = false, # if true, does not include tiles that are not visible
+	include_origin: bool = true, # if true, includes origin
+	calc_method: String = "chebyshev", # calculation method for radius
+	check_walkable: bool = false, # if true, does not include tiles that are not walkable
+	check_actors: bool = false, # if true, does not include tiles that are occupied by actors
+	) -> Array:
 	var tiles: Array[Vector2i] = []
 
 	# Validate inputs
@@ -153,7 +173,7 @@ func get_tiles_in_radius(origin: Vector2i, radius: int, check_for_vision = false
 		push_error("Radius must be non-negative. Received: " + str(radius))
 		return tiles
 	
-	if calc_method not in ["chebyshev", "manhattan"]:
+	if calc_method not in ["chebyshev", "manhattan", "euclidean"]:
 		push_error("Invalid calc_method: " + calc_method + ". Defaulting to 'chebyshev'")
 		calc_method = "chebyshev"
 
@@ -188,12 +208,22 @@ func get_tiles_in_radius(origin: Vector2i, radius: int, check_for_vision = false
 			# skip origin if not needed
 			if !include_origin and tile == origin:
 				continue
+
+			# walkable check
+			if check_walkable and not is_tile_walkable(tile):
+				continue
+
+			# actors check
+			if check_actors and get_actor(tile):
+				continue
 			
 			match calc_method:
 				"chebyshev":
 					distance = float(chebyshev_distance(origin, tile))
 				"manhattan":
 					distance = float(manhattan_distance(origin, tile))
+				"euclidean":
+					distance = euclidean_distance(origin, tile)
 			
 			if distance <= float(radius):
 				# apply vision check if needed
@@ -204,12 +234,6 @@ func get_tiles_in_radius(origin: Vector2i, radius: int, check_for_vision = false
 					tiles.append(tile)
 
 	return tiles
-	# returns an array of all tiles in radius from the origin
-	# should check for out of bounds using GameData.terrain_map.size() for y, and GameData.terrain_map[0].size() for x to get map size
-	# if check_for_vision is true, only include grid positions that are in FovManager.visible_tiles
-	# if include_origin is true, include the origin in the returned array
-	# if calc_method is "chebyshev", use chebyshev distance, if "manhattan", use manhattan distance (chebyshev_distance(a, b) or manhattan_distance(a, b) where a and b are Vector2i)
-	
 
 
 

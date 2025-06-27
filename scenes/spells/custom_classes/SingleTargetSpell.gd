@@ -4,7 +4,7 @@ extends SpellNode
 ## fast spells, low damage, single target, low capacity cost
 
 ## The distance the spell has moved 
-@export var distance_traveled: int
+var distance_traveled: int
 
 @export var animated_sprite: AnimatedSprite2D
 

@@ -41,6 +41,10 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+
+	if not visible:
+		return
+
 	if Input.is_action_just_pressed("ui_inventory_next_tab"):
 		_on_filter_button_pressed((current_tab + 1) % GameData.ITEM_TAB_NAMES.size())
 

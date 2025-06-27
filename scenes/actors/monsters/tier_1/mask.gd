@@ -49,9 +49,9 @@ var monster_properties_componenet = {
 }
 
 var monster_stats_component = {
-	"armor": 0,
 	"monster_tier": 1,
 	"monster_id": GameData.MONSTERS_ALL.MASK,
+	"monster_uid": GameData.MONSTER_UIDS[GameData.MONSTERS_ALL.MASK]
 }
 
 var monster_drops_component = {

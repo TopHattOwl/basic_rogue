@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b423to0sh4ppm"]
+[gd_scene load_steps=9 format=3 uid="uid://b423to0sh4ppm"]
 
 [ext_resource type="Script" uid="uid://b25g1hme5htyn" path="res://scripts/main_node.gd" id="1_scfaf"]
 [ext_resource type="Script" uid="uid://dwxyxpv42x5jx" path="res://scripts/input_manager.gd" id="2_bxfy6"]
 [ext_resource type="Shader" uid="uid://cfb76lctdcisy" path="res://resources/shader/scan_lines_shader.gdshader" id="2_dhalm"]
 [ext_resource type="PackedScene" uid="uid://wajrqdqs5k4i" path="res://turn_manager.tscn" id="3_scfaf"]
 [ext_resource type="PackedScene" uid="uid://bcn2hw7fpnd0l" path="res://scenes/fov/fov.tscn" id="4_621oa"]
+[ext_resource type="PackedScene" uid="uid://b20p5wy1p0r7l" path="res://scenes/dev_tools/console_ui.tscn" id="6_wywo8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bxfy6"]
 shader = ExtResource("2_dhalm")
@@ -30,3 +31,5 @@ layer = 128
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_bxfy6")
 mesh = SubResource("QuadMesh_lwogq")
+
+[node name="ConsoleUI" parent="." instance=ExtResource("6_wywo8")]

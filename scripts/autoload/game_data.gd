@@ -99,6 +99,11 @@ enum MONSTERS_ALL {
 	BIG_B,
 }
 
+var MONSTER_UIDS = {
+	MONSTERS_ALL.IRON_WORM: "worm",
+	MONSTERS_ALL.MASK: "mask",
+}
+
 # monster tiers (1-5) -> monster biome (what biome it can appear in) -> monster key array
 var MonstersAll = {
 	1: {
@@ -264,6 +269,9 @@ enum INPUT_MODES {
 	# UI stuff
 	STANCE_SELECTION,
 	INVENTORY,
+
+	# DEBUG
+	CONSOLE,
 	
 }
 

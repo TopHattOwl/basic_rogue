@@ -40,6 +40,11 @@ func handle_input() -> void:
 			handle_stance_selection_inputs()
 		GameData.INPUT_MODES.INVENTORY:
 			handle_inventory_inputs()
+
+
+		# DEBUG
+		GameData.INPUT_MODES.CONSOLE:
+			handle_console_inputs()
 		
 
 
@@ -120,6 +125,14 @@ func handle_zoomed_in_inputs():
 
 			# use hotbar will handle seting the player input mode and emitting make turn pass signal if rquired
 			GameData.player.HotbarComp.use_hotbar(hotbar_input)
+
+	
+	# console open
+	if Input.is_action_just_pressed("console") and GameData.dev_mode:
+		GameData.player.PlayerComp.set_prev_input_mode()
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.CONSOLE
+		GameData.main_node.get_node("ConsoleUI").toggle_console()
+
 
 
 
@@ -228,12 +241,10 @@ func handle_inventory_inputs():
 
 	if Input.is_action_just_pressed("inventory"):
 		UiFunc.toggle_inventory()
-		# GameData.player.PlayerComp.input_mode = prev_input_mode
 		GameData.player.PlayerComp.restore_input_mode()
 
 	if Input.is_action_just_pressed("ui_cancel") and !GameData.player.player_ui.inventory.is_item_window_opened:
 		UiFunc.toggle_inventory()
-		# GameData.player.PlayerComp.input_mode = prev_input_mode
 		GameData.player.PlayerComp.restore_input_mode()
 
 
@@ -244,6 +255,14 @@ func handle_spell_aiming_inputs():
 	# input managger only handles exiting from input modes
 	if Input.is_action_just_pressed("ui_cancel"):
 		SpellAimingSystem.exit_spell_aiming(false)
+
+
+# --- DEBUG ---
+
+func handle_console_inputs():
+	if Input.is_action_just_pressed("ui_cancel"):
+		GameData.player.PlayerComp.restore_input_mode()
+		GameData.main_node.get_node("ConsoleUI").toggle_console()
 
 
 # --- HOSTILES ---

@@ -65,11 +65,13 @@ func floating_damage_text(target: Node2D, _attacker: Node2D, damage: int, direct
 			damage_text.text = "Blocked"
 			damage_text.modulate = "#bbbab5"
 
-	# modifiy and clamp fint size
+	# modifiy and clamp font size
 	var base_size = 16
 	var scaled_size = base_size * (1.0 + damage * 0.03)
 	damage_text.label_settings = LabelSettings.new()
 	damage_text.label_settings.font_size = clamp(scaled_size, 8, 30)
+	damage_text.z_index = 100
+	damage_text.z_as_relative = false
 
 
 	# animate

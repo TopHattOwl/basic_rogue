@@ -25,6 +25,8 @@ func _ready() -> void:
 	SignalBus.inventory_closed.connect(_on_inventory_closed)
 
 func _process(_delta: float) -> void:
+	if not visible:
+		return
 	if Input.is_action_just_pressed("ui_cancel"):
 		close_window()
 
