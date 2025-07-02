@@ -65,6 +65,8 @@ func _on_input_submitted(text: String) -> void:
 	var result = ConsoleSystem.execute_command(_text)
 	output_field.append_text("\n" + result)
 
+	output_field.scroll_to_line(output_field.get_line_count()) # auto-scroll
+
 
 func navigate_history(dir: int) -> void:
 	if command_history.is_empty():
@@ -74,7 +76,7 @@ func navigate_history(dir: int) -> void:
 
 	if history_index < command_history.size():
 		input_field.text = command_history[history_index]
-		input_field.caret_column = input_field.text.length()
+		input_field.caret_column = input_field.text.length() 
 	else:
 		input_field.clear()
 
@@ -83,3 +85,4 @@ func add_command_history(text: String) -> void:
 	command_history.append(text)
 	history_index = command_history.size()
 	input_field.clear()
+	

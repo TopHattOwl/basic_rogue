@@ -9,13 +9,15 @@ func _ready() -> void:
 	register_command("help", help_command, "Shows all commands")
 	register_command("clear", clear_command, "Clears console output")
 	register_command("monster_ids", get_monster_ids, "Returns all monster ids")
+	register_command("skill_ids", get_skill_ids, "Returns all skill ids")
 
 	# player commands
 	register_command("heal", heal_command, "Heals player by given amount\n\t\theal [amount]")
+	register_command("add_skill_exp", add_skill_exp_command, "Adds given amount of skill experience to player\n\t\tadd_skill_exp [skill_id] [amount]")
 
 	# spawn commands
 	register_command("spawn_monster", spawn_monster_command, "Spawns a monster with given id at given position\n\t\tspawn_monster [id] [x] [y]")
-	register_command("spawn_item", spawn_item_command, "Spawns an item with given id at given position\n\t\tspawn_item [id] [x] [y]")
+	register_command("spawn_item", spawn_item_command, "NOT IMPLEMENTED\nSpawns an item with given id at given position\n\t\tspawn_item [id] [x] [y]")
 
 
 func register_command(_name: String, _callback: Callable, _description: String = "") -> void:
@@ -54,30 +56,62 @@ func clear_command(_args: PackedStringArray) -> String:
 	return "runnung clear command"
 
 func get_monster_ids(_args: PackedStringArray) -> String:
-	var output = "All monster uids:\n"
+	var output = "All monster ids:\n"
 	for id in GameData.MONSTER_UIDS:
 		output += "\t\t"+ GameData.MONSTER_UIDS[id] + ": " + str(id) + "\n"
 	return output
 
+func get_skill_ids(_args: PackedStringArray) -> String:
+	var output = "All skill ids:\n"
+
+	for skill_id in GameData.SKILL_NAMES:
+		output += "\t\t"+ GameData.SKILL_NAMES[skill_id] + ": " + str(skill_id) + "\n"
+	
+	return output
+
 # --- PLAYER COMMANDS ---
 func heal_command(_args: PackedStringArray) -> String:
-	if _args.is_empty():
-		return "Error: Missing argument for heal command: amount\n" + "Usage: heal [amount]"
+	var heal_amount = _args[0].to_int() if not _args.is_empty() else 0
+	# if _args.is_empty():
+	# 	return "Error: Missing argument for heal command: amount\n" + "Usage: heal [amount]"
 
-	GameData.player.HealthComp.heal(_args[0].to_int())
-	return "healing player by: " + _args[0]
+	if heal_amount:
+		GameData.player.HealthComp.heal(heal_amount)
+		return "healing player by: " + heal_amount
+	else:
+		GameData.player.HealthComp.heal(99990)
+		return "healing player to full health"
+	
+
+func add_skill_exp_command(_args: PackedStringArray) -> String:
+
+	if _args.is_empty():
+		return "Error: Missing arguments for add_skill_exp command: skill_id, amount\n" + "Usage: add_skill_exp [skill_id] [amount]"
+
+	var skill_id = _args[0].to_int()
+
+	var exp_amount = _args[1].to_int() if _args.size() > 1 else GameData.player.SkillsComp.skills[skill_id].exp_for_next_level
+	var skill_name = GameData.SKILL_NAMES[skill_id] 
+	var output = "Adding " + str(exp_amount) + " exp to skill: " + skill_name
+
+	GameData.player.SkillsComp.add_exp(skill_id, exp_amount)
+	
+	return output
 
 
 # --- SPAWN COMMANDS ---
 
 func spawn_monster_command(_args: PackedStringArray) -> String:
 	var output = ""
+	# var monster_id = int(_args[0]) if not _args.is_empty() else randi() % GameData.MONSTERS_ALL.size()
+
+	var monster_id = randi() % GameData.MONSTERS_ALL.size() if _args.is_empty() else int(_args[0])
+
+
 
 	var grid_pos := Vector2i.ZERO
-	var monster_uid = GameData.MONSTER_UIDS[int(_args[0])]
+	var monster_uid = GameData.MONSTER_UIDS[monster_id]
 
-	if _args.is_empty():
-		return "Error: Missing arguments for spawn_monster command: id, x, y\n" + "Usage: spawn_monster [id] [x] [y]"
 
 	var is_pos_given = _args.size() > 1
 
@@ -107,7 +141,7 @@ func spawn_monster_command(_args: PackedStringArray) -> String:
 
 	output = "spawning monster: " + monster_uid + " at: " + "(" + str(grid_pos.x) + ", " + str(grid_pos.y) + ")"
 
-	EntitySpawner.spawn_monster(grid_pos, int(_args[0]))
+	EntitySpawner.spawn_monster(grid_pos, monster_id)
 
 	return output
 

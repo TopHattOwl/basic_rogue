@@ -343,16 +343,6 @@ func add_hostile_to_variables(actor: Node2D) -> void:
 	var grid_pos = ComponentRegistry.get_component(actor, GameData.ComponentKeys.POSITION).grid_pos
 	GameData.actors_map[grid_pos.y][grid_pos.x] = actor
 
-func add_item_to_variables(item: Node2D) -> void:
-	var grid_pos = ComponentRegistry.get_component(item, GameData.ComponentKeys.ITEM_POSITION).grid_pos
-	GameData.items_map[grid_pos.y][grid_pos.x].append(item)
-	GameData.all_items.append(item)
-
-func remove_item_from_variables(item: Node2D) -> void:
-	var grid_pos = ComponentRegistry.get_component(item, GameData.ComponentKeys.ITEM_POSITION).grid_pos
-	GameData.items_map[grid_pos.y][grid_pos.x].erase(item)
-	GameData.all_items.erase(item)
-
 # --- TileSets ---
 func get_tile_texture(tilemap_layer: TileMapLayer, grid_pos: Vector2i) -> Texture2D:
 

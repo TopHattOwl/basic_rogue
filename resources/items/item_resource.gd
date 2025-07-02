@@ -7,7 +7,7 @@ extends Resource
 
 @export var uid: String = "" # unique identifier, the name of the item
 @export var display_name: String = "Unnamed Item"
-@export var description: String = ""
+@export_multiline var description: String = ""
 @export var item_type: int # from enum ITEM_TYPES
 
 @export var components: Array[ItemComponent] = []
@@ -37,9 +37,6 @@ func _call_component_method(d: Dictionary) -> void:
 	var target = d.get("target", null)
 	for comp in components:
 		if comp.has_method(method_name):
-
-			# base methods need item and entity
-			# where more is required make special case
 			match method_name:
 				"on_use":
 					comp.call(method_name, self, entity, target)

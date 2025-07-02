@@ -68,12 +68,7 @@ func set_look_ui_target_array(grid_pos: Vector2i) -> void:
 		var actor_name = ComponentRegistry.get_component(actor, GameData.ComponentKeys.IDENTITY).actor_name
 		look_target_stuff.append(make_look_target_entry(actor.get_node("Sprite2D").texture, actor_name, actor_name))
 
-	# ITEMS
-
-	if items:
-		for item in items:
-			var item_name = ComponentRegistry.get_component(item, GameData.ComponentKeys.ITEM_IDENTITY).item_name
-			look_target_stuff.append(make_look_target_entry(item.get_node("Sprite2D").texture, item_name, item_name))
+	# # ITEMS
 
 	# TERRAIN
 	# TODO: loop tru terrain_data.tags and add all terrains

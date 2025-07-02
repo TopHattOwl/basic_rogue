@@ -12,8 +12,7 @@ var visible_tiles: Array[Vector2i] = []
 var explored_tiles: Array[Vector2i] = []
 var map_width: int = 0
 var map_height: int = 0
-var player_vision_range: int = 14
-# var is_active: bool = false
+var player_vision_range: int = 18
 
 
 func _ready() -> void:

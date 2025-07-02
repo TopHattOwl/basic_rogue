@@ -27,15 +27,23 @@ func on_equip(_item: ItemResource, entity: Node2D) -> void:
     melee_combat_comp.element = element
 
     # apply bonuses
+    if GameData.item_debug:
+        print("--- Bonuses applying start ---")
+
     if bonuses.size() == 0:
+        if GameData.item_debug:
+            print("item has no bunuses -> skipp applying bonuses")
         return
 
-    var modifiers_commp = entity.ModifiersComp
-    if !modifiers_commp:
+    var modifiers_comp = ComponentRegistry.get_component(entity, GameData.ComponentKeys.MODIFIERS)
+    # var modifiers_commp = entity.ModifiersComp
+    if !modifiers_comp:
         push_error("Entity has no modifiers component")
         return
     for bonus in bonuses:
-        modifiers_commp.add_modifier(bonus)
+        if GameData.item_debug:
+            print("applying a bonus to entity: ", entity.get_component(GameData.ComponentKeys.IDENTITY).actor_name)
+        modifiers_comp.add_modifier(bonus)
 
 
 func on_unequip(_item: ItemResource, entity: Node2D) -> void:

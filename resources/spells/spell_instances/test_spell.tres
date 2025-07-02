@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_0xshh"]
 script = ExtResource("2_wt4hk")
 damage_mod = 0.8
-spell_range = 20
+spell_range = 10
 speed = 5
 metadata/_custom_type_script = "uid://dts2iva7q812g"
 

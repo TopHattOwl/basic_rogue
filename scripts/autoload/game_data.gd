@@ -90,13 +90,15 @@ enum MONSTERS_ALL {
 	# tier 1
 	IRON_WORM,
 	MASK,
-
-	# tier 2
-	PLACEHOLDER,
+	
 
 
-	# special
-	BIG_B,
+	# # tier 2
+	# PLACEHOLDER,
+
+
+	# # special
+	# BIG_B,
 }
 
 var MONSTER_UIDS = {
@@ -292,11 +294,6 @@ const COMPONENTS = {
 	ComponentKeys.BLOCK: "Components/BlockComponent",
 	ComponentKeys.DEFENSE_STATS: "Components/DefenseStatsComponent",
 	ComponentKeys.POSITION: "Components/PositionComponent",
-	ComponentKeys.MONSTER_PROPERTIES: "Components/MonsterPropertiesComponent",
-	ComponentKeys.MONSTER_STATS: "Components/MonsterStatsComponent",
-	ComponentKeys.MONSTER_DROPS: "Components/MonsterDropsComponent",
-	ComponentKeys.MONSTER_COMBAT: "Components/MonsterCombatComponent",
-	ComponentKeys.MONSTER_MODIFIERS: "Components/MonsterModifiersComponent",
 	ComponentKeys.SPELLS: "Components/SpellsComponent",
 	ComponentKeys.STAMINA: "Components/StaminaComponent",
 	ComponentKeys.STATE: "Components/StateComponent",
@@ -305,6 +302,13 @@ const COMPONENTS = {
 	ComponentKeys.SKILLS: "Components/SkillsComponent",
 	ComponentKeys.STANCE: "Components/StanceComponent",
 	ComponentKeys.MODIFIERS: "Components/ModifiersComponent",
+
+	# MONSTERS
+	ComponentKeys.MONSTER_PROPERTIES: "Components/MonsterPropertiesComponent",
+	ComponentKeys.MONSTER_STATS: "Components/MonsterStatsComponent",
+	ComponentKeys.MONSTER_DROPS: "Components/MonsterDropsComponent",
+	ComponentKeys.MONSTER_COMBAT: "Components/MonsterCombatComponent",
+	ComponentKeys.MONSTER_MODIFIERS: "Components/MonsterModifiersComponent",
 
 }
 
@@ -373,39 +377,38 @@ const SPELL_SUBTYPE_NAMES = {
 
 # COMPONENTS
 enum ComponentKeys {
-	# ACTORS
+	# PLAYER
 	ABILITIES,
-	AI_BEHAVIOR,
-	ATTRIBUTES,
 	EQUIPMENT,
-	HEALTH,
-	IDENTITY,
 	INVENTORY,
 	MELEE_COMBAT,
 	BLOCK,
+	PLAYER,
+	SKILLS,
+	STANCE,
+	HOTBAR,
+	MODIFIERS,
+
+	# ALL ACTORS
+	AI_BEHAVIOR,
+
+	ATTRIBUTES,
+	HEALTH,
+	IDENTITY,
 	DEFENSE_STATS,
 	POSITION,
+
+	# maybe players and monsters, right not just player
+	SPELLS,
+	STAMINA,
+	STATE,
+
+	# MONSTERS
 	MONSTER_PROPERTIES,
 	MONSTER_STATS,
 	MONSTER_COMBAT,
 	MONSTER_MODIFIERS,
 	MONSTER_DROPS,
-	SPELLS,
-	STAMINA,
-	STATE,
-	PLAYER,
-	HOTBAR,
-	SKILLS,
-	STANCE,
-	MODIFIERS,
-
-
-	# ITEMS
-	ITEM_POSITION,
-	ITEM_IDENTITY,
-	ITEM_SKILL,
-
-	WEAPON_STATS,
 }
 
 # MAP
@@ -442,11 +445,42 @@ enum WORLD_TILE_TYPES {
 
 # SKILLS
 enum SKILLS {
+	# WEAPONS
 	SWORD,
 	AXE,
 	SPEAR,
+	MACE,
 	POLEAXE,
 	BOW,
+
+	# COMBAT SKILLS
+	MELEE,
+	BLOCK,
+
+	# ELEMENTS
+	FIRE,
+	ICE,
+	LIGHTNING,
+	BLOOD,
+	POISON,
+}
+
+var SKILL_NAMES = {
+	SKILLS.SWORD: "Sword",
+	SKILLS.AXE: "Axe",
+	SKILLS.SPEAR: "Spear",
+	SKILLS.MACE: "Mace",
+	SKILLS.POLEAXE: "Poleaxe",
+	SKILLS.BOW: "Bow",
+
+	SKILLS.MELEE: "Melee",
+	SKILLS.BLOCK: "Block",
+
+	SKILLS.FIRE: "Fire",
+	SKILLS.ICE: "Ice",
+	SKILLS.LIGHTNING: "Lightning",
+	SKILLS.BLOOD: "Blood",
+	SKILLS.POISON: "Poison",
 }
 
 
@@ -537,7 +571,9 @@ enum WEAPON_SUBTYPES {
 	AXE_1H,
 	AXE_2H,
 	SPEAR_1H,
-	SPEAR_2H
+	SPEAR_2H,
+	MACE_1H,
+	MACE_2H,
 }
 
 enum RANGED_WEAPONS {
@@ -570,11 +606,14 @@ enum COMBAT_TYPE {
 
 
 # debug options
-var combat_system_debug : = false
-var melee_combat_debug := false
-var spell_debug := true
-var turn_manager_debug := false
-var input_manager_debug := false
-var hot_bar_debug := false
-var map_functions_debug := false
-var fov_manager_debug := false
+var combat_system_debug := 0
+var melee_combat_debug := 0
+var spell_debug := 0
+var turn_manager_debug := 0
+var input_manager_debug := 0
+var hot_bar_debug := 0
+var map_functions_debug := 0
+var fov_manager_debug := 0
+var item_debug := 0
+var modifiers_debug := 0
+var skill_debug := 1

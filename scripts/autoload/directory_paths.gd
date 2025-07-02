@@ -14,7 +14,7 @@ const player_scene = "res://scenes/actors/player/player.tscn"
 const monster_remains_scene = {
 	# bloody remains
 	GameData.MONSTERS_ALL.IRON_WORM: "res://scenes/actors/monsters/remains/bloody_remains.tscn",
-	GameData.MONSTERS_ALL.BIG_B: "res://scenes/actors/monsters/remains/bloody_remains.tscn",
+	# GameData.MONSTERS_ALL.BIG_B: "res://scenes/actors/monsters/remains/bloody_remains.tscn",
 
 
 	# ash
@@ -26,12 +26,12 @@ const monster_scenes = {
 	GameData.MONSTERS_ALL.IRON_WORM: "res://scenes/actors/monsters/tier_1/iron_worm.tscn",
 	GameData.MONSTERS_ALL.MASK: "res://scenes/actors/monsters/tier_1/mask.tscn",
 
-	# tier 2
-	GameData.MONSTERS_ALL.PLACEHOLDER: "",
+	# # tier 2
+	# GameData.MONSTERS_ALL.PLACEHOLDER: "",
 
 
-	# special
-	GameData.MONSTERS_ALL.BIG_B: "res://scenes/actors/monsters/special/big_b.tscn",
+	# # special
+	# GameData.MONSTERS_ALL.BIG_B: "res://scenes/actors/monsters/special/big_b.tscn",
 }
 
 

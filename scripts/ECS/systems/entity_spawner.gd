@@ -64,23 +64,7 @@ static func spawn_monster(grid_pos: Vector2i, monster_key: int):
 
 # decrepit
 static func spawn_item(grid_pos: Vector2i, itme_uid: String):
-	var item = load(DirectoryPaths.item_scenes[itme_uid]).instantiate()
-
-	var position_comp = ComponentRegistry.get_component(item, GameData.ComponentKeys.ITEM_POSITION)
-	if position_comp:
-		# set position
-		position_comp.grid_pos = grid_pos
-		item.position = MapFunction.to_world_pos(grid_pos)
-		position_comp.is_on_ground = true
-
-		# add to GameData map and item variables
-
-		MapFunction.add_item_to_variables(item)
-
-	else:
-		push_error("Item position component not found")
-	GameData.main_node.add_child(item)
-	item.owner = GameData.main_node # for scene persistence
+	pass
 
 ## spawns a random item based on item type given
 func spawn_random_item(_item_type: int):

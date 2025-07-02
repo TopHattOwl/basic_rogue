@@ -91,15 +91,16 @@ static func save_player_data(player: Node2D) -> bool:
 			"input_mode": player_comp.input_mode
 		}
 
+	# skills reworked
 	# Skills Component
-	var skills_comp = ComponentRegistry.get_component(player, GameData.ComponentKeys.SKILLS)
-	if skills_comp:
-		save_data["skills_component"] = {
-			"skill_levels": {}
-		}
-		for skill_key in skills_comp.skill_levels.keys():
-			var skill_key_string := str(skill_key)
-			save_data["skills_component"]["skill_levels"][skill_key_string] = skills_comp.skill_levels[skill_key]
+	# var skills_comp = ComponentRegistry.get_component(player, GameData.ComponentKeys.SKILLS)
+	# if skills_comp:
+	# 	save_data["skills_component"] = {
+	# 		"skill_levels": {}
+	# 	}
+	# 	for skill_key in skills_comp.skill_levels.keys():
+	# 		var skill_key_string := str(skill_key)
+	# 		save_data["skills_component"]["skill_levels"][skill_key_string] = skills_comp.skill_levels[skill_key]
  
 			
 	# Save to file

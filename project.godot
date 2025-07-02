@@ -37,6 +37,10 @@ DungeonManager="*res://scripts/systems/world_managers/dungeon_manager.gd"
 SpellAimingSystem="*res://scripts/autoload/systems/spell_aiming_system.gd"
 FovManager="*res://scripts/autoload/systems/fov_handler/fov_manager.gd"
 ConsoleSystem="*res://scripts/autoload/console/console_system.gd"
+SkillLevelManager="*res://scripts/autoload/systems/level_handler/skill_level_manager.gd"
+PlayerLevelManager="*res://scripts/autoload/systems/level_handler/player_level_manager.gd"
+SkillDefinitions="*res://resources/factory/skill/skill_definitions.gd"
+ResourceFactory="*res://resources/factory/resource_factory.gd"
 
 [debug]
 

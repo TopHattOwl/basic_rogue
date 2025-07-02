@@ -75,8 +75,8 @@ func enter_spell_aiming(_spell:  SpellNode) -> void:
 
 	# set boundaries for aiming
 	var player_pos = ComponentRegistry.get_player_pos()
-	var player_range = FovManager.player_vision_range
-	avalible_tiles = MapFunction.get_tiles_in_radius(player_pos, player_range, true, false)
+	var spell_range = current_spell.spell_data.get_component(SingleTargetComponent).spell_range
+	avalible_tiles = MapFunction.get_tiles_in_radius(player_pos, spell_range, true, false)
 
 
 	# determine spell type and use correct targeting module

@@ -46,11 +46,11 @@ var monster_properties_componenet = {
 	
 }
 
-var monster_stats_component = {
-	"armor": 2,
-	"monster_tier": 1,
-	"monster_id": GameData.MONSTERS_ALL.BIG_B,
-}
+# var monster_stats_component = {
+# 	"armor": 2,
+# 	"monster_tier": 1,
+# 	"monster_id": GameData.MONSTERS_ALL.BIG_B,
+# }
 
 var monster_drops_component = {
 	"loot_pool": []
@@ -69,7 +69,7 @@ func _ready() -> void:
 	get_component(GameData.ComponentKeys.ATTRIBUTES).initialize(attributes_component)
 	get_component(GameData.ComponentKeys.IDENTITY).initialize(identity_component)
 	get_component(GameData.ComponentKeys.MONSTER_PROPERTIES).initialize(monster_properties_componenet)
-	get_component(GameData.ComponentKeys.MONSTER_STATS).initialize(monster_stats_component)
+	# get_component(GameData.ComponentKeys.MONSTER_STATS).initialize(monster_stats_component)
 	get_component(GameData.ComponentKeys.MONSTER_DROPS).initialize(monster_drops_component)
 
 	connect_signals()

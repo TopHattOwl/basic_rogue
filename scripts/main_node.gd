@@ -3,20 +3,14 @@ extends Node2D
 const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 @export var input_manager: Node = null
 
-
-# FOV SYSTEM
-# fov autoload
-# holds player's fov range
-# when turn updates itself (connect player acted signal)
-# look up Bresenham's line algorithm, is it the same as get_line in MapFunction?
-# check this: https://aikoncwd.itch.io/godot-fov-algorithms-for-roguelikes
-# thisi s the same but gihub https://github.com/aikoncwd/Godot-FOV-algorithms-roguelike
-
-
-# makes currently visible tiles array, it will hold all grids that player can see currently
+# REWORK:
+	# make buffs, weapons, all resources basically in code:
+		# right now if I change order of enums it could fuck the game up
+		# things interacting with modifiers comp could be affected for sure, maybe others
 
 # finish:
 	# VERY IMPORTANT:
+		# save and load for skills temporarily removed bc of rework
 		# SingleTargetSpell dont check current grid when spell is travling, check next grid position instead 
 	# IMPORTANT:
 		# finish ELEMENT enum to what elements are in the game
@@ -102,11 +96,8 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# GameTime add weeks and day names for each day in a week
 	# Signal day_passed has no uses yet -> maybe for quests, messages, etc
 	# pick up item
-	# 
+	
 func _ready():
-
-	SignalBus.pause_input.connect(_on_pause_input)
-	SignalBus.unpause_input.connect(_on_unpause_input)
 
 	# passing main node to game data
 	GameData.main_node = self
@@ -157,9 +148,15 @@ func _ready():
 	GameData.player.HotbarComp.add_to_hotbar("spell", test_turret_spell.spell_data.uid, "hotbar_2")
 
 
-	# var player_pos = get_player_pos()
-	# var radius = FovManager.player_vision_range
-	# print(MapFunction.get_tiles_in_radius(player_pos, radius, true))
+	# print(SkillFactory.get_skill_tree(GameData.SKILLS.MACE))
+
+	# SkillFactory.get_passive(SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_SWORD).apply_to(GameData.player)
+	
+
+	# print(SkillFactory.print_skill_tree(GameData.SKILLS.SWORD))
+
+	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.SWORD, SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_SWORD, true)
+	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.MACE, SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_MACE, true)
 
 func _process(_delta):
 # input handler, gets input passed to it and depending on what input is pressed it calls different functions
@@ -173,10 +170,3 @@ func get_player_comp(comp_key: int) -> Node:
 
 func get_player_pos() -> Vector2i:
 	return ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION).grid_pos
-
-
-func _on_pause_input() -> void:
-	set_process(false)
-
-func _on_unpause_input() -> void:
-	set_process(true)

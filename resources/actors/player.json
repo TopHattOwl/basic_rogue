@@ -12,7 +12,7 @@
 		"max_block_power": 50
 	},
 	"health_component": {
-		"hp": 851,
+		"hp": 535,
 		"max_hp": 1000
 	},
 	"identity_component": {
@@ -35,43 +35,14 @@
 		"is_in_world_map": false,
 		"is_players_turn": true,
 		"world_map_pos": {
-			"x": 39,
-			"y": 39
+			"x": 41,
+			"y": 41
 		}
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 58,
-			"y": 12
-		}
-	},
-	"skills_component": {
-		"skill_levels": {
-			"0": {
-				"current_exp": 28.0,
-				"exp_for_next_level": 750.0,
-				"level": 3.0
-			},
-			"1": {
-				"current_exp": 0.0,
-				"exp_for_next_level": 250.0,
-				"level": 1.0
-			},
-			"2": {
-				"current_exp": 0.0,
-				"exp_for_next_level": 250.0,
-				"level": 1.0
-			},
-			"3": {
-				"current_exp": 0.0,
-				"exp_for_next_level": 250.0,
-				"level": 1.0
-			},
-			"4": {
-				"current_exp": 0.0,
-				"exp_for_next_level": 250.0,
-				"level": 1.0
-			}
+			"x": 30,
+			"y": 22
 		}
 	}
 }

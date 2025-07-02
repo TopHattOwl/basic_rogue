@@ -22,10 +22,21 @@ func _ready() -> void:
 	SignalBus.player_acted.connect(_advance_buffs)
 
 func add_modifier(mod: StatModifier) -> void:
+	if GameData.modifiers_debug:
+		print("checking modifier: ", mod)
+
+
+	if melee_combat_modifiers.has(mod) or block_modifiers.has(mod) or stamina_modifiers.has(mod):
+		return
+	
 	match mod.target_component:
 		GameData.ComponentKeys.MELEE_COMBAT:
+			if GameData.modifiers_debug:
+				print("adding melee combat modifier")
 			add_melee_combat_modifier(mod)
 		GameData.ComponentKeys.BLOCK:
+			if GameData.modifiers_debug:
+				print("adding block modifier")
 			pass
 
 

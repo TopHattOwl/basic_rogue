@@ -6,6 +6,7 @@ signal attack_animation_finished(entiy)
 
 func _ready() -> void:
 	SignalBus.actor_hit_final.connect(_on_actor_hit)
+	SignalBus.skill_leveled_up.connect(_on_skill_leveled_up)
 
 
 func _on_actor_hit(hit_data: Dictionary) -> void:
@@ -109,6 +110,22 @@ func animate_damage_text(damage_text: Label, direction: Vector2i, start_pos: Vec
 
 # 	return offset
 
+# --- LEVEL UP ANIMATION ---
+
+func _on_skill_leveled_up(skill_id: int):
+	var player_pos = ComponentRegistry.get_player_pos()
+
+	var particles = load("res://resources/particles/level_up_particle.tscn").instantiate()
+
+	particles.global_position = MapFunction.to_world_pos(player_pos)
+	GameData.main_node.add_child(particles)
+	print("skill gained a level: ", skill_id)
+
+
+func _on_level_up():
+	print("Player gained a real level")
+
+
 func _get_element_color(element: int) -> String:
 	match element:
 		GameData.ELEMENT.PHYSICAL:
@@ -125,3 +142,5 @@ func _get_element_color(element: int) -> String:
 			return "#2e610f"
 		_:
 			return "#bbbab5"
+
+

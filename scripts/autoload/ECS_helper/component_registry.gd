@@ -10,13 +10,3 @@ func get_player_comp(component_key: int) -> Node:
 
 func get_player_pos() -> Vector2i:
 	return get_player_comp(GameData.ComponentKeys.POSITION).grid_pos
-
-
-
-# --- INITIALIZERS ---
-func init_weapon_components(weapon_node: Node2D, d: Dictionary) -> void:
-
-	weapon_node.item_identity_comp.initialize(d[GameData.ComponentKeys.ITEM_IDENTITY])
-	weapon_node.weapon_stats_comp.initialize(d[GameData.ComponentKeys.WEAPON_STATS])
-	weapon_node.item_skill_comp.initialize(d[GameData.ComponentKeys.ITEM_SKILL])
-	pass

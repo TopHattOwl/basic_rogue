@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfjkvrtqq1oum"]
+
+[ext_resource type="Script" uid="uid://bkvrc86f1anix" path="res://resources/particles/ParticleNode.gd" id="1_p71oh"]
+
+[node name="Particle" type="Node2D" node_paths=PackedStringArray("particle")]
+script = ExtResource("1_p71oh")
+particle = NodePath("CPUParticles2D")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 120
+one_shot = true
+explosiveness = 1.0
+randomness = 0.4
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 95.24
+gravity = Vector2(0, -98)
+initial_velocity_min = 244.8
+initial_velocity_max = 472.33
+orbit_velocity_min = 0.5
+orbit_velocity_max = 1.0
+damping_min = 20.0
+damping_max = 40.0
+scale_amount_max = 2.0
+color = Color(0.681822, 0.863843, 0.933516, 1)

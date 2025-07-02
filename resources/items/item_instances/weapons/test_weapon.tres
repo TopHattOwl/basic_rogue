@@ -14,7 +14,7 @@
 [sub_resource type="Resource" id="Resource_a2i5e"]
 script = ExtResource("1_4svoq")
 target_stat = &"damage_min"
-target_component = 7
+target_component = 3
 operation = 0
 value = 10.0
 conditions = Array[ExtResource("2_6s6hs")]([])
@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 [sub_resource type="Resource" id="Resource_tanuv"]
 script = ExtResource("1_4svoq")
 target_stat = &"damage_max"
-target_component = 7
+target_component = 3
 operation = 0
 value = 10.0
 conditions = Array[ExtResource("2_6s6hs")]([])

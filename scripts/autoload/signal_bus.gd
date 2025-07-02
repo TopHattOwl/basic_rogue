@@ -1,8 +1,5 @@
 extends Node
 
-signal pause_input()
-signal unpause_input()
-
 signal player_acted()
 signal make_turn_pass()
 
@@ -112,3 +109,9 @@ signal item_window_closed()
 ## NOT used for movement. [br]
 ## Used for aiming, looking, etc.
 signal directional_input(direction: Vector2i)
+
+
+
+# --- SKILL ---
+
+signal skill_leveled_up(skill_id: int)
