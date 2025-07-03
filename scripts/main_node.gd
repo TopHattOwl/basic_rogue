@@ -158,6 +158,12 @@ func _ready():
 	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.SWORD, SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_SWORD, true)
 	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.MACE, SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_MACE, true)
 
+	var arr = [0, 1, 2]
+	var arr2 = [3, 4]
+
+	arr.append(arr2)
+	print(arr)
+
 func _process(_delta):
 # input handler, gets input passed to it and depending on what input is pressed it calls different functions
 	if GameData.player.PlayerComp.is_players_turn:

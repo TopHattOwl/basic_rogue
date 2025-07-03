@@ -616,4 +616,5 @@ var map_functions_debug := 0
 var fov_manager_debug := 0
 var item_debug := 0
 var modifiers_debug := 0
-var skill_debug := 1
+var skill_debug := 0
+var leveling_system_debug := 0

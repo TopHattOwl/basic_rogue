@@ -80,11 +80,15 @@ var SKILL_TREES = {
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_SWORD,
 			display_name = "Placeholder Sword",
-			description = "This is a placeholder passive skill",
+			description = "This is a placeholder passive skill\n adds 15 damage if using swords",
 			icon = placeholder_icon,
 			required_skill_level = 1,
 			skill_point_cost = 1,
-			modifiers = ModifierFactory.make_modifier(),
+			modifiers = ModifierFactory.make_singe_modifier({
+				"operation": GameData.MODIFIER_OPERATION.MULTIPLY,
+				"value": 1.55,
+				"conditions": [ConditionFactory.make_weapon_type_condition(GameData.WEAPON_TYPES.SWORD)]
+			}),
 			children = [PASSIVE_IDS.CHILD_OF_PLACEHOLDER]
 		},
 		{
@@ -117,7 +121,7 @@ var SKILL_TREES = {
 			icon = placeholder_icon,
 			required_skill_level = 1,
 			skill_point_cost = 1,
-			modifiers = [ModifierFactory.make_modifier()],
+			modifiers = [],
 			children = []
 		},
 

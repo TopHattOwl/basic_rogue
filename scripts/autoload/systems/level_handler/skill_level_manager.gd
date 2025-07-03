@@ -1,5 +1,7 @@
 extends Node
 
+const MELEE_SKILL_EXP_MOD = 0.3
+const WEAPON_SKILL_EXP_MOD = 0.45
 
 func _ready() -> void:
 	SignalBus.actor_hit_final.connect(_on_actor_hit_final)
@@ -16,9 +18,8 @@ func _on_actor_hit_final(hit_data: Dictionary) -> void:
 func calc_player_attack_exp(hit_data: Dictionary) -> void:
 	if hit_data.combat_type == GameData.COMBAT_TYPE.MELEE:
 		if hit_data.hit_action == GameData.HIT_ACTIONS.HIT:
-			var melee_skill_exp_gain = hit_data.damage * 0.4
-			var weapon_skill_exp_gain = hit_data.damage * 0.6
-			print("player attacked melee -> melee_exp: {0}, weapon exp: {1}".format([melee_skill_exp_gain, weapon_skill_exp_gain]))
+			var melee_skill_exp_gain = hit_data.damage * MELEE_SKILL_EXP_MOD
+			var weapon_skill_exp_gain = hit_data.damage * WEAPON_SKILL_EXP_MOD
 			var player_skill_comp = GameData.player.SkillsComp
 
 
@@ -30,6 +31,7 @@ func calc_player_attack_exp(hit_data: Dictionary) -> void:
 			player_skill_comp.add_exp(weapon_skill_type, weapon_skill_exp_gain)
 
 	elif hit_data.combat_type == GameData.COMBAT_TYPE.SPELL:
+
 		print("player attacked spell -> give element skill xp")
 
 func calc_player_ht_exp(hit_data: Dictionary) -> void:
@@ -37,7 +39,8 @@ func calc_player_ht_exp(hit_data: Dictionary) -> void:
 		print("player blocked hit -> give block skill xp, not yet implemented")
 
 
-## returns the correct SKILL type (from GameData.SKILLS) depending on the weapon type
+## returns the correct SKILL type (from GameData.SKILLS) depending on the weapon type [br]
+## returns -1 if no weapon
 func get_weapon_type() -> int:
 	var melee_weapon = GameData.player.EquipmentComp.equipment[GameData.EQUIPMENT_SLOTS.MAIN_HAND]
 	if not melee_weapon:
