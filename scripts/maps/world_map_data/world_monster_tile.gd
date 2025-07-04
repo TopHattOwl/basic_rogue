@@ -3,7 +3,7 @@ extends Resource
 
 @export var monster_tier: int
 @export var monster_types: Array
-@export var spawn_points: Array
+# @export var spawn_points: Array
 @export var has_dungeon: bool
 @export var dungeon_pos: Vector2i # dungeon are several tiles big, top left position is dungeon pos
 @export var world_map_pos: Vector2i
@@ -13,7 +13,7 @@ var dungeon
 func _init(_world_pos: Vector2i = Vector2i.ZERO, tier: int = 1) -> void:
 	monster_tier = tier
 	monster_types = get_monster_types(_world_pos, tier)
-	spawn_points = [] # filled when map is generated
+	# spawn_points = [] # filled when map is generated
 	has_dungeon = false # same
 	world_map_pos = _world_pos
 
@@ -23,7 +23,7 @@ func calc_monster_tier(pos: Vector2i) -> int:
 	var tier = savagery / 3
 	tier = tier if tier > 0 else 1
 
-	return tier
+	return clampi(tier, 1, 5)
 
 # called when entering not explored map so it gets generated
 func add_dungeon_tile(pos: Vector2i) -> void:

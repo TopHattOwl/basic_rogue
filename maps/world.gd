@@ -73,13 +73,14 @@ func _ready() -> void:
 	
 
 	# spawn monsters
-	if monster_data_new.spawn_points.size() > 0:
-		for spawn_point in monster_data_new.spawn_points:
-			EntitySpawner.spawn_monster(spawn_point, monster_data_new.monster_types[0])
+	# if monster_data_new.spawn_points.size() > 0:
+	# 	for spawn_point in monster_data_new.spawn_points:
+	# 		EntitySpawner.spawn_monster(spawn_point, monster_data_new.monster_types[0])
 
 	MapFunction.initialize_astar_grid()
 
 	SignalBus.calculate_fov.emit()
+	SignalBus.world_node_ready.emit()
 
 
 func draw_stairs(pos: Vector2i) -> void:

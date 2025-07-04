@@ -43,11 +43,7 @@ func generate_map() -> void:
 	map_rng.seed = WorldMapData.world_map2.map_data[grid_pos.y][grid_pos.x].generated_seed
 	terrain_map = MapFunction.make_base_terrain_map()
 
-	var savagery = WorldMapData.world_map_savagery[grid_pos.y][grid_pos.x]
-	var monster_data = WorldMapData.world_monster_map.map_data[grid_pos.y][grid_pos.x]
-
-
-	generate_terrain_data(savagery, monster_data)
+	generate_terrain_data()
 
 	var world_node = load(DirectoryPaths.world).instantiate()
 	world_node.init_data_new(make_world_node_data())
@@ -66,11 +62,10 @@ func generate_map() -> void:
 	GameData.main_node.add_child(GameData.current_map)
 	
 
-func generate_terrain_data(savagery: int, monster_data: WorldMonsterTile) -> void:
+func generate_terrain_data() -> void:
 	add_walls()
 	add_nature()
 	# add_forage() # add when implemented foliage
-	add_monsters(savagery, monster_data)
 
 # generation helpers
 

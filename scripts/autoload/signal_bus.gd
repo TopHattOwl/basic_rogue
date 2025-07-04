@@ -63,6 +63,10 @@ signal fov_calculated()
 # emitted when player's world_map_pos is set
 signal world_map_pos_changed(to: Vector2i, from: Vector2i)
 
+# emitted when world node is loaded in
+signal world_node_ready()
+# used for ambush manager to create ambushes
+
 
 signal buff_added(buff: Buff, actor: Node2D)
 signal buff_removed(buff: Buff, actor: Node2D)
