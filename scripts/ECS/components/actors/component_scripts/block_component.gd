@@ -23,14 +23,35 @@ func _ready():
 func try_block(damage: int) -> bool:
     if current_block_power <= 0:
         return false
+
+    if GameData.combat_system_debug:
+        print("--- block calc ---")
+        print("Unmoded values: ")
+        print("block chance: ", block_chance)
+    var modified_block_change = calc_block_chance()
+
+    if GameData.combat_system_debug:
+        print("Modified values: ")
+        print("block chance: ", modified_block_change)
     
-    if randf() < block_chance:
+    if randf() < modified_block_change:
+        if GameData.combat_system_debug:
+            print("block successful")
         current_block_power = max(0, current_block_power - damage)
         SignalBus.block_power_changed.emit(current_block_power, max_block_power)
         block_success.emit(damage)
         return true
 
+    if GameData.combat_system_debug:
+        print("block failed")
     return false
+
+func calc_block_chance() -> float:
+    var block = ModifierSystem.get_modified_value(get_parent().get_parent(), "block_chance", GameData.ComponentKeys.BLOCK)
+
+    return block
+
+
 
 func _on_turn_pass():
     _turn_counter += 1

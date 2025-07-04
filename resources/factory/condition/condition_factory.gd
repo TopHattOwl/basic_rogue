@@ -4,3 +4,7 @@ extends Node
 ## Weapon type is from GameData.WEAPON_TYPES
 static func make_weapon_type_condition(weapon_type: int) -> Condition:
     return WeaponTypeCondition.new(weapon_type)
+
+static func make_block_condition(duration: int, owner: Node2D) -> Condition:
+    return BlockCondition.new(duration, owner)
+    

@@ -114,4 +114,4 @@ signal directional_input(direction: Vector2i)
 
 # --- SKILL ---
 
-signal skill_leveled_up(skill_id: int)
+signal skill_leveled_up(skill_tree_id: int)

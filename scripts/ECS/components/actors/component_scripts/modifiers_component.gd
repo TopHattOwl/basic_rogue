@@ -25,7 +25,6 @@ func add_modifier(mod: StatModifier) -> void:
 	if GameData.modifiers_debug:
 		print("checking modifier: ", mod)
 
-
 	if melee_combat_modifiers.has(mod) or block_modifiers.has(mod) or stamina_modifiers.has(mod):
 		return
 	
@@ -37,6 +36,7 @@ func add_modifier(mod: StatModifier) -> void:
 		GameData.ComponentKeys.BLOCK:
 			if GameData.modifiers_debug:
 				print("adding block modifier")
+			add_block_modifier(mod)
 			pass
 
 
@@ -45,7 +45,7 @@ func remove_modifier(mod: StatModifier) -> void:
 		GameData.ComponentKeys.MELEE_COMBAT:
 			remove_melee_combat_modifier(mod)
 		GameData.ComponentKeys.BLOCK:
-			pass
+			remove_block_modifier(mod)
 
 # --- MELEE COMBAT ---
 func add_melee_combat_modifier(mod: StatModifier) -> void:
@@ -56,6 +56,14 @@ func add_melee_combat_modifier(mod: StatModifier) -> void:
 func remove_melee_combat_modifier(mod: StatModifier) -> void:
 	melee_combat_modifiers.erase(mod)
 
+
+func add_block_modifier(mod: StatModifier) -> void:
+	block_modifiers.append(mod)
+	if block_modifiers.size() > 1:
+		block_modifiers.sort_custom(_sort_priority)
+
+func remove_block_modifier(mod: StatModifier) -> void:
+	block_modifiers.erase(mod)
 
 # --- SORTING ---
 func _sort_priority(a: StatModifier, b: StatModifier) -> bool:

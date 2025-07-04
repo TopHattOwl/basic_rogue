@@ -6,6 +6,7 @@ func _ready() -> void:
 	SignalBus.player_acted.connect(_on_pass_time)
 	SignalBus.block_power_changed.connect(_block_test)
 	SignalBus.actor_hit_final.connect(_log_actor_hit)
+	SignalBus.skill_leveled_up.connect(_log_skill_level_up)
 
 func _block_test(new_value, max_value):
 	player_ui.update_block_display(new_value, max_value)
@@ -42,6 +43,13 @@ func log_monster_attack(monster: Node2D, damage: int, hit_action: int = 0) -> vo
 ## logs player attack, `param` hit_action: 0 -> hit, 1 -> miss, 2 -> blocked
 func log_player_attack(target: Node2D, damage: int, element: int, hit_action: int = 0) -> void:
 	player_ui.log_message(LogMessage.make_player_attack_message(target, damage, element, hit_action))
+
+
+func _log_skill_level_up(skill_tree_id: int) -> void:
+	var skill_tree = GameData.player.SkillsComp.skills[skill_tree_id]
+	print("skill leveled up: ", skill_tree.skill_tree_name, " level: ", skill_tree.level)
+
+	player_ui.log_message(LogMessage.make_skill_level_up_message(skill_tree_id))
 
 # --- LOOK UI ---
 func toggle_look_ui() -> void:

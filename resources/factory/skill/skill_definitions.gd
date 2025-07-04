@@ -80,13 +80,13 @@ var SKILL_TREES = {
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_SWORD,
 			display_name = "Placeholder Sword",
-			description = "This is a placeholder passive skill\n adds 15 damage if using swords",
+			description = "This is a placeholder passive skill\n adds 15`%` damage if using swords",
 			icon = placeholder_icon,
 			required_skill_level = 1,
 			skill_point_cost = 1,
 			modifiers = ModifierFactory.make_singe_modifier({
 				"operation": GameData.MODIFIER_OPERATION.MULTIPLY,
-				"value": 1.55,
+				"value": 1.15,
 				"conditions": [ConditionFactory.make_weapon_type_condition(GameData.WEAPON_TYPES.SWORD)]
 			}),
 			children = [PASSIVE_IDS.CHILD_OF_PLACEHOLDER]
@@ -94,11 +94,23 @@ var SKILL_TREES = {
 		{
 			id = PASSIVE_IDS.CHILD_OF_PLACEHOLDER,
 			display_name = "Child of Placeholder Sword",
-			description = "This is a child passive skill",
+			description = "This is a child passive skill, adds 10`%` block chance and 15 damage if using swords",
 			icon = placeholder_icon,
 			required_skill_level = 2,
 			skill_point_cost = 2,
-			modifiers = [],
+			modifiers = ModifierFactory.make_batch_modifiers([
+				{
+					"target_component": GameData.ComponentKeys.BLOCK,
+					"target_stat": "block_chance",
+					"value": 1.1,
+					"operation": GameData.MODIFIER_OPERATION.MULTIPLY,
+					"conditions": [ConditionFactory.make_weapon_type_condition(GameData.WEAPON_TYPES.SWORD)]
+				},
+				{
+					"value": 15,
+					"conditions": [ConditionFactory.make_weapon_type_condition(GameData.WEAPON_TYPES.SWORD)]
+				}
+			]),
 			children = [PASSIVE_IDS.CHILD_OF_CHILD_OF_PLACEHOLDER_SWORD]
 		},
 		{

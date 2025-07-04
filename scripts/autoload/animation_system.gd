@@ -119,7 +119,6 @@ func _on_skill_leveled_up(skill_id: int):
 
 	particles.global_position = MapFunction.to_world_pos(player_pos)
 	GameData.main_node.add_child(particles)
-	print("skill gained a level: ", skill_id)
 
 
 func _on_level_up():

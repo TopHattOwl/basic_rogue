@@ -27,23 +27,19 @@ static func make_player_attack_message(target: Node2D, damage: int, element: int
 
 	return text
 
-static func get_damage_color(element: int) -> String:
-	match element:
-		GameData.ELEMENT.PHYSICAL:
-			return "#bbbab5"
-		GameData.ELEMENT.FIRE:
-			return "#a62121"
-		GameData.ELEMENT.ICE:
-			return "#56dcb4"
-		GameData.ELEMENT.LIGHTNING:
-			return "#dee310"
-		GameData.ELEMENT.BLOOD:
-			return "#591e18"
-		GameData.ELEMENT.POISON:
-			return "#2e610f"
-		_:
-			return "#bbbab5"
+# --- SKILL TREE LEVEL UP---
 
+static func make_skill_level_up_message(skill_tree_id: int) -> String:
+	var skill_tree = GameData.player.SkillsComp.skills[skill_tree_id]
+	var text := ""
+
+	text = "You raised your {0} knowlege to level: [color={1}]{2}[/color]".format([
+		skill_tree.skill_tree_name,
+		calc_skill_level_color(skill_tree.level),
+		skill_tree.level
+	])
+
+	return text
 
 # --- MONSTER ATTACK ---
 
@@ -72,3 +68,33 @@ static func make_monster_attack_message(monster: Node2D, damage: int, hit_action
 			])
 
 	return text
+
+
+static func get_damage_color(element: int) -> String:
+	match element:
+		GameData.ELEMENT.PHYSICAL:
+			return "#bbbab5"
+		GameData.ELEMENT.FIRE:
+			return "#a62121"
+		GameData.ELEMENT.ICE:
+			return "#56dcb4"
+		GameData.ELEMENT.LIGHTNING:
+			return "#dee310"
+		GameData.ELEMENT.BLOOD:
+			return "#591e18"
+		GameData.ELEMENT.POISON:
+			return "#2e610f"
+		_:
+			return "#bbbab5"
+
+
+static func calc_skill_level_color(skill_level: int) -> String:
+	
+	if skill_level > 10:
+		return "#a62121"
+	
+	if skill_level > 5:
+		return "#56dcb4"
+	
+	return "#dee310"
+	

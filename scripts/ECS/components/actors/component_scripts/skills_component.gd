@@ -5,10 +5,10 @@ var skills: Dictionary = {}
 
 # skill var setup
 # skills = {
-# 	SkilltreeId: [PassiveID, PassiveID]
+# 	SkilltreeId: SkillTreeData object
 #
 # 	EXAMPLE
-# 	GameData.SKILLS.SWORD: [SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_SWORD, SkillDefinitions.PASSIVE_IDS.CHILD_OF_PLACEHOLDER]
+# 	GameData.SKILLS.SWORD: Object: Sword skill tree
 # }
 
 
@@ -44,8 +44,8 @@ func level_up_skill(skill_id: int) -> void:
 
 	skill.exp_for_next_level = skill.exp_formula.call(skill.level)
 
-
-	SignalBus.skill_leveled_up.emit(skill_id)
+	if get_parent().get_parent() == GameData.player:
+		SignalBus.skill_leveled_up.emit(skill_id)
 
 
 func unlock_passive(skill_id: int, passive_id: int, debug_mode: bool = false) -> bool:

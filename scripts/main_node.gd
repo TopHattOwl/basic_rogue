@@ -148,21 +148,9 @@ func _ready():
 	GameData.player.HotbarComp.add_to_hotbar("spell", test_turret_spell.spell_data.uid, "hotbar_2")
 
 
-	# print(SkillFactory.get_skill_tree(GameData.SKILLS.MACE))
-
-	# SkillFactory.get_passive(SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_SWORD).apply_to(GameData.player)
-	
-
-	# print(SkillFactory.print_skill_tree(GameData.SKILLS.SWORD))
-
 	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.SWORD, SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_SWORD, true)
 	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.MACE, SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_MACE, true)
-
-	var arr = [0, 1, 2]
-	var arr2 = [3, 4]
-
-	arr.append(arr2)
-	print(arr)
+	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.SWORD, SkillDefinitions.PASSIVE_IDS.CHILD_OF_PLACEHOLDER, true)
 
 func _process(_delta):
 # input handler, gets input passed to it and depending on what input is pressed it calls different functions
