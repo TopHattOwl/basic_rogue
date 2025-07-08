@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmaap2y3fmujx"]
+[gd_scene load_steps=2 format=3 uid="uid://cfprhp50gl28y"]
 
-[ext_resource type="Script" uid="uid://cmakkdp6tw3gk" path="res://scenes/ui/items/pick_up_window.gd" id="1_o8l0r"]
+[sub_resource type="GDScript" id="GDScript_gbn1u"]
+script/source = "extends PopupMenu
+
+var items = []
+
+
+func add_items(items: Array):
+    self.items = items
+    render_pick_up_window()
+
+func render_pick_up_window():
+    for item in items:
+        var item_name = ComponentRegistry.get_component(item, GameData.ComponentKeys.ITEM_IDENTITY).item_name
+        add_item(item_name)"
 
 [node name="PickUpWindow" type="PopupMenu"]
 initial_position = 1
@@ -10,4 +23,4 @@ unfocusable = true
 hide_on_item_selection = false
 item_count = 1
 item_0/id = 0
-script = ExtResource("1_o8l0r")
+script = SubResource("GDScript_gbn1u")
