@@ -41,6 +41,7 @@ SkillLevelManager="*res://scripts/autoload/systems/level_handler/skill_level_man
 PlayerLevelManager="*res://scripts/autoload/systems/level_handler/player_level_manager.gd"
 SkillDefinitions="*res://resources/factory/skill/skill_definitions.gd"
 ResourceFactory="*res://resources/factory/resource_factory.gd"
+MonsterDefinitions="*res://resources/factory/monsters/monster_definitions.gd"
 
 [debug]
 

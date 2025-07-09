@@ -54,6 +54,7 @@ func handle_zoomed_in_inputs():
 
 	var current_time = Time.get_ticks_msec()
 
+
 	# general movement
 	for action in GameData.INPUT_DIRECTIONS:
 		var dir = GameData.INPUT_DIRECTIONS[action]

@@ -88,15 +88,6 @@ const world_map_save = "res://resources/world_map_data/world_map/world_map.tres"
 const world_monster_map_save = "res://resources/world_map_data/world_monster_map/world_monster_map.tres"
 
 
-# const load_data = "res://scripts/autoload/save_load/load_classes/load_data.gd"
-
-#     -- entity systems --
-const movement_system = "res://scripts/ECS/systems/movement_system.gd"
-const combat_system = "res://scripts/ECS/systems/combat_system.gd"
-const entity_spawner = "res://scripts/ECS/systems/entity_spawner.gd"
-const inventory_system = "res://scripts/ECS/systems/inventory_system.gd"
-
-
 
 # --- MAPS ---
 const first_outpost = "res://maps/premade_maps/first_outpost.tscn"
@@ -121,8 +112,8 @@ const dungeon_generator = "res://scripts/map_generation/dungeon_generator.gd"
 
 # --- UI ---
 const main_menu_scene = "res://scenes/ui/main_menu/main_menu.tscn"
-const pick_up_window_scene = "res://scenes/ui/items/pick_up_window.tscn"
-const pick_up_window_script = "res://scenes/ui/items/pick_up_window.gd"
+# const pick_up_window_scene = "res://scenes/ui/items/pick_up_window.tscn"
+# const pick_up_window_script = "res://scenes/ui/items/pick_up_window.gd"
 
 const damage_text_scene = "res://scenes/ui/damage_text.tscn"
 
@@ -137,10 +128,10 @@ const buff_hover_tooltip_scene = "res://scenes/ui/hud/buffs/buff_hover_tooltip.t
 
 # --- SPRITES/TILEMAPS ---
 
-const wall_tile_set = "res://resources/tiles/wall/wall.tres"
-
-
-const targeter = "res://scenes/ui/targeter/targeter.tscn"
+var monster_sprites = {
+	GameData.MONSTERS_ALL.IRON_WORM: "res://assets/monsters/giant_worm.png",
+	GameData.MONSTERS_ALL.MASK: "res://assets/monsters/mask.png",
+}
 
 
 # --- TILE SETS ---

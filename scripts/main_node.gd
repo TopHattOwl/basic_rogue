@@ -152,6 +152,20 @@ func _ready():
 	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.MACE, SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_MACE, true)
 	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.SWORD, SkillDefinitions.PASSIVE_IDS.CHILD_OF_PLACEHOLDER, true)
 
+
+
+	# test new monster spawning
+	var test_monst = MonsterFactory.make_monster()
+	test_monst.position = MapFunction.to_world_pos(Vector2i(12, 10))
+	add_child(test_monst)
+	if test_monst.get_script() == MonsterNormal:
+		print("it's a normal monster----------------------------------------------")
+
+	var test_monst2 = MonsterFactory.make_monster()
+	test_monst2.position = MapFunction.to_world_pos(Vector2i(14, 10))
+	add_child(test_monst2)
+
+
 func _process(_delta):
 # input handler, gets input passed to it and depending on what input is pressed it calls different functions
 	if GameData.player.PlayerComp.is_players_turn:
