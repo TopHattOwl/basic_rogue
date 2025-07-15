@@ -137,5 +137,3 @@ func advance_turn_phase():
 			_process_monsters()
 		TURN_PHASES.TURN_END:
 			_process_turn_end()
-
-

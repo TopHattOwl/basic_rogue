@@ -9,8 +9,13 @@ var hp: int = 10:
 		hp = clampi(value, 0, max_hp)
 
 
-func initialize(max_hp_value: int) -> void:
-	max_hp = max_hp_value
+# func initialize2(max_hp_value: int) -> void:
+# 	max_hp = max_hp_value
+# 	hp = max_hp
+
+func initialize(d: Dictionary) -> void:
+	var _max_hp = d.get("max_hp", {})
+	max_hp = _max_hp
 	hp = max_hp
 
 func take_damage(damage: int) -> int:

@@ -45,35 +45,27 @@ func _on_year_passed() -> void:
 
 
 
+
+	 
 ## Calculates monster stats from time_difficulty [br]
-## Modifies the node's value directly [br]
-## Dict setup: `{"monster_combat_component": monster_combat_component}`
-func calc_monster_stats(d: Dictionary, monster: Node2D) -> void:
+## returns the modified Dictionary [br]
+func calc_monster_stats(d: Dictionary) -> Dictionary:
+
 	var modified_values := d
 
-	var monster_combat_comp = d.get("monster_combat_component", {})
-	var health_comp = d.get("health_component", {})
-
-
-	if !monster_combat_comp or !health_comp:
-		push_error("calc_monster_stats() - missing components for monster: ", ComponentRegistry.get_component(monster, GameData.ComponentKeys.IDENTITY).actor_name)
-		return
-
-	# DAMAGE
-	# Damage min
+	# monster combat
 	var base_damage_min = modified_values.monster_combat_component.damage_min
 	var new_damage_min = int(base_damage_min * damage_multiplier)
-	monster.monster_combat_component.damage_min = new_damage_min
+	modified_values.monster_combat_component.damage_min = new_damage_min
 
-	# Damage max
 	var base_damage_max = modified_values.monster_combat_component.damage_max
 	var new_damage_max = int(base_damage_max * damage_multiplier)
-	monster.monster_combat_component.damage_max = new_damage_max
-	
+	modified_values.monster_combat_component.damage_max = new_damage_max
 
-	# HEALTH
-	var base_health = modified_values.health_component
+
+	# health
+	var base_health = modified_values.health_component.max_hp
 	var new_health = int(base_health * health_multiplier)
-	monster.max_hp = new_health
-	 
-	
+	modified_values.health_component.max_hp = new_health	
+
+	return modified_values

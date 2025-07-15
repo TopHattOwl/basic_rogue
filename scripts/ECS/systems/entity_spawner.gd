@@ -39,10 +39,10 @@ static func spawn_player():
 	UiFunc.update_camera_data()
 
 
-static func spawn_monster(grid_pos: Vector2i, monster_key: int):
+static func spawn_monster(grid_pos: Vector2i = Vector2i.ZERO, monster_key: int = 0):
 	var monster = null
 
-	monster = load(DirectoryPaths.monster_scenes[monster_key]).instantiate()
+	monster = MonsterFactory.make_monster(monster_key)
 	var position_comp = ComponentRegistry.get_component(monster, GameData.ComponentKeys.POSITION)
 
 	if position_comp:
@@ -55,7 +55,6 @@ static func spawn_monster(grid_pos: Vector2i, monster_key: int):
 
 	GameData.main_node.add_child(monster)
 	monster.owner = GameData.main_node # for scene persistence
-
 
 # --- ITEMS ---
 

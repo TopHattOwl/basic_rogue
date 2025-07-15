@@ -16,7 +16,8 @@ var buffs: Array[Variant]
 #     "buff": buff_object, # modifiers is an Array[StatModifier]
 #     "duration": 5
 # }
-
+func initialize(_d: Dictionary = {}) -> void:
+	pass
 
 func _ready() -> void:
 	SignalBus.player_acted.connect(_advance_buffs)

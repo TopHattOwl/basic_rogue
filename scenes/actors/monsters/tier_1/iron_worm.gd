@@ -82,4 +82,4 @@ func calculate_stats() -> void:
 		"monster_combat_component": monster_combat_component,
 		"health_component": max_hp
 	}
-	TimeDifficulty.calc_monster_stats(monster_stats, self)
+	TimeDifficulty.calc_monster_stats_old(monster_stats, self)

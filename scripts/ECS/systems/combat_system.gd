@@ -75,7 +75,7 @@ func die(actor: Node2D):
 
 	# if monster drop monster remains TODO also drom monster loot
 	if actor_identity.faction == "monsters":
-		var monster_id = ComponentRegistry.get_component(actor, GameData.ComponentKeys.MONSTER_STATS).monster_id
+		var monster_id = actor.id
 		var monster_remains = load(DirectoryPaths.monster_remains_scene[monster_id]).instantiate()
 		ComponentRegistry.get_component(monster_remains, GameData.ComponentKeys.POSITION).grid_pos = actor_pos
 		monster_remains.position = MapFunction.to_world_pos(actor_pos)

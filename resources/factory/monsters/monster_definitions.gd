@@ -16,6 +16,7 @@ var monster_definitions = {
                 GameData.WORLD_TILE_TYPES.FIELD: 0.4,
                 },
             "monster_group": 1,
+            "text_color": "#dfdfdf",
         },
 
         GameData.get_component_name(GameData.ComponentKeys.POSITION): {
@@ -96,6 +97,7 @@ var monster_definitions = {
                 GameData.WORLD_TILE_TYPES.FIELD: 0.9,
                 },
             "monster_group": 1,
+            "text_color": "#4c150d",
         },
 
         GameData.get_component_name(GameData.ComponentKeys.POSITION): {

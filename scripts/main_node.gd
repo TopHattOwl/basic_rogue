@@ -3,6 +3,15 @@ extends Node2D
 const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 @export var input_manager: Node = null
 
+# monster rework leftover:
+	# remove GameData.MonstersAll Dict that was used for monster types, now monsters themself have biome weights
+
+# REMOVE:
+	# Iron_worm and Mask monster scenes and scripts, now its done in code
+	# Monster node class its now MonsterBase and it's children
+
+	# monster tier not used anymore, remove form everywhere (WorldMonsterTiles, WorldMonsterMap, etc.)
+
 # REWORK:
 	# make buffs, weapons, all resources basically in code:
 		# right now if I change order of enums it could fuck the game up
@@ -155,15 +164,9 @@ func _ready():
 
 
 	# test new monster spawning
-	var test_monst = MonsterFactory.make_monster()
-	test_monst.position = MapFunction.to_world_pos(Vector2i(12, 10))
-	add_child(test_monst)
-	if test_monst.get_script() == MonsterNormal:
-		print("it's a normal monster----------------------------------------------")
+	EntitySpawner.spawn_monster(Vector2i(10,10), GameData.MONSTERS_ALL.MASK)
 
-	var test_monst2 = MonsterFactory.make_monster()
-	test_monst2.position = MapFunction.to_world_pos(Vector2i(14, 10))
-	add_child(test_monst2)
+	# EntitySpawner.spawn_monster_old(Vector2i(11,11), GameData.MONSTERS_ALL.MASK)
 
 
 func _process(_delta):

@@ -84,8 +84,6 @@ func melee_attack(target: Node2D) -> bool:
 		return true 
 	
 
-	# target_health.take_damage(dam)
-
 	signal_hit_data = {
 		"target": target,
 		"attacker": get_parent().get_parent(),
@@ -96,6 +94,9 @@ func melee_attack(target: Node2D) -> bool:
 		"combat_type": GameData.COMBAT_TYPE.MELEE
 	}
 	SignalBus.actor_hit.emit(signal_hit_data)
+
+	if GameData.melee_combat_debug:
+		print("singal hit data: ", signal_hit_data)
 	return true
 
 # --- Utils ---
@@ -109,10 +110,11 @@ func calc_damage() -> int:
 	var dam := 0
 
 	if get_parent().has_node(GameData.get_component_name(GameData.ComponentKeys.MONSTER_MODIFIERS)):
-		pass
-		# var dam_min = int(ModifierSystem.get_modified_monster_melee_combat_value(get_parent().get_parent(), "damage_min"))
-		# var dam_max = int(ModifierSystem.get_modified_monster_melee_combat_value(get_parent().get_parent(), "damage_max"))
-		# dam = randi_range(dam_min, dam_max)
+		# TODO: complete
+		# not yet calculating
+		# just using base value
+		dam = randi_range(damage_min, damage_max)
+		print("damage calc, min-max: ", damage_min,"-" , damage_max)
 	else:
 		# if no modifier component use base value
 		dam = randi_range(damage_min, damage_max)
