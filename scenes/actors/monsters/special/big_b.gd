@@ -60,7 +60,7 @@ var monster_drops_component = {
 
 func _ready() -> void:
 
-	calculate_stats()
+	# calculate_stats()
 
 	get_component(GameData.ComponentKeys.HEALTH).initialize(max_hp)
 	get_component(GameData.ComponentKeys.MONSTER_COMBAT).initialize(monster_combat_component)
@@ -74,11 +74,11 @@ func _ready() -> void:
 
 	connect_signals()
 
-func calculate_stats() -> void:
+# func calculate_stats() -> void:
 
-	# Time difficulty calcualtion
-	var monster_stats = {
-		"monster_combat_component": monster_combat_component,
-		"health_component": max_hp
-	}
-	TimeDifficulty.calc_monster_stats(monster_stats, self)
+# 	# Time difficulty calcualtion
+# 	var monster_stats = {
+# 		"monster_combat_component": monster_combat_component,
+# 		"health_component": max_hp
+# 	}
+# 	TimeDifficulty.calc_monster_stats(monster_stats, self)

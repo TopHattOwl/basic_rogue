@@ -87,9 +87,10 @@ func get_actor(grid_pos: Vector2i) -> Node2D:
 # ___ MONSTERS ___
 
 enum MONSTERS_ALL {
-	# tier 1
 	IRON_WORM,
 	MASK,
+	FIREANT,
+	STONE_CYCLOPS,
 	
 
 
@@ -104,6 +105,8 @@ enum MONSTERS_ALL {
 var MONSTER_UIDS = {
 	MONSTERS_ALL.IRON_WORM: "worm",
 	MONSTERS_ALL.MASK: "mask",
+	MONSTERS_ALL.FIREANT: "fire_ant",
+	MONSTERS_ALL.STONE_CYCLOPS: "stone_cyclops",
 }
 
 # monster tiers (1-5) -> monster biome (what biome it can appear in) -> monster key array

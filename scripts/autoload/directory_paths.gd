@@ -21,18 +21,6 @@ const monster_remains_scene = {
 	GameData.MONSTERS_ALL.MASK: "res://scenes/actors/monsters/remains/mask_remains.tscn",
 }
 
-const monster_scenes = {
-	# tier 1
-	GameData.MONSTERS_ALL.IRON_WORM: "res://scenes/actors/monsters/tier_1/iron_worm.tscn",
-	GameData.MONSTERS_ALL.MASK: "res://scenes/actors/monsters/tier_1/mask.tscn",
-
-	# # tier 2
-	# GameData.MONSTERS_ALL.PLACEHOLDER: "",
-
-
-	# # special
-	# GameData.MONSTERS_ALL.BIG_B: "res://scenes/actors/monsters/special/big_b.tscn",
-}
 
 
 # --- SPELLS ---
@@ -131,6 +119,15 @@ const buff_hover_tooltip_scene = "res://scenes/ui/hud/buffs/buff_hover_tooltip.t
 var monster_sprites = {
 	GameData.MONSTERS_ALL.IRON_WORM: "res://assets/monsters/giant_worm.png",
 	GameData.MONSTERS_ALL.MASK: "res://assets/monsters/mask.png",
+	GameData.MONSTERS_ALL.FIREANT: "res://assets/monsters/insectoids/fireant.png",
+	GameData.MONSTERS_ALL.STONE_CYCLOPS: "res://assets/monsters/stone/stone_cyclops.png",
+}
+
+var monster_remains_sprites = {
+	GameData.MONSTERS_ALL.IRON_WORM: "",
+	GameData.MONSTERS_ALL.MASK: "",
+	GameData.MONSTERS_ALL.FIREANT: "",
+	GameData.MONSTERS_ALL.STONE_CYCLOPS: "",
 }
 
 
