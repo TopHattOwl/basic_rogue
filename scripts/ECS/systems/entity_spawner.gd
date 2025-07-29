@@ -40,7 +40,7 @@ static func spawn_player():
 
 
 static func spawn_monster(grid_pos: Vector2i = Vector2i.ZERO, monster_key: int = 0):
-	var monster = null
+	var monster: MonsterBase = null
 
 	monster = MonsterFactory.make_monster(monster_key)
 	var position_comp = ComponentRegistry.get_component(monster, GameData.ComponentKeys.POSITION)
@@ -55,6 +55,18 @@ static func spawn_monster(grid_pos: Vector2i = Vector2i.ZERO, monster_key: int =
 
 	GameData.main_node.add_child(monster)
 	monster.owner = GameData.main_node # for scene persistence
+
+
+static func spawn_monster_remains(monster: MonsterBase):
+	var position = monster.get_component(GameData.ComponentKeys.POSITION).grid_pos
+	var monster_id = monster.id
+
+	var remains = MonsterFactory.make_monster_remains(monster_id)
+
+	ComponentRegistry.get_component(remains, GameData.ComponentKeys.POSITION).grid_pos = position
+	remains.position = MapFunction.to_world_pos(position)
+	GameData.main_node.add_child(remains)
+
 
 # --- ITEMS ---
 

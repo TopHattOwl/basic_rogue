@@ -13,7 +13,6 @@ var uid: String
 
 # for monster managers to spawn(AmbushManager and DungeonManager)
 var cost: int
-var biome_weights: Dictionary
 var monster_group: int
 
 
@@ -47,7 +46,6 @@ func set_base_data(d: Dictionary) -> void:
 	id = d.get("id", 0)
 	uid = d.get("uid", "")
 	cost = d.get("cost", 0)
-	biome_weights = d.get("biome_weights", {})
 	monster_group = d.get("monster_group", 0)
 	text_color = d.get("text_color", "#dfdfdf")
 

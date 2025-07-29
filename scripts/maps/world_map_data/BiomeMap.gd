@@ -1,7 +1,6 @@
 class_name BiomeMap
 extends Resource
 
-## looolll
 @export var map_data: Array[Array]
 
 func _init() -> void:
@@ -18,6 +17,10 @@ func generate_map(pos: Vector2i) -> void:
 	else:
 		# if tile is not explored, generate it
 		map_data[pos.y][pos.x].generate_map()
+
+
+func get_biome_type(world_pos: Vector2i) -> int:
+	return map_data[world_pos.y][world_pos.x].biome_type
 
 # save/load
 func save_biome_map() -> void:

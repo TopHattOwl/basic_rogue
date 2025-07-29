@@ -173,14 +173,14 @@ func parse_monster_data() -> void:
 		for x in range(GameData.WORLD_MAP_SIZE.x):
 			var grid_pos = Vector2i(x, y)
 
-			var tier = calc_monster_tier(grid_pos)
+			# var tier = calc_monster_tier(grid_pos)
 			var biome = biome_type[y][x]
 
 			# if biome type does not upport monster spawning -> skip
-			if !GameData.MonstersAll[tier].has(biome):
+			if not GameData.HostileBiomes.has(biome):
 				continue
 
-			world_monster_map.map_data[y][x] = WorldMonsterTile.new(Vector2i(x, y), tier)
+			world_monster_map.map_data[y][x] = WorldMonsterTile.new(grid_pos)
 
 
 func parse_savagery() -> void:
@@ -218,11 +218,11 @@ func calc_savagery_for_tile(grid_pos: Vector2i) -> int:
 	return distance
 
 
-func calc_monster_tier(grid_pos: Vector2i) -> int:
+# func calc_monster_tier(grid_pos: Vector2i) -> int:
 
-	var savagery = world_map_savagery[grid_pos.y][grid_pos.x]
+# 	var savagery = world_map_savagery[grid_pos.y][grid_pos.x]
 	
-	var tier = savagery / 3
-	tier = tier if tier > 0 else 1
+# 	var tier = savagery / 3
+# 	tier = tier if tier > 0 else 1
 
-	return tier
+# 	return tier

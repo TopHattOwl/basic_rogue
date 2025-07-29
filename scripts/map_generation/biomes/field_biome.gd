@@ -30,7 +30,6 @@ func load_map() -> void:
 	if GameData.current_map:
 		GameData.current_map.queue_free()
 		GameData.current_map = null
-	# MapFunction.initialize_map_data()
 	GameData.remove_entities()
 
 	GameData.terrain_map = terrain_map
@@ -95,22 +94,24 @@ func add_forage() -> void:
 	pass
 
 
-func add_monsters(savagery: int, monster_data: WorldMonsterTile) -> void:
-	var max_monsters = max(0, savagery - 2)
-	var num_of_monsters = 0
+# func add_monsters(savagery: int, monster_data: WorldMonsterTile) -> void:
+# 	var max_monsters = max(0, savagery - 2)
+# 	var num_of_monsters = 0
 
-	while num_of_monsters < max_monsters:
-		var random_pos = Vector2i(map_rng.randi_range(0, GameData.MAP_SIZE.x - 1), map_rng.randi_range(0, GameData.MAP_SIZE.y - 1))
-		if terrain_map[random_pos.y][random_pos.x].tags.has(GameData.TILE_TAGS.WALL):
-			continue
-		monster_data.spawn_points.append(random_pos)
-		num_of_monsters += 1
-	print(monster_data)
+# 	while num_of_monsters < max_monsters:
+# 		var random_pos = Vector2i(map_rng.randi_range(0, GameData.MAP_SIZE.x - 1), map_rng.randi_range(0, GameData.MAP_SIZE.y - 1))
+# 		if terrain_map[random_pos.y][random_pos.x].tags.has(GameData.TILE_TAGS.WALL):
+# 			continue
+# 		monster_data.spawn_points.append(random_pos)
+# 		num_of_monsters += 1
+# 	print(monster_data)
 
-	if savagery > 10:
-		monster_data.has_dungeon = true
-		make_dungeon()
+# 	if savagery > 10:
+# 		monster_data.has_dungeon = true
+# 		make_dungeon()
 
+
+# NOT IMPLEMENTED YET
 var dungeon_tile_size = Vector2i(2, 1)
 func make_dungeon() -> void:
 	var position_found = false

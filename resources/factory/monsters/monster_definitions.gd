@@ -2,8 +2,23 @@ extends Node
 
 enum MONSTER_TYPES { NORMAL, MINIBOSS, BOSS }
 
+
+
+func get_avalible_monsters(biome: int) -> Dictionary:
+	var ids = {}
+
+	for monster_id in monster_definitions:
+		var biome_weights = monster_definitions[monster_id]["base_data"]["biome_weights"]
+		var biomes = biome_weights.keys()
+		if not biomes.has(biome):
+			continue
+
+		ids[int(monster_id)] = monster_definitions[monster_id]["base_data"]
+	return ids
+
 var monster_definitions = {
-	# NORMAL MONSTERS
+	# ------------------------------------------------------
+	# 					NORMAL MONSTERS
 	# ------------------------------------------------------
 	GameData.MONSTERS_ALL.IRON_WORM: {
 		"base_data": {
@@ -174,8 +189,8 @@ var monster_definitions = {
 			"uid": GameData.MONSTER_UIDS[GameData.MONSTERS_ALL.FIREANT],
 			"cost": 4,
 			"biome_weights": {
-				GameData.WORLD_TILE_TYPES.FOREST: 0.8,
-				GameData.WORLD_TILE_TYPES.FIELD: 0.4,
+				GameData.WORLD_TILE_TYPES.DESERT: 0.8,
+				GameData.WORLD_TILE_TYPES.FOREST: 0.4,
 				},
 			"monster_group": 1,
 			"text_color": "#a62121",
@@ -246,6 +261,10 @@ var monster_definitions = {
 		},
 	},
 
+
+
+	# ------------------------------------------------------
+	# 					MINIBOSS MONSTERS
 	# ------------------------------------------------------
 
 	GameData.MONSTERS_ALL.STONE_CYCLOPS: {
@@ -255,8 +274,8 @@ var monster_definitions = {
 			"uid": GameData.MONSTER_UIDS[GameData.MONSTERS_ALL.STONE_CYCLOPS],
 			"cost": 25,
 			"biome_weights": {
-				GameData.WORLD_TILE_TYPES.FOREST: 0.8,
-				GameData.WORLD_TILE_TYPES.FIELD: 0.7,
+				GameData.WORLD_TILE_TYPES.FIELD: 0.1,
+				GameData.WORLD_TILE_TYPES.MOUNTAIN: 0.9,
 				},
 			"monster_group": 1,
 			"text_color": "#dfdfdf",
@@ -329,8 +348,10 @@ var monster_definitions = {
 
 
 
-	# MINIBOSS MONSTERS
+	
 
 
-	# BOSS MONSTERS
+	# ------------------------------------------------------
+	# 					BOSS MONSTERS
+	# ------------------------------------------------------
 }

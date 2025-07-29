@@ -1,0 +1,48 @@
+{
+	"attributes_component": {
+		"constitution": 14,
+		"dexterity": 14,
+		"intelligence": 13,
+		"perception": 17,
+		"strength": 16
+	},
+	"block_component": {
+		"block_chance": 0.2,
+		"block_recovery_rate": 0.25,
+		"max_block_power": 50
+	},
+	"health_component": {
+		"hp": 496,
+		"max_hp": 1000
+	},
+	"identity_component": {
+		"actor_name": "player",
+		"faction": "player",
+		"is_player": true
+	},
+	"melee_combat_component": {
+		"accuracy": 0.9,
+		"attack_type": 0,
+		"damage_max": 19,
+		"damage_min": 15,
+		"element": 2,
+		"melee_dodge": 0.1
+	},
+	"player_component": {
+		"input_mode": 0,
+		"is_dead": false,
+		"is_in_dungeon": false,
+		"is_in_world_map": false,
+		"is_players_turn": true,
+		"world_map_pos": {
+			"x": 31,
+			"y": 19
+		}
+	},
+	"position_component": {
+		"grid_pos": {
+			"x": 13,
+			"y": 36
+		}
+	}
+}

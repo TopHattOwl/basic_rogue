@@ -3,8 +3,8 @@ extends Node2D
 const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 @export var input_manager: Node = null
 
-# monster rework leftover:
-	# remove GameData.MonstersAll Dict that was used for monster types, now monsters themself have biome weights
+# AMBUSH MANAGER:
+	# TODO in ambush maanger to make monster calculation from 'money'
 
 # REMOVE:
 	# Iron_worm and Mask monster scenes and scripts, now its done in code
@@ -16,13 +16,11 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# make buffs, weapons, all resources basically in code:
 		# right now if I change order of enums it could fuck the game up
 		# things interacting with modifiers comp could be affected for sure, maybe others
+	# Move biome generation to Biome class, eah biome should extend Biome class
 
 # finish:
 	# VERY IMPORTANT:
 		# save and load for skills temporarily removed bc of rework
-		# SingleTargetSpell dont check current grid when spell is travling, check next grid position instead 
-	# IMPORTANT:
-		# finish ELEMENT enum to what elements are in the game
 
 	# in entity_systems item spawner is decrepit
 
@@ -160,13 +158,6 @@ func _ready():
 	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.SWORD, SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_SWORD, true)
 	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.MACE, SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_MACE, true)
 	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.SWORD, SkillDefinitions.PASSIVE_IDS.CHILD_OF_PLACEHOLDER, true)
-
-
-
-	# test new monster spawning
-	EntitySpawner.spawn_monster(Vector2i(10,10), GameData.MONSTERS_ALL.MASK)
-
-	# EntitySpawner.spawn_monster_old(Vector2i(11,11), GameData.MONSTERS_ALL.MASK)
 
 
 func _process(_delta):

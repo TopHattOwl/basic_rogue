@@ -23,7 +23,3 @@ func load_world_monster_map() -> void:
             ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
         )
         map_data = loaded_data.map_data
-
-
-func get_monster_ids(world_pos: Vector2i) -> Array:
-    return map_data[world_pos.y][world_pos.x].monster_types

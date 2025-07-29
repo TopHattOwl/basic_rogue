@@ -6,7 +6,8 @@ var health_multiplier: float = 1.01
 var damage_multiplier: float = 1.01
 
 # calculation not yet implemented
-var spawn_number_multiplyer: float = 1.01
+var ambush_money_multiplier: float = 1.01
+var ambush_chance_multiplier: float = 1.01
 
 ## time passed in number of month, years for difficulty 
 var months_passed: int = 0

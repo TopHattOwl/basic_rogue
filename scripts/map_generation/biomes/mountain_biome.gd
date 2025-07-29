@@ -63,11 +63,11 @@ func generate_terrain_data(savagery: int, monster_data: WorldMonsterTile) -> voi
 	add_walls()
 	add_nature()
 	# add_forage() # add when implemented foliage
-	add_monsters(savagery, monster_data)
+	# add_monsters(savagery, monster_data)
 
 # generation helpers
 
-var wall_chance: float = 0.015
+var wall_chance: float = 0.1
 func add_walls() -> void:
 	for y in range(GameData.MAP_SIZE.y):
 		for x in range(GameData.MAP_SIZE.x):
@@ -77,7 +77,7 @@ func add_walls() -> void:
 				add_terrain_map_data(Vector2i(x, y), GameData.TILE_TAGS.WALL, GameData.get_tile_data(GameData.TILE_TAGS.WALL))
 
 
-var nature_chance: float = 0.02
+var nature_chance: float = 0.01
 func add_nature() -> void:
 	for y in range(GameData.MAP_SIZE.y):
 		for x in range(GameData.MAP_SIZE.x):

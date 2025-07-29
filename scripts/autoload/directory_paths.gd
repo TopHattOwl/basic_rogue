@@ -5,7 +5,7 @@ extends Node
 const main_node_scene = "res://main_node.tscn"
 
 # --- PLAYER ---
-const player_data_json = "res://resources/actors/player.json"
+const player_data_json = "res://resources/actors//player/player.json"
 const player_scene = "res://scenes/actors/player/player.tscn"
 
 
@@ -14,7 +14,6 @@ const player_scene = "res://scenes/actors/player/player.tscn"
 const monster_remains_scene = {
 	# bloody remains
 	GameData.MONSTERS_ALL.IRON_WORM: "res://scenes/actors/monsters/remains/bloody_remains.tscn",
-	# GameData.MONSTERS_ALL.BIG_B: "res://scenes/actors/monsters/remains/bloody_remains.tscn",
 
 
 	# ash
@@ -124,8 +123,8 @@ var monster_sprites = {
 }
 
 var monster_remains_sprites = {
-	GameData.MONSTERS_ALL.IRON_WORM: "",
-	GameData.MONSTERS_ALL.MASK: "",
+	GameData.MONSTERS_ALL.IRON_WORM: "res://assets/monsters/remains/bloody_remains.png",
+	GameData.MONSTERS_ALL.MASK: "res://assets/monsters/remains/mask_remains.png",
 	GameData.MONSTERS_ALL.FIREANT: "",
 	GameData.MONSTERS_ALL.STONE_CYCLOPS: "",
 }

@@ -67,7 +67,7 @@ static func save_player_data(player: Node2D) -> bool:
 			"melee_dodge": melee_comp.melee_dodge,
 		}
 	
-	# Block component
+	# Block Component
 	var block_comp = ComponentRegistry.get_component(player, GameData.ComponentKeys.BLOCK)
 	if block_comp:
 		save_data["block_component"] = {
@@ -91,14 +91,13 @@ static func save_player_data(player: Node2D) -> bool:
 			"input_mode": player_comp.input_mode
 		}
 
-	# skills reworked
 	# Skills Component
 	# var skills_comp = ComponentRegistry.get_component(player, GameData.ComponentKeys.SKILLS)
 	# if skills_comp:
 	# 	save_data["skills_component"] = {
-	# 		"skill_levels": {}
+	# 		"skills": {}
 	# 	}
-	# 	for skill_key in skills_comp.skill_levels.keys():
+	# 	for skill_key in skills_comp.skills.keys():
 	# 		var skill_key_string := str(skill_key)
 	# 		save_data["skills_component"]["skill_levels"][skill_key_string] = skills_comp.skill_levels[skill_key]
  
