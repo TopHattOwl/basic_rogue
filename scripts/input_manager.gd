@@ -1,7 +1,7 @@
 extends Node
 
 const INITIAL_DELAY = 0.4
-const REPEAT_DELAY = 0.15
+const REPEAT_DELAY = 0.1
 var _input_states := {}
 
 var player_look_pos: Vector2i

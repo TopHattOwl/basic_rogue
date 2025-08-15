@@ -42,7 +42,19 @@ static func spawn_player():
 static func spawn_monster(grid_pos: Vector2i = Vector2i.ZERO, monster_key: int = 0):
 	var monster: MonsterBase = null
 
-	monster = MonsterFactory.make_monster(monster_key)
+	var monster_data = MonsterDefinitions.monster_definitions[monster_key]
+
+	var monster_type = monster_data.base_data.type
+
+	match monster_type:
+		MonsterDefinitions.MONSTER_TYPES.NORMAL:
+			monster = MonsterFactory.make_monster(monster_data, MonsterNormal)
+		MonsterDefinitions.MONSTER_TYPES.MINIBOSS:
+			monster = MonsterFactory.make_monster(monster_data, MonsterMiniboss)
+		MonsterDefinitions.MONSTER_TYPES.BOSS:
+			monster = MonsterFactory.make_monster(monster_data, MonsterBoss)
+
+
 	var position_comp = ComponentRegistry.get_component(monster, GameData.ComponentKeys.POSITION)
 
 	if position_comp:

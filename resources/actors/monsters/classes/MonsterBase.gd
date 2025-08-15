@@ -1,7 +1,7 @@
 class_name MonsterBase
 extends Node2D
 ## base class for monsters, hold data that all type of monsters have
-## dor `d` Dictionary data templet see MonsterDefinitions
+## for `d` Dictionary data templet see MonsterDefinitions
 
 var sprite: Sprite2D
 
@@ -50,7 +50,13 @@ func set_base_data(d: Dictionary) -> void:
 	text_color = d.get("text_color", "#dfdfdf")
 
 	# sprite
-	var texture = load(DirectoryPaths.monster_sprites[id])
+	var texture
+	if not DirectoryPaths.monster_sprites[id]:
+		var placeholder = PlaceholderTexture2D.new()
+		placeholder.size = GameData.TILE_SIZE
+		texture = placeholder
+	else:
+		texture = load(DirectoryPaths.monster_sprites[id])
 	var _sprite = Sprite2D.new()
 	_sprite.name = "Sprite2D"
 	_sprite.texture = texture

@@ -2,10 +2,20 @@ extends Node
 
 enum MONSTER_TYPES { NORMAL, MINIBOSS, BOSS }
 
+# making new monster:
+	# add monster id to GameData.MONSTERS_ALL
+	# add uid to GameData.MONSTER_UIDS
+	# add remains and sprite path to DirectoryPaths.monster_sprites and monster_remains_sprites
+	# add monster data here to monster_definitions
 
 
+## Returns a Dict with all avalible monsters for a given biome [br]
+## Dictionary setup: [br]
+## `{monster_id: {monster base data} }` see MonsterDefinitions for base_data setup
 func get_avalible_monsters(biome: int) -> Dictionary:
 	var ids = {}
+
+	
 
 	for monster_id in monster_definitions:
 		var biome_weights = monster_definitions[monster_id]["base_data"]["biome_weights"]
@@ -354,4 +364,163 @@ var monster_definitions = {
 	# ------------------------------------------------------
 	# 					BOSS MONSTERS
 	# ------------------------------------------------------
+
+	GameData.MONSTERS_ALL.HOBGOBLIN: {
+		"base_data": {
+			"type": MONSTER_TYPES.BOSS, # used for determining what child of MonsterBase to make when monster factory preloads monsters
+			"id": GameData.MONSTERS_ALL.HOBGOBLIN,
+			"uid": GameData.MONSTER_UIDS[GameData.MONSTERS_ALL.HOBGOBLIN],
+			"cost": 40,
+			"biome_weights": {
+				GameData.WORLD_TILE_TYPES.FIELD: 0.2,
+				GameData.WORLD_TILE_TYPES.MOUNTAIN: 0.4,
+				},
+			"monster_group": 1,
+			"text_color": "#dfdfdf",
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.POSITION): {
+			
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.IDENTITY): {
+			"is_player": false,
+			"actor_name": "Hobgoblin",
+			"faction": "monsters",
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.HEALTH): {
+			"max_hp": 450,
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.MONSTER_COMBAT): {
+			"damage_min": 50,
+			"damage_max": 59,
+			"attack_type": GameData.ATTACK_TYPE.BASH,
+			"accuracy": 0.9,
+			"element": GameData.ELEMENT.PHYSICAL,
+			"melee_dodge": 0.05,
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.MONSTER_PROPERTIES): { # not used yet
+
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.DEFENSE_STATS): {
+			"armor": 120,
+			"resistances": {
+				GameData.ELEMENT.FIRE: 0.25,
+				GameData.ELEMENT.ICE: 0.25,
+				GameData.ELEMENT.LIGHTNING: 0.25,
+				GameData.ELEMENT.BLOOD: 0.25,
+				GameData.ELEMENT.POISON: 0.35,
+			}
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ATTRIBUTES): {
+			"strength": 28,
+			"dexterity": 16,
+			"intelligence": 7,
+			"constitution": 20,
+			"perception": 18
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.AI_BEHAVIOR): {
+			"type": "chase",
+			"is_hostile": true,
+			"vision_range": 10,
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.STAMINA): {
+
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.STATE): {
+
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.MONSTER_DROPS): {
+
+		},
+	},
+
+	GameData.MONSTERS_ALL.TOOTH_FAIRY: {
+		"base_data": {
+			"type": MONSTER_TYPES.BOSS, # used for determining what child of MonsterBase to make when monster factory preloads monsters
+			"id": GameData.MONSTERS_ALL.TOOTH_FAIRY,
+			"uid": GameData.MONSTER_UIDS[GameData.MONSTERS_ALL.TOOTH_FAIRY],
+			"cost": 38,
+			"biome_weights": {
+				GameData.WORLD_TILE_TYPES.FIELD: 0.2,
+				GameData.WORLD_TILE_TYPES.MOUNTAIN: 0.9,
+				},
+			"monster_group": 1,
+			"text_color": "#dfdfdf",
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.POSITION): {
+			
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.IDENTITY): {
+			"is_player": false,
+			"actor_name": "Tooth Fairy",
+			"faction": "monsters",
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.HEALTH): {
+			"max_hp": 350,
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.MONSTER_COMBAT): {
+			"damage_min": 70,
+			"damage_max": 89,
+			"attack_type": GameData.ATTACK_TYPE.PIERCE,
+			"accuracy": 0.95,
+			"element": GameData.ELEMENT.POISON,
+			"melee_dodge": 0.1,
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.MONSTER_PROPERTIES): { # not used yet
+
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.DEFENSE_STATS): {
+			"armor": 120,
+			"resistances": {
+				GameData.ELEMENT.FIRE: 0.2,
+				GameData.ELEMENT.ICE: 0.2,
+				GameData.ELEMENT.LIGHTNING: 0.20,
+				GameData.ELEMENT.BLOOD: 0.15,
+				GameData.ELEMENT.POISON: 0.4,
+			}
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ATTRIBUTES): {
+			"strength": 21,
+			"dexterity": 28,
+			"intelligence": 16,
+			"constitution": 19,
+			"perception": 20
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.AI_BEHAVIOR): {
+			"type": "chase",
+			"is_hostile": true,
+			"vision_range": 13,
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.STAMINA): {
+
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.STATE): {
+
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.MONSTER_DROPS): {
+
+		},
+	},
+
 }

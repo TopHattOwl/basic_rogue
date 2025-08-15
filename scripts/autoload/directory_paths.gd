@@ -11,6 +11,7 @@ const player_scene = "res://scenes/actors/player/player.tscn"
 
 # --- ACTORS ---
 
+# DECREPATED
 const monster_remains_scene = {
 	# bloody remains
 	GameData.MONSTERS_ALL.IRON_WORM: "res://scenes/actors/monsters/remains/bloody_remains.tscn",
@@ -120,6 +121,9 @@ var monster_sprites = {
 	GameData.MONSTERS_ALL.MASK: "res://assets/monsters/mask.png",
 	GameData.MONSTERS_ALL.FIREANT: "res://assets/monsters/insectoids/fireant.png",
 	GameData.MONSTERS_ALL.STONE_CYCLOPS: "res://assets/monsters/stone/stone_cyclops.png",
+
+	GameData.MONSTERS_ALL.HOBGOBLIN: "",
+	GameData.MONSTERS_ALL.TOOTH_FAIRY: "",
 }
 
 var monster_remains_sprites = {
@@ -127,6 +131,9 @@ var monster_remains_sprites = {
 	GameData.MONSTERS_ALL.MASK: "res://assets/monsters/remains/mask_remains.png",
 	GameData.MONSTERS_ALL.FIREANT: "",
 	GameData.MONSTERS_ALL.STONE_CYCLOPS: "",
+
+	GameData.MONSTERS_ALL.HOBGOBLIN: "",
+	GameData.MONSTERS_ALL.TOOTH_FAIRY: "",
 }
 
 

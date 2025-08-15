@@ -8,16 +8,19 @@ func _ready() -> void:
 	# helpers
 	register_command("help", help_command, "Shows all commands")
 	register_command("clear", clear_command, "Clears console output")
-	register_command("monster_ids", get_monster_ids, "Returns all monster ids")
+	register_command("monster_ids", get_monster_ids, "Returns all monster ids: [uid: id]")
 	register_command("skill_ids", get_skill_ids, "Returns all skill ids")
 
 	# player commands
-	register_command("heal", heal_command, "Heals player by given amount\n\t\theal [amount]")
+	register_command("heal", heal_command, "Heals player by given amount\n\t\theal (amount)")
 	register_command("add_skill_exp", add_skill_exp_command, "Adds given amount of skill experience to player\n\t\tadd_skill_exp [skill_id] [amount]")
 
 	# spawn commands
-	register_command("spawn_monster", spawn_monster_command, "Spawns a monster with given id at given position\n\t\tspawn_monster [id] [x] [y]")
+	register_command("spawn_monster", spawn_monster_command, "Spawns a monster with given id at given position\n\t\tspawn_monster (id/uid) (x) (y)")
 	register_command("spawn_item", spawn_item_command, "NOT IMPLEMENTED\nSpawns an item with given id at given position\n\t\tspawn_item [id] [x] [y]")
+
+
+	
 
 
 func register_command(_name: String, _callback: Callable, _description: String = "") -> void:
@@ -47,9 +50,11 @@ func execute_command(raw_input: String) -> String:
 
 # --- HELPER COMMANDS ---
 func help_command(_args: PackedStringArray) -> String:
-	var output = "Available commands:\n"
+	var output = "-----HELP-----\nAvailable commands:\n"
 	for command in commands:
 		output += "- " + command + ": " + commands[command].description + "\n"
+	
+	output += "-------\nAnnotation: command [arguments]\n if arguments is inside [] it is required, if inside () it is optional\n"
 	return output
 
 func clear_command(_args: PackedStringArray) -> String:
@@ -103,15 +108,37 @@ func add_skill_exp_command(_args: PackedStringArray) -> String:
 
 func spawn_monster_command(_args: PackedStringArray) -> String:
 	var output = ""
-	# var monster_id = int(_args[0]) if not _args.is_empty() else randi() % GameData.MONSTERS_ALL.size()
+	var monster_id = -1
+	var monster_uid = ""
 
-	var monster_id = randi() % GameData.MONSTERS_ALL.size() if _args.is_empty() else int(_args[0])
 
+	if _args.is_empty():
+		monster_id = randi() % GameData.MONSTERS_ALL.size()
+	else:
+		var arg = _args[0]
+
+		# check if _args[0] is id or uid
+		if arg.is_valid_int():
+			# NUMERIC ID CASE
+			monster_id = arg.to_int()
+			monster_uid = GameData.MONSTER_UIDS[monster_id]
+			if monster_id < 0 or monster_id >= GameData.MONSTERS_ALL.size():
+				return "Error: Invalid monster id: " + arg 
+
+		else:
+			# UID CASE
+			if GameData.MONSTER_UIDS.values().has(arg):
+
+				for key in GameData.MONSTER_UIDS:
+					if GameData.MONSTER_UIDS[key] == arg:
+						monster_id = key
+						monster_uid = arg
+						break
+			else:
+				return "Error: Invalid monster uid: " + arg
 
 
 	var grid_pos := Vector2i.ZERO
-	var monster_uid = GameData.MONSTER_UIDS[monster_id]
-
 
 	var is_pos_given = _args.size() > 1
 

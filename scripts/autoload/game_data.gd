@@ -91,6 +91,11 @@ enum MONSTERS_ALL {
 	MASK,
 	FIREANT,
 	STONE_CYCLOPS,
+
+
+	# not fully finished
+	HOBGOBLIN,
+	TOOTH_FAIRY,
 	
 
 
@@ -107,6 +112,11 @@ var MONSTER_UIDS = {
 	MONSTERS_ALL.MASK: "mask",
 	MONSTERS_ALL.FIREANT: "fire_ant",
 	MONSTERS_ALL.STONE_CYCLOPS: "stone_cyclops",
+
+	# not fully finished
+	MONSTERS_ALL.HOBGOBLIN: "hobgoblin",
+	MONSTERS_ALL.TOOTH_FAIRY: "tooth_fairy",
+
 }
 
 # monster tiers (1-5) -> monster biome (what biome it can appear in) -> monster key array

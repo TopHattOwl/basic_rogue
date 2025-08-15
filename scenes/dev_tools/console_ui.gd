@@ -18,6 +18,9 @@ func _ready() -> void:
 	input_field.connect("text_submitted", _on_input_submitted)
 
 
+	make_base_text()
+
+
 func _process(_delta: float) -> void:
 	input_field.grab_focus()
 
@@ -29,6 +32,13 @@ func _process(_delta: float) -> void:
 		navigate_history(-1)
 	elif Input.is_action_just_pressed("ui_down"):
 		navigate_history(1)
+
+
+func make_base_text() -> void:
+	output_field.clear()
+	var txt = "\n-----CONSOLE-----\nType 'help' to see available commands\n"
+
+	output_field.append_text(txt)
 
 
 # --- Visibility ---
