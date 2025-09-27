@@ -25,8 +25,8 @@ var look_target_stuff = []
 
 @onready var block = $BlockPower
 
-func update_block_display(current: int, max: int) -> void:
-	block.text = "%s/%s" % [current, max]
+func update_block_display(current: int, _max: int) -> void:
+	block.text = "%s/%s" % [current, _max]
 
 # --- HEALTH ---
 @onready var hp_bar: Label = $HPBar

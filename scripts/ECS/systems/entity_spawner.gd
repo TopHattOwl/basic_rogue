@@ -1,7 +1,7 @@
 class_name EntitySpawner
 extends Node
 
-static func spawn_player():
+static func spawn_player() -> void:
 	if GameData.player:
 		return
 	var player_scene = preload(DirectoryPaths.player_scene)
@@ -39,7 +39,7 @@ static func spawn_player():
 	UiFunc.update_camera_data()
 
 
-static func spawn_monster(grid_pos: Vector2i = Vector2i.ZERO, monster_key: int = 0):
+static func spawn_monster(grid_pos: Vector2i = Vector2i.ZERO, monster_key: int = 0) -> void:
 	var monster: MonsterBase = null
 
 	var monster_data = MonsterDefinitions.monster_definitions[monster_key]
@@ -69,7 +69,7 @@ static func spawn_monster(grid_pos: Vector2i = Vector2i.ZERO, monster_key: int =
 	monster.owner = GameData.main_node # for scene persistence
 
 
-static func spawn_monster_remains(monster: MonsterBase):
+static func spawn_monster_remains(monster: MonsterBase) -> void:
 	var position = monster.get_component(GameData.ComponentKeys.POSITION).grid_pos
 	var monster_id = monster.id
 
@@ -80,13 +80,34 @@ static func spawn_monster_remains(monster: MonsterBase):
 	GameData.main_node.add_child(remains)
 
 
+static func spawn_npc(grid_pos: Vector2i = Vector2i.ZERO, npc_key: int = 0) -> void:
+
+	var npc_data = NpcDefinitions.npc_definitions[npc_key]
+
+	var npc = NPCFactory.make_npc(npc_data)
+
+	var position_comp = ComponentRegistry.get_component(npc, GameData.ComponentKeys.POSITION)
+
+	if position_comp:
+		npc.position = MapFunction.to_world_pos(grid_pos)
+		position_comp.grid_pos = grid_pos
+		MapFunction.add_friendly_to_variables(npc)
+	else:
+		push_error("NPC position component not found")
+
+
+	GameData.main_node.add_child(npc)
+	npc.owner = GameData.main_node # for scene persistence
+
+
+
 # --- ITEMS ---
 
 ## Spawns a specific item [br]
 ## Based on given 
 
 # decrepit
-static func spawn_item(grid_pos: Vector2i, itme_uid: String):
+static func spawn_item(_grid_pos: Vector2i, _item_uid: String):
 	pass
 
 ## spawns a random item based on item type given

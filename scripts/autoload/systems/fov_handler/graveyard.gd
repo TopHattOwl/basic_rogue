@@ -1,4 +1,7 @@
 extends Node
+## Decrepited
+## maybe usefull stuff inside?
+
 
 # enum TILE_STATE { UNEXPLORED, EXPLORED, VISIBLE }
 

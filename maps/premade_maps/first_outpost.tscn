@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://cseuomgboqrvt"]
+[gd_scene load_steps=8 format=4 uid="uid://cseuomgboqrvt"]
 
 [ext_resource type="PackedScene" uid="uid://fj5eqr6uv11j" path="res://resources/tiles/tile_layer_scenes/door_frame_layer.tscn" id="1_742po"]
 [ext_resource type="Script" uid="uid://gbkp8fcvjj60" path="res://maps/premade_maps/first_outpost.gd" id="1_h68pi"]
 [ext_resource type="PackedScene" uid="uid://d2ykjonrt0hyh" path="res://resources/tiles/tile_layer_scenes/door_layer.tscn" id="2_bdcl5"]
-[ext_resource type="PackedScene" uid="uid://btqnpgvfjobn1" path="res://scenes/actors/npcs/wizard.tscn" id="2_ig1nj"]
 [ext_resource type="PackedScene" uid="uid://mehf2wrg2eg1" path="res://resources/tiles/tile_layer_scenes/floor_layer.tscn" id="3_h68pi"]
 [ext_resource type="PackedScene" uid="uid://cnqw4jsoe0kdn" path="res://resources/tiles/tile_layer_scenes/nature_layer.tscn" id="4_ig1nj"]
 [ext_resource type="PackedScene" uid="uid://n0r2s81dvgxx" path="res://resources/tiles/tile_layer_scenes/stair_layer.tscn" id="5_1tr37"]
@@ -11,11 +10,6 @@
 
 [node name="FirstOutpost" type="Node2D"]
 script = ExtResource("1_h68pi")
-
-[node name="Wizard" parent="." instance=ExtResource("2_ig1nj")]
-z_index = 4
-z_as_relative = false
-position = Vector2(279, 60)
 
 [node name="DoorFrameLayer" parent="." instance=ExtResource("1_742po")]
 tile_map_data = PackedByteArray("AAASAAUAAAABAAAAAAA=")

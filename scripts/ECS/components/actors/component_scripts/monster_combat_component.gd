@@ -114,10 +114,8 @@ func calc_damage() -> int:
 		# not yet calculating
 		# just using base value
 		dam = randi_range(damage_min, damage_max)
-		print("damage calc, min-max: ", damage_min,"-" , damage_max)
 	else:
 		# if no modifier component use base value
 		dam = randi_range(damage_min, damage_max)
-		print("damage calc, min-max: ", damage_min,"-" , damage_max)
 
 	return dam

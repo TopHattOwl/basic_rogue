@@ -20,7 +20,6 @@ func _ready() -> void:
 	update_visuals()
 
 
-
 func _process(_delta: float) -> void:
 
 	if !targeter_needs_to_be_seen():
@@ -118,5 +117,3 @@ func targeter_off():
 
 func targeter_on():
 	visible = true
-	# reset_path_line()
-	# update_visuals()

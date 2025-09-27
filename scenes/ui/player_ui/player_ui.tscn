@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://be4gwtu23s7n6"]
+[gd_scene load_steps=13 format=3 uid="uid://be4gwtu23s7n6"]
 
 [ext_resource type="Script" uid="uid://bk8wygn2yqos2" path="res://scripts/ui/player_ui/player_ui.gd" id="1_hrok7"]
 [ext_resource type="Texture2D" uid="uid://cm21jj8xixo86" path="res://assets/ui/HP_alt.png" id="2_ow2f4"]
+[ext_resource type="Script" uid="uid://g4jr7ixl7hs4" path="res://scenes/ui/player_ui/clock_container.gd" id="3_g2gjf"]
 [ext_resource type="Texture2D" uid="uid://dd80msrdcnci" path="res://assets/ui/look_bg.png" id="3_m8cl3"]
+[ext_resource type="Texture2D" uid="uid://crhvdt3srw8wq" path="res://assets/ui/clock_round.png" id="4_g2gjf"]
 [ext_resource type="Texture2D" uid="uid://ls0rjmajqbol" path="res://assets/ui/sidebar_bg.png" id="4_vopia"]
 [ext_resource type="Script" uid="uid://c8l2kw4kej00a" path="res://scripts/ui/player_ui/stance_bar.gd" id="5_1ek40"]
+[ext_resource type="PackedScene" uid="uid://cdditl3ld2caa" path="res://scenes/ui/player_ui/minimap/minimap.tscn" id="5_35xku"]
 [ext_resource type="Script" uid="uid://dobnprsw10nxm" path="res://scripts/ui/player_ui/inventory.gd" id="6_23jyl"]
 [ext_resource type="Script" uid="uid://2tj2dlsumkbw" path="res://scenes/ui/player_ui/buffs_container.gd" id="7_81j3l"]
 
@@ -29,6 +32,44 @@ offset_bottom = 360.0
 texture = ExtResource("4_vopia")
 expand_mode = 1
 
+[node name="ClockContainer" type="Control" parent="SideBar" node_paths=PackedStringArray("time_label")]
+clip_contents = true
+custom_minimum_size = Vector2(47.5, 47.5)
+layout_mode = 2
+anchors_preset = 0
+offset_left = 15.0
+offset_top = 1.0
+offset_right = 112.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_g2gjf")
+time_label = NodePath("../TimeLabel")
+
+[node name="Clock" type="TextureRect" parent="SideBar/ClockContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.5
+offset_right = 48.5
+offset_bottom = 97.0
+grow_horizontal = 2
+pivot_offset = Vector2(49, 50)
+texture = ExtResource("4_g2gjf")
+expand_mode = 1
+
+[node name="TimeLabel" type="Label" parent="SideBar"]
+editor_description = "dynamic display is handled in clock container's script "
+layout_mode = 2
+offset_left = 15.0
+offset_top = 56.0
+offset_right = 112.0
+offset_bottom = 80.0
+text = "TimeLabel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MessageLog" type="RichTextLabel" parent="SideBar"]
 layout_mode = 0
 offset_top = 196.0
@@ -37,6 +78,16 @@ offset_bottom = 360.0
 theme_override_font_sizes/normal_font_size = 6
 vertical_alignment = 2
 
+[node name="Minimap" parent="SideBar" instance=ExtResource("5_35xku")]
+layout_mode = 1
+anchor_top = 0.267
+anchor_right = 1.0
+anchor_bottom = 0.531
+offset_left = 4.0
+offset_top = -13.12
+offset_right = 4.0
+offset_bottom = -17.16
+
 [node name="HPBar" type="Label" parent="."]
 offset_left = 224.0
 offset_top = 336.0
@@ -44,6 +95,7 @@ offset_right = 288.0
 offset_bottom = 360.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
+text = "HP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -61,6 +113,7 @@ offset_right = 392.0
 offset_bottom = 360.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
+text = "Block"
 horizontal_alignment = 1
 vertical_alignment = 1
 

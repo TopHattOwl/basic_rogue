@@ -1,0 +1,34 @@
+{
+    "base_talk": {
+        "lines": ["Greetings, hunter", "You need smithin'?"],
+        "options": [
+            {
+            "label": "Goodbye",
+            "action": "end_talk",
+            "priority": 0
+            },
+            {
+            "label": "What can you tell me about this place?",
+            "leads_to": "local_info",
+            "priority": 60
+            }
+            
+        ]
+    },
+
+    "dynamic_components": {
+        
+    },
+
+    "additional_dialoges": {
+        "local_info": {
+            "lines": ["Not much", "Same as any other place"],
+            "options": [
+                {
+                "label": "Alright, I'll take a look around",
+                "leads_to": "base_talk"
+                }
+            ]
+        }
+    }
+}

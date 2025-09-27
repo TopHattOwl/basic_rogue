@@ -1,0 +1,36 @@
+
+------ UI handling, loadning, adding to scene tree ------
+
+add ui Control nodes to UiFunc.player_ui    This will 'glue' it to a canvas item so it doesnt move with player if camera doesnt move
+
+
+
+------ Adding resources, actors, npcs, monsters  ------
+
+Monsters:
+
+
+NPCS:
+    Make a talk tree json file in resources/actors/npcs/talk_trees
+    IMPORTANT: figure out how to store shop keeper and quest components, now shopkeeper and quest giver components are given in NpcDefinitions and their talk_tree.json files
+
+TALK stuff:
+    talk tree json setup:
+        - 3 main elements: (1) base_talk  (2) dynamic_components  (3) additional_dialoges
+
+Dialoge tree element setup:
+    {
+        "name/uid of the dialoge element": {
+            "lines": [array of strings, the lines]
+            "options" [ array of options the player can say
+                has to have "label"
+                can have "leads_to"
+                can have "action"
+            ]
+        }
+    }
+
+
+Components:
+    add id an name to GameData.ComponentKeys and GameData.COMPONENTS
+    add script path to DirectoryPaths.component_paths

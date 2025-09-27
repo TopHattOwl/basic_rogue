@@ -1,8 +1,6 @@
 extends Node2D
 
 @export var PlayerUI: CanvasLayer
-
-
 # --- COMPONENTS ---
 
 @export var HealthComp: HealthComponent

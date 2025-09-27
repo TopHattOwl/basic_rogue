@@ -30,6 +30,7 @@ func make_inventory():
 
 
 func add_item(item: ItemResource) -> bool:
+	var debug = GameData.inventory_debug
 	var item_type = item.item_type
 	var stackable_comp = item.get_component(StackableComponent)
 	var is_stackable = stackable_comp and stackable_comp.is_stackable
@@ -39,46 +40,56 @@ func add_item(item: ItemResource) -> bool:
 
 	# -- STACKABLE ---
 	if is_stackable:
-		print("--stackable item--")
+		if debug:
+			print("--stackable item--")
 		for existing_item in tab:
 			# --------------------------------------------------------------
 			# if item is already in inventory add to stack
 			if existing_item.uid == item.uid:
-				print("item already in inventory")
+				if debug:
+					print("item already in inventory")
 				var existing_stack = existing_item.get_component(StackableComponent)
 
 				# if there is space in stack for full item stack put it in inventory
 				if existing_stack.count == existing_stack.max_stack_size:
-					print("stack is full, can't pick up item")
+					if debug:
+						print("stack is full, can't pick up item")
 					return false
 				if stackable_comp.count <= (existing_stack.max_stack_size - existing_stack.count):
-					print("enough space in stack")
+					if debug:
+						print("enough space in stack")
 					existing_stack.count += stackable_comp.count
 				else:
-					print("not enough space in stack -> set to max")
+					if debug:
+						print("not enough space in stack -> set to max")
 					existing_stack.count = existing_stack.max_stack_size
 				return true
 			
 		# if item is not in inventory add it to inventory
-		print("item not in inventory")
+
+		if debug:
+			print("item not in inventory")
 		var new_item = item.duplicate()
 
 		# if more than max stack size set to max
 		if new_item.get_component(StackableComponent).count > new_item.get_component(StackableComponent).max_stack_size:
-			print("initial count is too high -> set to max")
+			if debug:
+				print("initial count is too high -> set to max")
 			new_item.get_component(StackableComponent).count = new_item.get_component(StackableComponent).max_stack_size
 		tab.append(new_item)
 		return true
 	
 	# --- NOT STACKABLE ---
 	else:
-		print("--not stackable item--")
+		if debug:
+			print("--not stackable item--")
 
 		# if the tab limit is 0 on not stackable items -> all item can appear exactly once
 		if tab_limit == 0:
 			for existing_item in tab:
 				if existing_item.uid == item.uid:
-					print("item already in inventory")
+					if debug:
+						print("item already in inventory")
 					return false
 
 			# if this item is not in inventory add it
@@ -87,7 +98,8 @@ func add_item(item: ItemResource) -> bool:
 
 
 		if tab.size() == tab_limit:
-			print("tab is full, can't pick up item")
+			if debug:
+				print("tab is full, can't pick up item")
 			return false
 		else:
 			tab.append(item)

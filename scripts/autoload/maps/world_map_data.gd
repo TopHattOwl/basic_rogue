@@ -22,14 +22,6 @@ var world_map_savagery = [] # effects monster spawn rate and dungeon spawns chan
 # 2d array corresponding to world map tile's civilization 1 -> civilization 0 -> not civilization, set when world map is loaded
 var world_map_civilization = []
 
-# var world_map_tile_template = {
-#	 "is_premade": false,
-#	 "map_path": "",
-#	 "generated_seed": 0,
-#	 "explored": false,
-#	 "walkable": false, # is it walkable on world map
-# }
-
 # biome types is a 2d array correspondng to each world map tile's biome type -> biome_type[y][x] = int tells what biome the tile is
 # var biome_type_template = [
 # 	int, # int from enum WORLD_TILE_TYPES
@@ -41,10 +33,20 @@ var world_map_civilization = []
 # }
 
 
+var settlements := SettlementsMap.new()
+
+
 func _ready() -> void:
 	SignalBus.new_game_stared.connect(_on_new_game_start)
 	# old load world map
 	SaveFuncs.load_base_world_map_data()
+	
+
+
+	# TESTING ADDING SETTLEMENTS
+	SettlementFactory.make_settlement(SettlementDefinitions.settlement_definitions[GameData.ALL_SETTLEMENTS.TEST_CITY])
+	SettlementFactory.make_settlement(SettlementDefinitions.settlement_definitions[GameData.ALL_SETTLEMENTS.STARTING_VILLAGE])
+	SettlementFactory.make_settlement(SettlementDefinitions.settlement_definitions[GameData.ALL_SETTLEMENTS.START_OUTPOST])
 
 	# parse_world_map_data()
 
@@ -62,6 +64,11 @@ func _on_new_game_start() -> void:
 
 	parse_world_map_data()
 
+
+func get_biome_type(world_pos: Vector2i) -> int:
+	if world_pos.x < 0 or world_pos.x >= GameData.WORLD_MAP_SIZE.x or world_pos.y < 0 or world_pos.y >= GameData.WORLD_MAP_SIZE.y:
+		return -1
+	return biome_type[world_pos.y][world_pos.x]
 
 # --- INIT ---
 
@@ -106,7 +113,6 @@ func parse_world_map_data() -> void:
 
 	# set biome
 	parse_biome(world_map_scene)
-	init_world_map_civilization()
 
 	parse_savagery()
 
@@ -160,6 +166,8 @@ func parse_biome(world_map_scene: Node2D) -> void:
 						_:
 							# if biome type is premade/water -> tile's biome is null
 							biome_map.map_data[y][x] = null
+
+					# set biome type for all tiles
 					biome_type[y][x] = key
 
 

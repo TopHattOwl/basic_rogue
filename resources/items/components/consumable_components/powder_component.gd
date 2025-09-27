@@ -10,7 +10,7 @@ extends ItemComponent
 @export var current_uses: int
 
 
-func on_use(_item: ItemResource, _user: Node2D, _target: Variant) -> void:
+func on_use(_item: ItemResource, _entity: Node2D, _target: Variant = null) -> void:
 	var weapon = ComponentRegistry.get_component(_target, GameData.ComponentKeys.EQUIPMENT).equipment[GameData.EQUIPMENT_SLOTS.MAIN_HAND]
 	if !weapon:
 		print("can't use powder without weapon")

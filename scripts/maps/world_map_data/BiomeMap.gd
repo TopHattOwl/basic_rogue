@@ -1,6 +1,7 @@
 class_name BiomeMap
 extends Resource
 
+## Each element in the map_data will be a Biome tile (see scripts/map_generation/biomes)
 @export var map_data: Array[Array]
 
 func _init() -> void:

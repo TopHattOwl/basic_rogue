@@ -159,7 +159,8 @@ func euclidean_distance(a: Vector2i, b: Vector2i) -> float:
 
 
 func get_tiles_in_radius(
-	origin: Vector2i, radius: int,
+	origin: Vector2i,
+	radius: int,
 	check_for_vision = false, # if true, does not include tiles that are not visible
 	include_origin: bool = true, # if true, includes origin
 	calc_method: String = "chebyshev", # calculation method for radius
@@ -170,11 +171,11 @@ func get_tiles_in_radius(
 
 	# Validate inputs
 	if radius < 0:
-		push_error("Radius must be non-negative. Received: " + str(radius))
+		push_error("radius must be non-negative, given radius: " + str(radius))
 		return tiles
 	
 	if calc_method not in ["chebyshev", "manhattan", "euclidean"]:
-		push_error("Invalid calc_method: " + calc_method + ". Defaulting to 'chebyshev'")
+		push_error("Invalid calc_method: " + calc_method + ", defaulting to 'chebyshev'")
 		calc_method = "chebyshev"
 
 	var map_height = GameData.terrain_map.size()
@@ -185,7 +186,7 @@ func get_tiles_in_radius(
 		return tiles
 
 
-	# pre calc vision check if needed
+	# check vision if needed
 	var visible_tiles_set: Dictionary
 	if check_for_vision:
 		visible_tiles_set = {}
@@ -193,13 +194,13 @@ func get_tiles_in_radius(
 			visible_tiles_set[tile] = true
 
 
-	# get base bounding box (later check distance from origin depending on calc_method and discard parts of the bounding box, if not `chebyshev`) 
+	# get base bounding box, later, if calc_method is not chebyshev, parts of it will be discarded
 	var min_x = maxi(0, origin.x - radius)
 	var max_x = mini(origin.x + radius, map_width - 1)
 	var min_y = maxi(0, origin.y - radius)
 	var max_y = mini(origin.y + radius, map_height - 1)
 
-	# max_y + 1 bc range() does not include the last value
+	# max_y + 1 bc range() is not inclusive for last value
 	for y in range(min_y, max_y + 1):
 		for x in range(min_x, max_x + 1):
 			var tile = Vector2i(x, y)
@@ -235,6 +236,83 @@ func get_tiles_in_radius(
 
 	return tiles
 
+
+func check_actors_in_radius(
+	origin: Vector2i,
+	radius: int,
+	check_for_vision = false, # if true, does not include tiles that are not visible
+	include_origin: bool = true, # if true, includes origin
+	calc_method: String = "chebyshev", # calculation method for radius
+	check_walkable: bool = false, # if true, does not include tiles that are not walkable
+) -> Array:
+	var tiles: Array[Vector2i] = []
+	# Validate inputs
+	if radius < 0:
+		push_error("radius must be non-negative, given radius: " + str(radius))
+		return tiles
+	
+	if calc_method not in ["chebyshev", "manhattan", "euclidean"]:
+		push_error("Invalid calc_method: " + calc_method + ", defaulting to 'chebyshev'")
+		calc_method = "chebyshev"
+
+	var map_height = GameData.terrain_map.size()
+	var map_width = GameData.terrain_map[0].size() if map_height > 0 else 0
+
+	if map_height <= 0 or map_width <= 0:
+		push_error("Map dimensions are non positive: " + str(map_width) +"x"+ str(map_height))
+		return tiles
+
+
+	# check vision if needed
+	var visible_tiles_set: Dictionary
+	if check_for_vision:
+		visible_tiles_set = {}
+		for tile in FovManager.visible_tiles:
+			visible_tiles_set[tile] = true
+
+	# get base bounding box, later, if calc_method is not chebyshev, parts of it will be discarded
+	var min_x = maxi(0, origin.x - radius)
+	var max_x = mini(origin.x + radius, map_width - 1)
+	var min_y = maxi(0, origin.y - radius)
+	var max_y = mini(origin.y + radius, map_height - 1)
+
+	# max_y + 1 bc range() is not inclusive for last value
+	for y in range(min_y, max_y + 1):
+		for x in range(min_x, max_x + 1):
+			var tile = Vector2i(x, y)
+			var distance: float
+
+			# if not actor skip, we are looking for actors
+			if not get_actor(tile):
+				continue
+
+			# skip origin if not needed
+			if !include_origin and tile == origin:
+				continue
+
+			# walkable check
+			if check_walkable and not is_tile_walkable(tile):
+				continue
+
+			
+			
+			match calc_method:
+				"chebyshev":
+					distance = float(chebyshev_distance(origin, tile))
+				"manhattan":
+					distance = float(manhattan_distance(origin, tile))
+				"euclidean":
+					distance = euclidean_distance(origin, tile)
+			
+			if distance <= float(radius):
+				# apply vision check if needed
+				if check_for_vision:
+					if tile in visible_tiles_set:
+						tiles.append(tile)
+				else:
+					tiles.append(tile)
+
+	return tiles
 
 
 func get_actor(grid_pos: Vector2i) -> Node2D:
@@ -340,6 +418,11 @@ func add_player_to_variables(player: Node2D) -> void:
 
 func add_hostile_to_variables(actor: Node2D) -> void:
 	GameData.all_hostile_actors.append(actor)
+	var grid_pos = ComponentRegistry.get_component(actor, GameData.ComponentKeys.POSITION).grid_pos
+	GameData.actors_map[grid_pos.y][grid_pos.x] = actor
+
+func add_friendly_to_variables(actor: Node2D) -> void:
+	GameData.all_friendly_actors.append(actor)
 	var grid_pos = ComponentRegistry.get_component(actor, GameData.ComponentKeys.POSITION).grid_pos
 	GameData.actors_map[grid_pos.y][grid_pos.x] = actor
 
@@ -450,6 +533,9 @@ func load_premade_map(map_path: String) -> void:
 
 	# after tile layers are parsed emit fov update
 	SignalBus.calculate_fov.emit()
+	SignalBus.entered_premade_map.emit({
+		"world_pos": GameData.player.PlayerComp.world_map_pos
+	})
 
 	# spawn player if not spawned already
 	if GameData.player:
@@ -555,8 +641,6 @@ func exit_world_map():
 
 func is_in_world_map(pos:Vector2i) -> bool:
 	return pos.x >= 0 and pos.x < GameData.WORLD_MAP_SIZE.x and pos.y >= 0 and pos.y < GameData.WORLD_MAP_SIZE.y
-
-
 
 
 # --- CONSTRUCTORS ---

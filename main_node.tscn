@@ -33,3 +33,4 @@ material = SubResource("ShaderMaterial_bxfy6")
 mesh = SubResource("QuadMesh_lwogq")
 
 [node name="ConsoleUI" parent="." instance=ExtResource("6_wywo8")]
+visible = false

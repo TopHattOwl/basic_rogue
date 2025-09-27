@@ -9,12 +9,8 @@ var components: Node
 func _init(monster_key: int) -> void:
 
 
-    make_sprite(monster_key) # transfer this to make sprite
-    # var sprite_path = DirectoryPaths.monster_remains_sprites[monster_key]
-    # if not sprite_path:
-    #     sprite_path = DirectoryPaths.monster_remains_sprites[0]
-    # var sprite = load(sprite_path)
-
+    make_sprite(monster_key)
+    add_to_group("remains")
     add_children()
 
 

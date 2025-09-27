@@ -9,6 +9,7 @@ func _ready() -> void:
 	register_command("help", help_command, "Shows all commands")
 	register_command("clear", clear_command, "Clears console output")
 	register_command("monster_ids", get_monster_ids, "Returns all monster ids: [uid: id]")
+	register_command("npc_ids", get_npc_ids, "Returns all NPC ids: [uid: id]")
 	register_command("skill_ids", get_skill_ids, "Returns all skill ids")
 
 	# player commands
@@ -17,6 +18,7 @@ func _ready() -> void:
 
 	# spawn commands
 	register_command("spawn_monster", spawn_monster_command, "Spawns a monster with given id at given position\n\t\tspawn_monster (id/uid) (x) (y)")
+	register_command("spawn_npc", spawn_npc_command, "Spawns an npc with given id at given position\n\t\tspawn_npc (id/uid) (x) (y)")
 	register_command("spawn_item", spawn_item_command, "NOT IMPLEMENTED\nSpawns an item with given id at given position\n\t\tspawn_item [id] [x] [y]")
 
 
@@ -52,7 +54,7 @@ func execute_command(raw_input: String) -> String:
 func help_command(_args: PackedStringArray) -> String:
 	var output = "-----HELP-----\nAvailable commands:\n"
 	for command in commands:
-		output += "- " + command + ": " + commands[command].description + "\n"
+		output += "- " + "[color=yellow]" + command + "[/color]" + ": " + commands[command].description + "\n"
 	
 	output += "-------\nAnnotation: command [arguments]\n if arguments is inside [] it is required, if inside () it is optional\n"
 	return output
@@ -64,6 +66,12 @@ func get_monster_ids(_args: PackedStringArray) -> String:
 	var output = "All monster ids:\n"
 	for id in GameData.MONSTER_UIDS:
 		output += "\t\t"+ GameData.MONSTER_UIDS[id] + ": " + str(id) + "\n"
+	return output
+
+func get_npc_ids(_args: PackedStringArray) -> String:
+	var output = "All npc ids:\n"
+	for id in GameData.NPC_UIDS:
+		output += "\t\t"+ GameData.NPC_UIDS[id] + ": " + str(id) + "\n"
 	return output
 
 func get_skill_ids(_args: PackedStringArray) -> String:
@@ -169,6 +177,71 @@ func spawn_monster_command(_args: PackedStringArray) -> String:
 	output = "spawning monster: " + monster_uid + " at: " + "(" + str(grid_pos.x) + ", " + str(grid_pos.y) + ")"
 
 	EntitySpawner.spawn_monster(grid_pos, monster_id)
+
+	return output
+
+func spawn_npc_command(_args: PackedStringArray) -> String:
+	var output = ""
+	var npc_id = -1
+	var npc_uid = ""
+
+
+	if _args.is_empty():
+		npc_id = randi() % GameData.NPCS_ALL.size()
+	else:
+		var arg = _args[0]
+
+		# check if _args[0] is id or uid
+		if arg.is_valid_int():
+			# NUMERIC ID CASE
+			npc_id = arg.to_int()
+			npc_uid = GameData.NPC_UIDS[npc_id]
+			if npc_id < 0 or npc_id >= GameData.NPCS_ALL.size():
+				return "Error: Invalid npc id: " + arg 
+
+		else:
+			# UID CASE
+			if GameData.NPC_UIDS.values().has(arg):
+
+				for key in GameData.NPC_UIDS:
+					if GameData.NPC_UIDS[key] == arg:
+						npc_id = key
+						npc_uid = arg
+						break
+			else:
+				return "Error: Invalid npc uid: " + arg
+
+
+	var grid_pos := Vector2i.ZERO
+
+	var is_pos_given = _args.size() > 1
+
+	if not is_pos_given:
+		
+		var avalible_tiles = MapFunction.get_tiles_in_radius(
+			GameData.player.PositionComp.grid_pos,
+			# FovManager.player_vision_range,
+			5,
+			false,
+			false,
+			"euclidean",
+			true,
+			true
+		)
+		if avalible_tiles.is_empty():
+			return "Cannot spawn npc, no avalible tiles nearby"
+
+		grid_pos = avalible_tiles[randi() % avalible_tiles.size()]
+
+	# if pos given, check if it is valid
+	else:
+		grid_pos = Vector2i(_args[1].to_int(), _args[2].to_int())
+		if not MapFunction.can_spawn_monster_at_pos(grid_pos):
+			return "cannot spawn at: " + "(" +_args[1] + ", " + _args[2] + ")"
+
+	output = "spawning npc: " + npc_uid + " at: " + "(" + str(grid_pos.x) + ", " + str(grid_pos.y) + ")"
+
+	EntitySpawner.spawn_npc(grid_pos, npc_id)
 
 	return output
 

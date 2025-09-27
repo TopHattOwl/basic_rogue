@@ -12,7 +12,7 @@
 		"max_block_power": 50
 	},
 	"health_component": {
-		"hp": 126,
+		"hp": 563,
 		"max_hp": 1000
 	},
 	"identity_component": {
@@ -35,14 +35,14 @@
 		"is_in_world_map": false,
 		"is_players_turn": true,
 		"world_map_pos": {
-			"x": 59,
-			"y": 68
+			"x": 49,
+			"y": 20
 		}
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 48,
-			"y": 21
+			"x": 43,
+			"y": 36
 		}
 	}
 }

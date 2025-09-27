@@ -1,0 +1,57 @@
+{
+    "base_talk": {
+        "lines": ["Greetings, hunter", "Tell me what you need"],
+        "options": [
+            {
+                "label": "Goodbye",
+                "action": "end_talk",
+                "priority": 0
+            },
+            {
+                "label": "What can you tell me about this place?",
+                "leads_to": "local_info",
+                "priority": 60
+            },
+            {
+                "label": "What can you tell me about yourself?",
+                "leads_to": "self_info",
+                "priority": 60
+            }
+        ]
+    },
+
+    "dynamic_components": {
+        
+    },
+
+    "additional_dialoges": {
+        "local_info": {
+            "lines": ["I can't say much", "I just arrived here"],
+            "options": [
+                {
+                    "label": "Alright, I'll take a look around",
+                    "leads_to": "base_talk"
+                }
+            ]
+        },
+        "self_info": {
+            "lines": ["I was once a great wizard,", "but my strenght has faded with my youth, I have been traveling ever since then."],
+            "options": [
+                {
+                    "label": "Where have you been?",
+                    "leads_to": "travels"
+                }
+            ]
+        },
+        "travels": {
+            "lines": ["I'll fill this in later", "for now I have no more to say"],
+            "options": [
+                {
+                    "label": "Goodbye",
+                    "action": "end_talk",
+                    "priority": 0
+                }
+            ]
+        }
+    }
+}

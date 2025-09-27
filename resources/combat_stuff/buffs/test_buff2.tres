@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="Buff" load_steps=8 format=3 uid="uid://bynyawf2yrdim"]
+[gd_resource type="Resource" script_class="Buff" load_steps=7 format=3 uid="uid://bynyawf2yrdim"]
 
 [ext_resource type="Script" uid="uid://c6hqvujepfyxm" path="res://scripts/systems/modifier_system/stat_modifier_class.gd" id="1_dqdud"]
 [ext_resource type="Script" uid="uid://cqey1b1dwflt4" path="res://scripts/systems/modifier_system/buff.gd" id="2_fsnnh"]
-[ext_resource type="Script" uid="uid://cq8mad0mmyu8r" path="res://scripts/systems/conditions/base_condition.gd" id="2_hbqha"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3ouu7"]
 size = Vector2(16, 24)
@@ -13,7 +12,7 @@ target_stat = &"damage_min"
 target_component = 3
 operation = 0
 value = 20.0
-conditions = Array[ExtResource("2_hbqha")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_43f3m"]
@@ -22,7 +21,7 @@ target_stat = &"damage_max"
 target_component = 3
 operation = 0
 value = 20.0
-conditions = Array[ExtResource("2_hbqha")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_fsnnh"]
@@ -31,7 +30,7 @@ target_stat = &"element"
 target_component = 3
 operation = 2
 value = 2.0
-conditions = Array[ExtResource("2_hbqha")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [resource]

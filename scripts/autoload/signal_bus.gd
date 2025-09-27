@@ -68,6 +68,9 @@ signal world_node_ready()
 # used for ambush manager to create ambushes
 
 
+signal entered_premade_map(data: Dictionary)
+
+
 signal buff_added(buff: Buff, actor: Node2D)
 signal buff_removed(buff: Buff, actor: Node2D)
 
@@ -119,3 +122,7 @@ signal directional_input(direction: Vector2i)
 # --- SKILL ---
 
 signal skill_leveled_up(skill_tree_id: int)
+
+
+
+# --- TALK SCREEN ---

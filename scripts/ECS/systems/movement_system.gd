@@ -1,7 +1,10 @@
 class_name MovementSystem
 extends Node
 
-## attemps to move entity to new_pos, returns true if successful
+# TODO: Remove is_current_actor_player from process_movements (that func only processes player movement )
+
+## attemps to move entity to new_pos, returns true if successful [br]
+## Only returns false if movement can't be made (invalid grid pos)
 static func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 
 	var position_component = ComponentRegistry.get_component(entity, GameData.ComponentKeys.POSITION)
@@ -27,8 +30,12 @@ static func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 	var actor_at_pos = GameData.actors_map[new_pos.y][new_pos.x]
 
 	if actor_at_pos:
-		if faction != ComponentRegistry.get_component(actor_at_pos, GameData.ComponentKeys.IDENTITY).faction:
+		var faction_at_pos = ComponentRegistry.get_component(actor_at_pos, GameData.ComponentKeys.IDENTITY).faction
+		if faction_at_pos == "monsters":
 			return ComponentRegistry.get_component(entity, GameData.ComponentKeys.MELEE_COMBAT).melee_attack(actor_at_pos)
+		
+		if faction_at_pos == "npcs":
+			return true
 
 
 	# general movement check
@@ -60,6 +67,7 @@ static func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 	return false
 
 
+## attemps to move monster to new pos
 static func process_monster_movement(entity: Node, new_pos: Vector2i) -> bool:
 
 	var position_component = ComponentRegistry.get_component(entity, GameData.ComponentKeys.POSITION)
@@ -162,6 +170,7 @@ static func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
 		return true
 	
 	return false
+
 # --- UTILS ---
 static func check__map_transition(new_pos: Vector2i, dir: Vector2i) -> bool:
 

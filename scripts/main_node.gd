@@ -3,8 +3,14 @@ extends Node2D
 const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 @export var input_manager: Node = null
 
-# AMBUSH MANAGER:
-	# TODO in ambush maanger to make monster calculation from 'money'
+# Doing now:
+	# NPCs, their components and spawning them/factory
+
+	# signal bus direction input for talk direction
+
+
+# BUGS:
+	# level up particle sometimes doesn't exit the tree
 
 # REMOVE:
 	# Iron_worm and Mask monster scenes and scripts, now its done in code
@@ -13,14 +19,18 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	# monster tier not used anymore, remove form everywhere (WorldMonsterTiles, WorldMonsterMap, etc.)
 
 # REWORK:
+	# VERY IMPORTANT:
+		# Move biome generation to Biome class, each biome should extend Biome class
 	# make buffs, weapons, all resources basically in code:
 		# right now if I change order of enums it could fuck the game up
 		# things interacting with modifiers comp could be affected for sure, maybe others
-	# Move biome generation to Biome class, eah biome should extend Biome class
+	
 
 # finish:
 	# VERY IMPORTANT:
 		# save and load for skills temporarily removed bc of rework
+		# world_map node's field tilemap layer has generig tileset not the already made one in resources/tiles/world_map_tiles/field_tiles.tres
+		# monster melee component not taking modifiers into account in monster_combat_component.gd
 
 	# in entity_systems item spawner is decrepit
 
@@ -112,6 +122,8 @@ func _ready():
 
 	EntitySpawner.spawn_player()
 
+	# --- TESTING ---
+
 	# test stances
 	GameData.player.StanceComp.add_stance(load("res://resources/combat_stuff/stances/test.tres"))
 	GameData.player.StanceComp.add_stance(load("res://resources/combat_stuff/stances/test2.tres"))
@@ -129,8 +141,6 @@ func _ready():
 	GameData.player.InventoryComp.add_item(resource3)
 	GameData.player.InventoryComp.add_item(test_weapon)
 
-	# GameData.player.EquipmentComp.equip_item(test_weapon, GameData.EQUIPMENT_SLOTS.MAIN_HAND)
-
 
 	# powder test
 	var powder: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/powders/test_powder.tres")
@@ -143,7 +153,6 @@ func _ready():
 
 
 	# spell test
-	# var test_spell = SpellFactory.create_spell("res://resources/spells/spell_instances/test_spell.tres", "res://scenes/spells/test_spell/test_spell.tscn")
 
 	var test_spell = SpellFactory.create_spell(DirectoryPaths.spell_resources.test_spell, DirectoryPaths.spell_scenes.test_spell)
 	var test_turret_spell = SpellFactory.create_spell(DirectoryPaths.spell_resources.test_turret_spell, DirectoryPaths.spell_scenes.test_turret_spell)
@@ -158,7 +167,6 @@ func _ready():
 	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.SWORD, SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_SWORD, true)
 	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.MACE, SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_MACE, true)
 	GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.SWORD, SkillDefinitions.PASSIVE_IDS.CHILD_OF_PLACEHOLDER, true)
-
 
 func _process(_delta):
 # input handler, gets input passed to it and depending on what input is pressed it calls different functions

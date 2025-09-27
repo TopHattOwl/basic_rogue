@@ -50,6 +50,7 @@ static func load_player_data(json):
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.BLOCK).max_block_power = block.get("max_block_power")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.BLOCK).block_recovery_rate = block.get("block_recovery_rate")
 
+
 	# SKILLS REWORKED
 	# Skills component
 	# var skills = json.get("skills_component")

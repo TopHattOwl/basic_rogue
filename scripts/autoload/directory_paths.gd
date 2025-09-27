@@ -9,16 +9,41 @@ const player_data_json = "res://resources/actors//player/player.json"
 const player_scene = "res://scenes/actors/player/player.tscn"
 
 
-# --- ACTORS ---
 
-# DECREPATED
-const monster_remains_scene = {
-	# bloody remains
-	GameData.MONSTERS_ALL.IRON_WORM: "res://scenes/actors/monsters/remains/bloody_remains.tscn",
+# --- COMPONENT PATHS ---
 
+var component_paths = {
+	# ACTORS
+	GameData.get_component_name(GameData.ComponentKeys.ABILITIES): "res://scripts/ECS/components/actors/component_scripts/abilities_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.AI_BEHAVIOR): "res://scripts/ECS/components/actors/component_scripts/ai_behavior_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.ATTRIBUTES): "res://scripts/ECS/components/actors/component_scripts/attributes_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.EQUIPMENT): "res://scripts/ECS/components/actors/component_scripts/equipment_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.HEALTH): "res://scripts/ECS/components/actors/component_scripts/health_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.IDENTITY): "res://scripts/ECS/components/actors/component_scripts/identity_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.INVENTORY): "res://scripts/ECS/components/actors/component_scripts/iventory_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.MELEE_COMBAT): "res://scripts/ECS/components/actors/component_scripts/melee_combat_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.BLOCK): "res://scripts/ECS/components/actors/component_scripts/block_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.DEFENSE_STATS): "res://scripts/ECS/components/actors/component_scripts/defense_stats_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.POSITION): "res://scripts/ECS/components/actors/component_scripts/position_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.SPELLS): "res://scripts/ECS/components/actors/component_scripts/spells_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.STAMINA): "res://scripts/ECS/components/actors/component_scripts/stamina_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.STATE): "res://scripts/ECS/components/actors/component_scripts/state_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.PLAYER): "res://scripts/ECS/components/actors/component_scripts/player_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.HOTBAR): "res://scripts/ECS/components/actors/component_scripts/hotbar_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.SKILLS): "res://scripts/ECS/components/actors/component_scripts/skills_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.STANCE): "res://scripts/ECS/components/actors/component_scripts/stance_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): "res://scripts/ECS/components/actors/component_scripts/modifiers_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.MONSTER_PROPERTIES): "res://scripts/ECS/components/actors/component_scripts/monster_properties_component.gd",
 
-	# ash
-	GameData.MONSTERS_ALL.MASK: "res://scenes/actors/monsters/remains/mask_remains.tscn",
+	# MONSTERS
+	GameData.get_component_name(GameData.ComponentKeys.MONSTER_STATS): "res://scripts/ECS/components/actors/component_scripts/monster_stats_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.MONSTER_DROPS): "res://scripts/ECS/components/actors/component_scripts/monster_drops_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.MONSTER_COMBAT): "res://scripts/ECS/components/actors/component_scripts/monster_combat_component.gd",
+
+	# NPCS
+	GameData.get_component_name(GameData.ComponentKeys.SHOP_KEEPER): "res://resources/actors/npcs/components/shop_keeper_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.QUEST_GIVER): "res://resources/actors/npcs/components/quest_giver_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.TALK): "res://resources/actors/npcs/components/talk_component.gd",
 }
 
 
@@ -78,8 +103,6 @@ const world_monster_map_save = "res://resources/world_map_data/world_monster_map
 
 
 # --- MAPS ---
-const first_outpost = "res://maps/premade_maps/first_outpost.tscn"
-const field_with_hideout = "res://maps/premade_maps/field_with_hideout.tscn"
 
 # current map will be a copy of this if tile is not premade
 # terrain data gets loaded into this Node when generating
@@ -100,8 +123,6 @@ const dungeon_generator = "res://scripts/map_generation/dungeon_generator.gd"
 
 # --- UI ---
 const main_menu_scene = "res://scenes/ui/main_menu/main_menu.tscn"
-# const pick_up_window_scene = "res://scenes/ui/items/pick_up_window.tscn"
-# const pick_up_window_script = "res://scenes/ui/items/pick_up_window.gd"
 
 const damage_text_scene = "res://scenes/ui/damage_text.tscn"
 
@@ -111,6 +132,8 @@ const item_window_scene = "res://scenes/ui/items/item_window.tscn"
 
 const buff_icon_scene = "res://scenes/ui/hud/buffs/buff_icon.tscn"
 const buff_hover_tooltip_scene = "res://scenes/ui/hud/buffs/buff_hover_tooltip.tscn"
+
+const talk_screen_scene = "res://scenes/ui/talk/talk_screen.tscn"
 
 
 
@@ -124,6 +147,9 @@ var monster_sprites = {
 
 	GameData.MONSTERS_ALL.HOBGOBLIN: "",
 	GameData.MONSTERS_ALL.TOOTH_FAIRY: "",
+	GameData.MONSTERS_ALL.WOLF: "",
+	GameData.MONSTERS_ALL.PUMPKIN: "",
+	GameData.MONSTERS_ALL.SANDSTONE_GOLEM: "",
 }
 
 var monster_remains_sprites = {
@@ -134,8 +160,23 @@ var monster_remains_sprites = {
 
 	GameData.MONSTERS_ALL.HOBGOBLIN: "",
 	GameData.MONSTERS_ALL.TOOTH_FAIRY: "",
+	GameData.MONSTERS_ALL.WOLF: "",
+	GameData.MONSTERS_ALL.PUMPKIN: "",
+	GameData.MONSTERS_ALL.SANDSTONE_GOLEM: "",
 }
 
+var npc_sprites = {
+	GameData.NPCS_ALL.WIZARD: "res://assets/npcs/wizard.png",
+	GameData.NPCS_ALL.BLACKSMITH: "res://assets/npcs/blacksmith.png",
+}
+
+
+# --- NPC JSON ---
+
+var npc_conversations_json = {
+	GameData.NPCS_ALL.WIZARD: "res://resources/actors/npcs/talk_trees/wizard/wizard.json",
+	GameData.NPCS_ALL.BLACKSMITH: "res://resources/actors/npcs/talk_trees/blacksmith/blacksmith.json",
+}
 
 # --- TILE SETS ---
 

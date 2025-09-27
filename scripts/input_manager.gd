@@ -1,7 +1,7 @@
 extends Node
 
 const INITIAL_DELAY = 0.4
-const REPEAT_DELAY = 0.1
+const REPEAT_DELAY = 0.03
 var _input_states := {}
 
 var player_look_pos: Vector2i
@@ -29,6 +29,9 @@ func handle_input() -> void:
 		GameData.INPUT_MODES.SPELL_AIMING:
 			handle_spell_aiming_inputs()
 
+		GameData.INPUT_MODES.DIRECTION:
+			handle_direction_inputs()
+
 
 		# # UI Stuff
 		# ui inputs flow: 
@@ -40,6 +43,8 @@ func handle_input() -> void:
 			handle_stance_selection_inputs()
 		GameData.INPUT_MODES.INVENTORY:
 			handle_inventory_inputs()
+		GameData.INPUT_MODES.TALK_SCREEN:
+			handle_talk_screen_inputs()
 
 
 		# DEBUG
@@ -88,13 +93,11 @@ func handle_zoomed_in_inputs():
 	if Input.is_action_just_pressed("stance_change"):
 		UiFunc.toggle_stance_bar()
 		GameData.player.PlayerComp.set_prev_input_mode()
-		# prev_input_mode = GameData.player.PlayerComp.input_mode
 		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.STANCE_SELECTION
 	
 	if Input.is_action_just_pressed("inventory"):
 		UiFunc.toggle_inventory()
 		GameData.player.PlayerComp.set_prev_input_mode()
-		# prev_input_mode = GameData.player.PlayerComp.input_mode
 		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.INVENTORY
 
 	# TODO pick up 
@@ -128,6 +131,13 @@ func handle_zoomed_in_inputs():
 			GameData.player.HotbarComp.use_hotbar(hotbar_input)
 
 	
+	# talking
+	if Input.is_action_just_pressed("action_chat"):
+		GameData.player.PlayerComp.set_prev_input_mode()
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.DIRECTION
+		TalkManager.pick_talk_target()
+
+
 	# console open
 	if Input.is_action_just_pressed("console") and GameData.dev_mode:
 		GameData.player.PlayerComp.set_prev_input_mode()
@@ -248,6 +258,14 @@ func handle_inventory_inputs():
 		UiFunc.toggle_inventory()
 		GameData.player.PlayerComp.restore_input_mode()
 
+# --- TALK SCREEN ---
+	
+func handle_talk_screen_inputs():
+	if Input.is_action_just_pressed("ui_cancel"):
+		# no need to reset player input, close_talk_screen(does it)
+		# ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).restore_input_mode()
+		TalkManager.close_talk_screen()
+
 
 # --- SPELL AIMING ---
 
@@ -256,6 +274,19 @@ func handle_spell_aiming_inputs():
 	# input managger only handles exiting from input modes
 	if Input.is_action_just_pressed("ui_cancel"):
 		SpellAimingSystem.exit_spell_aiming(false)
+
+
+# --- DIRECTION ---
+
+func handle_direction_inputs():
+
+	if Input.is_action_just_pressed("ui_cancel"):
+		ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).restore_input_mode()
+
+	for action in GameData.INPUT_DIRECTIONS:
+		if Input.is_action_just_pressed(action):
+			var dir = GameData.INPUT_DIRECTIONS[action]
+			SignalBus.direction_input().emit(dir)
 
 
 # --- DEBUG ---

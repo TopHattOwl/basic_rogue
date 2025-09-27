@@ -12,7 +12,7 @@ var visible_tiles: Array[Vector2i] = []
 var explored_tiles: Array[Vector2i] = []
 var map_width: int = 0
 var map_height: int = 0
-var player_vision_range: int = 18
+var player_vision_range: int = 10
 
 
 func _ready() -> void:
@@ -26,6 +26,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if not GameData.player:
+		return
 	if GameData.player.PlayerComp.is_in_world_map:
 		if fov_tilemap:
 			fov_tilemap.visible = false

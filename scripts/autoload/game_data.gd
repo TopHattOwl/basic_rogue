@@ -50,6 +50,9 @@ func remove_entities(is_player_in_dungeon: bool = false) -> void:
 	if all_items.size() > 0:
 		for item in all_items:
 			item.queue_free()
+	if all_friendly_actors.size() > 0:
+		for actor in all_friendly_actors:
+			actor.queue_free()
 	var remains = main_node.get_tree().get_nodes_in_group("remains")
 	if remains.size() > 0:
 		for remain in remains:
@@ -94,8 +97,17 @@ enum MONSTERS_ALL {
 
 
 	# not fully finished
+	# 	bosses
 	HOBGOBLIN,
 	TOOTH_FAIRY,
+
+	# minboss
+	PUMPKIN,
+	SANDSTONE_GOLEM,
+
+	# 	normal
+	WOLF,
+
 	
 
 
@@ -116,6 +128,9 @@ var MONSTER_UIDS = {
 	# not fully finished
 	MONSTERS_ALL.HOBGOBLIN: "hobgoblin",
 	MONSTERS_ALL.TOOTH_FAIRY: "tooth_fairy",
+	MONSTERS_ALL.WOLF: "wolf",
+	MONSTERS_ALL.PUMPKIN: "pumpkin",
+	MONSTERS_ALL.SANDSTONE_GOLEM: "sandstone_golem",
 
 }
 
@@ -128,6 +143,19 @@ var HostileBiomes = [
 		WORLD_TILE_TYPES.FOREST,
 ]
 
+# ___ NPCs ___
+
+enum NPCS_ALL {
+	
+	WIZARD,
+	BLACKSMITH,
+
+}
+
+var NPC_UIDS = {
+	NPCS_ALL.WIZARD: "wizard",
+	NPCS_ALL.BLACKSMITH: "blacksmith",
+}
 
 # ___ Maps ___
 
@@ -165,7 +193,7 @@ var TileDatas = {
 	},
 	TILE_TAGS.DOOR: {
 		"walkable": true,
-		"transparent": true,
+		"transparent": false,
 	},
 	TILE_TAGS.DOOR_FRAME: {
 		"walkable": true,
@@ -187,7 +215,7 @@ var TilemapLayers = {
 	TILE_TAGS.NATURE: "NatureLayer"
 }
 
-
+# the names of the tilesmap layer nodes on world map
 var WorldMapTileLayer = {
 	WORLD_TILE_TYPES.CITY: "City",
 	WORLD_TILE_TYPES.VILLAGE: "Village",
@@ -244,11 +272,13 @@ enum INPUT_MODES {
 
 	# aiming
 	SPELL_AIMING,
+	DIRECTION, # used when asking player to pick one of the 8 directions
 
 
 	# UI stuff
 	STANCE_SELECTION,
 	INVENTORY,
+	TALK_SCREEN,
 
 	# DEBUG
 	CONSOLE,
@@ -287,6 +317,55 @@ const COMPONENTS = {
 	ComponentKeys.MONSTER_DROPS: "Components/MonsterDropsComponent",
 	ComponentKeys.MONSTER_COMBAT: "Components/MonsterCombatComponent",
 	ComponentKeys.MONSTER_MODIFIERS: "Components/MonsterModifiersComponent",
+
+	# NPCS
+
+	ComponentKeys.SHOP_KEEPER: "Components/ShopKeeperComponent",
+	ComponentKeys.QUEST_GIVER: "Components/QuestGiverComponent",
+	ComponentKeys.TALK: "Components/TalkComponent",
+
+}
+
+# COMPONENTS
+enum ComponentKeys {
+	# PLAYER
+	ABILITIES,
+	EQUIPMENT,
+	INVENTORY,
+	MELEE_COMBAT,
+	BLOCK,
+	PLAYER,
+	SKILLS,
+	STANCE,
+	HOTBAR,
+	MODIFIERS,
+
+	# ALL ACTORS
+	AI_BEHAVIOR,
+
+	ATTRIBUTES,
+	HEALTH,
+	IDENTITY,
+	DEFENSE_STATS,
+	POSITION,
+
+	# maybe players and monsters, right not just player
+	SPELLS,
+	STAMINA,
+	STATE,
+
+	# MONSTERS
+	MONSTER_PROPERTIES,
+	MONSTER_STATS,
+	MONSTER_COMBAT,
+	MONSTER_MODIFIERS,
+	MONSTER_DROPS,
+
+
+	# NPC
+	SHOP_KEEPER,
+	QUEST_GIVER,
+	TALK,
 
 }
 
@@ -353,41 +432,7 @@ const SPELL_SUBTYPE_NAMES = {
 	SPELL_SUBTYPE.ARMOR_INFUSE: "armor infuse",
 }
 
-# COMPONENTS
-enum ComponentKeys {
-	# PLAYER
-	ABILITIES,
-	EQUIPMENT,
-	INVENTORY,
-	MELEE_COMBAT,
-	BLOCK,
-	PLAYER,
-	SKILLS,
-	STANCE,
-	HOTBAR,
-	MODIFIERS,
 
-	# ALL ACTORS
-	AI_BEHAVIOR,
-
-	ATTRIBUTES,
-	HEALTH,
-	IDENTITY,
-	DEFENSE_STATS,
-	POSITION,
-
-	# maybe players and monsters, right not just player
-	SPELLS,
-	STAMINA,
-	STATE,
-
-	# MONSTERS
-	MONSTER_PROPERTIES,
-	MONSTER_STATS,
-	MONSTER_COMBAT,
-	MONSTER_MODIFIERS,
-	MONSTER_DROPS,
-}
 
 # MAP
 enum TILE_TAGS {
@@ -402,6 +447,7 @@ enum TILE_TAGS {
 
 # world map
 enum WORLD_TILE_TYPES {
+	NONE = -1,
 	# civilization
 	CITY,
 	VILLAGE,
@@ -583,17 +629,36 @@ enum COMBAT_TYPE {
 
 
 
+# SETTLEMENTS
+
+enum ALL_SETTLEMENTS {
+	START_OUTPOST,
+	TEST_CITY,
+	STARTING_VILLAGE,
+}
+
+
+
+# --- Z INDEXES ---
+
+const TALK_SCREEN_Z_INDEX = 25
+
+
 # debug options
-var combat_system_debug := 1
-var melee_combat_debug := 1
+var combat_system_debug := 0
+var melee_combat_debug := 0
 var spell_debug := 0
 var turn_manager_debug := 0
 var input_manager_debug := 0
 var hot_bar_debug := 0
 var map_functions_debug := 0
+var biome_debug := 0 # for biome generation and loading in Biome classes
 var fov_manager_debug := 0
 var item_debug := 0
+var inventory_debug := 0
 var modifiers_debug := 0
 var skill_debug := 0
 var leveling_system_debug := 0
-var ambush_debug := 1
+var ambush_debug := 0
+var contract_debug := 1
+var settlement_manager_debug := 1

@@ -1,7 +1,7 @@
 class_name MonsterBase
 extends Node2D
 ## base class for monsters, hold data that all type of monsters have
-## for `d` Dictionary data templet see MonsterDefinitions
+## for `d` Dictionary data template see MonsterDefinitions
 
 var sprite: Sprite2D
 
@@ -71,61 +71,24 @@ func set_base_data(d: Dictionary) -> void:
 	
 
 func add_components(d: Dictionary) -> void:
-	make_components()
+	make_components(d)
 	fill_component_data(d)
 	connect_signals()
 
 
-func make_components() -> void:
+func make_components(d: Dictionary) -> void:
 
-	# position
-	var pos_comp = PositionComponent.new()
-	pos_comp.name = GameData.get_component_name(GameData.ComponentKeys.POSITION)
-	components.add_child(pos_comp)
-
-
-	# identity
-	var identity_comp = IdentityComponent.new()
-	identity_comp.name = GameData.get_component_name(GameData.ComponentKeys.IDENTITY)
-	components.add_child(identity_comp)
-
-	# health
-	var health_comp = HealthComponent.new()
-	health_comp.name = GameData.get_component_name(GameData.ComponentKeys.HEALTH)
-	components.add_child(health_comp)
-
-	# monster combat
-	var monster_combat_comp = MonsterCombatComponent.new()
-	monster_combat_comp.name = GameData.get_component_name(GameData.ComponentKeys.MONSTER_COMBAT)
-	components.add_child(monster_combat_comp)
-
-	# monster properties not used yet
-
-	# defense stats
-	var defense_stats_comp = DefenseStatsComponent.new()
-	defense_stats_comp.name = GameData.get_component_name(GameData.ComponentKeys.DEFENSE_STATS)
-	components.add_child(defense_stats_comp)
-
-	# attributes
-	var attributes_comp = AttributesComponent.new()
-	attributes_comp.name = GameData.get_component_name(GameData.ComponentKeys.ATTRIBUTES)
-	components.add_child(attributes_comp)
-
-	# ai behavior
-	var ai_behavior_comp = AiBehaviorComponent.new()
-	ai_behavior_comp.name = GameData.get_component_name(GameData.ComponentKeys.AI_BEHAVIOR)
-	components.add_child(ai_behavior_comp)
-
-	# modifiers
-	var modifiers_comp = ModifiersComponent.new()
-	modifiers_comp.name = GameData.get_component_name(GameData.ComponentKeys.MONSTER_MODIFIERS)
-	components.add_child(modifiers_comp)
-
-
-	# stamina
-	# state
-	# monster properties 
-	# NOUT IMPLEMENTED
+	for key in d:
+		if key == "base_data":
+			continue
+		
+		var comp_name: String = key
+		if DirectoryPaths.component_paths.has(comp_name):
+			var component = load(DirectoryPaths.component_paths[comp_name]).new()
+			component.name = comp_name
+			components.add_child(component)
+		else:
+			push_error("Component not found: ", comp_name)
 
 
 func fill_component_data(d: Dictionary) -> void:
@@ -133,6 +96,8 @@ func fill_component_data(d: Dictionary) -> void:
 	var d_final = calculate_stats(d)
 	for comp in components.get_children():
 		var comp_data = d_final.get(comp.name, {})
+		if not comp.has_method("initialize"):
+			continue
 		comp.initialize(comp_data)
 
 
