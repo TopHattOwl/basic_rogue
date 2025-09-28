@@ -35,13 +35,13 @@
 		"is_in_world_map": false,
 		"is_players_turn": true,
 		"world_map_pos": {
-			"x": 49,
-			"y": 20
+			"x": 56,
+			"y": 8
 		}
 	},
 	"position_component": {
 		"grid_pos": {
-			"x": 43,
+			"x": 5,
 			"y": 36
 		}
 	}

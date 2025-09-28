@@ -44,9 +44,7 @@ func _ready() -> void:
 
 
 	# TESTING ADDING SETTLEMENTS
-	SettlementFactory.make_settlement(SettlementDefinitions.settlement_definitions[GameData.ALL_SETTLEMENTS.TEST_CITY])
-	SettlementFactory.make_settlement(SettlementDefinitions.settlement_definitions[GameData.ALL_SETTLEMENTS.STARTING_VILLAGE])
-	SettlementFactory.make_settlement(SettlementDefinitions.settlement_definitions[GameData.ALL_SETTLEMENTS.START_OUTPOST])
+	
 
 	# parse_world_map_data()
 
