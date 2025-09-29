@@ -45,27 +45,47 @@ func enter_world_map(world_pos: Vector2i) -> void:
 
 # --- SAVE/LOAD ---
 
-# save and load the WorldMap to save files
 func save_world_map() -> void:
-	ResourceSaver.save(self, DirectoryPaths.world_map_save)
+	ResourceSaver.save(self, SavePaths.world_map_save)
+	print("saving world map class here: ", SavePaths.world_map_save)
 
 func load_world_map() -> void:
 	var loader := ResourceLoader.load(
-		DirectoryPaths.world_map_save,
+		SavePaths.world_map_save,
 		"",
 		ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
 	) as WorldMap
 
 	if loader == null:
-		push_error("Failed to load BiomeMap")
+		push_error("Failed to load WorldMap")
 		return
 	
 	map_data = loader.map_data
 
-
-
+## saves exlored tiles for map [br]
+## only saves it to the varable, does not write save file
 func save_explored_tiles(world_pos: Vector2i, tiles: Array) -> void:
 	map_data[world_pos.y][world_pos.x].save_explored_tiles(tiles)
 
 func get_explored_tiles(world_pos: Vector2i) -> Array:
 	return map_data[world_pos.y][world_pos.x].explored_tiles.duplicate()
+
+
+
+# BASE SAVES
+# save and load the WorldMap to save files
+func save_base_world_map() -> void:
+	ResourceSaver.save(self, DirectoryPaths.world_map_base_save)
+
+func load_base_world_map() -> void:
+	var loader := ResourceLoader.load(
+		DirectoryPaths.world_map_base_save,
+		"",
+		ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
+	) as WorldMap
+
+	if loader == null:
+		push_error("Failed to load WorldMap base")
+		return
+	
+	map_data = loader.map_data

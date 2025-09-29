@@ -87,20 +87,19 @@ const will_hit_tile_art = "res://assets/targeter_stuff/hit_tiles.png"
 # --- SCRIPT CLASSES ---
 
 #     -- save/load --
-const save_player = "res://scripts/autoload/save_load/save_classes/save_player.gd"
-const load_player = "res://scripts/autoload/save_load/load_classes/load_player.gd"
+# const save_player = "res://scripts/autoload/save_load/save_classes/save_player.gd"
+# const load_player = "res://scripts/autoload/save_load/load_classes/load_player.gd"
 
-const save_world_map = "res://scripts/autoload/save_load/save_classes/save_world_map.gd"
-const load_world_map = "res://scripts/autoload/save_load/load_classes/load_world_map.gd"
-const world_map_data_save = "res://resources/world_map_data/world_save.sav"
-const biome_type_world_map_data_save = "res://resources/world_map_data/world_save_biome_type.sav"
-const monster_world_map_data_save = "res://resources/world_map_data/world_save_monsters.sav"
-const world_map_savagery_save = "res://resources/world_map_data/world_save_savagery.sav"
-const world_map_civilization_save = "res://resources/world_map_data/world_save_civilization.sav"
+# const save_world_map = "res://scripts/autoload/save_load/save_classes/save_world_map.gd"
+# const load_world_map = "res://scripts/autoload/save_load/load_classes/load_world_map.gd"
+# const world_map_data_save = "res://resources/world_map_data/world_save.sav"
+const biome_type_world_map_base_data_save = "res://resources/world_map_data/world_save_biome_type.sav"
+const world_map_savagery_base_save = "res://resources/world_map_data/world_save_savagery.sav"
+const world_map_civilization_base_save = "res://resources/world_map_data/world_save_civilization.sav"
 
-const biome_map_save = "res://resources/world_map_data/biome/biome_map.tres"
-const world_map_save = "res://resources/world_map_data/world_map/world_map.tres"
-const world_monster_map_save = "res://resources/world_map_data/world_monster_map/world_monster_map.tres"
+const biome_map_base_save = "res://resources/world_map_data/biome/biome_map.tres"
+const world_map_base_save = "res://resources/world_map_data/world_map/world_map.tres"
+const world_monster_map_base_save = "res://resources/world_map_data/world_monster_map/world_monster_map.tres"
 
 
 

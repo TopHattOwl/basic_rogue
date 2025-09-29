@@ -42,12 +42,7 @@ func _on_load_game_pressed():
 		print("No save file found, start a new game")
 		return
 
-	# load in player data
-	var player_json = FileAccess.open(SavePaths.player_data_json, FileAccess.READ)
-	var player_data: Dictionary = JSON.parse_string(player_json.get_as_text())
-	player_json.close()
-	PlayerFactory.make_base_player()
-	SaveFuncs.load_player_data(player_data)
+	SaveFuncs.load_game()
 
 	create_tween().tween_property(self, "modulate", Color.TRANSPARENT, 0.5)
 	await get_tree().create_timer(0.5).timeout

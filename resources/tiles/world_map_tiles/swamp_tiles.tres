@@ -1,0 +1,12 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bc061hnnpvgjo"]
+
+[ext_resource type="Texture2D" uid="uid://cw0a2gbad8byn" path="res://assets/world_map/swamp.png" id="1_7s5ou"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vom27"]
+texture = ExtResource("1_7s5ou")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(16, 24)
+sources/0 = SubResource("TileSetAtlasSource_vom27")

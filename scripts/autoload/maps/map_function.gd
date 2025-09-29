@@ -553,9 +553,6 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 		# map is premade and premade map is loaded
 		# or when biome map generates or loads a map
 
-	# save player data
-	SaveFuncs.save_player_data(GameData.player)
-
 	var world_tile = WorldMapData.world_map2.map_data[new_world_map_pos.y][new_world_map_pos.x]
 
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).world_map_pos = new_world_map_pos

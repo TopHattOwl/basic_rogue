@@ -40,11 +40,8 @@ func generate_map() -> void:
 	map_rng.seed = WorldMapData.world_map2.map_data[grid_pos.y][grid_pos.x].generated_seed
 	terrain_map = MapFunction.make_base_terrain_map()
 
-	var savagery = WorldMapData.world_map_savagery[grid_pos.y][grid_pos.x]
-	var monster_data = WorldMapData.world_monster_map.map_data[grid_pos.y][grid_pos.x]
 
-
-	generate_terrain_data(savagery, monster_data)
+	generate_terrain_data()
 
 	var world_node = load(DirectoryPaths.world).instantiate()
 	world_node.init_data_new(make_world_node_data())
@@ -59,11 +56,11 @@ func generate_map() -> void:
 	GameData.current_map = world_node
 	GameData.main_node.add_child(GameData.current_map)
 
-func generate_terrain_data(savagery: int, monster_data: WorldMonsterTile) -> void:
+func generate_terrain_data() -> void:
 	add_walls()
 	add_nature()
 	# add_forage() # add when implemented foliage
-	add_monsters(savagery, monster_data)
+
 
 # generation helpers
 
@@ -90,22 +87,6 @@ func add_nature() -> void:
 func add_forage() -> void:
 	pass
 
-
-func add_monsters(savagery: int, monster_data: WorldMonsterTile) -> void:
-	var max_monsters = max(0, savagery - 2)
-	var num_of_monsters = 0
-
-	while num_of_monsters < max_monsters:
-		var random_pos = Vector2i(map_rng.randi_range(0, GameData.MAP_SIZE.x - 1), map_rng.randi_range(0, GameData.MAP_SIZE.y - 1))
-		if terrain_map[random_pos.y][random_pos.x].tags.has(GameData.TILE_TAGS.WALL):
-			continue
-		monster_data.spawn_points.append(random_pos)
-		num_of_monsters += 1
-	print(monster_data)
-
-	if savagery > 10:
-		monster_data.has_dungeon = true
-		make_dungeon()
 
 var dungeon_tile_size = Vector2i(2, 1)
 func make_dungeon() -> void:

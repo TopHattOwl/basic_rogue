@@ -23,15 +23,30 @@ func generate_map(pos: Vector2i) -> void:
 func get_biome_type(world_pos: Vector2i) -> int:
 	return map_data[world_pos.y][world_pos.x].biome_type
 
-# save/load
-func save_biome_map() -> void:
-	ResourceSaver.save(self, DirectoryPaths.biome_map_save)
+# SAVE/LOAD
 
+func save_biome_map() -> void:
+	ResourceSaver.save(self, SavePaths.biome_map_save)
 
 func load_biome_map() -> void:
-	if ResourceLoader.exists(DirectoryPaths.biome_map_save):
+	if ResourceLoader.exists(SavePaths.biome_map_save):
 		var loaded_data = ResourceLoader.load(
-			DirectoryPaths.biome_map_save,
+			SavePaths.biome_map_save,
+			"",
+			ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
+		)
+		map_data = loaded_data.map_data
+
+
+# BASE SAVES
+func save_base_biome_map() -> void:
+	ResourceSaver.save(self, DirectoryPaths.biome_map_base_save)
+
+
+func load_base_biome_map() -> void:
+	if ResourceLoader.exists(DirectoryPaths.biome_map_base_save):
+		var loaded_data = ResourceLoader.load(
+			DirectoryPaths.biome_map_base_save,
 			"",
 			ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
 		)
