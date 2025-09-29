@@ -44,17 +44,17 @@ static func load_player_base(data: Dictionary) -> void:
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).melee_dodge = melee.get("melee_dodge")
 
 
-static func load_player_data(json):
+static func load_player_data(data: Dictionary):
 	# Position component
-	var position = json.get("position_component")
+	var position = data.get("position_component")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION).grid_pos = Vector2i(position.get("grid_pos").get("x"), position.get("grid_pos").get("y"))
 
 	# Health component
-	ComponentRegistry.get_player_comp(GameData.ComponentKeys.HEALTH).max_hp = json.get("health_component").get("max_hp")
-	ComponentRegistry.get_player_comp(GameData.ComponentKeys.HEALTH).hp = json.get("health_component").get("hp")
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.HEALTH).max_hp = data.get("health_component").get("max_hp")
+	ComponentRegistry.get_player_comp(GameData.ComponentKeys.HEALTH).hp = data.get("health_component").get("hp")
 
 	# Attributes component
-	var attributes = json.get("attributes_component")
+	var attributes = data.get("attributes_component")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.ATTRIBUTES).strength = attributes.get("strength")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.ATTRIBUTES).dexterity = attributes.get("dexterity")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.ATTRIBUTES).intelligence = attributes.get("intelligence")
@@ -62,13 +62,13 @@ static func load_player_data(json):
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.ATTRIBUTES).perception = attributes.get("perception")
 
 	# Identity component
-	var identity = json.get("identity_component")
+	var identity = data.get("identity_component")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.IDENTITY).is_player = identity.get("is_player")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.IDENTITY).actor_name = identity.get("actor_name")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.IDENTITY).faction = identity.get("faction")
 
 	# Player component
-	var player = json.get("player_component")
+	var player = data.get("player_component")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_dungeon = player.get("is_in_dungeon")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map = player.get("is_in_world_map")
@@ -77,7 +77,7 @@ static func load_player_data(json):
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).input_mode = player.get("input_mode")
 
 	# Melee combat component
-	var melee = json.get("melee_combat_component")
+	var melee = data.get("melee_combat_component")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).damage_min = melee.get("damage_min")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).damage_max = melee.get("damage_max")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).attack_type = melee.get("attack_type")
@@ -86,7 +86,7 @@ static func load_player_data(json):
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).melee_dodge = melee.get("melee_dodge")
 
 	# block component
-	var block = json.get("block_component")
+	var block = data.get("block_component")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.BLOCK).block_chance = block.get("block_chance")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.BLOCK).max_block_power = block.get("max_block_power")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.BLOCK).block_recovery_rate = block.get("block_recovery_rate")
@@ -94,7 +94,7 @@ static func load_player_data(json):
 
 	# SKILLS REWORKED
 	# Skills component
-	# var skills = json.get("skills_component")
+	# var skills = data.get("skills_component")
 	# var skill_levels = skills.get("skill_levels")
 	# var skill_levels_comp = ComponentRegistry.get_player_comp(GameData.ComponentKeys.SKILLS).skill_levels
 	

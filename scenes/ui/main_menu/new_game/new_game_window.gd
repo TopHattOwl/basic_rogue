@@ -39,6 +39,7 @@ func _on_continue_pressed() -> void:
 	
 	# save newly made player
 	SaveFuncs.save_player_data()
-	print(OS.get_data_dir())
+	SignalBus.new_game_stared.emit()
 	get_tree().change_scene_to_file(DirectoryPaths.main_node_scene)
+	
 	

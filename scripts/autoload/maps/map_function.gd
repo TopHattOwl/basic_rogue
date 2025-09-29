@@ -537,11 +537,6 @@ func load_premade_map(map_path: String) -> void:
 		"world_pos": GameData.player.PlayerComp.world_map_pos
 	})
 
-	# spawn player if not spawned already
-	if GameData.player:
-		return
-	EntitySpawner.spawn_player()
-
 
 
 # --- Transition ---

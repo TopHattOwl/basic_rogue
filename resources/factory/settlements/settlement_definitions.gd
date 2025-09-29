@@ -35,5 +35,15 @@ var settlement_definitions: Dictionary = {
 			Vector2i(38, 8): "res://maps/premade_maps/starting_village/starting_village_0_0.tscn",
 			Vector2i(39, 8): "res://maps/premade_maps/starting_village/starting_village_1_0.tscn",
 		}
-	}
+	},
+	GameData.ALL_SETTLEMENTS.TEST_OUTPOST: {
+		"name": "Test Outpost",
+		"settlement_type": GameData.WORLD_TILE_TYPES.OUTPOST,
+		"top_left_pos": Vector2i(44, 12),
+		"id" : GameData.ALL_SETTLEMENTS.TEST_OUTPOST,
+		"class_type": Outpost,
+		"paths": {
+			Vector2i(44, 12): "res://maps/premade_maps/test_outpost/test_outpost.tscn",
+		}
+	},
 }

@@ -45,3 +45,4 @@ func load_premade_settlements() -> void:
 	SettlementFactory.make_settlement(SettlementDefinitions.settlement_definitions[GameData.ALL_SETTLEMENTS.TEST_CITY])
 	SettlementFactory.make_settlement(SettlementDefinitions.settlement_definitions[GameData.ALL_SETTLEMENTS.STARTING_VILLAGE])
 	SettlementFactory.make_settlement(SettlementDefinitions.settlement_definitions[GameData.ALL_SETTLEMENTS.START_OUTPOST])
+	SettlementFactory.make_settlement(SettlementDefinitions.settlement_definitions[GameData.ALL_SETTLEMENTS.TEST_OUTPOST])

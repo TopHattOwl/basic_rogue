@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c34gn2we4xfsi"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://c34gn2we4xfsi"]
 
 [ext_resource type="Texture2D" uid="uid://dwuasmtumlo2k" path="res://assets/floor/ground_nature_spritesheet.png" id="1_qo6ha"]
 [ext_resource type="Texture2D" uid="uid://cmwtgmsc7u40y" path="res://assets/floor/wooden_floor_1.png" id="2_78fni"]
+[ext_resource type="Texture2D" uid="uid://npnu7dx181gh" path="res://assets/floor/path/settlement_path_tilesheet.png" id="3_78fni"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1f6qb"]
 texture = ExtResource("1_qo6ha")
@@ -18,7 +19,37 @@ texture = ExtResource("2_78fni")
 texture_region_size = Vector2i(16, 24)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iulvl"]
+texture = ExtResource("3_78fni")
+texture_region_size = Vector2i(16, 24)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+
 [resource]
 tile_size = Vector2i(16, 24)
 sources/0 = SubResource("TileSetAtlasSource_1f6qb")
 sources/1 = SubResource("TileSetAtlasSource_vab50")
+sources/2 = SubResource("TileSetAtlasSource_iulvl")
