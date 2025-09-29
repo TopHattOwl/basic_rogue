@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="basic_rogue"
-run/main_scene="uid://b423to0sh4ppm"
+run/main_scene="uid://bloydjlut44cj"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -48,6 +48,7 @@ ContractManager="*res://scripts/autoload/systems/contract_manager/contract_manag
 SignalLens="*res://addons/signal_lens/autoload/signal_lens_autoload.gd"
 SettlementDefinitions="*res://resources/factory/settlements/settlement_definitions.gd"
 SettlementManager="*res://scripts/autoload/systems/settlement_manager/settlement_manager.gd"
+SavePaths="*res://scripts/autoload/save_load/save_paths.gd"
 
 [debug]
 

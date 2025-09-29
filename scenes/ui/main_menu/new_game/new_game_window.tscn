@@ -1,0 +1,155 @@
+[gd_scene load_steps=7 format=3 uid="uid://ftyt6ifuoet6"]
+
+[ext_resource type="Script" uid="uid://bs27xm7qix0pb" path="res://scenes/ui/main_menu/new_game/new_game_window.gd" id="1_uo3vp"]
+[ext_resource type="Shader" uid="uid://cfb76lctdcisy" path="res://resources/shader/scan_lines_shader.gdshader" id="1_uvioo"]
+[ext_resource type="Texture2D" uid="uid://mk7q31h1b4rs" path="res://assets/player/player_knight.png" id="3_620b1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uo3vp"]
+shader = ExtResource("1_uvioo")
+
+[sub_resource type="QuadMesh" id="QuadMesh_620b1"]
+size = Vector2(640, 360)
+center_offset = Vector3(320, 180, 0)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_620b1"]
+size = Vector2(16, 24)
+
+[node name="NewGameWindow" type="Control" node_paths=PackedStringArray("stats_container", "char_sprite", "continue_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uo3vp")
+stats_container = NodePath("Stats")
+char_sprite = NodePath("CharSprite")
+continue_button = NodePath("ContinueButton")
+
+[node name="CrtEffect" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CrtEffect"]
+material = SubResource("ShaderMaterial_uo3vp")
+mesh = SubResource("QuadMesh_620b1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 23.0
+offset_right = 264.0
+offset_bottom = 153.0
+theme_override_font_sizes/normal_font_size = 10
+text = "starting new game
+character creation goes here, when I get there.
+For now, only premade character"
+
+[node name="CharSprite" type="Sprite2D" parent="."]
+position = Vector2(544, 64)
+scale = Vector2(4, 4)
+texture = ExtResource("3_620b1")
+
+[node name="Stats" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 128.0
+offset_right = 616.0
+offset_bottom = 296.0
+
+[node name="Str" type="HBoxContainer" parent="Stats"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Stats/Str"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_620b1")
+
+[node name="AttributeName" type="Label" parent="Stats/Str"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Strenght"
+
+[node name="Value" type="Label" parent="Stats/Str"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "15"
+horizontal_alignment = 2
+
+[node name="Dex" type="HBoxContainer" parent="Stats"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Stats/Dex"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_620b1")
+
+[node name="AttributeName" type="Label" parent="Stats/Dex"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Dexterity"
+
+[node name="Value" type="Label" parent="Stats/Dex"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "15"
+horizontal_alignment = 2
+
+[node name="Int" type="HBoxContainer" parent="Stats"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Stats/Int"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_620b1")
+
+[node name="AttributeName" type="Label" parent="Stats/Int"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Intelligence"
+
+[node name="Value" type="Label" parent="Stats/Int"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "15"
+horizontal_alignment = 2
+
+[node name="Con" type="HBoxContainer" parent="Stats"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Stats/Con"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_620b1")
+
+[node name="AttributeName" type="Label" parent="Stats/Con"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Constitution"
+
+[node name="Value" type="Label" parent="Stats/Con"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "15"
+horizontal_alignment = 2
+
+[node name="Per" type="HBoxContainer" parent="Stats"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Stats/Per"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_620b1")
+
+[node name="AttributeName" type="Label" parent="Stats/Per"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Perception"
+
+[node name="Value" type="Label" parent="Stats/Per"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "15"
+horizontal_alignment = 2
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 312.0
+offset_right = 232.0
+offset_bottom = 320.0
+text = "Continue"

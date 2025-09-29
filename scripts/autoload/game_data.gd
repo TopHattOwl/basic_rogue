@@ -662,3 +662,4 @@ var leveling_system_debug := 0
 var ambush_debug := 0
 var contract_debug := 1
 var settlement_manager_debug := 1
+var new_game_window_debug := 1

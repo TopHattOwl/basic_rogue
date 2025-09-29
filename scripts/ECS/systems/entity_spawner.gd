@@ -2,10 +2,10 @@ class_name EntitySpawner
 extends Node
 
 static func spawn_player() -> void:
-	if GameData.player:
-		return
-	var player_scene = preload(DirectoryPaths.player_scene)
-	GameData.player = player_scene.instantiate()
+	# if GameData.player:
+	# 	return
+	# var player_scene = preload(DirectoryPaths.player_scene)
+	# GameData.player = player_scene.instantiate()
 
 	
 
@@ -14,8 +14,8 @@ static func spawn_player() -> void:
 
 
 	# data load
-	var json = JSON.parse_string(FileAccess.get_file_as_string(DirectoryPaths.player_data_json))
-	SaveFuncs.load_player_data(json)
+	# var json = JSON.parse_string(FileAccess.get_file_as_string(DirectoryPaths.player_data_json))
+	# SaveFuncs.load_player_data(json)
 
 	# load correct map
 	var player_world_pos = GameData.player.PlayerComp.world_map_pos

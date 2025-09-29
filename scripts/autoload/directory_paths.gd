@@ -1,4 +1,6 @@
 extends Node
+## Holds all paths to all types of resources
+## For save/load paths go to SavePaths
 
 # --- MAIN NODE ---
 
@@ -123,6 +125,7 @@ const dungeon_generator = "res://scripts/map_generation/dungeon_generator.gd"
 
 # --- UI ---
 const main_menu_scene = "res://scenes/ui/main_menu/main_menu.tscn"
+const new_game_window_scene = "res://scenes/ui/main_menu/new_game/new_game_window.tscn"
 
 const damage_text_scene = "res://scenes/ui/damage_text.tscn"
 

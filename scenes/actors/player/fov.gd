@@ -1,5 +1,7 @@
 extends Node2D
 
+# fov moved to central fov manager for now
+
 @export var fov_radius: int = 8
 @export var visibility_tilemap_layer: TileMapLayer
 

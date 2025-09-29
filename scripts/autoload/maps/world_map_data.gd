@@ -107,7 +107,7 @@ func parse_world_map_data() -> void:
 
 
 	# set biome type
-	# parse_biome_type(world_map_scene)
+	parse_biome_type(world_map_scene)
 
 	# set biome
 	parse_biome(world_map_scene)

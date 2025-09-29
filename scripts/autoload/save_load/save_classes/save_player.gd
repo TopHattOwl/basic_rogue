@@ -103,7 +103,7 @@ static func save_player_data(player: Node2D) -> bool:
  
 			
 	# Save to file
-	return _write_save_file(DirectoryPaths.player_data_json, save_data)
+	return _write_save_file(SavePaths.player_data_json, save_data)
 
 # File handling with error checking
 static func _write_save_file(path: String, data: Dictionary) -> bool:

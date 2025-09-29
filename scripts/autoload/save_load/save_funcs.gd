@@ -1,15 +1,8 @@
 extends Node
 
-# # player
-# var save_player = preload(DirectoryPaths.save_player).new()
-# var load_player = preload(DirectoryPaths.load_player).new()
 
-# # world map
-# var save_world_map = preload(DirectoryPaths.save_world_map).new()
-# var load_world_map = preload(DirectoryPaths.load_world_map).new()
-
-
-func save_player_data(player_node: Node2D):
+func save_player_data(_player_node: Node2D = null):
+	var player_node = GameData.player
 
 	SavePlayer.save_player_data(player_node)
 
@@ -36,10 +29,10 @@ func load_base_world_map_data():
 	# loads custom classes
 	LoadWorldMap.load_world_maps()
 
-# # new world map load
-# func load_world_maps() -> void:
-# 	LoadWorldMap.load_world_maps()
 
-# # new world map save
-# func save_world_maps() -> void:
-# 	SaveWorldMap.save_world_maps()
+## loads `data` into player [br] 
+func load_player_base(data: Dictionary) -> void:
+	if not GameData.player:
+		return
+
+	LoadPlayer.load_player_base(data)
