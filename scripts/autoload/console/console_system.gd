@@ -21,6 +21,9 @@ func _ready() -> void:
 	register_command("spawn_npc", spawn_npc_command, "Spawns an npc with given id at given position\n\t\tspawn_npc (id/uid) (x) (y)")
 	register_command("spawn_item", spawn_item_command, "NOT IMPLEMENTED\nSpawns an item with given id at given position\n\t\tspawn_item [id] [x] [y]")
 
+	# time commans
+	register_command("pass_day", pass_day_command, "Skips to the first turn on the next day")
+
 
 	
 
@@ -251,3 +254,9 @@ func spawn_item_command(_args: PackedStringArray) -> String:
 		return "Error: Missing arguments for spawn_item command: id, x, y\n" + "Usage: spawn_item [id] [x] [y]"
 
 	return output
+
+
+
+func pass_day_command(_args: PackedStringArray = []) -> String:
+	GameTime.pass_day()
+	return "passing day"

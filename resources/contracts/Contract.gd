@@ -40,6 +40,7 @@ func check() -> bool:
 
 func _init(data: Dictionary) -> void:
 	generated_date = GameTime.get_date()
+	settlement = data.get("settlement", null)
 
 
 func get_debug_info() -> String:
@@ -48,10 +49,13 @@ func get_debug_info() -> String:
 	# title
 	info += "- Title: %s\n" % title
 
-	# settlement info
-	info += "- Settlement: %s\n" % settlement.get_debug_info()
-
 	# description
 	info += "- Description: %s\n" % description
+
+	# generated data
+	info += "- Generated date: %s\n" % generated_date
+
+	# state
+	info += "- State: %s\n" % state
 
 	return info

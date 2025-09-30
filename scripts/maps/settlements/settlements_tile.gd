@@ -50,7 +50,7 @@ func setup(d: Dictionary) -> void:
 
 	
 	# contracts
-	contract_data = ContractData.new(id)
+	contract_data = ContractData.new()
 
 
 func get_debug_info() -> String:
@@ -66,16 +66,23 @@ func get_debug_info() -> String:
 
 
 class ContractData:
-	var days_since_last_contract: int = 0
-	var contracts: Array[Contract] = []
-	var num_of_contracts: int = 0
+	var days_since_last_contract: int
+	var contracts: Array # references for the Contract object in contract manager
+	var num_of_contracts: int
+	var max_contracts: int
 
 
-	func _init(settlement_id: int) -> void:
-		pass
+	func _init(data: Dictionary = {}) -> void:
+		days_since_last_contract = data.get("days_since_last_contract", 5)
+		contracts = data.get("contracts", [])
+		num_of_contracts = data.get("num_of_contracts", 0)
+		max_contracts = data.get("max_contracts", 5)
 
+	func needs_contract() -> bool:
+		var day_random = randi_range(2,3)
 
-		# check if data can be loaded
+		return days_since_last_contract >= day_random and num_of_contracts < max_contracts
 
-
-		# if no data to load keep default values
+	func contract_added() -> void:
+		days_since_last_contract = 0
+		num_of_contracts += 1

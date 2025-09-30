@@ -126,3 +126,13 @@ signal skill_leveled_up(skill_tree_id: int)
 
 
 # --- TALK SCREEN ---
+
+
+
+# --- CONTRACT ---
+
+signal contract_generated(data: Dictionary)
+signal contract_taken(data: Dictionary)
+signal contract_completed(data: Dictionary)
+signal contract_turned_in(data: Dictionary)
+signal contract_failed(data: Dictionary)

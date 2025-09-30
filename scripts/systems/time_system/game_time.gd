@@ -53,7 +53,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	update_current_time()
-
 	check_end_of_day()
 
 
@@ -84,6 +83,8 @@ func check_end_of_day():
 
 func pass_day():
 	day += 1
+
+	current_day_turn = 0
 
 	SignalBus.day_passed.emit()
 

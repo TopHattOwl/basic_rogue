@@ -1,9 +1,12 @@
 class_name SettlementsMap
 extends Resource
 
-var settlements: Array
+var settlements: Array[SettlementTile]
 
 
+func _init() -> void:
+	SignalBus.day_passed.connect(_on_day_passed)
+	SignalBus.contract_generated.connect(_on_contract_generated)
 
 func add_settlement(settlement: SettlementTile) -> void:
 	settlements.append(settlement)
@@ -33,3 +36,28 @@ func get_settlement_by_name(name: String) -> SettlementTile:
 	if i == -1:
 		return null
 	return settlements[i]
+
+
+func _on_day_passed() -> void:
+	for settlement in settlements:
+		settlement.contract_data.days_since_last_contract += 1
+
+
+func _on_contract_generated(data: Dictionary) -> void:
+	var contract = data.get("contract", null)
+	var settlement = contract.settlement
+
+	if not settlement:
+		push_error("contract has no settlement")
+		return
+
+	settlement.contract_data.contract_added()
+
+# save and load
+
+func save_settlements() -> void:
+	pass
+
+
+func load_settlements() -> void:
+	pass

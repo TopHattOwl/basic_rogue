@@ -4,6 +4,10 @@ extends Node
 var debug := GameData.contract_debug
 
 
-static func make_contract(data: Dictionary) -> Contract:
+## makes a contract [br]
+## if no `data` is given, fully random contract will be made
+static func make_contract(data: Dictionary = {}) -> Contract:
     var contract = Contract.new(data)
+
+    SignalBus.contract_generated.emit({"contract": contract})
     return contract
