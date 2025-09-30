@@ -573,7 +573,6 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 # --- World Map ---
 	
 func enter_world_map():
-	# TODO save current map data and queue_free actors and items / all nodes, also reset variables
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map = true
 
 	# opening the world map
@@ -605,9 +604,10 @@ func exit_world_map():
 		GameData.current_map.queue_free()
 		GameData.current_map = null
 	
-	var player_pos_comp = ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION)
+
+	GameData.player.PositionComp.grid_pos = GameData.WORLD_SPAWN_POS
 	var player_world_pos = ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).world_map_pos
-	GameData.player.position = MapFunction.to_world_pos(player_pos_comp.grid_pos)
+	GameData.player.position = MapFunction.to_world_pos(GameData.player.PositionComp.grid_pos)
 
 	var current_map_data = WorldMapData.world_map2.map_data[player_world_pos.y][player_world_pos.x]
 
@@ -633,6 +633,7 @@ func exit_world_map():
 
 func is_in_world_map(pos:Vector2i) -> bool:
 	return pos.x >= 0 and pos.x < GameData.WORLD_MAP_SIZE.x and pos.y >= 0 and pos.y < GameData.WORLD_MAP_SIZE.y
+
 
 
 # --- CONSTRUCTORS ---

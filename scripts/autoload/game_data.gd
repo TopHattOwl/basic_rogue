@@ -23,6 +23,7 @@ func set_main_node(value: Node2D) -> void:
 
 # ___ Constants ___
 const TILE_SIZE = Vector2i(16, 24) # tile size in pixels
+const WORLD_SPAWN_POS = Vector2i(43, 33) # the tile player spawns on when entering world tile
 const MAP_SIZE = Vector2i(82, 37) # map size in tiles
 const WORLD_MAP_SIZE = Vector2i(110, 75)
 const OFFSET = Vector2i(8, 12)

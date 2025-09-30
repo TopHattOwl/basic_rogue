@@ -27,8 +27,9 @@ func generate_contract(settlement: SettlementTile) -> void:
 
 	var contract = ContractFactory.make_contract(generate_contract_data())
 
-	print("___ Contract Generated ___")
-	print("contract data:\n", contract.get_debug_info())
+	if debug:
+		print("___ Contract Generated ___")
+		print("contract data:\n", contract.get_debug_info())
 		
 func generate_contract_data() -> Dictionary:
 	return {}

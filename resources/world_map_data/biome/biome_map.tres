@@ -23430,23 +23430,23 @@ grid_pos = Vector2i(38, 42)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_vi2id"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(39, 42)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_6qyrl"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(40, 42)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_px8xr"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(41, 42)
 terrain_map = []
 
@@ -23906,37 +23906,37 @@ grid_pos = Vector2i(30, 43)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_f4o7f"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(31, 43)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_ynnlt"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(32, 43)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_wsfpk"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(33, 43)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_ghm5r"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(34, 43)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_ou32p"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(35, 43)
 terrain_map = []
 
@@ -23948,44 +23948,44 @@ grid_pos = Vector2i(36, 43)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_mhcya"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(37, 43)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_d3rx8"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(38, 43)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_rlnw5"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(39, 43)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_tx731"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(40, 43)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_iytre"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(41, 43)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_bis2p"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(42, 43)
 terrain_map = []
 
@@ -24018,9 +24018,9 @@ grid_pos = Vector2i(46, 43)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_3uu43"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(47, 43)
 terrain_map = []
 
@@ -24480,128 +24480,128 @@ grid_pos = Vector2i(30, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_cwyvn"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(31, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_db550"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(32, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_53go7"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(33, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_hkksi"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(34, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_cwrgn"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(35, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_5bqyq"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(36, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_vlf11"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(37, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_dy6yg"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(38, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_tqj6y"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(39, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_32nlr"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(40, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_ir5gl"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(41, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_68sjo"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(42, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_giupc"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(43, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_5wgho"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(44, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_0p5vn"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(45, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_pyu7d"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(46, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_6xmx6"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(47, 44)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_ktag8"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(48, 44)
 terrain_map = []
 
@@ -25068,128 +25068,128 @@ grid_pos = Vector2i(30, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_xnk3d"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(31, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_u7hqv"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(32, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_sghgy"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(33, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_3n24r"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(34, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_62o32"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(35, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_lvnj4"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(36, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_yflij"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(37, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_vfojr"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(38, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_cuenf"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(39, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_d467s"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("4_s6vqh")
+biome_type = 4
+biome_name = "Swamp"
 grid_pos = Vector2i(40, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_xrrjs"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(41, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_3s1mk"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(42, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_diur2"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(43, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_xv3md"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(44, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_yhy07"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(45, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_mhn4r"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(46, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_iect7"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(47, 45)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_col1q"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(48, 45)
 terrain_map = []
 
@@ -25684,23 +25684,23 @@ grid_pos = Vector2i(31, 46)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_rfvfx"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(32, 46)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_srfgx"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(33, 46)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_hdbyy"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(34, 46)
 terrain_map = []
 
@@ -25768,30 +25768,30 @@ grid_pos = Vector2i(43, 46)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_pj1bf"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(44, 46)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_e0wae"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(45, 46)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_4s6f0"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(46, 46)
 terrain_map = []
 
 [sub_resource type="Resource" id="Resource_ftgjy"]
-script = ExtResource("1_1afkg")
-biome_type = 6
-biome_name = "Field"
+script = ExtResource("2_s6vqh")
+biome_type = 8
+biome_name = "Mountain"
 grid_pos = Vector2i(47, 46)
 terrain_map = []
 
