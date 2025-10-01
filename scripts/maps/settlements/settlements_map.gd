@@ -45,7 +45,7 @@ func _on_day_passed() -> void:
 
 func _on_contract_generated(data: Dictionary) -> void:
 	var contract = data.get("contract", null)
-	var settlement = contract.settlement
+	var settlement: SettlementTile = contract.settlement
 
 	if not settlement:
 		push_error("contract has no settlement")

@@ -10,7 +10,9 @@ var settlement: SettlementTile # reference to the settlement
 var contract_type: CONTRACT_TYPE
 var title: String
 var description: String
-var difficulty: int = 1
+var difficulty: int = 1:
+	set(value):
+		difficulty = clamp(value, 1, 6)
 var reward_gold: int = 50
 var reward_items: Array[int] = []  # item IDs
 var state: CONTRACT_STATE = CONTRACT_STATE.AVAILABLE
@@ -28,8 +30,8 @@ var dungeon_objective: String = "" # "clear", "boss", "item", etc.
 var generated_date: Dictionary #
 # if a lot of time passes since it has been generated discard
 
-var time_limit: int = 0  # in turns, 0 means no limit
-var expiration_date: Array
+# if empty -> no expiration
+var expiration_date: Dictionary = {}
 
 
 var debug := GameData.contract_debug

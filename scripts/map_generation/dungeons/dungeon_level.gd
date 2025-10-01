@@ -13,7 +13,7 @@ extends Node
 @export var stair_down_pos: Vector2i
 @export var stair_up_pos: Vector2i
 
-# star positions example
+# stair positions example
 # 1 1 1 1 1 1 1 1 1
 # 1 1 1 1 S S 1 1 1
 # 1 1 1 1 0 0 0 0 0

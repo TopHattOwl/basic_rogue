@@ -20,7 +20,7 @@ static func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 	# Map transition check
 	# if player is zoomed in and trying to move outside of world map
 	var dir = new_pos - position_component.grid_pos
-	if is_current_actor_player and check__map_transition(new_pos, dir):
+	if is_current_actor_player and check_map_transition(new_pos, dir):
 		# if map transition is successful it's still player's move (free move)
 		return false
 
@@ -172,7 +172,7 @@ static func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
 	return false
 
 # --- UTILS ---
-static func check__map_transition(new_pos: Vector2i, dir: Vector2i) -> bool:
+static func check_map_transition(new_pos: Vector2i, dir: Vector2i) -> bool:
 
 	# if player is zoomed in and trying to move outside of world map (not in bounds)
 	if not MapFunction.is_in_bounds(new_pos):

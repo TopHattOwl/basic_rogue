@@ -66,16 +66,6 @@ func _ready() -> void:
 				var nature_source_id = tile_set_draw_data[GameData.TILE_TAGS.NATURE].source_id
 				var selected_tree = Vector2i(0, 0) if map_rng.randf() < 0.8 else Vector2i(1, 0)
 				nature_layer.set_cell(Vector2i(x, y), nature_source_id, selected_tree)
-			if terrain_data[y][x]["tags"].has(GameData.TILE_TAGS.STAIR) and !is_dungeon_drawn:
-				draw_stairs(Vector2i(x, y))
-				is_dungeon_drawn = true
-				
-	
-
-	# spawn monsters
-	# if monster_data_new.spawn_points.size() > 0:
-	# 	for spawn_point in monster_data_new.spawn_points:
-	# 		EntitySpawner.spawn_monster(spawn_point, monster_data_new.monster_types[0])
 
 	MapFunction.initialize_astar_grid()
 
@@ -83,6 +73,7 @@ func _ready() -> void:
 	SignalBus.world_node_ready.emit()
 
 
+## not used yet
 func draw_stairs(pos: Vector2i) -> void:
 	var source_id = tile_set_draw_data[GameData.TILE_TAGS.STAIR].source_id
 	var atlas_max = tile_set_draw_data[GameData.TILE_TAGS.STAIR]["atlas_coords_max"]

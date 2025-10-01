@@ -507,9 +507,6 @@ func astar_toggle_walkable(grid_pos: Vector2i) -> void:
 ## returned PackedVector2Array contains the from grid pos as well[br]
 ## returned PackedVector2Array is empty if path is not found [br]
 func astar_get_path(from: Vector2i, to: Vector2i) -> PackedVector2Array:
-	# if astar_grid.is_in_boundsv(from) and astar_grid.is_in_boundsv(to):
-	# 	return astar_grid.get_id_path(from, to)
-	# return PackedVector2Array()
 
 	return astar_grid.get_id_path(from, to, true)
 
@@ -545,11 +542,12 @@ func transition_map(new_world_map_pos: Vector2i, new_player_grid_pos):
 
 	if !WorldMapData.world_map2:
 		push_error("Error: No world map data, world_map is null")
-	# check world map borders
+
+	# check world map borders and walkable
 	if not WorldMapData.world_map2.is_in_bounds(new_world_map_pos) or not WorldMapData.world_map2.is_tile_walkable(new_world_map_pos):
 		return
 
-	# No need to remove entities, they will be removed if
+	# No need to remove entities, they will be removed if:
 		# map is premade and premade map is loaded
 		# or when biome map generates or loads a map
 

@@ -25,6 +25,8 @@ var world_map_civilization = []
 
 var settlements := SettlementsMap.new()
 
+var dungeons := DungeonMap.new()
+
 
 func _ready() -> void:
 	# SignalBus.new_game_stared.connect(_on_new_game_start)

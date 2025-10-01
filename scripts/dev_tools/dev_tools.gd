@@ -43,9 +43,11 @@ func _process(_delta: float) -> void:
 		tile_info_layer.text = update_tile_info(tile_info)
 
 	# player stance
-	var stance_comp = GameData.player.StanceComp
-	if stance_comp:
-		player_info_layer.text += "\nStance: %s" % [stance_comp.current_stance]
+	var stance = GameData.player.StanceComp.current_stance
+	if stance:
+		player_info_layer.text += "\nStance: %s" % [stance.name]
+	else:
+		player_info_layer.text += "\nStance: None"
 
 func update_tile_info(tile_info: Dictionary) -> String:
 	var tags_string = ""
