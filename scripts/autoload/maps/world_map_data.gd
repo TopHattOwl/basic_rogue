@@ -29,7 +29,6 @@ var dungeons := DungeonMap.new()
 
 
 func _ready() -> void:
-	# SignalBus.new_game_stared.connect(_on_new_game_start)
 	SaveFuncs.load_base_world_map_data()
 
 	# set_base()

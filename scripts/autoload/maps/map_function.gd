@@ -397,7 +397,7 @@ func parse_tile_layers_from_scene(map_root: Node2D) -> void:
 
 	
 	# initialize astar afther collecting terrain_data
-	MapFunction.initialize_astar_grid()
+	initialize_astar_grid()
 				
 
 func add_terrain_map_data(target_pos: Vector2i, tag: int, tile_info: Dictionary) -> void:

@@ -160,6 +160,7 @@ var NPC_UIDS = {
 
 # ___ Maps ___
 
+# references to map scenes
 var current_map: Node2D = null
 var current_dungeon: Node2D = null
 
@@ -465,7 +466,14 @@ enum WORLD_TILE_TYPES {
 	# water
 	WATER,
 	RIVER,
+}
 
+enum DUNGEON_TYPES {
+	CASTLE,
+	CAVE,
+	TEMPLE,
+	CAMP,
+	TOWER,
 }
 
 # SKILLS
@@ -662,6 +670,9 @@ var modifiers_debug := 0
 var skill_debug := 0
 var leveling_system_debug := 0
 var ambush_debug := 0
-var contract_debug := 1
-var settlement_manager_debug := 1
-var new_game_window_debug := 1
+var contract_debug := 0
+var settlement_manager_debug := 0
+var new_game_window_debug := 0
+var dungeon_debug := 1
+
+var dungeon_draw_debug := 1 # for drawing all dungeons at start

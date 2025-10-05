@@ -23,6 +23,7 @@ DirectoryPaths="*res://scripts/autoload/directory_paths.gd"
 SignalBus="*res://scripts/autoload/signal_bus.gd"
 MapFunction="*res://scripts/autoload/maps/map_function.gd"
 SaveFuncs="*res://scripts/autoload/save_load/save_funcs.gd"
+DrawDatas="*res://scripts/autoload/draw_datas.gd"
 DataRegistry="*res://scripts/autoload/save_load/data_registry.gd"
 WorldMapData="*res://scripts/autoload/maps/world_map_data.gd"
 UiFunc="*res://scripts/autoload/ui/ui_func.gd"
@@ -48,6 +49,7 @@ SignalLens="*res://addons/signal_lens/autoload/signal_lens_autoload.gd"
 SettlementDefinitions="*res://resources/factory/settlements/settlement_definitions.gd"
 SettlementManager="*res://scripts/autoload/systems/settlement_manager/settlement_manager.gd"
 SavePaths="*res://scripts/autoload/save_load/save_paths.gd"
+DungeonDefinitions="*res://resources/factory/dungeon/dungeon_definitions.gd"
 
 [debug]
 

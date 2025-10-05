@@ -39,6 +39,11 @@ func _on_continue_pressed() -> void:
 	
 	# save newly made player
 	SaveFuncs.save_player_data()
+
+	# generate dungeons
+	DungeonManager.generate_dungeons()
+
+
 	SignalBus.new_game_stared.emit()
 	get_tree().change_scene_to_file(DirectoryPaths.main_node_scene)
 	

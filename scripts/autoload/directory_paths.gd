@@ -87,12 +87,6 @@ const will_hit_tile_art = "res://assets/targeter_stuff/hit_tiles.png"
 # --- SCRIPT CLASSES ---
 
 #     -- save/load --
-# const save_player = "res://scripts/autoload/save_load/save_classes/save_player.gd"
-# const load_player = "res://scripts/autoload/save_load/load_classes/load_player.gd"
-
-# const save_world_map = "res://scripts/autoload/save_load/save_classes/save_world_map.gd"
-# const load_world_map = "res://scripts/autoload/save_load/load_classes/load_world_map.gd"
-# const world_map_data_save = "res://resources/world_map_data/world_save.sav"
 const biome_type_world_map_base_data_save = "res://resources/world_map_data/world_save_biome_type.sav"
 const world_map_savagery_base_save = "res://resources/world_map_data/world_save_savagery.sav"
 const world_map_civilization_base_save = "res://resources/world_map_data/world_save_civilization.sav"
@@ -178,50 +172,4 @@ var npc_sprites = {
 var npc_conversations_json = {
 	GameData.NPCS_ALL.WIZARD: "res://resources/actors/npcs/talk_trees/wizard/wizard.json",
 	GameData.NPCS_ALL.BLACKSMITH: "res://resources/actors/npcs/talk_trees/blacksmith/blacksmith.json",
-}
-
-# --- TILE SETS ---
-
-# biome type -> tile layer -> tileset resource
-var BiomeTileSets = {
-	GameData.WORLD_TILE_TYPES.SWAMP: {
-		GameData.TILE_TAGS.FLOOR: "res://resources/tiles/biome_sets/field/field_floor_tileset.tres",
-		GameData.TILE_TAGS.STAIR: "",
-		GameData.TILE_TAGS.DOOR: "",
-		GameData.TILE_TAGS.DOOR_FRAME: "",
-		GameData.TILE_TAGS.NATURE: "",
-		GameData.TILE_TAGS.WALL: "",
-	},
-	GameData.WORLD_TILE_TYPES.FIELD: {
-		GameData.TILE_TAGS.FLOOR: "res://resources/tiles/biome_sets/field/field_floor_tileset.tres",
-		GameData.TILE_TAGS.STAIR: "res://resources/tiles/biome_sets/field/field_stair_tileset.tres",
-		GameData.TILE_TAGS.DOOR: "res://resources/tiles/biome_sets/field/field_door_tileset.tres",
-		GameData.TILE_TAGS.DOOR_FRAME: "res://resources/tiles/biome_sets/field/field_door_tileset.tres",
-		GameData.TILE_TAGS.NATURE: "res://resources/tiles/biome_sets/field/field_nature_tileset.tres",
-		GameData.TILE_TAGS.WALL: "res://resources/tiles/biome_sets/field/field_wall_tileset.tres",
-	},
-	GameData.WORLD_TILE_TYPES.FOREST: {
-		GameData.TILE_TAGS.FLOOR: "res://resources/tiles/biome_sets/field/field_floor_tileset.tres",
-		GameData.TILE_TAGS.STAIR: "",
-		GameData.TILE_TAGS.DOOR: "",
-		GameData.TILE_TAGS.DOOR_FRAME: "",
-		GameData.TILE_TAGS.NATURE: "",
-		GameData.TILE_TAGS.WALL: "",
-	},
-	GameData.WORLD_TILE_TYPES.DESERT: {
-		GameData.TILE_TAGS.FLOOR: "res://resources/tiles/biome_sets/field/field_floor_tileset.tres",
-		GameData.TILE_TAGS.STAIR: "",
-		GameData.TILE_TAGS.DOOR: "",
-		GameData.TILE_TAGS.DOOR_FRAME: "",
-		GameData.TILE_TAGS.NATURE: "",
-		GameData.TILE_TAGS.WALL: "",
-	},
-	GameData.WORLD_TILE_TYPES.MOUNTAIN: {
-		GameData.TILE_TAGS.FLOOR: "res://resources/tiles/biome_sets/field/field_floor_tileset.tres",
-		GameData.TILE_TAGS.STAIR: "",
-		GameData.TILE_TAGS.DOOR: "",
-		GameData.TILE_TAGS.DOOR_FRAME: "",
-		GameData.TILE_TAGS.NATURE: "",
-		GameData.TILE_TAGS.WALL: "",
-	},
 }
