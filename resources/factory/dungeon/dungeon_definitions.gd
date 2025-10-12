@@ -2,7 +2,10 @@ extends Node
 
 
 func get_dungeon_data(dungeon_pos) -> Dictionary:
-	return {"world_map_pos": dungeon_pos}
+	return {
+		"world_map_pos": dungeon_pos,
+		"rng_seed": (GameData.main_rng.seed % (dungeon_pos.y + 1)) * (dungeon_pos.y + 1) * (dungeon_pos.x + 1)
+	}
 
 
 

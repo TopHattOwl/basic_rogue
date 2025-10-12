@@ -3,6 +3,11 @@ extends Node
 const dev_mode := true
 
 var world_seed: int = 2840132 # set when starting new game
+var main_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
+func _ready() -> void:
+	main_rng.seed = world_seed
+	print("main rng seed set: ", main_rng.seed)
 
 # ___ Main Node ___
 
