@@ -1,2 +1,17 @@
 class_name CaveDungeon
 extends Dungeon
+
+
+
+func make_levels() -> void:
+
+	var dungeon_levels = rng.randi_range(3, 6)
+
+	for level in dungeon_levels:
+		levels.append(CaveDungeonLevel.new())
+		levels[level].generate_dugeon_level(level, world_map_pos)
+
+
+func set_draw_data() -> void:
+	tileset_resource = DrawDatas.dungeon_tileset_resource[GameData.DUNGEON_TYPES.CAVE]
+	tile_set_draw_data = DrawDatas.dungeon_tileset_draw_data[GameData.DUNGEON_TYPES.CAVE]

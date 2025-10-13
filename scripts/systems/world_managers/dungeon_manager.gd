@@ -29,6 +29,10 @@ func generate_dungeons() -> void:
 	var tower_num = 0
 
 	var positions: Array[Vector2i] = []
+
+	if debug:
+		print("--- GENERATING DUNGEONS ---")
+
 	for id in num_of_dungeons:
 
 		# find good position
@@ -79,6 +83,7 @@ func generate_dungeons() -> void:
 
 
 	if debug:
+		print("--- DUNGEONS GENERATED ---")
 		print("total number of dungeons: ", num_of_dungeons)
 		var ratio = 100 * (float(num_of_dungeons) / float(world_size))
 		print("dungeon to world size ratio: %.2f" % ratio, "%")

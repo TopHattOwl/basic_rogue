@@ -21,15 +21,6 @@ var tilesets = {
 # terrain data
 var terrain_data = null
 
-# world map data
-# var current_map_pos = Vector2i(0, 0)
-# var savagery: int = 0
-# var civilization: bool = false
-# var biome: int = 0
-# var monster_data: Dictionary = {}
-
-var monster_data_new: WorldMonsterTile
-
 var tile_set_draw_data = {}
 
 # rng machine
@@ -41,7 +32,6 @@ func init_data_new(d: Dictionary) -> void:
 	terrain_data = d.get("terrain_map", MapFunction.make_base_terrain_map())
 	# current_map_pos = d.get("pos", Vector2i(0, 0))
 	tilesets = d.get("tile_sets", tilesets)
-	monster_data_new = d.get("monster_data", {})
 	tile_set_draw_data = d.get("tile_set_draw_data", {})
 	map_rng = d.get("rng", RandomNumberGenerator.new())
 
@@ -53,7 +43,6 @@ func init_data_new(d: Dictionary) -> void:
 	wall_layer.tile_set = load(tilesets[GameData.TILE_TAGS.WALL])
 
 func _ready() -> void:
-	var is_dungeon_drawn = false
 	# draw the map
 	for y in range(GameData.MAP_SIZE.y):
 		for x in range(GameData.MAP_SIZE.x):
@@ -72,7 +61,6 @@ func _ready() -> void:
 			if terrain_data[y][x]["tags"].has(GameData.TILE_TAGS.STAIR):
 				var stair_source_id = tile_set_draw_data[GameData.TILE_TAGS.STAIR].source_id
 				stair_layer.set_cell(Vector2i(x, y), stair_source_id, Vector2i(0, 0))
-				is_dungeon_drawn = true
 
 	MapFunction.initialize_astar_grid()
 

@@ -149,7 +149,7 @@ static func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
 			return ComponentRegistry.get_component(entity, GameData.ComponentKeys.MELEE_COMBAT).melee_attack(actor_at_pos)
 
 	# general movement check
-	if MapFunction.is_tile_walkable(new_pos) and dungeon.is_in_bounds(new_pos):
+	if MapFunction.is_tile_walkable(new_pos) and MapFunction.is_in_bounds(new_pos):
 		
 		var old_pos = position_component.grid_pos
 		# update component

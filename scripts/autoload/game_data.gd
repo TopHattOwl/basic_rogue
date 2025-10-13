@@ -55,7 +55,7 @@ var all_items: Array = []
 ## removes all entities, resets and initializes maps.
 ## called when transitioning map, entering world map tile, entering dungeon
 ## also initializes fov data
-func remove_entities(is_player_in_dungeon: bool = false) -> void:
+func remove_entities(_is_player_in_dungeon: bool = false) -> void:
 	# remove entities from tree
 	if all_hostile_actors.size() > 0:
 		for actor in all_hostile_actors:
@@ -77,13 +77,8 @@ func remove_entities(is_player_in_dungeon: bool = false) -> void:
 	all_actors = []
 	all_items = []
 
-	# reset map data dependig on player is in dungeon or not
-	if !is_player_in_dungeon:
+	MapFunction.initialize_map_data()
 
-		MapFunction.initialize_map_data()
-	else:
-
-		MapFunction.initialize_dungeon_map_data()
 
 
 ## returns actor at given grid position

@@ -126,17 +126,17 @@ var dungeon_tileset_draw_data: Dictionary = {
 	GameData.DUNGEON_TYPES.CAVE: {
 		GameData.TILE_TAGS.FLOOR: {
 			"source_id": GameData.DUNGEON_TYPES.CAVE,
-			"atlas_coords_max": Vector2i(0, 4), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
+			"atlas_coords_max": Vector2i(4, 0), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
 			"atlas_coords_min": Vector2i(0, 0),
 		},
 		GameData.TILE_TAGS.WALL: {
 			"source_id": GameData.DUNGEON_TYPES.CAVE,
-			"atlas_coords_max": Vector2i(0, 4),
+			"atlas_coords_max": Vector2i(4, 0),
 			"atlas_coords_min": Vector2i(0, 0),
 		},
 		GameData.TILE_TAGS.STAIR: {
 			"source_id": GameData.DUNGEON_TYPES.CAVE,
-			"atlas_coords_max": Vector2i(0, 0),
+			"atlas_coords_max": Vector2i(1, 0),
 			"atlas_coords_min": Vector2i(0, 0),
 		},
 		GameData.TILE_TAGS.DOOR: {

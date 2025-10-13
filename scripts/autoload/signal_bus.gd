@@ -67,6 +67,9 @@ signal world_map_pos_changed(to: Vector2i, from: Vector2i)
 signal world_node_ready()
 # used for ambush manager to create ambushes
 
+# when dungeon node is ready spawn entites that dungeon manager placed on dungeon levels
+signal dungeon_node_ready()
+
 
 signal entered_premade_map(data: Dictionary)
 

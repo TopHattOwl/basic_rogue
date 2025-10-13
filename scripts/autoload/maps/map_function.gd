@@ -355,27 +355,6 @@ func initialize_map_data():
 			GameData.items_map[y].append([])
 
 
-func initialize_dungeon_map_data():
-	if debug:
-		print("init dungeon map data")
-	GameData.reset_maps()
-	var dungeon_size = GameData.current_dungeon.dungeon_level_size
-	for y in range(dungeon_size.y):
-		GameData.terrain_map.append([])
-		GameData.actors_map.append([])
-		GameData.items_map.append([])
-		for x in range(dungeon_size.x):
-			var floor_data = GameData.get_tile_data(GameData.TILE_TAGS.FLOOR)
-			var tile_data = {
-				"tags": [GameData.TILE_TAGS.FLOOR],
-				"walkable": floor_data.walkable,
-				"transparent": floor_data.transparent,
-			}
-			GameData.terrain_map[y].append(tile_data)
-			GameData.actors_map[y].append(null)
-			GameData.items_map[y].append([])
-
-
 ## parse tile layers from preloaded scenes, generated maps first generate this data and draw later
 func parse_tile_layers_from_scene(map_root: Node2D) -> void:
 	# TODO: use GameData.TilemapLayers dictionary to get all layers
@@ -456,7 +435,6 @@ func get_tile_map_layers(grid_pos: Vector2i) -> Dictionary:
 	for key in GameData.TilemapLayers.keys():
 		var layer = GameData.current_map.get_node_or_null(GameData.TilemapLayers[key])
 		if layer and layer.get_cell_tile_data(grid_pos):
-			# tilemap_layers.append(layer)
 			tilemap_layers[key] = layer
 
 	return tilemap_layers
@@ -533,8 +511,6 @@ func load_premade_map(map_path: String) -> void:
 	SignalBus.entered_premade_map.emit({
 		"world_pos": GameData.player.PlayerComp.world_map_pos
 	})
-
-
 
 # --- Transition ---
 #	when zoomed in and trying to move outside of world map
