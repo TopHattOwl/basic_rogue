@@ -2,9 +2,12 @@ extends Node
 
 
 func get_dungeon_data(dungeon_pos) -> Dictionary:
+	var dungeon_type = GameData.main_rng.randi_range(0, GameData.DUNGEON_TYPES.size() - 1)
+	var rng_seed: int = (GameData.world_seed % (dungeon_pos.y + 50)) * (dungeon_pos.y + 1) * (dungeon_pos.x + 1)
 	return {
 		"world_map_pos": dungeon_pos,
-		"rng_seed": (GameData.main_rng.seed % (dungeon_pos.y + 1)) * (dungeon_pos.y + 1) * (dungeon_pos.x + 1)
+		"rng_seed": rng_seed,
+		"dungeon_type": dungeon_type,
 	}
 
 

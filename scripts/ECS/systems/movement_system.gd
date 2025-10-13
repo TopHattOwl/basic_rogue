@@ -60,9 +60,9 @@ static func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 		return true
 
 	# Dungeon enter check
-	if MapFunction.get_tile_info(new_pos)["tags"].has(GameData.TILE_TAGS.STAIR) and is_current_actor_player:
+	if MapFunction.get_tile_info(new_pos)["tags"].has(GameData.TILE_TAGS.STAIR) and is_current_actor_player and not GameData.current_dungeon:
 		var player_world_pos = GameData.player.PlayerComp.world_map_pos
-		WorldMapData.world_monster_map.map_data[player_world_pos.y][player_world_pos.x].dungeon.enter_dungeon()
+		WorldMapData.world_monster_map.enter_dungeon(player_world_pos)
 
 	return false
 

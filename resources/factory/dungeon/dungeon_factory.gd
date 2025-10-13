@@ -2,8 +2,8 @@ class_name DungeonFactory
 extends Node
 
 
-static func make_dungeon(data: Dictionary) -> Dungeon:
-	var _dungeon = Dungeon.new(data)
+static func make_dungeon(data: Dictionary, class_type: Variant) -> Dungeon:
+	var _dungeon = class_type.new(data)
 
 
 	# add it to world map data

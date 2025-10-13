@@ -5,9 +5,9 @@ const dev_mode := true
 var world_seed: int = 2840132 # set when starting new game
 var main_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-func _ready() -> void:
-	main_rng.seed = world_seed
-	print("main rng seed set: ", main_rng.seed)
+# func _ready() -> void:
+# 	main_rng.seed = world_seed
+# 	print("main rng seed set: ", main_rng.seed)
 
 # ___ Main Node ___
 
@@ -25,6 +25,13 @@ func set_main_node(value: Node2D) -> void:
 	main_node = value
 	print("Main node set", main_node.name)
 
+func set_world_seed(_seed: int) -> void:
+	world_seed = _seed
+	print("main world seed set: ", world_seed)
+	main_rng.seed = world_seed
+
+	# set other random number generators
+	DungeonManager.set_seed()
 
 # ___ Constants ___
 const TILE_SIZE = Vector2i(16, 24) # tile size in pixels
@@ -667,7 +674,7 @@ var turn_manager_debug := 0
 var input_manager_debug := 0
 var hot_bar_debug := 0
 var map_functions_debug := 0
-var biome_debug := 0 # for biome generation and loading in Biome classes
+var biome_debug := 1 # for biome generation and loading in Biome classes
 var fov_manager_debug := 0
 var item_debug := 0
 var inventory_debug := 0

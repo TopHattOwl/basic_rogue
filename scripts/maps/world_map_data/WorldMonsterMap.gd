@@ -13,7 +13,16 @@ func _init() -> void:
 
 
 func add_dungeon(pos: Vector2i, dungeon: Dungeon) -> void:
-	map_data[pos.y][pos.x].add_dungeon_tile(dungeon)
+	var tile: WorldMonsterTile = map_data[pos.y][pos.x]
+	tile.add_dungeon_tile(dungeon)
+
+func enter_dungeon(pos: Vector2i) -> void:
+	var tile: WorldMonsterTile = map_data[pos.y][pos.x]
+	tile.enter_dungeon()
+
+func has_dungeon(world_pos: Vector2i) -> bool:
+	var tile: WorldMonsterTile = map_data[world_pos.y][world_pos.x]
+	return tile.has_dungeon
 
 # SAVE/LOAD
 

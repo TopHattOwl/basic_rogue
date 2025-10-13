@@ -11,7 +11,7 @@ var biome_type = []
 # if biome type is premade type (like village, city, etc) then biome_map's value will be null
 var biome_map = BiomeMap.new()
 
-var world_monster_map = WorldMonsterMap.new()
+var world_monster_map: WorldMonsterMap = WorldMonsterMap.new()
 
 # world_map_identity is a 2d array holding info about each world map tile
 var world_map_identity = []
@@ -31,7 +31,7 @@ var dungeons := DungeonMap.new()
 func _ready() -> void:
 	SaveFuncs.load_base_world_map_data()
 
-	# set_base()
+	set_base()
 	
 
 ## THIS SHOULD ONLY RUN IF WROLD MAP NODE HAS BEEN CHANGED (otherwise just load in base data)

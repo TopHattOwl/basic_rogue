@@ -37,6 +37,12 @@ func _on_continue_pressed() -> void:
 	if debug:
 		print("continue button pressed")
 	
+	# generate randowm world seed
+	var _seed = randi_range(11111111, 99999999)
+	# for now fix value
+	var fixed_seed = 2840132
+	GameData.set_world_seed(fixed_seed)
+	
 	# save newly made player
 	SaveFuncs.save_player_data()
 

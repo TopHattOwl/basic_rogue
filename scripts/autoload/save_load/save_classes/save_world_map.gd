@@ -21,6 +21,7 @@ static func save_world_maps() -> void:
 	WorldMapData.world_map2.save_world_map()
 	WorldMapData.biome_map.save_biome_map()
 	WorldMapData.world_monster_map.save_world_monster_map()
+	WorldMapData.dungeons.save_dungeon_map()
 
 
 # --- Base Data --- 

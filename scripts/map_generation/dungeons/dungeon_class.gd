@@ -1,5 +1,5 @@
 class_name Dungeon
-extends Node
+extends Resource
 
 var id: int
 var levels: Array[DungeonLevel] = []
@@ -17,6 +17,11 @@ func _init(data: Dictionary = {}) -> void:
 		push_error("dungeon data is missing required fields\ndata: ", data)
 		return
 
+
+func enter_dungeon() -> void:
+	print("entering dungeon:\n\tid: {0}\n\tworld map pos: {1}".format([id, world_map_pos]))
+
+# --- Checks ---
 
 func check_data(data: Dictionary) -> bool:
 	return check_id(data) and check_world_map_pos(data) and check_rng_seed(data)
