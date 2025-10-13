@@ -66,7 +66,7 @@ static func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 		return false
 
 
-	if MapFunction.is_in_bounds(new_pos) and GameData.player.get_node("Components/GhostComponent") and is_current_actor_player:
+	if MapFunction.is_in_bounds(new_pos) and GameData.player.has_node("Components/GhostComponent") and is_current_actor_player:
 		var old_pos = position_component.grid_pos
 		# update component
 		position_component.grid_pos = new_pos
@@ -189,7 +189,7 @@ static func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
 
 		return true
 
-	if GameData.player.get_node("Components/GhostComponent") and is_current_actor_player:
+	if GameData.player.has_node("Components/GhostComponent") and is_current_actor_player:
 		var old_pos = position_component.grid_pos
 		# update component
 		position_component.grid_pos = new_pos

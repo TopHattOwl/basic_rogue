@@ -44,31 +44,45 @@ func make_dungeon_node_data(level: int = 0) -> Dictionary:
 
 ## enter the first level of the dungeon
 func enter_dungeon() -> void:
-	enter_dungeon_level(0)
-	# if GameData.dungeon_debug:
-	# 	print("entering dungeon:\n\tid: {0}\n\tworld map pos: {1}".format([id, world_map_pos]))
-	# 	print("\tdungeon_type: ", get_script().get_global_name())
 
-	# var _dungeon_node = load(DirectoryPaths.dungeon).instantiate()
-	# _dungeon_node.init_data(make_dungeon_node_data())
-	# GameData.current_dungeon = _dungeon_node
-	# GameData.current_dungeon_class = self
+	if GameData.current_map:
+		GameData.current_map.queue_free()
+		GameData.current_map = null
+	GameData.remove_entities()
 
-	# if GameData.current_map:
-	# 	GameData.current_map.queue_free()
-	# 	GameData.current_map = null
-	# GameData.remove_entities()
+	if GameData.current_dungeon:
+		GameData.current_dungeon.queue_free()
+		GameData.current_dungeon = null
 
-	# GameData.terrain_map = levels[0].terrain_map
+	GameData.current_dungeon_class = self
 
-	# # put player in right position
-	# var spawn_pos = levels[0].stair_up.spawn_pos
-	# GameData.player.position = MapFunction.to_world_pos(spawn_pos)
-	# GameData.player.PositionComp.grid_pos = spawn_pos
+	if GameData.dungeon_debug:
+		print("entering dungeon:\n\tid: {0}\n\tworld map pos: {1}".format([id, world_map_pos]))
+		print("\tdungeon_type: ", get_script().get_global_name())
 
-	# GameData.player.PlayerComp.is_in_dungeon = true
-	# GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.DUNGEON_INPUT
-	# GameData.main_node.add_child(GameData.current_dungeon)
+	var _dungeon_node = load(DirectoryPaths.dungeon).instantiate()
+	_dungeon_node.init_data(make_dungeon_node_data())
+	GameData.current_dungeon = _dungeon_node
+	GameData.current_dungeon_level = 0
+
+	if not GameData.current_dungeon_class:
+		GameData.current_dungeon_class = self
+
+	GameData.terrain_map = levels[0].terrain_map
+
+	# put player in right position
+	var spawn_pos = levels[0].stair_up.spawn_pos
+
+	GameData.player.position = MapFunction.to_world_pos(spawn_pos)
+	GameData.player.PositionComp.grid_pos = spawn_pos
+
+	GameData.player.PlayerComp.is_in_dungeon = true
+	GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.DUNGEON_INPUT
+	GameData.main_node.add_child(GameData.current_dungeon)
+
+	SignalBus.entered_dungeon.emit({
+		"dungeon": self,
+	})
 
 ## exits the dungeon
 func exit_dungeon() -> void:
@@ -83,6 +97,7 @@ func exit_dungeon() -> void:
 	var new_player_grid_pos = MapFunction.get_tiles_in_radius(dungeon_pos, 1, false, false, "chebyshev", true, true)[0]
 	
 	GameData.current_dungeon_class = null
+	GameData.current_dungeon_level = -1
 	GameData.player.PlayerComp.is_in_dungeon = false
 	GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.ZOOMED_IN_MOVEMENT
 
@@ -90,39 +105,57 @@ func exit_dungeon() -> void:
 	GameData.player.position = MapFunction.to_world_pos(new_player_grid_pos)
 	WorldMapData.biome_map.generate_map(world_pos)
 
+	SignalBus.exited_dungeon.emit()
 
-func enter_dungeon_level(level: int) -> void:
-	if GameData.dungeon_debug and level == 0:
-		print("entering dungeon:\n\tid: {0}\n\tworld map pos: {1}".format([id, world_map_pos]))
-		print("\tdungeon_type: ", get_script().get_global_name())
-	elif GameData.dungeon_debug:
+
+## enters a given level, with an optional direction
+func enter_dungeon_level(level: int, direction: String = "down") -> void:
+	var old_level = 0
+	if GameData.dungeon_debug:
 		print("entering dungeon level: {0}".format([level]))
 	
-	if GameData.current_map:
-		GameData.current_map.queue_free()
-		GameData.current_map = null
-	GameData.remove_entities()
-
 	if GameData.current_dungeon:
 		GameData.current_dungeon.queue_free()
 		GameData.current_dungeon = null
 	
+	GameData.remove_entities()
+
 	var _dungeon_node = load(DirectoryPaths.dungeon).instantiate()
 	_dungeon_node.init_data(make_dungeon_node_data(level))
 	GameData.current_dungeon = _dungeon_node
-	GameData.current_dungeon_class = self
+	GameData.current_dungeon_level = level
+
+	if not GameData.current_dungeon_class:
+		GameData.current_dungeon_class = self
 
 	GameData.terrain_map = levels[level].terrain_map
 
 	# put player in right position
-	var spawn_pos = levels[level].stair_up.spawn_pos
+	var spawn_pos: Vector2i = Vector2i.ZERO
+	match direction:
+		"down": # if going down, use the next level's up stair's spawn point
+			spawn_pos = levels[level].stair_up.spawn_pos
+			old_level = level - 1
+		"up":
+			spawn_pos = levels[level].stair_down.spawn_pos
+			old_level = level + 1
+
 	GameData.player.position = MapFunction.to_world_pos(spawn_pos)
 	GameData.player.PositionComp.grid_pos = spawn_pos
 
 	GameData.player.PlayerComp.is_in_dungeon = true
 	GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.DUNGEON_INPUT
 	GameData.main_node.add_child(GameData.current_dungeon)
+
+	SignalBus.dungeon_level_changed.emit(level, old_level)
 	
+
+func get_explored_tiles(level: int) -> Array:
+	return levels[level].get_explored_tiles()
+
+func save_explored_tiles(level: int, tiles: Array) -> void:
+	levels[level].save_explored_tiles(tiles)
+
 # --- Checks ---
 
 func check_data(data: Dictionary) -> bool:

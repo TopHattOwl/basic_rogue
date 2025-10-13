@@ -77,7 +77,13 @@ func initialize_fov() -> void:
 
 	
 	# load in exlored tiles
-	load_explored_tiles(GameData.player.PlayerComp.world_map_pos)
+	if not GameData.current_dungeon:
+		# if not in dungeon, load in from world map
+		load_explored_tiles(GameData.player.PlayerComp.world_map_pos)
+	else:
+		# load in explored tiles from DungeonLevel
+		pass
+
 	
 	# Calculate initial FOV
 	update_fov()
@@ -128,6 +134,7 @@ func update_fov() -> void:
 				fov_tilemap.set_cell(pos, FOV_SOURCE_ID, UNEXPLORED_ATLAS)
 	
 	SignalBus.fov_calculated.emit()
+
 
 # Shadowcasting implementation
 func mark_visible(pos: Vector2i) -> void:
@@ -242,9 +249,10 @@ func save_explored_tiles(_new_pos: Vector2i, old_pos: Vector2i) -> void:
 
 
 func load_explored_tiles(world_map_pos: Vector2i) -> void:
-	if GameData.fov_manager_debug:
-		print("loading tiles for world map pos: ", world_map_pos)
+
 	explored_tiles = WorldMapData.world_map2.get_explored_tiles(world_map_pos)
+	if GameData.fov_manager_debug:
+		print("loading explored tiles for world map pos in FOV: ", world_map_pos)
 
 
 

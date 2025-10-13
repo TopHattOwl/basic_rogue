@@ -170,7 +170,10 @@ var NPC_UIDS = {
 # references to map scenes
 var current_map: Node2D = null
 var current_dungeon: Node2D = null
+
+
 var current_dungeon_class: Dungeon = null
+var current_dungeon_level: int = -1
 
 var terrain_map: Array = []
 var actors_map: Array = []

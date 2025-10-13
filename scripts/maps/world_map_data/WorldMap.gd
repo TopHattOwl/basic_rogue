@@ -65,7 +65,8 @@ func load_world_map() -> void:
 ## saves exlored tiles for map [br]
 ## only saves it to the varable, does not write save file
 func save_explored_tiles(world_pos: Vector2i, tiles: Array) -> void:
-	map_data[world_pos.y][world_pos.x].save_explored_tiles(tiles)
+	var tile: WorldMapTile = map_data[world_pos.y][world_pos.x]
+	tile.save_explored_tiles(tiles)
 
 func get_explored_tiles(world_pos: Vector2i) -> Array:
 	return map_data[world_pos.y][world_pos.x].explored_tiles.duplicate()

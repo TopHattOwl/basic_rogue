@@ -8,6 +8,8 @@ var stair_down: DungeonStair
 
 var rng: RandomNumberGenerator
 
+# explored toles for FOV
+var explored_tiles: Array[Vector2i] = []
 
 var world_map_pos: Vector2i
 
@@ -168,3 +170,23 @@ func add_terrain_map_data(target_pos: Vector2i, tile_tag: int) -> void:
 	# apply most restrictive properties
 	target_tile["walkable"] = target_tile["walkable"] and tile_data.walkable
 	target_tile["transparent"] = target_tile["transparent"] and tile_data.transparent
+
+## resets terrain map data to floor for the given position
+func reset_terrain_map_data(target_pos: Vector2i) -> void:
+
+	var target_tile = terrain_map[target_pos.y][target_pos.x]
+
+	target_tile["tags"] = [GameData.TILE_TAGS.FLOOR]
+	target_tile["walkable"] = true
+	target_tile["transparent"] = true
+
+
+
+## saves exlored tiles for map [br]
+## only saves it to the varable, does not write save file
+func save_explored_tiles(tiles: Array) -> void:
+	explored_tiles = tiles
+
+
+func get_explored_tiles() -> Array:
+	return explored_tiles.duplicate()

@@ -74,6 +74,13 @@ signal dungeon_node_ready()
 signal entered_premade_map(data: Dictionary)
 
 
+# --- DUNGEONS ---
+
+signal entered_dungeon(data: Dictionary)
+signal exited_dungeon(data: Dictionary)
+signal dungeon_level_changed(new_level: int, old_level: int)
+
+
 signal buff_added(buff: Buff, actor: Node2D)
 signal buff_removed(buff: Buff, actor: Node2D)
 
