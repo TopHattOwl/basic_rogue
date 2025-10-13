@@ -3,6 +3,8 @@ extends Node
 ## when dungeon is clear set timer, few weeks and repopulate dungeon with random abalible monster type as boss
 ## afther dungeon repopulate make a contract in nerby settlement
 
+const DUNGEON_THROTTLE_LIMIT := 5 # number of dungeon to generate per frame
+
 var debug := GameData.dungeon_debug
 var rng: RandomNumberGenerator = null
 
@@ -32,6 +34,8 @@ func generate_dungeons() -> void:
 
 	if debug:
 		print("--- GENERATING DUNGEONS ---")
+
+	SignalBus.loading_label_changed.emit("Generating dungeons...")
 
 	for id in num_of_dungeons:
 
@@ -80,6 +84,12 @@ func generate_dungeons() -> void:
 			GameData.DUNGEON_TYPES.TOWER:
 				tower_num += 1
 				DungeonFactory.make_dungeon(dungeon_data, TowerDungeon)
+
+		if id % DUNGEON_THROTTLE_LIMIT == 0:
+			await get_tree().process_frame
+		
+		SignalBus.loading_screen_progressed.emit(float(id) / float(num_of_dungeons - 1))
+
 
 
 	if debug:

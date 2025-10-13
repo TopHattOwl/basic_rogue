@@ -63,6 +63,22 @@ static func process_movement(entity: Node, new_pos: Vector2i) -> bool:
 	if MapFunction.get_tile_info(new_pos)["tags"].has(GameData.TILE_TAGS.STAIR) and is_current_actor_player and not GameData.current_dungeon:
 		var player_world_pos = GameData.player.PlayerComp.world_map_pos
 		WorldMapData.world_monster_map.enter_dungeon(player_world_pos)
+		return false
+
+
+	if MapFunction.is_in_bounds(new_pos) and GameData.player.get_node("Components/GhostComponent") and is_current_actor_player:
+		var old_pos = position_component.grid_pos
+		# update component
+		position_component.grid_pos = new_pos
+
+		# update variables
+		GameData.actors_map[old_pos.y][old_pos.x] = null
+		GameData.actors_map[new_pos.y][new_pos.x] = entity
+		# visual update
+		entity.position = MapFunction.to_world_pos(new_pos)
+
+		return true
+
 
 	return false
 
@@ -136,6 +152,10 @@ static func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
 	if not position_component:
 		push_error("No position component found for entity: ", entity.name)
 		return false
+	
+	# bounds check
+	if not MapFunction.is_in_bounds(new_pos):
+		return false
 
 	# player component check
 	var is_current_actor_player = GameData.player == entity
@@ -149,7 +169,7 @@ static func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
 			return ComponentRegistry.get_component(entity, GameData.ComponentKeys.MELEE_COMBAT).melee_attack(actor_at_pos)
 
 	# general movement check
-	if MapFunction.is_tile_walkable(new_pos) and MapFunction.is_in_bounds(new_pos):
+	if MapFunction.is_tile_walkable(new_pos):
 		
 		var old_pos = position_component.grid_pos
 		# update component
@@ -168,6 +188,33 @@ static func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
 		entity.position = MapFunction.to_world_pos(new_pos)
 
 		return true
+
+	if GameData.player.get_node("Components/GhostComponent") and is_current_actor_player:
+		var old_pos = position_component.grid_pos
+		# update component
+		position_component.grid_pos = new_pos
+
+		# update variables
+		GameData.actors_map[old_pos.y][old_pos.x] = null
+		GameData.actors_map[new_pos.y][new_pos.x] = entity
+
+		# visual update
+		entity.position = MapFunction.to_world_pos(new_pos)
+
+		return true
+	
+	# dungeon stair check
+	if MapFunction.get_tile_info(new_pos)["tags"].has(GameData.TILE_TAGS.STAIR):
+		# check if stair up
+		var stair_up: DungeonStair = GameData.current_dungeon.stair_up
+		if stair_up.pos == new_pos:
+			stair_up.use_stair()
+		
+		# if not stair up then stair down
+		else:
+			var stair_down: DungeonStair = GameData.current_dungeon.stair_down
+			if stair_down.pos == new_pos:
+				stair_down.use_stair()
 	
 	return false
 

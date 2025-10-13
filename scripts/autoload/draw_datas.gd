@@ -91,32 +91,32 @@ var dungeon_tileset_resource: Dictionary = {}
 var dungeon_tileset_draw_data: Dictionary = {
 	GameData.DUNGEON_TYPES.CASTLE: {
 		GameData.TILE_TAGS.FLOOR: {
-			"source_id": GameData.DUNGEON_TYPES.CASTLE,
-			"atlas_coords_max": Vector2i(1, 2), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(4, 0), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
 			"atlas_coords_min": Vector2i(0, 0),
 		},
 		GameData.TILE_TAGS.WALL: {
-			"source_id": GameData.DUNGEON_TYPES.CASTLE,
-			"atlas_coords_max": Vector2i(0, 0),
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(4, 0),
 			"atlas_coords_min": Vector2i(0, 0),
 		},
 		GameData.TILE_TAGS.STAIR: {
-			"source_id": GameData.DUNGEON_TYPES.CASTLE,
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
 			"atlas_coords_max": Vector2i(1, 0),
 			"atlas_coords_min": Vector2i(0, 0),
 		},
 		GameData.TILE_TAGS.DOOR: {
-			"source_id": GameData.DUNGEON_TYPES.CASTLE,
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
 			"atlas_coords_max": Vector2i(0, 0),
 			"atlas_coords_min": Vector2i(0, 0),
 		},
 		GameData.TILE_TAGS.DOOR_FRAME: {
-			"source_id": GameData.DUNGEON_TYPES.CASTLE,
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
 			"atlas_coords_max": Vector2i(1, 0), 
 			"atlas_coords_min": Vector2i(1, 0),
 		},
 		GameData.TILE_TAGS.NATURE: {
-			"source_id": GameData.DUNGEON_TYPES.CASTLE,
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
 			"atlas_coords_max": Vector2i(0, 0), 
 			"atlas_coords_min": Vector2i(1, 0),
 		},
@@ -124,6 +124,108 @@ var dungeon_tileset_draw_data: Dictionary = {
 
 
 	GameData.DUNGEON_TYPES.CAVE: {
+		GameData.TILE_TAGS.FLOOR: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(4, 0), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		GameData.TILE_TAGS.WALL: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(4, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		GameData.TILE_TAGS.STAIR: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(1, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		GameData.TILE_TAGS.DOOR: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(0, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		GameData.TILE_TAGS.DOOR_FRAME: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(1, 0), 
+			"atlas_coords_min": Vector2i(1, 0),
+		},
+		GameData.TILE_TAGS.NATURE: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(0, 0), 
+			"atlas_coords_min": Vector2i(1, 0),
+		},
+	},
+
+
+	GameData.DUNGEON_TYPES.CAMP: {
+		GameData.TILE_TAGS.FLOOR: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(4, 0), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		GameData.TILE_TAGS.WALL: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(4, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		GameData.TILE_TAGS.STAIR: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(1, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		GameData.TILE_TAGS.DOOR: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(0, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		GameData.TILE_TAGS.DOOR_FRAME: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(1, 0), 
+			"atlas_coords_min": Vector2i(1, 0),
+		},
+		GameData.TILE_TAGS.NATURE: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(0, 0), 
+			"atlas_coords_min": Vector2i(1, 0),
+		},
+	},
+
+
+	GameData.DUNGEON_TYPES.TEMPLE: {
+		GameData.TILE_TAGS.FLOOR: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(4, 0), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		GameData.TILE_TAGS.WALL: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(4, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		GameData.TILE_TAGS.STAIR: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(1, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		GameData.TILE_TAGS.DOOR: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(0, 0),
+			"atlas_coords_min": Vector2i(0, 0),
+		},
+		GameData.TILE_TAGS.DOOR_FRAME: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(1, 0), 
+			"atlas_coords_min": Vector2i(1, 0),
+		},
+		GameData.TILE_TAGS.NATURE: {
+			"source_id": GameData.DUNGEON_TYPES.CAVE,
+			"atlas_coords_max": Vector2i(0, 0), 
+			"atlas_coords_min": Vector2i(1, 0),
+		},
+	},
+
+
+	GameData.DUNGEON_TYPES.TOWER: {
 		GameData.TILE_TAGS.FLOOR: {
 			"source_id": GameData.DUNGEON_TYPES.CAVE,
 			"atlas_coords_max": Vector2i(4, 0), # Vector2i(x, y) where x is the max x coord and y is the max y coord | Vector2i(1, 2) -> 2 tile wilde 3 tile tall grid

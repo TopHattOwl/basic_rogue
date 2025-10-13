@@ -23,6 +23,10 @@ func generate_map(pos: Vector2i) -> void:
 func get_biome_type(world_pos: Vector2i) -> int:
 	return map_data[world_pos.y][world_pos.x].biome_type
 
+
+func get_dungeon_pos(world_pos: Vector2i) -> Vector2i:
+	return map_data[world_pos.y][world_pos.x].dungeon_pos
+
 # SAVE/LOAD
 
 func save_biome_map() -> void:

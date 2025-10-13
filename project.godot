@@ -85,6 +85,7 @@ enabled=PackedStringArray("res://addons/signal_lens/plugin.cfg")
 monsters=""
 remains=""
 spell_projectile=""
+loading_screen=""
 
 [input]
 

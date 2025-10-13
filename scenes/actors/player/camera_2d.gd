@@ -41,7 +41,9 @@ func toggle_can_zoom() -> void:
 func set_can_zoom() -> void:
 	var input_mode = GameData.player.PlayerComp.input_mode
 
-	if input_mode == GameData.INPUT_MODES.ZOOMED_IN_MOVEMENT or input_mode == GameData.INPUT_MODES.WORLD_MAP_MOVEMENT:
+	if (input_mode == GameData.INPUT_MODES.ZOOMED_IN_MOVEMENT or 
+		input_mode == GameData.INPUT_MODES.WORLD_MAP_MOVEMENT or
+		input_mode == GameData.INPUT_MODES.DUNGEON_INPUT):
 		can_zoom = true
 	else:
 		can_zoom = false

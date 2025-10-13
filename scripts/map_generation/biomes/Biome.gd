@@ -7,6 +7,9 @@ var biome_name: String
 var grid_pos: Vector2i
 var terrain_map: Array
 
+# grid pos of the dungeon
+var dungeon_pos: Vector2i = Vector2i.ZERO
+
 var map_rng = RandomNumberGenerator.new()
 
 var tileset_resource
@@ -109,6 +112,7 @@ func make_dungeon() -> void:
 		
 		position_found = true
 
+		dungeon_pos = random_pos
 		add_terrain_map_data(random_pos, GameData.TILE_TAGS.STAIR, GameData.get_tile_data(GameData.TILE_TAGS.STAIR))
 
 

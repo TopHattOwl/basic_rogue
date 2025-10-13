@@ -137,8 +137,8 @@ func make_look_target_entry(texture: Texture2D, description: String, target_name
 func update_camera_data():
 	var cam = GameData.player.get_node("Camera2D")
 
-
-	if !ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map and !GameData.player.PlayerComp.is_in_dungeon:
+	# zoomed in or dungeon
+	if !ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map:
 		# limits
 		cam.limit_right = (GameData.MAP_SIZE.x + 16)  * GameData.TILE_SIZE.x
 		cam.limit_bottom = (GameData.MAP_SIZE.y + 2) * GameData.TILE_SIZE.y
@@ -150,6 +150,8 @@ func update_camera_data():
 
 		# set offset
 		cam.offset.x = 100
+	
+	# world map
 	elif ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map and !GameData.player.PlayerComp.is_in_dungeon:
 		cam.limit_right = GameData.WORLD_MAP_SIZE.x * GameData.TILE_SIZE.x
 		cam.limit_bottom = GameData.WORLD_MAP_SIZE.y * GameData.TILE_SIZE.y
@@ -159,14 +161,6 @@ func update_camera_data():
 		cam.zoom = Vector2(0.4, 0.4)
 
 		cam.offset.x = 0
-
-	elif GameData.player.PlayerComp.is_in_dungeon:
-		cam.limit_right = (GameData.current_dungeon.dungeon_level_size.x + 16) * GameData.TILE_SIZE.x
-		cam.limit_bottom = (GameData.current_dungeon.dungeon_level_size.y + 2) * GameData.TILE_SIZE.y
-		cam.limit_top = (-3) * GameData.TILE_SIZE.y
-		cam.limit_left = (-10) * GameData.TILE_SIZE.x
-
-		cam.offset.x = 100
 
 
 # --- STANCE BAR ---

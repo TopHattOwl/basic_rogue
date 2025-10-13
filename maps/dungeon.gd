@@ -19,11 +19,13 @@ var tileset_resource = {
 }
 
 var terrain_data = null
-
-
 var tile_set_draw_data = {}
 
 var map_rng: RandomNumberGenerator
+
+# references for dungeon stairs
+var stair_up: DungeonStair
+var stair_down: DungeonStair
 
 
 ## this gets called from MapFunction when entering a dungeon
@@ -33,6 +35,10 @@ func init_data(d: Dictionary) -> void:
 	tileset_resource = d.get("tileset_resource", tileset_resource)
 	tile_set_draw_data = d.get("tile_set_draw_data", {})
 	map_rng = d.get("rng", RandomNumberGenerator.new())
+
+	stair_up = d.get("stair_up", null)
+	stair_down = d.get("stair_down", null)
+
 
 
 	# load in tilesets
@@ -50,19 +56,30 @@ func _ready() -> void:
 	# draw the map
 	for y in range(GameData.MAP_SIZE.y):
 		for x in range(GameData.MAP_SIZE.x):
+			var tile_pos = Vector2i(x, y)
 
 			# draw floor
 			var atlas_max = tile_set_draw_data[GameData.TILE_TAGS.FLOOR]["atlas_coords_max"]
 			var atlas_min = tile_set_draw_data[GameData.TILE_TAGS.FLOOR]["atlas_coords_min"]
 			var source_id = tile_set_draw_data[GameData.TILE_TAGS.FLOOR].source_id
-			floor_layer.set_cell(Vector2i(x, y), source_id, Vector2i(map_rng.randi_range(atlas_min.x, atlas_max.x), map_rng.randi_range(atlas_min.y, atlas_max.y)))
+			floor_layer.set_cell(tile_pos, source_id, Vector2i(map_rng.randi_range(atlas_min.x, atlas_max.x), map_rng.randi_range(atlas_min.y, atlas_max.y)))
 
+			# draw walls
 			if terrain_data[y][x]["tags"].has(GameData.TILE_TAGS.WALL):
 				atlas_max = tile_set_draw_data[GameData.TILE_TAGS.WALL]["atlas_coords_max"]
 				atlas_min = tile_set_draw_data[GameData.TILE_TAGS.WALL]["atlas_coords_min"]
 				var wall_source_id = tile_set_draw_data[GameData.TILE_TAGS.WALL].source_id
-				wall_layer.set_cell(Vector2i(x, y), wall_source_id, Vector2i(map_rng.randi_range(atlas_min.x, atlas_max.x), map_rng.randi_range(atlas_min.y, atlas_max.y)))
+				wall_layer.set_cell(tile_pos, wall_source_id, Vector2i(map_rng.randi_range(atlas_min.x, atlas_max.x), map_rng.randi_range(atlas_min.y, atlas_max.y)))
 
+			# draw stairs
+			if terrain_data[y][x]["tags"].has(GameData.TILE_TAGS.STAIR):
+				var stair_source_id = tile_set_draw_data[GameData.TILE_TAGS.STAIR].source_id
+
+				# if stair up use up version of stair (0,0 atlas pos)
+				if tile_pos == stair_up.pos:
+					stair_layer.set_cell(tile_pos, stair_source_id, Vector2i(0, 0))
+				else:
+					stair_layer.set_cell(tile_pos, stair_source_id, Vector2i(1, 0))
 	
 	MapFunction.initialize_astar_grid()
 

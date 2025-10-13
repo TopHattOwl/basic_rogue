@@ -26,6 +26,8 @@ var tile_set_draw_data = {}
 # rng machine
 var map_rng: RandomNumberGenerator
 
+var stair_pos := Vector2i(-1, -1)
+
 
 ## This is run in Biome classes when generating or loading a world
 func init_data_new(d: Dictionary) -> void:
@@ -60,7 +62,8 @@ func _ready() -> void:
 				nature_layer.set_cell(Vector2i(x, y), nature_source_id, selected_tree)
 			if terrain_data[y][x]["tags"].has(GameData.TILE_TAGS.STAIR):
 				var stair_source_id = tile_set_draw_data[GameData.TILE_TAGS.STAIR].source_id
-				stair_layer.set_cell(Vector2i(x, y), stair_source_id, Vector2i(0, 0))
+				stair_layer.set_cell(Vector2i(x, y), stair_source_id, Vector2i(1, 0))
+				stair_pos = Vector2i(x, y)
 
 	MapFunction.initialize_astar_grid()
 

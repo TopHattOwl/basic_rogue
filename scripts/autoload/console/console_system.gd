@@ -15,6 +15,7 @@ func _ready() -> void:
 	# player commands
 	register_command("heal", heal_command, "Heals player by given amount\n\t\theal (amount)")
 	register_command("add_skill_exp", add_skill_exp_command, "Adds given amount of skill experience to player\n\t\tadd_skill_exp [skill_id] [amount]")
+	register_command("ghost", ghost_command, "Toggles ghost mode for player\n\tIn ghost mode player can go trough walls")
 
 	# spawn commands
 	register_command("spawn_monster", spawn_monster_command, "Spawns a monster with given id at given position\n\t\tspawn_monster (id/uid) (x) (y)")
@@ -114,6 +115,15 @@ func add_skill_exp_command(_args: PackedStringArray) -> String:
 	
 	return output
 
+
+func ghost_command(_args: PackedStringArray) -> String:
+	if GameData.player.get_node("Components/GhostComponent"):
+		GameData.player.get_node("Components/GhostComponent").queue_free()
+		return "Turning ghost mode off"
+	else:
+		var ghost_comp = GhostComponent.new()
+		GameData.player.get_node("Components").add_child(ghost_comp)
+		return "Turning ghost mode on"
 
 # --- SPAWN COMMANDS ---
 

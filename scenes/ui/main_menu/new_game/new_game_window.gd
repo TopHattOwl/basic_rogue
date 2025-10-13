@@ -46,8 +46,13 @@ func _on_continue_pressed() -> void:
 	# save newly made player
 	SaveFuncs.save_player_data()
 
+	# add loading screen while generating dungeons
+	var loading_screen = load(DirectoryPaths.loading_screen_scene).instantiate()
+	loading_screen.z_index = GameData.LOADING_SCREEN_Z_INDEX
+	get_tree().root.add_child(loading_screen)
 	# generate dungeons
-	DungeonManager.generate_dungeons()
+	await DungeonManager.generate_dungeons()
+	loading_screen.queue_free()
 
 
 	SignalBus.new_game_stared.emit()

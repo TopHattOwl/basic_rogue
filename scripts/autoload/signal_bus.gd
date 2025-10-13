@@ -139,3 +139,9 @@ signal contract_taken(data: Dictionary)
 signal contract_completed(data: Dictionary)
 signal contract_turned_in(data: Dictionary)
 signal contract_failed(data: Dictionary)
+
+
+# --- LOADING SCREEN ---
+
+signal loading_screen_progressed(progress: float)
+signal loading_label_changed(text: String)
