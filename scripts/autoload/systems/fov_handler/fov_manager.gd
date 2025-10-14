@@ -14,6 +14,8 @@ var map_width: int = 0
 var map_height: int = 0
 var player_vision_range: int = 10
 
+var debug := GameData.fov_manager_debug
+
 
 func _ready() -> void:
 	SignalBus.game_state_changed.connect(_process_toggle)
@@ -23,6 +25,11 @@ func _ready() -> void:
 
 	# when world map pos changes save explored tiles
 	SignalBus.world_map_pos_changed.connect(save_explored_tiles)
+
+
+	SignalBus.entered_dungeon.connect(_on_dungeon_entered)
+	SignalBus.exited_dungeon.connect(_on_dungeon_exited)
+	SignalBus.dungeon_level_changed.connect(_on_dungeon_level_changed)
 
 
 func _process(_delta: float) -> void:
@@ -44,20 +51,31 @@ func _process_toggle(new_state: int) -> void:
 		_:
 			deactivate_fov()
 
+
+func _on_dungeon_entered(data: Dictionary) -> void:
+	pass
+	save_explored_tiles(Vector2i.ZERO, GameData.player.PlayerComp.world_map_pos)
+
+func _on_dungeon_exited(data: Dictionary) -> void:
+	pass
+
+func _on_dungeon_level_changed(_new_level: int, _old_level: int) -> void:
+	save_explored_tiles_dungeon(_old_level)
+
 ## sets fov tilemap
 func activate_fov() -> void:
-	if GameData.fov_manager_debug:
+	if debug:
 		print("activating fov")
 
 	fov_tilemap = GameData.main_node.get_node("FOV").get_node("TileMapLayer")
 func deactivate_fov() -> void:
-	if GameData.fov_manager_debug:
+	if debug:
 		print("deactivating fov")
 	fov_tilemap = null
 
 
 func initialize_fov() -> void:
-	if GameData.fov_manager_debug:
+	if debug:
 			print("Initializing fov manager")
 
 	map_width = 0
@@ -82,7 +100,7 @@ func initialize_fov() -> void:
 		load_explored_tiles(GameData.player.PlayerComp.world_map_pos)
 	else:
 		# load in explored tiles from DungeonLevel
-		pass
+		load_explored_tiles_dungeon()
 
 	
 	# Calculate initial FOV
@@ -233,11 +251,11 @@ func get_tile_transparency(pos: Vector2i) -> bool:
 
 func save_explored_tiles(_new_pos: Vector2i, old_pos: Vector2i) -> void:
 	if !explored_tiles:
-		if GameData.fov_manager_debug:
+		if debug:
 			print("no tiles to save")
 		return
 
-	if GameData.fov_manager_debug:
+	if debug:
 		print("saving tiles for world map pos: ", old_pos)
 
 	# duplicate the array, so it's not reference we are passing
@@ -251,10 +269,22 @@ func save_explored_tiles(_new_pos: Vector2i, old_pos: Vector2i) -> void:
 func load_explored_tiles(world_map_pos: Vector2i) -> void:
 
 	explored_tiles = WorldMapData.world_map2.get_explored_tiles(world_map_pos)
-	if GameData.fov_manager_debug:
+	if debug:
 		print("loading explored tiles for world map pos in FOV: ", world_map_pos)
 
+func load_explored_tiles_dungeon() -> void:
+	if debug:
+		print("loading explored tiles for dungeon level: ", GameData.current_dungeon_level)
+	explored_tiles = GameData.current_dungeon_class.get_explored_tiles(GameData.current_dungeon_level)
+	
 
+
+## Saves explored tiles to param `level` [br]
+## using GameData.current_dungeon_class
+func save_explored_tiles_dungeon(level: int) -> void:
+	if debug:
+		print("\tsaving explored tiles for dungeon level: ", level)
+	GameData.current_dungeon_class.save_explored_tiles(level, explored_tiles.duplicate())
 
 # Helper classes
 class Quadrant:

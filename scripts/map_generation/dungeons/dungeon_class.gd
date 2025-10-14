@@ -57,6 +57,7 @@ func enter_dungeon() -> void:
 	GameData.current_dungeon_class = self
 
 	if GameData.dungeon_debug:
+		print("--- Entering dungeon in Dungeon Class ---")
 		print("entering dungeon:\n\tid: {0}\n\tworld map pos: {1}".format([id, world_map_pos]))
 		print("\tdungeon_type: ", get_script().get_global_name())
 
@@ -78,11 +79,14 @@ func enter_dungeon() -> void:
 
 	GameData.player.PlayerComp.is_in_dungeon = true
 	GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.DUNGEON_INPUT
-	GameData.main_node.add_child(GameData.current_dungeon)
 
 	SignalBus.entered_dungeon.emit({
 		"dungeon": self,
 	})
+
+	GameData.main_node.add_child(GameData.current_dungeon)
+
+	
 
 ## exits the dungeon
 func exit_dungeon() -> void:
@@ -103,9 +107,13 @@ func exit_dungeon() -> void:
 
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.POSITION).grid_pos = new_player_grid_pos
 	GameData.player.position = MapFunction.to_world_pos(new_player_grid_pos)
+
+	SignalBus.exited_dungeon.emit({
+		"dungeon": self,
+	})
+
 	WorldMapData.biome_map.generate_map(world_pos)
 
-	SignalBus.exited_dungeon.emit()
 
 
 ## enters a given level, with an optional direction
@@ -145,9 +153,12 @@ func enter_dungeon_level(level: int, direction: String = "down") -> void:
 
 	GameData.player.PlayerComp.is_in_dungeon = true
 	GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.DUNGEON_INPUT
-	GameData.main_node.add_child(GameData.current_dungeon)
 
 	SignalBus.dungeon_level_changed.emit(level, old_level)
+
+	GameData.main_node.add_child(GameData.current_dungeon)
+
+	
 	
 
 func get_explored_tiles(level: int) -> Array:

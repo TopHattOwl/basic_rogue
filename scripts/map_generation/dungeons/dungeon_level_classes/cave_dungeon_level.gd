@@ -268,40 +268,6 @@ func smooth_corridor(path: Array) -> void:
 					if wall_neighbors < 3:
 						reset_terrain_map_data(check_pos)
 
-# # Dig a corridor between two points
-# func dig_corridor(start: Vector2i, end: Vector2i) -> void:
-# 	var current = start
-	
-# 	# Simple straight-line digging with some randomness for natural look
-# 	while current != end:
-# 		# Remove wall if present
-# 		if is_wall(current):
-# 			reset_terrain_map_data(current)
-		
-# 		# Move toward target with some randomness
-# 		var direction = end - current
-		
-# 		# Prefer cardinal directions with some randomness
-# 		if abs(direction.x) > abs(direction.y):
-# 			current.x += sign(direction.x)
-# 		else:
-# 			current.y += sign(direction.y)
-		
-# 		# Add some randomness to make corridors less straight
-# 		if rng.randf() < 0.2:  # 20% chance to wiggle
-# 			if abs(direction.x) > abs(direction.y):
-# 				current.y += rng.randi_range(-1, 1)
-# 			else:
-# 				current.x += rng.randi_range(-1, 1)
-		
-# 		# Clamp to map bounds
-# 		current.x = clamp(current.x, 1, GameData.MAP_SIZE.x - 2)
-# 		current.y = clamp(current.y, 1, GameData.MAP_SIZE.y - 2)
-	
-# 	# Ensure the end point is also dug out
-# 	if is_wall(end):
-# 		reset_terrain_map_data(end)
-
 
 
 

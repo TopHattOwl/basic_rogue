@@ -25,4 +25,9 @@ func use_stair() -> void:
 		dungeon.enter_dungeon_level(depth - 1, "up")
 		return
 
+	# if last level, exit the dungeon
+	elif depth == dungeon.levels.size() - 1:
+		dungeon.exit_dungeon()
+		return
+	
 	dungeon.enter_dungeon_level(depth + 1)

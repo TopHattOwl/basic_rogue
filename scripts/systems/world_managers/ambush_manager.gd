@@ -45,6 +45,13 @@ func _on_world_node_ready() -> void:
 			print("\t-- no savagery --")
 			print("--- AMBUSH MANAGER END ---")
 		return
+
+	if ActionHistory.been_in_dungeon(50):
+		if debug:
+			print("--- AMBUSH MANAGER ---")
+			print("\t-- player came from dungeon, no ambush --")
+			print("--- AMBUSH MANAGER END ---")
+		return
 	
 	var ambush_chance: float = clampf((float(savagery) / 10) * 0.4 * TimeDifficulty.ambush_chance_multiplier, 0, 0.75)
 

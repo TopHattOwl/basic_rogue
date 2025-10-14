@@ -686,5 +686,6 @@ var contract_debug := 0
 var settlement_manager_debug := 0
 var new_game_window_debug := 0
 var dungeon_debug := 1
+var action_history_debug := 1
 
-var dungeon_draw_debug := 1 # for drawing all dungeons at start
+var dungeon_draw_debug := 1 # for displaying all dungeons on the world map

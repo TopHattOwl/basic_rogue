@@ -56,13 +56,6 @@ func _process(_delta: float) -> void:
 	check_end_of_day()
 
 
-## returns a dictionary with year, month and day at the time of the call
-func get_date() -> Dictionary:
-	return {
-		"year": year,
-		"month": month,
-		"day": day
-	}
 
 func update_current_time():
 	if current_day_turn >= time_cycle.morning and current_day_turn < time_cycle.day:
@@ -102,3 +95,29 @@ func pass_day():
 func _on_turn_end() -> void:
 	current_day_turn += 1
 	
+
+## returns a dictionary with year, month and day at the time of the call
+func get_date() -> Dictionary:
+	return {
+		"year": year,
+		"month": month,
+		"day": day,
+		"turn": current_day_turn,
+	}
+
+## returns the difference in turns between the current date and the given date [br]
+## only works for dates in the past compared to current date
+func get_date_difference(_date: Dictionary) -> int:
+	var _current_date = get_date()
+	var difference = 0
+
+	if _date.year < _current_date.year:
+		difference += (YEAR_LENGTH - _current_date.month + 1) * MONTH_LENGTH * DAY_LENGTH
+	elif _date.month < _current_date.month:
+		difference += (MONTH_LENGTH - _current_date.day + 1) * DAY_LENGTH
+	elif _date.day < _current_date.day:
+		difference += DAY_LENGTH - _current_date.turn
+	elif _date.turn < _current_date.turn:
+		difference += _current_date.turn - _date.turn
+
+	return difference

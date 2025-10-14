@@ -49,6 +49,7 @@ SettlementDefinitions="*res://resources/factory/settlements/settlement_definitio
 SettlementManager="*res://scripts/autoload/systems/settlement_manager/settlement_manager.gd"
 SavePaths="*res://scripts/autoload/save_load/save_paths.gd"
 DungeonDefinitions="*res://resources/factory/dungeon/dungeon_definitions.gd"
+ActionHistory="*res://scripts/autoload/systems/action_history/action_history.gd"
 
 [debug]
 
