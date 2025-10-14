@@ -98,7 +98,15 @@ func exit_dungeon() -> void:
 	var world_pos = player_comp.world_map_pos
 	var dungeon_pos = WorldMapData.biome_map.get_dungeon_pos(world_pos)
 
-	var new_player_grid_pos = MapFunction.get_tiles_in_radius(dungeon_pos, 1, false, false, "chebyshev", true, true)[0]
+	print("dungoen grid pos: ", dungeon_pos)
+	var good_spawn_pos = MapFunction.get_tiles_in_radius(dungeon_pos, 1, false, false, "chebyshev", true, true)
+
+	var new_player_grid_pos: Vector2i
+	if good_spawn_pos.size() == 0:
+		push_error("No good spawn pos found in exit_dungeon")
+		return
+	else:
+		new_player_grid_pos = good_spawn_pos[0]
 	
 	GameData.current_dungeon_class = null
 	GameData.current_dungeon_level = -1

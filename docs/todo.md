@@ -74,6 +74,7 @@
 
 # TODO:
 	# VERY IMPORTANT:
+		# Make sure dirung bioe generaion that the spawn pos (GameData.WORLD_SPAWN_POS) is clear of non walkable tiles
 		# finish spell aiming system
 		# make player unable to use powders that are already applied
 		# make world map much larger, to the east, the longer you go east the less civilizations (settlements) there are -> stronger monsters

@@ -34,14 +34,14 @@ func set_world_seed(_seed: int) -> void:
 	DungeonManager.set_seed()
 
 # ___ Constants ___
-const TILE_SIZE = Vector2i(16, 24) # tile size in pixels
-const WORLD_SPAWN_POS = Vector2i(43, 33) # the tile player spawns on when entering world tile
-const MAP_SIZE = Vector2i(82, 37) # map size in tiles
-const WORLD_MAP_SIZE = Vector2i(110, 75)
-const OFFSET = Vector2i(8, 12)
+const TILE_SIZE := Vector2i(16, 24) # tile size in pixels
+const MAP_SIZE := Vector2i(100, 90) # map size in tiles
+const WORLD_SPAWN_POS := Vector2i(MAP_SIZE.x / 2, MAP_SIZE.y - 4) # the tile player spawns on when entering world tile
+const WORLD_MAP_SIZE := Vector2i(110, 75)
+const OFFSET := Vector2i(8, 12)
 
 # ___ Player ___
-var player_scene = DirectoryPaths.player_scene
+var player_scene := DirectoryPaths.player_scene
 var player: Node2D
 
 # ___ Etities ___
