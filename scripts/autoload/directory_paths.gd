@@ -121,6 +121,7 @@ const dungeon_generator = "res://scripts/map_generation/dungeon_generator.gd"
 const main_menu_scene = "res://scenes/ui/main_menu/main_menu.tscn"
 const new_game_window_scene = "res://scenes/ui/main_menu/new_game/new_game_window.tscn"
 const loading_screen_scene = "res://scenes/ui/loading/loading_screen.tscn"
+const pause_menu_scene = "res://scenes/ui/pause_menu/pause_menu.tscn"
 
 const damage_text_scene = "res://scenes/ui/damage_text.tscn"
 

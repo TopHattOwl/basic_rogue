@@ -12,9 +12,9 @@ func _init() -> void:
 			map_data[y].append(null)
 
 
-func add_dungeon(pos: Vector2i, dungeon: Dungeon) -> void:
+func add_dungeon(pos: Vector2i, dungeon_id: int) -> void:
 	var tile: WorldMonsterTile = map_data[pos.y][pos.x]
-	tile.add_dungeon_tile(dungeon)
+	tile.add_dungeon_tile(dungeon_id)
 
 func enter_dungeon(pos: Vector2i) -> void:
 	var tile: WorldMonsterTile = map_data[pos.y][pos.x]
@@ -25,18 +25,6 @@ func has_dungeon(world_pos: Vector2i) -> bool:
 	return tile.has_dungeon
 
 # SAVE/LOAD
-
-# func save_world_monster_map() -> void:
-# 	ResourceSaver.save(self, SavePaths.world_monster_map_save)
-
-# func load_world_monster_map() -> void:
-# 	if ResourceLoader.exists(SavePaths.world_monster_map_save):
-# 		var loaded_data = ResourceLoader.load(
-# 			SavePaths.world_monster_map_save,
-# 			"",
-# 			ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
-# 		)
-# 		map_data = loaded_data.map_data
 
 # BASE SAVES
 

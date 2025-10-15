@@ -18,18 +18,6 @@ func get_dungeon_by_id(id: int) -> Dungeon:
 func enter_dungeon():
 	pass
 
-# func save_dungeon_map() -> void:
-# 	ResourceSaver.save(self, SavePaths.dungeon_map_save)
-
-# func load_dungeon_map() -> void:
-# 	if ResourceLoader.exists(SavePaths.dungeon_map_save):
-# 		var loaded_data = ResourceLoader.load(
-# 			SavePaths.dungeon_map_save,
-# 			"",
-# 			ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
-# 		)
-# 		dungeons = loaded_data.dungeons
-
 	
 # BASE SAVES
 func save_base_dungeon_map() -> void:

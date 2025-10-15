@@ -45,6 +45,8 @@ func handle_input() -> void:
 			handle_inventory_inputs()
 		GameData.INPUT_MODES.TALK_SCREEN:
 			handle_talk_screen_inputs()
+		GameData.INPUT_MODES.PAUSE_MENU:
+			handle_pause_menu_inputs()
 
 
 		# DEBUG
@@ -108,10 +110,13 @@ func handle_zoomed_in_inputs():
 		if GameData.dev_mode:
 			MapFunction.enter_world_map()
 
+	# open pause menu
 	if Input.is_action_just_pressed("quit"):
-		print("quitting")
-		await  SaveFuncs.save_game()
-		get_tree().quit()
+		GameData.player.PlayerComp.set_prev_input_mode()
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.PAUSE_MENU
+		var pause_menu = load(DirectoryPaths.pause_menu_scene).instantiate()
+		pause_menu.z_index = GameData.PAUSE_MENU_Z_INDEX
+		UiFunc.player_ui.add_child(pause_menu)
 	
 	if Input.is_action_just_pressed("dev_overlay"):
 		GameData.player.get_node("DevTools").toggle_dev_overlay()
@@ -274,6 +279,14 @@ func handle_spell_aiming_inputs():
 	# input managger only handles exiting from input modes
 	if Input.is_action_just_pressed("ui_cancel"):
 		SpellAimingSystem.exit_spell_aiming(false)
+
+
+# --- PAUSE MENU ---
+func handle_pause_menu_inputs():
+
+	# pause menu will handle inputs while open
+	if Input.is_action_just_pressed("ui_cancel"):
+		pass
 
 
 # --- DIRECTION ---

@@ -5,7 +5,7 @@ extends Resource
 @export var dungeon_pos: Vector2i
 @export var world_map_pos: Vector2i
 
-@export var dungeon: Dungeon = null
+@export var dungeon_id: int = -1
 
 func _init(_world_pos: Vector2i = Vector2i.ZERO) -> void:
 	has_dungeon = false # filled in when generating world tile
@@ -14,10 +14,11 @@ func _init(_world_pos: Vector2i = Vector2i.ZERO) -> void:
 
 func enter_dungeon() -> void:
 	if has_dungeon:
+		var dungeon: Dungeon = WorldMapData.dungeons.get_dungeon_by_id(dungeon_id)
 		dungeon.enter_dungeon()
 
 
 ## called when generating the dungeons
-func add_dungeon_tile(_dungeon: Dungeon) -> void:
+func add_dungeon_tile(_dungeon_id: int) -> void:
 	has_dungeon = true
-	dungeon = _dungeon
+	dungeon_id = _dungeon_id

@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgnbspnl27mhp"]
+
+[ext_resource type="Shader" uid="uid://cfb76lctdcisy" path="res://resources/shader/scan_lines_shader.gdshader" id="1_kgchh"]
+[ext_resource type="Script" uid="uid://dibvfwd6kf1tl" path="res://scenes/ui/pause_menu/pause_menu.gd" id="1_rbnsh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rbnsh"]
+shader = ExtResource("1_kgchh")
+
+[sub_resource type="QuadMesh" id="QuadMesh_xgg5q"]
+size = Vector2(640, 360)
+center_offset = Vector3(320, 180, 0)
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rbnsh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_rbnsh")
+mesh = SubResource("QuadMesh_xgg5q")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.103744, 0.103744, 0.103744, 1)
+
+[node name="BackgroundImage" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuItems" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/MenuItems"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Cuul Game"
+horizontal_alignment = 1
+
+[node name="SaveGameButton" type="Button" parent="CenterContainer/MenuItems"]
+layout_mode = 2
+text = "Save Game"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/MenuItems"]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/MenuItems"]
+layout_mode = 2
+text = "Quit"

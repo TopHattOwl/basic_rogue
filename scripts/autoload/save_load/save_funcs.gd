@@ -3,16 +3,10 @@ extends Node
 # --- Game Saves ---
 
 func save_game() -> void:
-	var loading_screen = load(DirectoryPaths.loading_screen_scene).instantiate()
-	loading_screen.z_index = GameData.LOADING_SCREEN_Z_INDEX
-	UiFunc.player_ui.add_child(loading_screen)
-	loading_screen._on_loading_label_changed("Saving Game...")
 
 	save_player_data()
 
 	await save_world_map_data()
-
-	loading_screen.queue_free()
 
 func load_game(loading_screen: Control) -> void:
 	var player_json = FileAccess.open(SavePaths.player_data_json, FileAccess.READ)

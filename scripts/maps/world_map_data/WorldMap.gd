@@ -46,24 +46,6 @@ func enter_world_map(world_pos: Vector2i) -> void:
 
 # --- SAVE/LOAD ---
 
-# func save_world_map() -> void:
-# 	ResourceSaver.save(self, SavePaths.world_map_save)
-# 	if GameData.save_load_debug:
-# 		print("saving world map class here: ", SavePaths.world_map_save)
-
-# func load_world_map() -> void:
-# 	var loader := ResourceLoader.load(
-# 		SavePaths.world_map_save,
-# 		"",
-# 		ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
-# 	) as WorldMap
-
-# 	if loader == null:
-# 		push_error("Failed to load WorldMap")
-# 		return
-	
-# 	map_data = loader.map_data
-
 ## saves exlored tiles for map [br]
 ## only saves it to the varable, does not write save file
 func save_explored_tiles(world_pos: Vector2i, tiles: Array) -> void:
