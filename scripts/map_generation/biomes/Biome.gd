@@ -2,21 +2,24 @@ class_name Biome
 extends Resource
 
 
-var biome_type: int
-var biome_name: String
-var grid_pos: Vector2i
-var terrain_map: Array
+@export var biome_type: int
+@export var biome_name: String
+@export var grid_pos: Vector2i
+@export var terrain_map: Array
 
 # grid pos of the dungeon
-var dungeon_pos: Vector2i = Vector2i.ZERO
+@export var dungeon_pos: Vector2i = Vector2i.ZERO
 
-var map_rng = RandomNumberGenerator.new()
+var map_rng := RandomNumberGenerator.new()
+@export var rng_seed: int:
+	set(value):
+		map_rng.seed = value
 
-var tileset_resource
-var tile_set_draw_data
+@export var tileset_resource: Dictionary
+@export var tile_set_draw_data: Dictionary
 
-var wall_chance: float = 0.005
-var nature_chance: float = 0.008
+@export var wall_chance: float = 0.005
+@export var nature_chance: float = 0.008
 
 func setup(_pos: Vector2i = Vector2i.ZERO) -> void:
 	pass
@@ -40,7 +43,8 @@ func load_map() -> void:
 func generate_map() -> void:
 	if GameData.biome_debug:
 		print("generating map")
-	map_rng.seed = WorldMapData.world_map2.map_data[grid_pos.y][grid_pos.x].generated_seed
+	rng_seed = WorldMapData.world_map2.map_data[grid_pos.y][grid_pos.x].generated_seed
+	map_rng.seed = rng_seed
 	terrain_map = MapFunction.make_base_terrain_map()
 
 	generate_terrain_data()

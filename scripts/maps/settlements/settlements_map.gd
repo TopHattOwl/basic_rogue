@@ -1,7 +1,7 @@
 class_name SettlementsMap
 extends Resource
 
-var settlements: Array[SettlementTile]
+@export var settlements: Array[SettlementTile]
 
 
 func _init() -> void:

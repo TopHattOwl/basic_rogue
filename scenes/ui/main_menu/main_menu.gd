@@ -42,10 +42,25 @@ func _on_load_game_pressed():
 		print("No save file found, start a new game")
 		return
 
-	SaveFuncs.load_game()
+	# load in world seed, for now fixed
+	var fixed_seed = 2840132
+	GameData.set_world_seed(fixed_seed)
+
+	print("[Main Manu] loading save")
+
+	# add loading screen
+	var loading_screen = load(DirectoryPaths.loading_screen_scene).instantiate()
+	loading_screen.z_index = GameData.LOADING_SCREEN_Z_INDEX
+	get_tree().root.add_child(loading_screen)
+
+	await SaveFuncs.load_game(loading_screen) # follow this await chain to be disgusted
+
+	print("[Main Manu] loaded save")
 
 	create_tween().tween_property(self, "modulate", Color.TRANSPARENT, 0.5)
 	await get_tree().create_timer(0.5).timeout
+
+	loading_screen.queue_free()
 	get_tree().change_scene_to_file(DirectoryPaths.main_node_scene)
 
 func _on_options_pressed():

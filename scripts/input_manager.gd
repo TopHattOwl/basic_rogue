@@ -110,7 +110,7 @@ func handle_zoomed_in_inputs():
 
 	if Input.is_action_just_pressed("quit"):
 		print("quitting")
-		SaveFuncs.save_game()
+		await  SaveFuncs.save_game()
 		get_tree().quit()
 	
 	if Input.is_action_just_pressed("dev_overlay"):

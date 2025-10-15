@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DungeonMap" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/map_generation/dungeons/dungeon_class.gd" id="1_sg4qr"]
+[ext_resource type="Script" path="res://scripts/maps/dungeons/dungeon_map.gd" id="2_86pum"]
+
+[resource]
+script = ExtResource("2_86pum")
+dungeons = Array[ExtResource("1_sg4qr")]([])

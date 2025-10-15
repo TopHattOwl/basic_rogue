@@ -18,3 +18,8 @@ func _loading_screen_progressed(_progress: float) -> void:
 
 func _on_loading_label_changed(_label: String) -> void:
 	loading_label.text = _label
+
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_PREDELETE:
+			pass

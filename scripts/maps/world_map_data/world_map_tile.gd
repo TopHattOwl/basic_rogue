@@ -10,7 +10,7 @@ extends Resource
 
 
 # explored tiles to load and save for fov manager
-@export var explored_tiles: Array[Vector2i] = []
+var explored_tiles: Array[Vector2i] = []
 
 func _init(_pos: Vector2i = Vector2i.ZERO) -> void:
 	pass

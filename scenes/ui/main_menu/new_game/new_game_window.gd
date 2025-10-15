@@ -35,16 +35,23 @@ func _ready() -> void:
 
 func _on_continue_pressed() -> void:
 	if debug:
-		print("continue button pressed")
+		print("[new game window] continue button pressed")
 	
 	# generate randowm world seed
 	var _seed = randi_range(11111111, 99999999)
 	# for now fix value
 	var fixed_seed = 2840132
 	GameData.set_world_seed(fixed_seed)
+
+	if debug:
+		print("[new game window] world seed set: ", fixed_seed)
 	
 	# save newly made player
 	SaveFuncs.save_player_data()
+
+
+	if debug:
+		print("[new game window] player data saved")
 
 	# add loading screen while generating dungeons
 	var loading_screen = load(DirectoryPaths.loading_screen_scene).instantiate()

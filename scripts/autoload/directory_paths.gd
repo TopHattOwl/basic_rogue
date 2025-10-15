@@ -94,6 +94,7 @@ const world_map_civilization_base_save = "res://resources/world_map_data/world_s
 const biome_map_base_save = "res://resources/world_map_data/biome/biome_map.tres"
 const world_map_base_save = "res://resources/world_map_data/world_map/world_map.tres"
 const world_monster_map_base_save = "res://resources/world_map_data/world_monster_map/world_monster_map.tres"
+const dungeon_map_base_save = "res://resources/world_map_data/dungeon_map/dungeon_map.tres"
 
 
 

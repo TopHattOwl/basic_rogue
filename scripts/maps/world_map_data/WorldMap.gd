@@ -17,7 +17,8 @@ func _init() -> void:
 			map_data[y].append(map_tile)
 
 func add_premade_map(path: String, pos: Vector2i) -> void:
-	map_data[pos.y][pos.x].add_premade_map(path)
+	var tile: WorldMapTile = map_data[pos.y][pos.x]
+	tile.add_premade_map(path)
 
 
 func reset_tile(pos: Vector2i) -> void:
@@ -45,22 +46,23 @@ func enter_world_map(world_pos: Vector2i) -> void:
 
 # --- SAVE/LOAD ---
 
-func save_world_map() -> void:
-	ResourceSaver.save(self, SavePaths.world_map_save)
-	print("saving world map class here: ", SavePaths.world_map_save)
+# func save_world_map() -> void:
+# 	ResourceSaver.save(self, SavePaths.world_map_save)
+# 	if GameData.save_load_debug:
+# 		print("saving world map class here: ", SavePaths.world_map_save)
 
-func load_world_map() -> void:
-	var loader := ResourceLoader.load(
-		SavePaths.world_map_save,
-		"",
-		ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
-	) as WorldMap
+# func load_world_map() -> void:
+# 	var loader := ResourceLoader.load(
+# 		SavePaths.world_map_save,
+# 		"",
+# 		ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
+# 	) as WorldMap
 
-	if loader == null:
-		push_error("Failed to load WorldMap")
-		return
+# 	if loader == null:
+# 		push_error("Failed to load WorldMap")
+# 		return
 	
-	map_data = loader.map_data
+# 	map_data = loader.map_data
 
 ## saves exlored tiles for map [br]
 ## only saves it to the varable, does not write save file
@@ -79,14 +81,10 @@ func save_base_world_map() -> void:
 	ResourceSaver.save(self, DirectoryPaths.world_map_base_save)
 
 func load_base_world_map() -> void:
-	var loader := ResourceLoader.load(
-		DirectoryPaths.world_map_base_save,
-		"",
-		ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
-	) as WorldMap
-
-	if loader == null:
-		push_error("Failed to load WorldMap base")
-		return
-	
-	map_data = loader.map_data
+	if ResourceLoader.exists(DirectoryPaths.world_map_base_save):
+		var loaded_data = ResourceLoader.load(
+			DirectoryPaths.world_map_base_save,
+			"",
+			ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
+		)
+		map_data = loaded_data.map_data

@@ -26,17 +26,17 @@ func has_dungeon(world_pos: Vector2i) -> bool:
 
 # SAVE/LOAD
 
-func save_world_monster_map() -> void:
-	ResourceSaver.save(self, SavePaths.world_monster_map_save)
+# func save_world_monster_map() -> void:
+# 	ResourceSaver.save(self, SavePaths.world_monster_map_save)
 
-func load_world_monster_map() -> void:
-	if ResourceLoader.exists(SavePaths.world_monster_map_save):
-		var loaded_data = ResourceLoader.load(
-			SavePaths.world_monster_map_save,
-			"",
-			ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
-		)
-		map_data = loaded_data.map_data
+# func load_world_monster_map() -> void:
+# 	if ResourceLoader.exists(SavePaths.world_monster_map_save):
+# 		var loaded_data = ResourceLoader.load(
+# 			SavePaths.world_monster_map_save,
+# 			"",
+# 			ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
+# 		)
+# 		map_data = loaded_data.map_data
 
 # BASE SAVES
 

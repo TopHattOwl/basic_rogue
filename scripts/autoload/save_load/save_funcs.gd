@@ -3,18 +3,25 @@ extends Node
 # --- Game Saves ---
 
 func save_game() -> void:
+	var loading_screen = load(DirectoryPaths.loading_screen_scene).instantiate()
+	loading_screen.z_index = GameData.LOADING_SCREEN_Z_INDEX
+	UiFunc.player_ui.add_child(loading_screen)
+	loading_screen._on_loading_label_changed("Saving Game...")
+
 	save_player_data()
 
-	save_world_map_data()
+	await save_world_map_data()
 
-func load_game() -> void:
+	loading_screen.queue_free()
+
+func load_game(loading_screen: Control) -> void:
 	var player_json = FileAccess.open(SavePaths.player_data_json, FileAccess.READ)
 	var player_data: Dictionary = JSON.parse_string(player_json.get_as_text())
 	player_json.close()
 	PlayerFactory.make_base_player()
 	load_player_data(player_data)
 
-	load_world_map_data()
+	await load_world_map_data(loading_screen)
 
 func save_player_data(_player_node: Node2D = null):
 	SavePlayer.save_player_data(GameData.player)
@@ -31,15 +38,15 @@ func save_world_map_data() -> void:
 	SaveWorldMap.save_world_map_civilization()
 
 	# saves custom classes
-	SaveWorldMap.save_world_maps()
+	await SaveWorldMap.save_world_maps()
 
-func load_world_map_data() -> void:
+func load_world_map_data(loading_screen: Control) -> void:
 	LoadWorldMap.load_biome_type_data()
 	LoadWorldMap.load_world_map_savagery()
 	LoadWorldMap.load_world_map_civilization()
 
 
-	LoadWorldMap.load_world_maps()
+	await LoadWorldMap.load_world_maps(loading_screen)
 
 # --- BASE DATA ---
 

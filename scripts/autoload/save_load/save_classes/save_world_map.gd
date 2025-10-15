@@ -17,11 +17,25 @@ static func save_world_map_civilization() -> void:
 	file.store_var(WorldMapData.world_map_civilization)
 	file.close()
 
+
 static func save_world_maps() -> void:
-	WorldMapData.world_map2.save_world_map()
-	WorldMapData.biome_map.save_biome_map()
-	WorldMapData.world_monster_map.save_world_monster_map()
-	WorldMapData.dungeons.save_dungeon_map()
+	print("[SaveWorldMap] saving all world maps")
+
+	ResourceSaver.save(WorldMapData.world_map2, SavePaths.world_map_save)
+	print("[SaveWorldMap] saved world map")
+	await Engine.get_main_loop().process_frame
+
+	ResourceSaver.save(WorldMapData.biome_map, SavePaths.biome_map_save)
+	print("[SaveWorldMap] saved biome map")
+	await Engine.get_main_loop().process_frame
+
+	ResourceSaver.save(WorldMapData.world_monster_map, SavePaths.world_monster_map_save)
+	print("[SaveWorldMap] saved world monster map")
+	await Engine.get_main_loop().process_frame
+
+	ResourceSaver.save(WorldMapData.dungeons, SavePaths.dungeon_map_save)
+	print("[SaveWorldMap] saved dungeons map")
+	await Engine.get_main_loop().process_frame
 
 
 # --- Base Data --- 
@@ -47,3 +61,4 @@ static func save_base_world_maps() -> void:
 	WorldMapData.world_map2.save_base_world_map()
 	WorldMapData.biome_map.save_base_biome_map()
 	WorldMapData.world_monster_map.save_base_world_monster_map()
+	WorldMapData.dungeons.save_base_dungeon_map()

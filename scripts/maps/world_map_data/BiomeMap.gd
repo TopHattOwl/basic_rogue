@@ -29,17 +29,21 @@ func get_dungeon_pos(world_pos: Vector2i) -> Vector2i:
 
 # SAVE/LOAD
 
-func save_biome_map() -> void:
-	ResourceSaver.save(self, SavePaths.biome_map_save)
+# func save_biome_map() -> void:
+# 	ResourceSaver.save(self, SavePaths.biome_map_save)
 
-func load_biome_map() -> void:
-	if ResourceLoader.exists(SavePaths.biome_map_save):
-		var loaded_data = ResourceLoader.load(
-			SavePaths.biome_map_save,
-			"",
-			ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
-		)
-		map_data = loaded_data.map_data
+# func load_biome_map() -> void:
+# 	var loader := ResourceLoader.load(
+# 		SavePaths.biome_map_save,
+# 		"",
+# 		ResourceLoader.CACHE_MODE_IGNORE # bypass chache for fresh data
+# 	) as BiomeMap
+
+# 	if loader == null:
+# 		push_error("Failed to load BiomeMap")
+# 		return
+	
+# 	map_data = loader.map_data
 
 
 # BASE SAVES

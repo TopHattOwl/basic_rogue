@@ -2,36 +2,36 @@ extends Node
 
 # one tile in world map is a screen if entered
 # world_map will hold data about a world map tile
-var world_map2 = WorldMap.new()
+var world_map2: WorldMap = WorldMap.new()
 
 # biome types is a 2d array correspondng to each world map tile's biome type using enum WORLD_TILE_TYPES, all biome are here, even premade ones
-var biome_type = []
+var biome_type: Array = []
 
 # 2d array filled with Biome objects, filled in after biome_type, used for generation only,
 # if biome type is premade type (like village, city, etc) then biome_map's value will be null
-var biome_map = BiomeMap.new()
+var biome_map: BiomeMap = BiomeMap.new()
 
 var world_monster_map: WorldMonsterMap = WorldMonsterMap.new()
 
 # world_map_identity is a 2d array holding info about each world map tile
-var world_map_identity = []
+var world_map_identity: Array = []
 
 # 2d array corresponding to world map tile's savagery rate (0-14) 0 -> no chance for monsters
-var world_map_savagery = [] # effects monster spawn rate and dungeon spawns chance
+var world_map_savagery: Array = [] # effects monster spawn rate and dungeon spawns chance
 
 # 2d array corresponding to world map tile's civilization 1 -> civilization 0 -> not civilization
-var world_map_civilization = []
+var world_map_civilization: Array = []
 
 
-var settlements := SettlementsMap.new()
+var settlements: SettlementsMap = SettlementsMap.new()
 
-var dungeons := DungeonMap.new()
+var dungeons: DungeonMap = DungeonMap.new()
 
 
 func _ready() -> void:
 	SaveFuncs.load_base_world_map_data()
 
-	set_base()
+	# set_base()
 	
 
 ## THIS SHOULD ONLY RUN IF WROLD MAP NODE HAS BEEN CHANGED (otherwise just load in base data)
@@ -108,8 +108,10 @@ func parse_biome_type(world_map_scene: Node2D) -> void:
 				var layer = world_map_scene.get_node(GameData.WorldMapTileLayer[key])
 				if layer and layer.get_cell_tile_data(grid_pos):
 					biome_type[y][x] = key
+
 					if key == GameData.WORLD_TILE_TYPES.WATER:
 						world_map2.map_data[y][x].walkable = false
+
 					break
 
 func parse_biome(world_map_scene: Node2D) -> void:

@@ -45,15 +45,16 @@ func generate_dungeons() -> void:
 		var dungeon_pos: Vector2i
 		while _i < 200 and !pos_found:
 			var random_pos = Vector2i(rng.randi_range(0, GameData.WORLD_MAP_SIZE.x - 1), rng.randi_range(0, GameData.WORLD_MAP_SIZE.y - 1))
-
 			# check if tile is walkable
-			if not WorldMapData.world_map2.is_tile_walkable(random_pos) or not WorldMapData.world_map2.is_in_bounds(random_pos):
+			if not WorldMapData.world_map2.is_tile_walkable(random_pos):
+				_i += 1
+				print("[DungeonManager] tile is not walkable")
 				continue
 			
 			# check if dungeon is already there
 			if positions.has(random_pos):
+				_i += 1
 				continue
-
 			pos_found = true
 			dungeon_pos = random_pos
 			positions.append(dungeon_pos)
@@ -61,8 +62,6 @@ func generate_dungeons() -> void:
 
 		# skip if can't find position
 		if not pos_found:
-			if debug:
-				print("can't find position for dungeon with id: ", id)
 			continue
 		
 		var dungeon_data: Dictionary = DungeonDefinitions.get_dungeon_data(dungeon_pos)

@@ -35,7 +35,7 @@ func set_world_seed(_seed: int) -> void:
 
 # ___ Constants ___
 const TILE_SIZE := Vector2i(16, 24) # tile size in pixels
-const MAP_SIZE := Vector2i(100, 90) # map size in tiles
+const MAP_SIZE := Vector2i(82, 49) # map size in tiles
 const WORLD_SPAWN_POS := Vector2i(MAP_SIZE.x / 2, MAP_SIZE.y - 4) # the tile player spawns on when entering world tile
 const WORLD_MAP_SIZE := Vector2i(110, 75)
 const OFFSET := Vector2i(8, 12)
@@ -684,8 +684,9 @@ var leveling_system_debug := 0
 var ambush_debug := 0
 var contract_debug := 0
 var settlement_manager_debug := 0
-var new_game_window_debug := 0
+var new_game_window_debug := 1
 var dungeon_debug := 1
-var action_history_debug := 1
+var action_history_debug := 0
+var save_load_debug := 1
 
 var dungeon_draw_debug := 1 # for displaying all dungeons on the world map

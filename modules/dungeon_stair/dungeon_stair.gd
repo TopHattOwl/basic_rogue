@@ -1,10 +1,10 @@
 class_name DungeonStair
 extends Resource
 
-var is_up: bool
-var depth: int
-var pos: Vector2i # stair position in the dungeon
-var spawn_pos: Vector2i # the position to spawn the player at when coming out of this stair
+@export var is_up: bool
+@export var depth: int
+@export var pos: Vector2i # stair position in the dungeon
+@export var spawn_pos: Vector2i # the position to spawn the player at when coming out of this stair
 
 func _init(data: Dictionary = {}) -> void:
 	is_up = data.get("is_up", false)

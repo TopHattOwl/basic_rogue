@@ -140,16 +140,17 @@ func update_camera_data():
 	# zoomed in or dungeon
 	if !ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map:
 		# limits
-		cam.limit_right = (GameData.MAP_SIZE.x + 16)  * GameData.TILE_SIZE.x
-		cam.limit_bottom = (GameData.MAP_SIZE.y + 2) * GameData.TILE_SIZE.y
+		# todo fix
+		cam.limit_right = (GameData.MAP_SIZE.x + 8)  * GameData.TILE_SIZE.x
+		cam.limit_bottom = (GameData.MAP_SIZE.y + 3) * GameData.TILE_SIZE.y
 		cam.limit_top = (-3) * GameData.TILE_SIZE.y
-		cam.limit_left = (-10) * GameData.TILE_SIZE.x
+		cam.limit_left = (-13) * GameData.TILE_SIZE.x
 
 		# zoom 
 		cam.zoom = Vector2(0.7, 0.7)
 
 		# set offset
-		cam.offset.x = 100
+		cam.offset.x = 64
 	
 	# world map
 	elif ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map and !GameData.player.PlayerComp.is_in_dungeon:

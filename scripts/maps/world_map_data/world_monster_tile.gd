@@ -1,11 +1,11 @@
 class_name WorldMonsterTile
 extends Resource
 
-var has_dungeon: bool
-var dungeon_pos: Vector2i
-var world_map_pos: Vector2i
+@export var has_dungeon: bool
+@export var dungeon_pos: Vector2i
+@export var world_map_pos: Vector2i
 
-var dungeon: Dungeon = null
+@export var dungeon: Dungeon = null
 
 func _init(_world_pos: Vector2i = Vector2i.ZERO) -> void:
 	has_dungeon = false # filled in when generating world tile

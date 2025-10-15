@@ -1,23 +1,23 @@
 class_name Dungeon
 extends Resource
 
-var id: int
-var levels: Array[DungeonLevel] = []
-var world_map_pos: Vector2i
+@export var id: int
+@export var levels: Array[DungeonLevel] = []
+@export var world_map_pos: Vector2i
 
 var rng = RandomNumberGenerator.new()
 
-var tileset_resource: Dictionary
-var tile_set_draw_data: Dictionary
+@export var tileset_resource: Dictionary
+@export var tile_set_draw_data: Dictionary
 
 func _init(data: Dictionary = {}) -> void:
 	id = data.get("id", -1)
 	rng.seed = data.get("rng_seed", 5)
 	world_map_pos = data.get("world_map_pos", Vector2i.ZERO)
 
-	if not check_data(data):
-		push_error("dungeon data is missing required fields\ndata: ", data)
-		return
+	# if not check_data(data):
+	# 	push_error("dungeon data is missing required fields\ndata: ", data)
+	# 	return
 
 	# call overriden methods to set all draw data
 	set_draw_data()
@@ -98,15 +98,8 @@ func exit_dungeon() -> void:
 	var world_pos = player_comp.world_map_pos
 	var dungeon_pos = WorldMapData.biome_map.get_dungeon_pos(world_pos)
 
-	print("dungoen grid pos: ", dungeon_pos)
-	var good_spawn_pos = MapFunction.get_tiles_in_radius(dungeon_pos, 1, false, false, "chebyshev", true, true)
 
-	var new_player_grid_pos: Vector2i
-	if good_spawn_pos.size() == 0:
-		push_error("No good spawn pos found in exit_dungeon")
-		return
-	else:
-		new_player_grid_pos = good_spawn_pos[0]
+	var new_player_grid_pos := Vector2i(dungeon_pos.x, dungeon_pos.y + 1)
 	
 	GameData.current_dungeon_class = null
 	GameData.current_dungeon_level = -1

@@ -1,17 +1,21 @@
 class_name DungeonLevel
 extends Resource
 
-var level: int # starting from 0
-var terrain_map: Array
-var stair_up: DungeonStair
-var stair_down: DungeonStair
+@export var level: int # starting from 0
+@export var terrain_map: Array
+@export var stair_up: DungeonStair
+@export var stair_down: DungeonStair
 
 var rng: RandomNumberGenerator
+@export var rng_seed: int:
+	set(value):
+		rng = RandomNumberGenerator.new()
+		rng.seed = value
 
 # explored toles for FOV
-var explored_tiles: Array[Vector2i] = []
+@export var explored_tiles: Array[Vector2i] = []
 
-var world_map_pos: Vector2i
+@export var world_map_pos: Vector2i
 
 
 func _init(data: Dictionary = {}) -> void:
@@ -20,7 +24,8 @@ func _init(data: Dictionary = {}) -> void:
 
 func generate_dugeon_level(_level: int, _world_map_pos: Vector2i) -> void:
 	rng = RandomNumberGenerator.new()
-	rng.seed = (_level + 1) * (_world_map_pos.x + 1) + (_world_map_pos.y + 1)
+	rng_seed = (_level + 1) * (_world_map_pos.x + 1) + (_world_map_pos.y + 1)
+	rng.seed = rng_seed
 	level = _level
 	world_map_pos = _world_map_pos
 
