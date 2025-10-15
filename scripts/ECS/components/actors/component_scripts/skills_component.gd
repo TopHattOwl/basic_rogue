@@ -80,7 +80,7 @@ func unlock_passive(skill_id: int, passive_id: int, debug_mode: bool = false) ->
 func save_skills() -> Dictionary:
 	return skills
 
-func load_skills(d: Dictionary) -> void:
+func load_skills(_d: Dictionary) -> void:
 	pass
 
 class SkillTreeData:

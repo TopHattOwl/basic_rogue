@@ -57,13 +57,6 @@ static func _wait_for_loads(loading_screen: Control) -> void:
 		SavePaths.dungeon_map_save
 	]
 
-	var path_names = [
-		"World Map",
-		"Biome Map",
-		"Monster Map",
-		"Dungeon Map"
-	]
-
 	loading_screen._on_loading_label_changed("Loading Game...")
 
 	while true:

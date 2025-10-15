@@ -112,7 +112,7 @@ func animate_damage_text(damage_text: Label, direction: Vector2i, start_pos: Vec
 
 # --- LEVEL UP ANIMATION ---
 
-func _on_skill_leveled_up(skill_id: int):
+func _on_skill_leveled_up(_skill_id: int):
 	var player_pos = ComponentRegistry.get_player_pos()
 
 	var particles = load("res://resources/particles/level_up_particle.tscn").instantiate()

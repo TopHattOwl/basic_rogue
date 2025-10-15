@@ -146,7 +146,6 @@ static func process_world_map_movement(new_pos: Vector2i) -> bool:
 
 static func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> bool:
 	var position_component = ComponentRegistry.get_component(entity, GameData.ComponentKeys.POSITION)
-	var dungeon = GameData.current_dungeon
 
 	# Error check
 	if not position_component:

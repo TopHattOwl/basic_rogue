@@ -18,7 +18,7 @@ var rng: RandomNumberGenerator
 @export var world_map_pos: Vector2i
 
 
-func _init(data: Dictionary = {}) -> void:
+func _init(_data: Dictionary = {}) -> void:
 	pass
 
 

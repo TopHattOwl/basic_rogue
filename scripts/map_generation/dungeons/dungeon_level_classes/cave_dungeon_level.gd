@@ -34,12 +34,12 @@ func add_walls() -> void:
 	for y in range(GameData.MAP_SIZE.y):
 		grid.append([])
 		for x in range(GameData.MAP_SIZE.x):
-			var is_wall = rng.randf() < 0.5
+			var _is_wall = rng.randf() < 0.5
 
 			# border walls
 			if y == 0 or y == GameData.MAP_SIZE.y - 1 or x == 0 or x == GameData.MAP_SIZE.x - 1:
-				is_wall = true
-			grid[y].append(is_wall)
+				_is_wall = true
+			grid[y].append(_is_wall)
 
 	
 	for i in range(NUM_OF_ITERATIONS):

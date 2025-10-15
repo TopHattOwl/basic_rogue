@@ -67,5 +67,5 @@ func unequip_item(slot: int) -> void:
 		})
 
 
-func _can_equip_item(item: ItemResource, slot: int) -> bool:
+func _can_equip_item(_item: ItemResource, _slot: int) -> bool:
 	return true

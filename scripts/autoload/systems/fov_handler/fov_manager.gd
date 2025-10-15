@@ -43,11 +43,11 @@ func _process_toggle(new_state: int) -> void:
 			deactivate_fov()
 
 
-func _on_dungeon_entered(data: Dictionary) -> void:
+func _on_dungeon_entered(_data: Dictionary) -> void:
 	save_explored_tiles(Vector2i.ZERO, GameData.player.PlayerComp.world_map_pos)
 
 
-func _on_dungeon_exited(data: Dictionary) -> void:
+func _on_dungeon_exited(_data: Dictionary) -> void:
 	pass
 
 

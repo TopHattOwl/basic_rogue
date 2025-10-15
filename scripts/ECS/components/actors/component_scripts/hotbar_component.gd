@@ -150,5 +150,5 @@ func use_spell(uid: String) -> void:
 
 
 
-func use_ability(uid: String) -> void:
+func use_ability(_uid: String) -> void:
 	pass
