@@ -2,7 +2,7 @@ class_name DungeonStair
 extends Resource
 
 @export var is_up: bool
-@export var depth: int
+@export var depth: int # the level the stair is at
 @export var pos: Vector2i # stair position in the dungeon
 @export var spawn_pos: Vector2i # the position to spawn the player at when coming out of this stair
 
@@ -27,7 +27,7 @@ func use_stair() -> void:
 
 	# if last level, exit the dungeon
 	elif depth == dungeon.levels.size() - 1:
-		dungeon.exit_dungeon()
+		dungeon.exit_dungeon(depth)
 		return
 	
 	dungeon.enter_dungeon_level(depth + 1)

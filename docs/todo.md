@@ -103,3 +103,5 @@
 	# GameTime add weeks and day names for each day in a week
 	# Signal day_passed has no uses yet -> maybe for quests, messages, etc
 	# pick up item
+	
+	# save_player.gd need to save player's previous input mode (band-aid fix) make a better version somehow

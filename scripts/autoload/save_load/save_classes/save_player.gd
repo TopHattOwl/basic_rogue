@@ -88,7 +88,7 @@ static func save_player_data(player: Node2D) -> bool:
 				"y": player_comp.world_map_pos.y
 			},
 			"is_dead": player_comp.is_dead,
-			"input_mode": player_comp.input_mode
+			"input_mode": player_comp.prev_input_mode # TODO: fix somehow, need to save prev inpput mode since save game runs from pause menu, so input mode would be PAUSE_MENU
 		}
 
 	# Skills Component

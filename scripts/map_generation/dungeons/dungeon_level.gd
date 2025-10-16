@@ -2,35 +2,64 @@ class_name DungeonLevel
 extends Resource
 
 @export var level: int # starting from 0
-@export var terrain_map: Array
-@export var stair_up: DungeonStair
-@export var stair_down: DungeonStair
 
-var rng: RandomNumberGenerator
+var rng: RandomNumberGenerator = null
 @export var rng_seed: int:
 	set(value):
-		rng = RandomNumberGenerator.new()
+		print("[DungeonLevel] Setting rng_seed to: ", value)
+		if not rng:
+			rng = RandomNumberGenerator.new()
 		rng.seed = value
+		rng_seed = value
+		print("[DungeonLevel] RNG state after setting: ", rng.state)
 
 # explored toles for FOV
 @export var explored_tiles: Array[Vector2i] = []
 
 @export var world_map_pos: Vector2i
 
+# these get generated based on seed, no need to save
+var terrain_map: Array
+var stair_up: DungeonStair
+var stair_down: DungeonStair
+
 
 func _init(_data: Dictionary = {}) -> void:
 	pass
 
 
-func generate_dugeon_level(_level: int, _world_map_pos: Vector2i) -> void:
-	rng = RandomNumberGenerator.new()
-	rng_seed = (_level + 1) * (_world_map_pos.x + 1) + (_world_map_pos.y + 1)
+func reset_variables() -> void:
+	terrain_map = []
+	stair_up = null
+	stair_down = null
+
+	# also reseed the rng to reset it's state -> consistent map generation
+	if not rng:
+		rng = RandomNumberGenerator.new()
 	rng.seed = rng_seed
+
+## Makes the DungeonLevel but does not generate level terrain 
+func generate_dugeon_level(_level: int, _world_map_pos: Vector2i) -> void:
+	if GameData.dungeon_debug:
+		print("\n[DungeonLevel.generate_dugeon_level] Called")
+		print("[DungeonLevel]  Level: ", _level)
+		print("[DungeonLevel]  World pos: ", _world_map_pos)
+	
 	level = _level
 	world_map_pos = _world_map_pos
 
-	# overriden in child classes
-	generate_level_terrain()
+	var calculated_seed = (_level + 1) * (_world_map_pos.x + 1) * (_world_map_pos.y + 1)
+	rng_seed = calculated_seed
+
+	terrain_map = []
+
+	if GameData.dungeon_debug:
+		print("[DungeonLevel]  Calculated seed: ", calculated_seed)
+		print("[DungeonLevel]  Final rng_seed: ", rng_seed)
+		print("[DungeonLevel]  RNG state: ", rng.state)
+
+
+	# level terrain data generation only when player enters the level
 
 
 ## overriden in child classes

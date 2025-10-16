@@ -5,19 +5,32 @@ extends Resource
 @export var levels: Array[DungeonLevel] = []
 @export var world_map_pos: Vector2i
 
-var rng = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = null
+@export var rng_seed: int:
+	set(value):
+		print("[Dungeon] rng seed set to: ", value)
+		if not rng:
+			rng = RandomNumberGenerator.new()
+		rng.seed = value
+		rng_seed = value
+		print("[Dungeon] RNG state after setting: ", rng.state)
+
 
 @export var tileset_resource: Dictionary
 @export var tile_set_draw_data: Dictionary
 
 func _init(data: Dictionary = {}) -> void:
+	print("[Dungeon._init] Called with data: ", data)
 	id = data.get("id", -1)
-	rng.seed = data.get("rng_seed", 5)
 	world_map_pos = data.get("world_map_pos", Vector2i.ZERO)
+	rng_seed = data.get("rng_seed", 5)
 
-	# if not check_data(data):
-	# 	push_error("dungeon data is missing required fields\ndata: ", data)
-	# 	return
+
+	print("[Dungeon._init] After setting seed, rng is null? ", rng == null)
+	print("[Dungeon._init] rng_seed value: ", rng_seed)
+	print("[Dungeon._init] rng's seed value (rng.seed): ", rng.seed)
+	print("[Dungeon._init] are seeds the same?", rng.seed == rng_seed)
+	print("[Dungeon._init] rng state: ", rng.state)
 
 	# call overriden methods to set all draw data
 	set_draw_data()
@@ -45,6 +58,15 @@ func make_dungeon_node_data(level: int = 0) -> Dictionary:
 ## enter the first level of the dungeon
 func enter_dungeon() -> void:
 
+	if GameData.dungeon_debug:
+		print("\n=== ENTERING DUNGEON ===")
+		print("[Dungeon.enter_dungeon] Dungeon ID: ", id)
+		print("[Dungeon.enter_dungeon] World pos: ", world_map_pos)
+		print("[Dungeon.enter_dungeon] Dungeon rng_seed: ", rng_seed)
+		print("[Dungeon.enter_dungeon] Dungeon rng state: ", rng.state)
+		print("[Dungeon.enter_dungeon] dungeon_type: ", get_script().get_global_name())
+	
+
 	if GameData.current_map:
 		GameData.current_map.queue_free()
 		GameData.current_map = null
@@ -60,6 +82,8 @@ func enter_dungeon() -> void:
 		print("--- Entering dungeon in Dungeon Class ---")
 		print("entering dungeon:\n\tid: {0}\n\tworld map pos: {1}".format([id, world_map_pos]))
 		print("\tdungeon_type: ", get_script().get_global_name())
+
+	levels[0].generate_level_terrain()
 
 	var _dungeon_node = load(DirectoryPaths.dungeon).instantiate()
 	_dungeon_node.init_data(make_dungeon_node_data())
@@ -88,8 +112,9 @@ func enter_dungeon() -> void:
 
 	
 
-## exits the dungeon
-func exit_dungeon() -> void:
+## exits the dungeon [br]
+## `param level` is the level the player exited from, defaults to level 0
+func exit_dungeon(level: int = 0) -> void:
 	if GameData.current_dungeon:
 		GameData.current_dungeon.queue_free()
 		GameData.current_dungeon = null
@@ -97,6 +122,9 @@ func exit_dungeon() -> void:
 	var player_comp: PlayerComponent = GameData.player.PlayerComp
 	var world_pos = player_comp.world_map_pos
 	var dungeon_pos = WorldMapData.biome_map.get_dungeon_pos(world_pos)
+
+	# save explored tiles
+	FovManager.save_explored_tiles_dungeon(level)
 
 
 	var new_player_grid_pos := Vector2i(dungeon_pos.x, dungeon_pos.y + 1)
@@ -128,6 +156,8 @@ func enter_dungeon_level(level: int, direction: String = "down") -> void:
 		GameData.current_dungeon = null
 	
 	GameData.remove_entities()
+
+	levels[level].generate_level_terrain()
 
 	var _dungeon_node = load(DirectoryPaths.dungeon).instantiate()
 	_dungeon_node.init_data(make_dungeon_node_data(level))

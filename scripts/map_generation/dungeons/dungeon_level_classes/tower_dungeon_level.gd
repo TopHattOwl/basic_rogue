@@ -26,6 +26,7 @@ var rooms: Array[Dictionary] = []
 
 
 func generate_level_terrain() -> void:
+	reset_variables()
 	# Initialize entire map as walls
 	initialize_walls()
 	
@@ -40,6 +41,18 @@ func generate_level_terrain() -> void:
 	
 	# Add stairs
 	add_stairs()
+
+
+# have to override parent function here bc of rooms
+func reset_variables() -> void:
+	terrain_map = []
+	stair_up = null
+	stair_down = null
+	rooms = []
+	# also reseed the rng to reset it's state -> consistent map generation
+	if not rng:
+		rng = RandomNumberGenerator.new()
+	rng.seed = rng_seed
 
 
 func initialize_walls() -> void:
