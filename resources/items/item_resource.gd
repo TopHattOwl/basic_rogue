@@ -25,7 +25,7 @@ func get_component(_type: Variant) -> Variant:
 	if component:
 		return component
 	else:
-		push_warning("Item {0} has no component of type {1}. If no error for null reference, this may be ignored".format([str(uid), str(_type)]))
+		push_warning("Item {0} has no component of type {1}. If no error for null reference, this may be ignored".format([str(uid), str(_type.get_global_name())]))
 		return null
 	
 ## Calls the given `method_name` on all components [br]
