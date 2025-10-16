@@ -78,11 +78,6 @@ func enter_dungeon() -> void:
 
 	GameData.current_dungeon_class = self
 
-	if GameData.dungeon_debug:
-		print("--- Entering dungeon in Dungeon Class ---")
-		print("entering dungeon:\n\tid: {0}\n\tworld map pos: {1}".format([id, world_map_pos]))
-		print("\tdungeon_type: ", get_script().get_global_name())
-
 	levels[0].generate_level_terrain()
 
 	var _dungeon_node = load(DirectoryPaths.dungeon).instantiate()

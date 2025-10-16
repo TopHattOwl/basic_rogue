@@ -13,7 +13,12 @@ func set_seed() -> void:
 	rng = RandomNumberGenerator.new()
 	rng.seed = GameData.world_seed
 
-# generates all dungeons
+
+
+
+## Generates all dungeons [br]
+## no terrain data is generated, only basic data [br]
+## terrain data is generated when player enters the dungeon level, each time
 func generate_dungeons() -> void:
 	if not rng:
 		set_seed()
