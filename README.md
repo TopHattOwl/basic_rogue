@@ -7,27 +7,32 @@
 
 ## Overview  
 **A Handcrafted Roguelike Adventure**  
-Dive into a vast, perilous world filled with ancient secrets, deadly creatures, and untold treasures. Built in **Godot Engine** using **GDScript**, this roguelike blends classic turn-based gameplay with modern design, featuring a sprawling open world, procedural generation, and a rich narrative woven into every corner.
+Dive into a vast world filled with not many stuff for now. Built in **Godot Engine** using **GDScript**,  a classic turn-based roguelike gameplay featuring a sprawling open world and procedural generation with premade aspects.
+
+
 
 ---
 
-## Features  
+## Features
 
-### 🌍 Expansive Open World  
-- Explore a massive, interconnected map with diverse biomes, from cursed forests to forgotten ruins.  
-- Uncover handcrafted landmarks alongside procedurally generated terrain for endless replayability.  
+### Expansive Open World  
+- Explore a massive map with over 5000 `maps` to explore
+- Handcrafted landmarks alongside procedurally generated terrain. (not implemented)
 
-### 🛠️ Hybrid World Generation  
-- A unique blend of **premade content** (key story locations, dungeons) and **procedural generation** (terrain, loot, enemies) ensures no two playthroughs are the same.  
+![Cave Screenshot Placeholder](assets/screenshots/cave_dungeon.png)  
 
-### ⚔️ Strategic Combat & Crafting  
+### Hybrid World Generation  
+- A blend of **premade content** (key story locations, some dungeons) and **procedural generation** (terrain, loot, enemies) ensures no two playthroughs are the same.  
+
+### Strategic Combat & Crafting  
 - Battle monstrous foes with tactical turn-based combat.  
-- Study enemies to **learn weaknesses** and harvest rare materials from their remains.  
-- Forge powerful gear using harvested parts, from venomous daggers to armor fused with dragon scales.  
+- Study enemies to **learn weaknesses** and harvest rare materials from their remains. (not implemented)
+- Forge powerful gear using harvested parts, by finding skilled blacksmiths. (not implemented)
 
-### 📖 Rich Handmade Lore  
-- Unearth a world steeped in history, with factions, ancient wars, and cryptic legends.  
-- Discover lore through environmental storytelling, scrolls, and dialogues with NPCs.  
+![Combat Screenshot Placeholder](assets/screenshots/fight_in_forest.png)  
+
+### Rich Handmade Lore  
+- No lore implemented yet 
 
 ---
 

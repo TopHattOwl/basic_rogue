@@ -31,6 +31,10 @@ var dungeons: DungeonMap = DungeonMap.new()
 func _ready() -> void:
 	SaveFuncs.load_base_world_map_data()
 
+	if GameData.world_map_data_debug:
+		print_debug_info()
+
+
 	# set_base()
 	
 
@@ -209,3 +213,20 @@ func calc_savagery_for_tile(grid_pos: Vector2i) -> int:
 				var current_distance = MapFunction.manhattan_distance(grid_pos, Vector2i(x, y))
 				distance = current_distance if current_distance < distance else distance
 	return distance
+
+
+
+func print_debug_info() -> void:
+
+	# land count and ratio
+	var land_tile_count = 0
+	for y in range(GameData.WORLD_MAP_SIZE.y):
+		for x in range(GameData.WORLD_MAP_SIZE.x):
+			var _biome_type = biome_type[y][x]
+			if _biome_type == GameData.WORLD_TILE_TYPES.WATER:
+				continue
+			land_tile_count += 1
+
+	print("[WorldMapData] land tile count: ", land_tile_count)
+	print("[WorldMapData] total world tile count: ", GameData.WORLD_MAP_SIZE.x * GameData.WORLD_MAP_SIZE.y)
+	print("[WorldMapData] land tile ratio: ", float(land_tile_count) / float(GameData.WORLD_MAP_SIZE.x * GameData.WORLD_MAP_SIZE.y))

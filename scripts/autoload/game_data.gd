@@ -677,6 +677,7 @@ var input_manager_debug := 0
 var hot_bar_debug := 0
 var map_functions_debug := 0
 var biome_debug := 1 # for biome generation and loading in Biome classes
+var world_map_data_debug := 0
 var fov_manager_debug := 0
 var item_debug := 0
 var inventory_debug := 0
