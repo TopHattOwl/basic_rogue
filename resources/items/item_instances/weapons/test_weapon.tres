@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=18 format=3 uid="uid://dbok6rixqej1p"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=17 format=3 uid="uid://dbok6rixqej1p"]
 
 [ext_resource type="Script" uid="uid://c6hqvujepfyxm" path="res://scripts/systems/modifier_system/stat_modifier_class.gd" id="1_4svoq"]
 [ext_resource type="Script" uid="uid://bre0u70dtiask" path="res://resources/items/components/base_component.gd" id="1_tanuv"]
 [ext_resource type="Script" uid="uid://c7nlkhtqiekyc" path="res://resources/items/components/combat_components/melee_weapon_component.gd" id="2_4svoq"]
 [ext_resource type="Script" uid="uid://14o1ycfagor4" path="res://resources/items/item_resource.gd" id="2_6n8ge"]
-[ext_resource type="Script" uid="uid://cq8mad0mmyu8r" path="res://scripts/systems/conditions/base_condition.gd" id="2_6s6hs"]
 [ext_resource type="Texture2D" uid="uid://bevdoe4dwfmot" path="res://assets/items/weapons/steel_londsword.png" id="4_6s6hs"]
 [ext_resource type="Script" uid="uid://br5f2sw638bnu" path="res://resources/items/components/inventory_related_coponents/stackable_component.gd" id="5_e50ij"]
 [ext_resource type="Script" uid="uid://m2g3sm5kwgfg" path="res://resources/items/components/ui/item_window.gd" id="6_e50ij"]
@@ -17,7 +16,7 @@ target_stat = &"damage_min"
 target_component = 3
 operation = 0
 value = 10.0
-conditions = Array[ExtResource("2_6s6hs")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_tanuv"]
@@ -26,7 +25,7 @@ target_stat = &"damage_max"
 target_component = 3
 operation = 0
 value = 10.0
-conditions = Array[ExtResource("2_6s6hs")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_6s6hs"]
@@ -61,6 +60,7 @@ max_capacity = 59
 
 [resource]
 script = ExtResource("2_6n8ge")
+id = 0
 uid = "steel_longsword"
 display_name = "Steel long sword"
 description = "very cuul test weapon \\nto smack enemies in the head with, trying out if this string can hold very long descriptions so I have to fill this wih something, are you still reading? please leav I am just testing if this shit can hold many and more letters, this seems to be enough"

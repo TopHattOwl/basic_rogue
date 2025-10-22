@@ -20,6 +20,7 @@ var inventory_tab_size: Dictionary = {}
 func _ready() -> void:
 	make_inventory()
 
+
 ## Makes inventory from GameData.ITEM_TYPES [br]
 ## Adding new item type -> add to ITEM_TYPES enum
 func make_inventory():
@@ -106,6 +107,7 @@ func add_item(item: ItemResource) -> bool:
 			return true
 
 
+## not finished yet
 func remove_item(item: ItemResource) -> void:
 	var tab = inventory[item.item_type]
 	var stackable_comp = item.get_component(StackableComponent)

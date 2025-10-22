@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="Stance" load_steps=23 format=3 uid="uid://d4axwjc6rwqnd"]
+[gd_resource type="Resource" script_class="Stance" load_steps=22 format=3 uid="uid://d4axwjc6rwqnd"]
 
 [ext_resource type="Script" uid="uid://c6hqvujepfyxm" path="res://scripts/systems/modifier_system/stat_modifier_class.gd" id="1_7s074"]
-[ext_resource type="Script" uid="uid://cq8mad0mmyu8r" path="res://scripts/systems/conditions/base_condition.gd" id="2_2c2kf"]
 [ext_resource type="Script" uid="uid://cpememyp02ehk" path="res://resources/combat_stuff/stances/stance_class.gd" id="2_kvlpn"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kkd72"]
@@ -10,163 +9,163 @@ size = Vector2(32, 48)
 [sub_resource type="Resource" id="Resource_2axnh"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_min"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_kvlpn"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_max"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_2c2kf"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_min"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_kkd72"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_max"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_pp3pa"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_min"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_xbt7o"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_max"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_cd4oi"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_min"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_46iyv"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_max"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_brg1o"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_min"
-target_component = 7
+target_component = 3
 operation = 0
 value = 0.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_6xai2"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_max"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_0gntu"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_min"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_q7piu"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_max"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_phxd1"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_min"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_8o4pn"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_max"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_2egqg"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_min"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_mqag3"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_max"
-target_component = 7
+target_component = 3
 operation = 0
 value = 1.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_08gq5"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_min"
-target_component = 7
+target_component = 3
 operation = 0
 value = 20.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [sub_resource type="Resource" id="Resource_58bhy"]
 script = ExtResource("1_7s074")
 target_stat = &"damage_max"
-target_component = 7
+target_component = 3
 operation = 0
 value = 20.0
-conditions = Array[ExtResource("2_2c2kf")]([])
+conditions = []
 metadata/_custom_type_script = "uid://c6hqvujepfyxm"
 
 [resource]

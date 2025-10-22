@@ -15,6 +15,7 @@ metadata/_custom_type_script = "uid://m2g3sm5kwgfg"
 script = ExtResource("3_f0xf8")
 is_stackable = false
 max_stack_size = 0
+count = 1
 metadata/_custom_type_script = "uid://br5f2sw638bnu"
 
 [sub_resource type="Resource" id="Resource_nxcp2"]
@@ -37,6 +38,7 @@ fill_to = Vector2(0.717949, 0.645299)
 
 [resource]
 script = ExtResource("2_wmpu6")
+id = 0
 uid = "test_powder"
 display_name = "Test powder"
 description = "Use it ang hope it works, low damag, changes element to fire"

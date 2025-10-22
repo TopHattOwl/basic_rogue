@@ -17,8 +17,8 @@ enum PASSIVE_IDS {
 	# MACE
 	PLACEHOLDER_MACE,
 
-	# POLEAXE
-	PLACEHOLDER_POLEAXE,
+	# POLEARMS
+	PLACEHOLDER_POLEARM,
 
 	# BOW
 	PLACEHOLDER_BOW,
@@ -165,9 +165,9 @@ var SKILL_TREES = {
 		}
 	],
 
-	GameData.SKILLS.POLEAXE: [
+	GameData.SKILLS.POLEARMS: [
 		{
-			id = PASSIVE_IDS.PLACEHOLDER_POLEAXE,
+			id = PASSIVE_IDS.PLACEHOLDER_POLEARM,
 			display_name = "Placeholder Poleaxe",
 			description = "This is a placeholder passive skill",
 			icon = placeholder_icon,

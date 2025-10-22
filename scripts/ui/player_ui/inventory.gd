@@ -5,6 +5,15 @@ var DEFAULT_TAB: int = GameData.ITEM_TYPES.WEAPON
 # item filter buttons
 var FilterButtons: Array[Button]
 
+var TAB_ICONS = {
+	GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.WEAPON]: load(DirectoryPaths.weapons_tab_icon),
+	GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.RANGED_WEAPON]: load(DirectoryPaths.ranged_weapons_tab_icon),
+	GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.SHIELD]: load(DirectoryPaths.shield_tab_icon),
+	GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.ARMOR]: load(DirectoryPaths.armor_tab_icon),
+	GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.POTION]: load(DirectoryPaths.potions_tab_icon),
+	GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.POWDER]: load(DirectoryPaths.powder_tab_icon),
+	GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.MONSTER_PART]: load(DirectoryPaths.monster_parts_tab_icon),
+}
 
 @onready var filter_container = $FilterContainer
 @onready var tab_name = $TabName
@@ -80,8 +89,12 @@ func make_inventory() -> void:
 		button.name = GameData.ITEM_TAB_NAMES[key] + "Button"
 		
 		# make them look good
-		button.icon = PlaceholderTexture2D.new()
-		button.icon.size = Vector2(16, 24)
+		if TAB_ICONS.has(GameData.ITEM_TAB_NAMES[key]):
+			button.icon = TAB_ICONS[GameData.ITEM_TAB_NAMES[key]]
+		else:
+			button.icon = PlaceholderTexture2D.new()
+			button.icon.size = Vector2(16, 24)
+
 		filter_container.add_child(button)
 
 func connect_filter_buttons() -> void:

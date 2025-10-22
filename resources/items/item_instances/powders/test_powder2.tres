@@ -15,6 +15,7 @@ metadata/_custom_type_script = "uid://m2g3sm5kwgfg"
 script = ExtResource("3_eplhn")
 is_stackable = false
 max_stack_size = 0
+count = 1
 metadata/_custom_type_script = "uid://br5f2sw638bnu"
 
 [sub_resource type="Resource" id="Resource_2k2hf"]
@@ -29,6 +30,7 @@ size = Vector2(16, 24)
 
 [resource]
 script = ExtResource("2_8j0qc")
+id = 0
 uid = "test_powder2"
 display_name = "Test Powder 2"
 description = "Very good second iteration of powder, works good"

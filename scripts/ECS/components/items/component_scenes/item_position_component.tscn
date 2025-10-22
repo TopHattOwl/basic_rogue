@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyldow411e2t"]
-
-[ext_resource type="Script" uid="uid://dkwke8g0hme0h" path="res://scripts/ECS/components/items/component_scripts/item_position_component.gd" id="1_ytcnr"]
-
-[node name="ItemPositionComponent" type="Node"]
-script = ExtResource("1_ytcnr")

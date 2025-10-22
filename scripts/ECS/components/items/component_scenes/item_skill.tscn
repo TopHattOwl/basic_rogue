@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://btd773i6wsakq"]
-
-[ext_resource type="Script" uid="uid://ck81ny56ritsx" path="res://scripts/ECS/components/items/component_scripts/item_skill.gd" id="1_l66y0"]
-
-[node name="ItemSkillComponent" type="Node"]
-script = ExtResource("1_l66y0")

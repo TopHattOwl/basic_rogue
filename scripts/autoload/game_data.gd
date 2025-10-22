@@ -495,7 +495,7 @@ enum SKILLS {
 	AXE,
 	SPEAR,
 	MACE,
-	POLEAXE,
+	POLEARMS,
 	BOW,
 
 	# COMBAT SKILLS
@@ -515,7 +515,7 @@ var SKILL_NAMES = {
 	SKILLS.AXE: "Axe",
 	SKILLS.SPEAR: "Spear",
 	SKILLS.MACE: "Mace",
-	SKILLS.POLEAXE: "Poleaxe",
+	SKILLS.POLEARMS: "Polearms",
 	SKILLS.BOW: "Bow",
 
 	SKILLS.MELEE: "Melee",
@@ -541,7 +541,8 @@ enum ITEM_TYPES {
 	MONSTER_PART,
 	ALCHEMY,
 	RESOURCE,
-	OTHER
+	FOOD,
+	OTHER,
 }
 
 const ITEM_TAB_NAMES = {
@@ -554,9 +555,12 @@ const ITEM_TAB_NAMES = {
 	ITEM_TYPES.MONSTER_PART: "Monster Parts",
 	ITEM_TYPES.ALCHEMY: "Alchemy",
 	ITEM_TYPES.RESOURCE: "Resources",
+	ITEM_TYPES.FOOD: "Food",
 	ITEM_TYPES.OTHER: "Other",
 }
 
+
+## if 0 then no limit
 const ITEM_TAB_SIZES = {
 	ITEM_TYPES.WEAPON: 20,
 	ITEM_TYPES.RANGED_WEAPON: 15,
@@ -567,6 +571,7 @@ const ITEM_TAB_SIZES = {
 	ITEM_TYPES.MONSTER_PART: 0,
 	ITEM_TYPES.ALCHEMY: 0,
 	ITEM_TYPES.RESOURCE: 0,
+	ITEM_TYPES.FOOD: 0,
 	ITEM_TYPES.OTHER: 0
 }
 
@@ -581,16 +586,11 @@ enum EQUIPMENT_SLOTS {
 	LEGS,
 	FEET,
 	BELT,
-}
+	NECK,
 
-enum ARMOR_SLOTS {
-	HEAD,
-	SHOULDERS,
-	CHEST,
-	ARMS,
-	HANDS,
-	LEGS,
-	FEET
+	HEAD_UNDER,
+	CHEST_UNDER,
+	LEGS_UNDER,
 }
 
 enum ARMOR_TYPES {
@@ -600,13 +600,12 @@ enum ARMOR_TYPES {
 }
 
 
-
 enum WEAPON_TYPES {
 	SWORD,
 	AXE,
 	SPEAR,
 	MACE,
-	POLEAXE,
+	POLEARMS,
 	BOW,
 }
 
@@ -621,10 +620,16 @@ enum WEAPON_SUBTYPES {
 	MACE_2H,
 }
 
-enum RANGED_WEAPONS {
 
+# RARITY
+
+enum RARITY {
+	COMMON,
+	UNCOMMON,
+	EXEPTIONAL,
+	EXQUISITE,
+	UNIQUE,
 }
-
 
 # MODIFIERS OPERATION
 
@@ -670,13 +675,13 @@ const PAUSE_MENU_Z_INDEX = 70
 
 # debug options
 var combat_system_debug := 0
-var melee_combat_debug := 0
+var melee_combat_component_debug := 0
 var spell_debug := 0
 var turn_manager_debug := 0
 var input_manager_debug := 0
 var hot_bar_debug := 0
 var map_functions_debug := 0
-var biome_debug := 1 # for biome generation and loading in Biome classes
+var biome_debug := 0 # for biome generation and loading in Biome classes
 var world_map_data_debug := 0
 var fov_manager_debug := 0
 var item_debug := 0
@@ -687,9 +692,10 @@ var leveling_system_debug := 0
 var ambush_debug := 0
 var contract_debug := 0
 var settlement_manager_debug := 0
-var new_game_window_debug := 1
-var dungeon_debug := 1
+var new_game_window_debug := 0
+var dungeon_debug := 0
 var action_history_debug := 0
-var save_load_debug := 1
+var save_load_debug := 0
+var stance_debug := 0
 
 var dungeon_draw_debug := 1 # for displaying all dungeons on the world map

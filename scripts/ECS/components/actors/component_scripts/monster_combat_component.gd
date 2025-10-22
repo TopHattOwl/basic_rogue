@@ -95,7 +95,7 @@ func melee_attack(target: Node2D) -> bool:
 	}
 	SignalBus.actor_hit.emit(signal_hit_data)
 
-	if GameData.melee_combat_debug:
+	if GameData.melee_combat_component_debug:
 		print("singal hit data: ", signal_hit_data)
 	return true
 

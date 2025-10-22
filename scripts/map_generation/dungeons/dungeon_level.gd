@@ -6,12 +6,10 @@ extends Resource
 var rng: RandomNumberGenerator = null
 @export var rng_seed: int:
 	set(value):
-		print("[DungeonLevel] Setting rng_seed to: ", value)
 		if not rng:
 			rng = RandomNumberGenerator.new()
 		rng.seed = value
 		rng_seed = value
-		print("[DungeonLevel] RNG state after setting: ", rng.state)
 
 # explored toles for FOV
 @export var explored_tiles: Array[Vector2i] = []
@@ -40,10 +38,6 @@ func reset_variables() -> void:
 
 ## Makes the DungeonLevel but does not generate level terrain 
 func generate_dugeon_level(_level: int, _world_map_pos: Vector2i) -> void:
-	if GameData.dungeon_debug:
-		print("\n[DungeonLevel.generate_dugeon_level] Called")
-		print("[DungeonLevel]  Level: ", _level)
-		print("[DungeonLevel]  World pos: ", _world_map_pos)
 	
 	level = _level
 	world_map_pos = _world_map_pos
@@ -53,10 +47,6 @@ func generate_dugeon_level(_level: int, _world_map_pos: Vector2i) -> void:
 
 	terrain_map = []
 
-	if GameData.dungeon_debug:
-		print("[DungeonLevel]  Calculated seed: ", calculated_seed)
-		print("[DungeonLevel]  Final rng_seed: ", rng_seed)
-		print("[DungeonLevel]  RNG state: ", rng.state)
 
 
 	# level terrain data generation only when player enters the level

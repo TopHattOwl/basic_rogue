@@ -67,7 +67,6 @@ func _activate_stance(index: int):
 	if index < stance_buttons.size():
 		var selected_stance = current_stances[index]
 		print("stance selected: ", selected_stance.name)
-		# TODO: set the player's current stance
 
 		if !GameData.player.StanceComp.enter_stance(selected_stance):
 			GameData.player.PlayerComp.restore_input_mode()

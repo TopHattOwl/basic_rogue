@@ -30,7 +30,8 @@ func _ready() -> void:
 
 func _on_item_pressed(item: ItemResource) -> void:
 	# open item's item window 
-	item.get_component(ItemWindowComponent).open_item_window(item)
+	var _item_window_component: ItemWindowComponent = item.get_component(ItemWindowComponent)
+	_item_window_component.open_item_window(item)
 
 	
 	

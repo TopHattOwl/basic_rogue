@@ -26,7 +26,7 @@ var melee_crit_damage: float = 1
 var debug: bool
 
 func _ready() -> void:
-	debug = GameData.melee_combat_debug
+	debug = GameData.melee_combat_component_debug
 
 func initialize(d: Dictionary) -> void:
 	damage_min = d.get("damage_min", 0)

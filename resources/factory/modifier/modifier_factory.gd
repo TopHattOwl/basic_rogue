@@ -32,7 +32,8 @@ extends Node
 
 # 	return [modifier]
 
-
+## Makes an array of modifiers with given definitions [br]
+## ### !!! for damage modifier, only damage_min is required, damage_max is added automatically
 static func make_batch_modifiers(definitions: Array) -> Array[StatModifier]:
 	var all_mods: Array[StatModifier] = []
 
@@ -41,7 +42,8 @@ static func make_batch_modifiers(definitions: Array) -> Array[StatModifier]:
 
 	return all_mods
 
-
+## makes a single modifier inside an array[br]
+## If damage_min is given as `target_stat` returns an array for damage min and max
 static func make_singe_modifier(d: Dictionary = {}) -> Array[StatModifier]:
 	var modifiers: Array[StatModifier] = []
 
@@ -54,6 +56,7 @@ static func make_singe_modifier(d: Dictionary = {}) -> Array[StatModifier]:
 
 	modifiers.append(modifier)
 
+	# if damage_min, add damage_max
 	if modifier.target_stat == "damage_min":
 		var damage_max_modifier = StatModifier.new()
 		damage_max_modifier.target_component = modifier.target_component

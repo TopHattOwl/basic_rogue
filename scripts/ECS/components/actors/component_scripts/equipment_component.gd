@@ -12,11 +12,11 @@ var equipment = {
 	GameData.EQUIPMENT_SLOTS.LEGS: null,
 	GameData.EQUIPMENT_SLOTS.FEET: null,
 	GameData.EQUIPMENT_SLOTS.BELT: null,
+	GameData.EQUIPMENT_SLOTS.NECK: null,
+	GameData.EQUIPMENT_SLOTS.HEAD_UNDER: null,
+	GameData.EQUIPMENT_SLOTS.CHEST_UNDER: null,
+	GameData.EQUIPMENT_SLOTS.LEGS_UNDER: null,
 }
-
-# not implemented yet
-func get_total_armor() -> int:
-	return 0
 
 func _ready() -> void:
 	if get_parent().get_parent().is_in_group("player"):

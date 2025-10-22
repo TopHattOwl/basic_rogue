@@ -4,7 +4,10 @@ extends ItemComponent
 @export var buff: Buff
 
 ## Number of max uses
-@export var max_uses: int
+@export var max_uses: int:
+	set(value):
+		max_uses = value
+		current_uses = value
 
 ## Number of current uses left
 @export var current_uses: int

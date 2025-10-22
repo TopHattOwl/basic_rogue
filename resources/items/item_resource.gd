@@ -4,7 +4,7 @@ extends Resource
 # An item will be an instance of this resource, created in Godot. 
 # each item can have multiple components
 
-
+@export var id: int
 @export var uid: String = "" # unique identifier, the name of the item
 @export var display_name: String = "Unnamed Item"
 @export_multiline var description: String = ""

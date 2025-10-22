@@ -18,6 +18,7 @@ extends Node2D
 @export var InventoryComp: InventoryComponent
 
 @export var MeleeCombatComp: MeleeCombatComponent
+@export var DefenseStatsComp: DefenseStatsComponent
 @export var BlockComp: BlockComponent
 @export var StanceComp: StanceComponent
 

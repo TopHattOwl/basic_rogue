@@ -40,11 +40,6 @@ func make_interact_buttons() -> void:
 	if current_item.get_component(PowderComponent):
 		add_use_button()
 
-	
-
-	add_look_button()
-	add_test_button()
-
 
 func add_equip_button() -> void:
 	var button = Button.new()
@@ -73,12 +68,6 @@ func add_use_button() -> void:
 
 	# add uses label
 	add_uses_label()
-
-func add_look_button() -> void:
-	pass
-
-func add_test_button() -> void:
-	pass
 
 
 # --- VISUAL ---
@@ -109,7 +98,7 @@ func _on_equip_pressed() -> void:
 
 ## using stuff does not pass turn
 func _on_use_pressed() -> void:
-	var inventory_comp = GameData.player.InventoryComp
+	var inventory_comp: InventoryComponent = GameData.player.InventoryComp
 	inventory_comp.use_item(current_item)
 
 	close_window()

@@ -24,19 +24,21 @@ func _ready() -> void:
 
 func add_modifier(mod: StatModifier) -> void:
 	if GameData.modifiers_debug:
-		print("checking modifier: ", mod)
+		print("[ModifiersComponent] checking modifier: ", mod)
 
 	if melee_combat_modifiers.has(mod) or block_modifiers.has(mod) or stamina_modifiers.has(mod):
+		if GameData.modifiers_debug:
+			print("[ModifiersComponent] modifier already applied, not adding")
 		return
 	
 	match mod.target_component:
 		GameData.ComponentKeys.MELEE_COMBAT:
 			if GameData.modifiers_debug:
-				print("adding melee combat modifier")
+				print("[ModifiersComponent] adding melee combat modifier")
 			add_melee_combat_modifier(mod)
 		GameData.ComponentKeys.BLOCK:
 			if GameData.modifiers_debug:
-				print("adding block modifier")
+				print("[ModifiersComponent] adding block modifier")
 			add_block_modifier(mod)
 			pass
 

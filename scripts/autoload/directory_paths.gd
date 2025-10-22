@@ -136,6 +136,18 @@ const talk_screen_scene = "res://scenes/ui/talk/talk_screen.tscn"
 
 
 
+# --- ICONS ---
+
+# inventory tab icons
+const weapons_tab_icon = "res://assets/icons/inventory_tab_icons/weapons_tab.png"
+const ranged_weapons_tab_icon = "res://assets/icons/inventory_tab_icons/ranged_weapons_tab.png"
+const armor_tab_icon = "res://assets/icons/inventory_tab_icons/armor_tab.png"
+const shield_tab_icon = "res://assets/icons/inventory_tab_icons/shields_tab.png"
+const potions_tab_icon = "res://assets/icons/inventory_tab_icons/potions_tab.png"
+const powder_tab_icon = "res://assets/icons/inventory_tab_icons/powder_tab.png"
+const monster_parts_tab_icon = "res://assets/icons/inventory_tab_icons/monster_part_tab.png"
+
+
 # --- SPRITES/TILEMAPS ---
 
 var monster_sprites = {

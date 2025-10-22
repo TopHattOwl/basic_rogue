@@ -8,29 +8,19 @@ extends Resource
 var rng: RandomNumberGenerator = null
 @export var rng_seed: int:
 	set(value):
-		print("[Dungeon] rng seed set to: ", value)
 		if not rng:
 			rng = RandomNumberGenerator.new()
 		rng.seed = value
 		rng_seed = value
-		print("[Dungeon] RNG state after setting: ", rng.state)
 
 
 @export var tileset_resource: Dictionary
 @export var tile_set_draw_data: Dictionary
 
 func _init(data: Dictionary = {}) -> void:
-	print("[Dungeon._init] Called with data: ", data)
 	id = data.get("id", -1)
 	world_map_pos = data.get("world_map_pos", Vector2i.ZERO)
 	rng_seed = data.get("rng_seed", 5)
-
-
-	print("[Dungeon._init] After setting seed, rng is null? ", rng == null)
-	print("[Dungeon._init] rng_seed value: ", rng_seed)
-	print("[Dungeon._init] rng's seed value (rng.seed): ", rng.seed)
-	print("[Dungeon._init] are seeds the same?", rng.seed == rng_seed)
-	print("[Dungeon._init] rng state: ", rng.state)
 
 	# call overriden methods to set all draw data
 	set_draw_data()
