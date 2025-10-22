@@ -53,7 +53,6 @@ func generate_dungeons() -> void:
 			# check if tile is walkable
 			if not WorldMapData.world_map2.is_tile_walkable(random_pos):
 				_i += 1
-				print("[DungeonManager] tile is not walkable")
 				continue
 			
 			# check if dungeon is already there

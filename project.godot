@@ -51,6 +51,7 @@ SettlementManager="*res://scripts/autoload/systems/settlement_manager/settlement
 SavePaths="*res://scripts/autoload/save_load/save_paths.gd"
 DungeonDefinitions="*res://resources/factory/dungeon/dungeon_definitions.gd"
 ActionHistory="*res://scripts/autoload/systems/action_history/action_history.gd"
+ItemDropManager="*res://scripts/autoload/systems/item_drop_manager/item_drop_manager.gd"
 
 [debug]
 

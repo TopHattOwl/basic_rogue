@@ -107,12 +107,12 @@ func add_item(item: ItemResource) -> bool:
 			return true
 
 
-## not finished yet
 func remove_item(item: ItemResource) -> void:
 	var tab = inventory[item.item_type]
 	var stackable_comp = item.get_component(StackableComponent)
 
 	# if stackable remove from stak, depending on how much we remove
+	# this branch not implemented yet
 	if stackable_comp.is_stackable:
 		pass
 

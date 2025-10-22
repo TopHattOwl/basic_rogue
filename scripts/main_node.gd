@@ -16,7 +16,6 @@ func _ready():
 	# test stances
 	GameData.player.StanceComp.add_stance(load("res://resources/combat_stuff/stances/test.tres"))
 	GameData.player.StanceComp.add_stance(load("res://resources/combat_stuff/stances/test2.tres"))
-	# GameData.player.StanceComp.enter_stance(GameData.player.StanceComp.known_stances[0])
 
 
 	# --- items testing ---
@@ -31,31 +30,12 @@ func _ready():
 	var test_resource = ItemFactory.create_item(ItemDefinitions.ITEMS.IRON_LUMP, 24)
 	inv_comp.add_item(test_resource)
 
-	var test_armor = ItemFactory.create_item(ItemDefinitions.ITEMS.STEEL_HELMET)
-	inv_comp.add_item(test_armor)
-
-
-	# test weapon
-	# var test_weapon: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/weapons/test_weapon.tres")
-
-	# var resource1: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 11)
-	# var resource2: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 3)
-	# var resource3: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/resources/test_resource.tres", 5)
-
-	# GameData.player.InventoryComp.add_item(resource1)
-	# GameData.player.InventoryComp.add_item(resource2)
-	# GameData.player.InventoryComp.add_item(resource3)
-	# GameData.player.InventoryComp.add_item(test_weapon)
-
-
-	# # powder test
-	# var powder: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/powders/test_powder.tres")
-	# var powder2: ItemResource = ItemFactory.create_item("res://resources/items/item_instances/powders/test_powder2.tres")
-
-	# GameData.player.InventoryComp.add_item(powder)
-	# GameData.player.InventoryComp.add_item(powder2)
-
-	# GameData.player.get_component(GameData.ComponentKeys.MELEE_COMBAT).reset_to_unarmed()
+	var test_helmet = ItemFactory.create_item(ItemDefinitions.ITEMS.STEEL_HELMET)
+	var test_cloak = ItemFactory.create_item(ItemDefinitions.ITEMS.CLOAK)
+	var test_gauntlets = ItemFactory.create_item(ItemDefinitions.ITEMS.STEEL_GAUNTLETS)
+	inv_comp.add_item(test_helmet)
+	inv_comp.add_item(test_cloak)
+	inv_comp.add_item(test_gauntlets)
 
 
 	# --- items testing end ---

@@ -135,9 +135,73 @@ var item_definitions: Dictionary = {
 
 	},
 
+	# 	-- Hands slot --
+	ITEMS.STEEL_GAUNTLETS: {
+		"base_data": {
+			"id": ITEMS.STEEL_GAUNTLETS,
+			"uid": ITEMS.keys()[ITEMS.STEEL_GAUNTLETS],
+			"display_name": "Steel gauntlets",
+			"description": "simple steel gauntlets",
+			"item_type": GameData.ITEM_TYPES.ARMOR,
+			"sprite_path": "res://assets/items/armor/hands/steel_gloves.png",
+			"rarity": GameData.RARITY.COMMON,
+			"value": 18,
+		},
+		"components": {
+			"StackableComponent": {
+				"is_stackable": false,
+				"max_stack_size": 0,
+			},
+			"ArmorComponent": {
+				"armor": 7,
+				"resistances": {
+					GameData.ELEMENT.FIRE: 0.04,
+				}
+			},
+			"EquipableComponent": {
+				"equipment_slot": GameData.EQUIPMENT_SLOTS.HANDS,
+			},
+			"CapacityComponent": {
+				"max_capacity": 14,
+ 			},
+		}
+	},
+
 	#   -- Belt slot --
 	ITEMS.LEATHER_BELT: {
 
+	},
+
+	# 	-- Cloak slot --
+	ITEMS.CLOAK: {
+		"base_data": {
+			"id": ITEMS.CLOAK,
+			"uid": ITEMS.keys()[ITEMS.CLOAK],
+			"display_name": "Cloak",
+			"description": "A simple travel cloak",
+			"item_type": GameData.ITEM_TYPES.ARMOR,
+			"sprite_path": "res://assets/items/armor/neck/cloak.png",
+			"rarity": GameData.RARITY.COMMON,
+			"value": 15,
+		},
+		"components": {
+			"StackableComponent": {
+				"is_stackable": false,
+				"max_stack_size": 0,
+			},
+			"ArmorComponent": {
+				"armor": 5,
+				"resistances": {
+					GameData.ELEMENT.ICE: 0.04,
+				}
+			},
+			"EquipableComponent": {
+				"equipment_slot": GameData.EQUIPMENT_SLOTS.NECK,
+			},
+			"CapacityComponent": {
+				"max_capacity": 0,
+ 			},
+		}
 	},
 
 	#   -- Chest under slot --
@@ -246,9 +310,14 @@ enum ITEMS {
 	# Legs
 	IRON_GREAVES,
 
+	# Hands
+	STEEL_GAUNTLETS,
 
 	# Belt
 	LEATHER_BELT,
+
+	# Neck
+	CLOAK,
 
 	# Chest under
 	GAMBESON,

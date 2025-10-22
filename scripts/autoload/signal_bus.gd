@@ -152,3 +152,11 @@ signal contract_failed(data: Dictionary)
 
 signal loading_screen_progressed(progress: float)
 signal loading_label_changed(text: String)
+
+
+# --- 
+
+# when item is dropped on the ground
+signal item_dropped(item: ItemResource, grid_pos: Vector2i)
+
+signal item_picked_up(item: ItemResource, grid_pos: Vector2i, entity: Node2D)

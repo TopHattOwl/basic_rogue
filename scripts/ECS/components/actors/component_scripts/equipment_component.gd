@@ -25,7 +25,7 @@ func _ready() -> void:
 
 func equip_item(item: ItemResource, slot: int) -> bool:
 
-	print("equiping item")
+	print("[EquipmentComponent] trying to equip item")
 	if not _can_equip_item(item, slot):
 		return false
 	
@@ -44,9 +44,10 @@ func equip_item(item: ItemResource, slot: int) -> bool:
 			})
 	
 	# remove item from inventory
-	var inventory = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.INVENTORY))
+	var inventory: InventoryComponent = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.INVENTORY))
 	inventory.remove_item(item)
 
+	print("[EquipmentComponent] equipped item")
 	return true
 	
 

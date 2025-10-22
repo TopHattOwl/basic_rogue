@@ -92,6 +92,20 @@ func can_spawn_monster_at_pos(pos: Vector2i) -> bool:
 
 # --- GETTERS ---
 
+func get_actor(grid_pos: Vector2i) -> Node2D:
+	if !GameData.actors_map:
+		return null
+	if not is_in_bounds(grid_pos):
+		return null
+	return GameData.actors_map[grid_pos.y][grid_pos.x]
+
+func get_items(grid_pos: Vector2i) -> Array:
+	if !GameData.items_map:
+		return []
+	if not is_in_bounds(grid_pos):
+		return []
+	return GameData.items_map[grid_pos]
+
 ## Returns PackedVector2Array of line between two grid positions [br]
 ## Includes start and end positions, if start pos is not needed use PackedVector2Array.remove_at(0)
 func get_line(from: Vector2i, to: Vector2i) -> PackedVector2Array:
@@ -314,21 +328,6 @@ func check_actors_in_radius(
 
 	return tiles
 
-
-func get_actor(grid_pos: Vector2i) -> Node2D:
-	if !GameData.actors_map:
-		return null
-	if not is_in_bounds(grid_pos):
-		return null
-	return GameData.actors_map[grid_pos.y][grid_pos.x]
-
-func get_items(grid_pos: Vector2i) -> Array:
-	if !GameData.items_map:
-		return []
-	if not is_in_bounds(grid_pos):
-		return []
-	return GameData.items_map[grid_pos.y][grid_pos.x]
-
 # --- MAP DATA ---
 
 ## Initializes all map data (filles it with floor, null etc.)
@@ -342,7 +341,6 @@ func initialize_map_data():
 
 		GameData.terrain_map.append([])
 		GameData.actors_map.append([])
-		GameData.items_map.append([])
 		for x in range(GameData.MAP_SIZE.x):
 			var floor_data = GameData.get_tile_data(GameData.TILE_TAGS.FLOOR)
 			var tile_data = {
@@ -352,7 +350,7 @@ func initialize_map_data():
 			}
 			GameData.terrain_map[y].append(tile_data)
 			GameData.actors_map[y].append(null)
-			GameData.items_map[y].append([])
+			GameData.items_map[Vector2i(x, y)] = []
 
 
 ## parse tile layers from preloaded scenes, generated maps first generate this data and draw later

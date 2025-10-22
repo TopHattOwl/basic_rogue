@@ -50,6 +50,7 @@ var all_friendly_actors: Array = []
 
 var all_actors: Array = []
 
+# all items that are on the ground
 var all_items: Array = []
 
 ## removes all entities, resets and initializes maps.
@@ -177,12 +178,12 @@ var current_dungeon_level: int = -1
 
 var terrain_map: Array = []
 var actors_map: Array = []
-var items_map: Array = []
+var items_map: Dictionary = {} # {grid_pos: Array of items}
 
 func reset_maps() -> void:
 	terrain_map = []
 	actors_map = []
-	items_map = []
+	items_map = {}
 
 # ___ Tiles ___
 
