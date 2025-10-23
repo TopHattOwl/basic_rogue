@@ -9,8 +9,6 @@ var player_look_pos: Vector2i
 # the difference between the look pos and the player pos in grid
 var look_diff_from_player: Vector2i = Vector2i.ZERO
 
-var prev_input_mode: int
-
 func _ready() -> void:
 	SignalBus.make_turn_pass.connect(_turn_passed)
 
@@ -130,7 +128,6 @@ func handle_zoomed_in_inputs():
 		if Input.is_action_just_pressed(hotbar_input):
 
 			GameData.player.PlayerComp.set_prev_input_mode()
-			# prev_input_mode = GameData.player.PlayerComp.input_mode
 
 			# use hotbar will handle seting the player input mode and emitting make turn pass signal if rquired
 			GameData.player.HotbarComp.use_hotbar(hotbar_input)
@@ -246,7 +243,6 @@ func handle_stance_selection_inputs() -> void:
 	# if stance change button is pressed toggle back the stance bar and return to the previous input mode
 	if Input.is_action_just_pressed("stance_change"):
 		UiFunc.toggle_stance_bar()
-		# GameData.player.PlayerComp.input_mode = prev_input_mode
 		GameData.player.PlayerComp.restore_input_mode()
 
 

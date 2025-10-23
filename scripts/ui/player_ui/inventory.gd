@@ -1,4 +1,9 @@
+class_name InventoryControlNode
 extends Control
+
+
+
+# --- INVENTORY ---
 
 var DEFAULT_TAB: int = GameData.ITEM_TYPES.WEAPON
 
@@ -13,6 +18,10 @@ var TAB_ICONS = {
 	GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.POTION]: load(DirectoryPaths.potions_tab_icon),
 	GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.POWDER]: load(DirectoryPaths.powder_tab_icon),
 	GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.MONSTER_PART]: load(DirectoryPaths.monster_parts_tab_icon),
+	# GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.ALCHEMY]: load(DirectoryPaths.alchemy_tab_icon),
+	# GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.RESOURCE]: load(DirectoryPaths.resource_tab_icon),
+	# GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.FOOD]: load(DirectoryPaths.food_tab_icon),
+	# GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.OTHER]: load(DirectoryPaths.other_tab_icon),
 }
 
 @onready var filter_container = $FilterContainer
@@ -123,3 +132,7 @@ func clear_items() -> void:
 func _update() -> void:
 	clear_items()
 	load_items(current_tab)
+
+
+
+# --- EQUIPMENT PART ---

@@ -79,7 +79,6 @@ func is_in_bounds(pos: Vector2i) -> bool:
 	# 	return pos.x >= 0 and pos.x < currentDungeonSize.x and pos.y >= 0 and pos.y < currentDUngeonSize.y
 	return pos.x >= 0 and pos.x < GameData.MAP_SIZE.x and pos.y >= 0 and pos.y < GameData.MAP_SIZE.y
 
-
 func can_spawn_monster_at_pos(pos: Vector2i) -> bool:
 
 	if !is_tile_walkable(pos):
@@ -89,6 +88,10 @@ func can_spawn_monster_at_pos(pos: Vector2i) -> bool:
 	if GameData.actors_map[pos.y][pos.x] != null:
 		return false
 	return true
+
+func has_items_at(grid_pos: Vector2i) -> bool:
+	var items_map = GameData.items_map
+	return items_map.has(grid_pos) and not items_map[grid_pos].is_empty()
 
 # --- GETTERS ---
 
@@ -100,11 +103,19 @@ func get_actor(grid_pos: Vector2i) -> Node2D:
 	return GameData.actors_map[grid_pos.y][grid_pos.x]
 
 func get_items(grid_pos: Vector2i) -> Array:
-	if !GameData.items_map:
+	if not GameData.items_map.has(grid_pos):
 		return []
 	if not is_in_bounds(grid_pos):
 		return []
 	return GameData.items_map[grid_pos]
+
+func get_item_count_at(grid_pos: Vector2i) -> int:
+	var items_map = GameData.items_map
+	if not items_map.has(grid_pos):
+		return 0
+	if not is_in_bounds(grid_pos):
+		return 0
+	return items_map[grid_pos].size()
 
 ## Returns PackedVector2Array of line between two grid positions [br]
 ## Includes start and end positions, if start pos is not needed use PackedVector2Array.remove_at(0)

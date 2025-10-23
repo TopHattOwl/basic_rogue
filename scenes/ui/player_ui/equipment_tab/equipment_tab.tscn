@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxi61x40xqu63"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3xwks"]
+
+[node name="EquipmentTab" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Equipment slots" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 112.0
+offset_right = 256.0
+offset_bottom = 328.0
+
+[node name="TextureRect" type="TextureRect" parent="Equipment slots"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_3xwks")

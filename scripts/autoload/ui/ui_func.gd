@@ -1,6 +1,6 @@
 extends Node
 
-var player_ui: CanvasLayer
+var player_ui: PlayerUICanvas
 
 func _ready() -> void:
 	SignalBus.player_acted.connect(_on_pass_time)

@@ -1,3 +1,4 @@
+class_name PlayerUICanvas
 extends CanvasLayer
 
 # --- MESSAGE ---
@@ -19,7 +20,7 @@ var look_target_stuff = []
 @onready var stance_bar = $StanceBar
 
 # --- INVENTORY ---
-@onready var inventory = $Inventory
+@onready var inventory: InventoryControlNode = $Inventory
 
 # --- BLOCK POWER ---
 

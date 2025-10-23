@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://be4gwtu23s7n6"]
+[gd_scene load_steps=16 format=3 uid="uid://be4gwtu23s7n6"]
 
 [ext_resource type="Script" uid="uid://bk8wygn2yqos2" path="res://scripts/ui/player_ui/player_ui.gd" id="1_hrok7"]
 [ext_resource type="Texture2D" uid="uid://cm21jj8xixo86" path="res://assets/ui/HP_alt.png" id="2_ow2f4"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cdditl3ld2caa" path="res://scenes/ui/player_ui/minimap/minimap.tscn" id="5_35xku"]
 [ext_resource type="Script" uid="uid://dobnprsw10nxm" path="res://scripts/ui/player_ui/inventory.gd" id="6_23jyl"]
 [ext_resource type="Script" uid="uid://2tj2dlsumkbw" path="res://scenes/ui/player_ui/buffs_container.gd" id="7_81j3l"]
+[ext_resource type="PackedScene" uid="uid://cxi61x40xqu63" path="res://scenes/ui/player_ui/equipment_tab/equipment_tab.tscn" id="10_84420"]
 
 [sub_resource type="Gradient" id="Gradient_35xku"]
 offsets = PackedFloat32Array(0.259677, 0.645161)
@@ -248,9 +249,9 @@ texture = SubResource("GradientTexture2D_81j3l")
 [node name="FilterContainer" type="HBoxContainer" parent="Inventory"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.314286
+anchor_left = 0.315789
 anchor_right = 1.0
-anchor_bottom = 0.03125
+anchor_bottom = 0.0304878
 offset_bottom = 24.0
 grow_horizontal = 2
 alignment = 1
@@ -259,26 +260,30 @@ metadata/_edit_use_anchors_ = true
 [node name="TabName" type="Label" parent="Inventory"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.605
+anchor_left = 0.526
 anchor_top = 0.122
-anchor_right = 0.862
-anchor_bottom = 0.215
-offset_left = 0.159973
-offset_top = -0.0160027
-offset_right = 0.23999
-offset_bottom = -1.04
+anchor_right = 0.783
+anchor_bottom = 0.22
+offset_left = 0.191986
+offset_top = -0.0159988
+offset_right = -0.0640259
+offset_bottom = -0.160004
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ItemsContainer" type="VBoxContainer" parent="Inventory"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.429
-anchor_top = 0.25
+anchor_left = 0.434
+anchor_top = 0.244
 anchor_right = 1.0
-anchor_bottom = 0.969
-offset_left = -0.240005
-offset_bottom = -0.0640106
+anchor_bottom = 0.976
+offset_left = 0.127991
+offset_top = -0.0320053
+offset_bottom = -0.128021
+
+[node name="EquipmentTab" parent="Inventory" instance=ExtResource("10_84420")]
+layout_mode = 1
 
 [node name="BuffsContainer" type="HBoxContainer" parent="."]
 offset_left = 136.0
