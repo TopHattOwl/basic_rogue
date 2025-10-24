@@ -24,6 +24,9 @@ func _ready():
 	var test_weapon = ItemFactory.create_item(ItemDefinitions.ITEMS.IRON_LONGSWORD)
 	inv_comp.add_item(test_weapon)
 
+	var test_shield = ItemFactory.create_item(ItemDefinitions.ITEMS.ROUND_SHIELD)
+	inv_comp.add_item(test_shield)
+
 	var test_powder = ItemFactory.create_item(ItemDefinitions.ITEMS.TEST_POWDER)
 	inv_comp.add_item(test_powder)
 
@@ -33,9 +36,11 @@ func _ready():
 	var test_helmet = ItemFactory.create_item(ItemDefinitions.ITEMS.STEEL_HELMET)
 	var test_cloak = ItemFactory.create_item(ItemDefinitions.ITEMS.CLOAK)
 	var test_gauntlets = ItemFactory.create_item(ItemDefinitions.ITEMS.STEEL_GAUNTLETS)
+	var test_belt = ItemFactory.create_item(ItemDefinitions.ITEMS.LEATHER_BELT)
 	inv_comp.add_item(test_helmet)
 	inv_comp.add_item(test_cloak)
 	inv_comp.add_item(test_gauntlets)
+	inv_comp.add_item(test_belt)
 
 
 	# --- items testing end ---

@@ -86,13 +86,13 @@ func load_skills(_d: Dictionary) -> void:
 class SkillTreeData:
 	var level: int = 1
 	var current_exp: int = 0
-	var exp_for_next_level: int = 100
+	var exp_for_next_level: int = 600
 	var skill_points: int = 0
 	var unlocked_passives: Array = []
 	var skill_tree_name: String
 	var skill_id: int
 
-	var exp_formula: Callable = func(lvl): return 80 * pow(lvl, 1.45)
+	var exp_formula: Callable = func(lvl): return 305 + 201.25 * lvl + pow(lvl, 2) * 124.1071
 
 	func _init(_skill_id: int) -> void:
 		skill_id = skill_id

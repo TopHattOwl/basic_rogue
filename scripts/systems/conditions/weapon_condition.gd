@@ -1,6 +1,6 @@
 class_name WeaponCondition
 extends Condition
-## set variable `required_weapon` to bound a modifier to a specific weapon
+## set variable `required_weapon` to bound a modifier to a specific weapon instance
 
 var required_weapon: ItemResource
 

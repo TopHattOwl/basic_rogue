@@ -576,6 +576,8 @@ const ITEM_TAB_SIZES = {
 	ITEM_TYPES.OTHER: 0
 }
 
+
+## warning: changing this could break equipment tab Control node
 enum EQUIPMENT_SLOTS {
 	MAIN_HAND,
 	OFF_HAND,
@@ -687,6 +689,7 @@ var world_map_data_debug := 0
 var fov_manager_debug := 0
 var item_debug := 0
 var inventory_debug := 0
+var equipment_ui_debug := 1
 var modifiers_debug := 0
 var skill_debug := 0
 var leveling_system_debug := 0

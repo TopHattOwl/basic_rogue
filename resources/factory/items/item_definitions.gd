@@ -44,8 +44,8 @@ var item_definitions: Dictionary = {
 		},
 		"components": {
 			"MeleeWeaponComponent": {
-				"damage_min": 9,
-				"damage_max": 14,
+				"damage_min": 15,
+				"damage_max": 25,
 				"weapon_type": GameData.WEAPON_TYPES.SWORD,
 				"weapon_sub_type": GameData.WEAPON_SUBTYPES.SWORD_2H,
 				"attac-Type": GameData.ATTACK_TYPE.SLASH,
@@ -83,6 +83,40 @@ var item_definitions: Dictionary = {
 	#   -- Polearms --
 	ITEMS.IRON_POLEAXE: {
 
+	},
+
+
+	# ====================
+	# SHIELDS
+	# ====================
+
+	ITEMS.ROUND_SHIELD: {
+		"base_data": {
+			"id": ITEMS.ROUND_SHIELD,
+			"uid": ITEMS.keys()[ITEMS.ROUND_SHIELD],
+			"display_name": "Round Shield",
+			"description": "A wooden round shield",
+			"item_type": GameData.ITEM_TYPES.SHIELD,
+			"sprite_path": "res://assets/items/shields/round_shield.png",
+			"rarity": GameData.RARITY.COMMON,
+			"value": 17,
+		},
+		"components": {
+			"EquipableComponent": {
+				"equipment_slot": GameData.EQUIPMENT_SLOTS.OFF_HAND,
+			},
+			"ShieldComponent": {
+
+			},
+			"CapacityComponent": {
+				"max_capacity": 49,
+ 			},
+			"StackableComponent": {
+				"is_stackable": false,
+				"max_stack_size": 0,
+			},
+
+		}
 	},
 
 	# ====================
@@ -169,7 +203,34 @@ var item_definitions: Dictionary = {
 
 	#   -- Belt slot --
 	ITEMS.LEATHER_BELT: {
-
+		"base_data": {
+			"id": ITEMS.LEATHER_BELT,
+			"uid": ITEMS.keys()[ITEMS.LEATHER_BELT],
+			"display_name": "Leather Belt",
+			"description": "A leather belt, makes wearing armor easier.",
+			"item_type": GameData.ITEM_TYPES.ARMOR,
+			"sprite_path": "res://assets/items/armor/belt/leather_belt.png",
+			"rarity": GameData.RARITY.COMMON,
+			"value": 7,
+		},
+		"components": {
+			"StackableComponent": {
+				"is_stackable": false,
+				"max_stack_size": 0,
+			},
+			"ArmorComponent": {
+				"armor": 0,
+				"resistances": {
+					
+				}
+			},
+			"EquipableComponent": {
+				"equipment_slot": GameData.EQUIPMENT_SLOTS.BELT,
+			},
+			"CapacityComponent": {
+				"max_capacity": 0,
+ 			},
+		}
 	},
 
 	# 	-- Cloak slot --
@@ -297,6 +358,11 @@ enum ITEMS {
 	STEEL_BATTLEAXE,
 
 	IRON_POLEAXE,
+
+
+	# --- SHIELDS ---
+	ROUND_SHIELD,
+	KITE_SHIELD,
 
 	# --- ARMOR ---
 	

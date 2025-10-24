@@ -41,6 +41,8 @@ func toggle_inventory() -> void:
 	if visible:
 		SignalBus.inventory_opened.emit()
 		_on_filter_button_pressed(DEFAULT_TAB)
+		equipment_tab.scan_items()
+
 	else:
 		SignalBus.inventory_closed.emit()
 		print("inventory closed")
@@ -61,6 +63,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 
 	if not visible:
+		return
+	
+	# if item window is openned let no input in
+	if is_item_window_opened:
 		return
 
 	if Input.is_action_just_pressed("ui_inventory_next_tab"):
@@ -136,3 +142,5 @@ func _update() -> void:
 
 
 # --- EQUIPMENT PART ---
+
+@onready var equipment_tab: EquipmentTabControlNode = $EquipmentTab

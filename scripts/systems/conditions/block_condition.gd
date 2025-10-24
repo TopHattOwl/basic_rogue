@@ -1,6 +1,6 @@
 class_name BlockCondition
 extends Condition
-## when entity blocks block condition is met for duration amount of time
+## when entity blocks, block condition is met for duration amount of time
 
 var is_active: bool = false
 var duration: int = 5 # duration in turns
@@ -15,6 +15,7 @@ func _init(_duration: int, _owner: Node2D) -> void:
     SignalBus.actor_hit_final.connect(_on_actor_hit)
 
 func _on_actor_hit(d: Dictionary) -> void:
+    ## if owner was the target and blocked the attack
     if d.target == owner and d.hit_action == GameData.HIT_ACTIONS.BLOCKED:
         is_active = true
         turns_left = duration

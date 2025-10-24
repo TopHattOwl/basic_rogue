@@ -284,6 +284,10 @@ offset_bottom = -0.128021
 
 [node name="EquipmentTab" parent="Inventory" instance=ExtResource("10_84420")]
 layout_mode = 1
+offset_left = 9.6
+offset_top = -2.384
+offset_right = 217.6
+offset_bottom = 261.616
 
 [node name="BuffsContainer" type="HBoxContainer" parent="."]
 offset_left = 136.0

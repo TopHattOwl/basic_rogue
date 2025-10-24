@@ -49,7 +49,7 @@ func on_equip(_item: ItemResource, entity: Node2D) -> void:
 func on_unequip(_item: ItemResource, entity: Node2D) -> void:
 
     # reset melee combat stats to base
-    var melee_combat_comp = entity.MeleeCombatComp
+    var melee_combat_comp: MeleeCombatComponent = entity.MeleeCombatComp
     if !melee_combat_comp:
         push_error("Entity has no melee combat component")
         return

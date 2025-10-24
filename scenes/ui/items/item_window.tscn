@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://babl0882ctsl5"]
+[gd_scene load_steps=7 format=3 uid="uid://babl0882ctsl5"]
 
 [ext_resource type="Script" uid="uid://csh2ft2g44mms" path="res://scenes/ui/items/item_window.gd" id="1_6ayta"]
 
@@ -14,7 +14,13 @@ fill_to = Vector2(0.482906, 0.662393)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nxd4x"]
 size = Vector2(16, 24)
 
-[node name="ItemWindow" type="Control" node_paths=PackedStringArray("Sprite", "InteractionsContainer", "Description", "Stack")]
+[sub_resource type="Gradient" id="Gradient_6ayta"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nxd4x"]
+gradient = SubResource("Gradient_6ayta")
+
+[node name="ItemWindow" type="Control" node_paths=PackedStringArray("Sprite", "InteractionsContainer", "Description", "DataText", "Stack")]
 z_index = 20
 z_as_relative = false
 layout_mode = 3
@@ -27,13 +33,14 @@ script = ExtResource("1_6ayta")
 Sprite = NodePath("Sprite2D")
 InteractionsContainer = NodePath("InteractionsContainer")
 Description = NodePath("Description")
+DataText = NodePath("DataText")
 Stack = NodePath("Stack")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 168.0
 offset_top = 32.0
-offset_right = 408.0
+offset_right = 472.0
 offset_bottom = 264.0
 texture = SubResource("GradientTexture2D_3g2r6")
 
@@ -43,16 +50,33 @@ texture = SubResource("PlaceholderTexture2D_nxd4x")
 
 [node name="InteractionsContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 200.0
+offset_left = 264.0
 offset_top = 136.0
 offset_right = 376.0
 offset_bottom = 240.0
 
 [node name="Description" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 288.0
+offset_left = 336.0
 offset_top = 40.0
-offset_right = 392.0
+offset_right = 464.0
+offset_bottom = 128.0
+theme_override_font_sizes/normal_font_size = 7
+
+[node name="SeparatorLine" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 36.0
+offset_right = 333.0
+offset_bottom = 129.0
+texture = SubResource("GradientTexture1D_nxd4x")
+expand_mode = 1
+
+[node name="DataText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 40.0
+offset_right = 328.0
 offset_bottom = 128.0
 theme_override_font_sizes/normal_font_size = 7
 

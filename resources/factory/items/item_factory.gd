@@ -28,6 +28,7 @@ static func set_component_map() -> void:
 	COMPONENT_MAP = {
 		"EquipableComponent": EquipableComponent,
 		"MeleeWeaponComponent": MeleeWeaponComponent,
+		"ShieldComponent": ShieldComponent,
 		"ArmorComponent": ArmorComponent,
 		"StackableComponent": StackableComponent,
 		"PowderComponent": PowderComponent,
