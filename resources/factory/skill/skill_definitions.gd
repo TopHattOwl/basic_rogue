@@ -76,6 +76,10 @@ func get_passive_definition(passive_id: int) -> Dictionary:
 # ----------------------------------------------------------------------------
 var placeholder_icon = PlaceholderTexture2D.new()
 var SKILL_TREES = {
+
+	#====================
+	# SWORDS
+	#====================
 	GameData.SKILLS.SWORD: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_SWORD,
@@ -125,6 +129,9 @@ var SKILL_TREES = {
 		}
 	],
 
+	#====================
+	# AXES
+	#====================
 	GameData.SKILLS.AXE: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_AXE,
@@ -139,6 +146,9 @@ var SKILL_TREES = {
 
 	],
 
+	#====================
+	# SPEARS
+	#====================
 	GameData.SKILLS.SPEAR: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_SPEAR,
@@ -152,6 +162,9 @@ var SKILL_TREES = {
 		}
 	],
 
+	#====================
+	# MACEES
+	#====================
 	GameData.SKILLS.MACE: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_MACE,
@@ -165,6 +178,9 @@ var SKILL_TREES = {
 		}
 	],
 
+	#====================
+	# POLEARMS
+	#====================
 	GameData.SKILLS.POLEARMS: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_POLEARM,
@@ -178,6 +194,9 @@ var SKILL_TREES = {
 		}
 	],
 
+	#====================
+	# BOWS
+	#====================
 	GameData.SKILLS.BOW: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_BOW,
@@ -191,6 +210,10 @@ var SKILL_TREES = {
 		}
 	],
 
+
+	#====================
+	# MELEE
+	#====================
 	GameData.SKILLS.MELEE: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_MELEE,
@@ -204,6 +227,10 @@ var SKILL_TREES = {
 		}
 	],
 
+
+	#====================
+	# BLOCK
+	#====================
 	GameData.SKILLS.BLOCK: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_BLOCK,
@@ -237,6 +264,9 @@ var SKILL_TREES = {
 		}
 	],
 
+	#====================
+	# FIRE
+	#====================
 	GameData.SKILLS.FIRE: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_FIRE,
@@ -260,6 +290,9 @@ var SKILL_TREES = {
 		},
 	],
 
+	#====================
+	# ICE
+	#====================
 	GameData.SKILLS.ICE: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_ICE,
@@ -274,6 +307,9 @@ var SKILL_TREES = {
 
 	],
 
+	#====================
+	# LIGHTNING
+	#====================
 	GameData.SKILLS.LIGHTNING: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_LIGHTNING,
@@ -287,6 +323,9 @@ var SKILL_TREES = {
 		},
 	],
 
+	#====================
+	# BLOOD
+	#====================
 	GameData.SKILLS.BLOOD: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_BLOOD,
@@ -300,6 +339,9 @@ var SKILL_TREES = {
 		},
 	],
 
+	#====================
+	# POISON
+	#====================
 	GameData.SKILLS.POISON: [
 		{
 			id = PASSIVE_IDS.PLACEHOLDER_POISON,

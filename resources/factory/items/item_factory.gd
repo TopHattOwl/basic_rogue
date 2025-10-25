@@ -52,6 +52,8 @@ static func _build_item_from_definition(definition: Dictionary, count: int) -> I
 	item.display_name = base_data.get("display_name", "Unnamed Item")
 	item.description = base_data.get("description", "")
 	item.item_type = base_data.get("item_type", 0)
+	item.rarity = base_data.get("rarity", GameData.RARITY.COMMON)
+	item.value = base_data.get("value", 0)
 	
 	# load sprite
 	var sprite_path = base_data.get("sprite_path", "")

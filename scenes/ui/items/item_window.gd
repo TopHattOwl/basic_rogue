@@ -14,6 +14,7 @@ var current_item: ItemResource
 @export var Description: RichTextLabel
 @export var DataText: RichTextLabel
 @export var Stack: Label
+@export var value_label: Label
 
 func _init_values(_item: ItemResource) -> void:
 	current_item = _item
@@ -22,6 +23,7 @@ func _init_values(_item: ItemResource) -> void:
 	make_interact_buttons()
 	fill_description()
 	fill_data_text()
+	fill_value_label()
 	add_stack_size()
 
 func _ready() -> void:
@@ -136,6 +138,9 @@ func fill_data_text() -> void:
 				_text += "\n[color=" + element_color + "]" + GameData.ELEMENT.keys()[element].capitalize() + " Resistance: " + str(armor_comp.resistances[element]) + "[/color]"
 
 	DataText.text = _text
+
+func fill_value_label() -> void:
+	value_label.text = str(current_item.value) + " Gold"
 
 func add_uses_label() -> void:
 	Stack.text = "{0}/{1}".format([current_item.get_component(PowderComponent).current_uses, current_item.get_component(PowderComponent).max_uses])

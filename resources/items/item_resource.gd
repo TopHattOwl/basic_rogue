@@ -14,6 +14,9 @@ extends Resource
 
 @export var sprite: Texture2D
 
+@export var rarity: GameData.RARITY
+@export var value: int
+
 ## Returns the component of the item. param _type should be the class_name of the component
 func get_component(_type: Variant) -> Variant:
 	var component: Variant = null

@@ -62,6 +62,8 @@ func _ready():
 	# GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.MACE, SkillDefinitions.PASSIVE_IDS.PLACEHOLDER_MACE, true)
 	# GameData.player.SkillsComp.unlock_passive(GameData.SKILLS.SWORD, SkillDefinitions.PASSIVE_IDS.CHILD_OF_PLACEHOLDER, true)
 
+	SkillFactory.print_skill_tree(GameData.SKILLS.SWORD)
+
 func _process(_delta):
 # input handler, gets input passed to it and depending on what input is pressed it calls different functions
 	if GameData.player.PlayerComp.is_players_turn:

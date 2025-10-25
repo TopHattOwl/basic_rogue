@@ -42,10 +42,16 @@ static func get_skill_tree(skill_type: int) -> Dictionary:
 
 ## prints out the skill tree with children
 static func print_skill_tree(skill_type: int):
+	print("--- %s SKILL TREE ---" % GameData.SKILLS.keys()[skill_type])
 	var tree = get_skill_tree(skill_type)
 	for passive_id in tree:
-		var passive = tree[passive_id]
-		print(" - %s (ID: %d)" % [passive.display_name, passive.id])
+		var passive: PassiveSkill = tree[passive_id]
+		print(" >>> %s (ID: %d)" % [passive.display_name, passive.id])
+
+		print("\tDescription:")
+		print("\t\t%s" % passive.description)
+
+		print("\tChildren:")
 		for child_id in passive.children:
 			var child = SkillFactory.get_passive(child_id)
-			print("    		-> %s" % child.display_name)
+			print("\t\t-> %s" % child.display_name)
