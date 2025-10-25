@@ -27,7 +27,7 @@ func close_talk_screen() -> void:
 ## if one talk target, open talk screen, and set input mode to talk screen (not setting prev input mode, so pressing esc will restore to zoomed in input mode)
 ## if 2 or more possible targets, stay on direction input and wait for player to pick
 func pick_talk_target() -> void:
-	print("picking talk target")
+	print("[TalkManager]picking talk target")
 
 	var npcs_in_range_pos = MapFunction.check_actors_in_radius(ComponentRegistry.get_player_pos(), 1, true, false)
 
@@ -39,11 +39,10 @@ func pick_talk_target() -> void:
 		GameData.player.PlayerComp.restore_input_mode()
 
 	if npcs_in_range_pos.size() == 1:
-		# GameData.player.PlayerComp.restore_input_mode()
 		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.TALK_SCREEN
 		open_talk_screen(GameData.get_actor(npcs_in_range_pos[0]))
 
 
-	# if 2 or more npcs in range, wait for player to pick
+	# if 2 or more npcs in range set player input mode to direction input and let them pick
 	else:
 		return

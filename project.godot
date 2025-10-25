@@ -90,6 +90,7 @@ monsters=""
 remains=""
 spell_projectile=""
 loading_screen=""
+available_tiles=""
 
 [input]
 

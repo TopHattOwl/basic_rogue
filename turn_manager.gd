@@ -34,19 +34,8 @@ func _process_turn_end():
 func _process_player_turn():
 
 	# TODO implement acton queues for movement and pass turns (to pass several turns)
-	# check if there are queued actions
-	# var player_comp: PlayerComponent = GameData.player.PlayerComp
-	# if player_comp.is_queue_active:
-	# 	print("need to exetute queued actions")
 
 	call_deferred("advance_turn_phase")
-
-	# if GameData.turn_manager_debug:
-	# 	print("processing players phase")
-	# # Player is already acting, just wait for actions
-
-	# SignalBus.player_acted.emit()
-	# ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_players_turn = true
 
 # --- PROJECTILE TURN HANDLERS ----
 func _process_projectiles():

@@ -287,12 +287,14 @@ enum INPUT_MODES {
 	# aiming
 	SPELL_AIMING,
 	DIRECTION, # used when asking player to pick one of the 8 directions
+	GATHER_DIRECTION, # when player is asked to pick gather location
 
 
 	# UI stuff
 	STANCE_SELECTION,
 	INVENTORY,
 	TALK_SCREEN,
+	PICK_UP_WINDOW,
 	PAUSE_MENU,
 
 	# DEBUG

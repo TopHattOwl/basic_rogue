@@ -75,7 +75,9 @@ func die(actor: Node2D):
 
 	# if monster drop monster remains TODO also drom monster loot
 	if actor_identity.faction == "monsters":
+		var _monster: MonsterBase = actor
 		EntitySpawner.spawn_monster_remains(actor)
+		_monster.on_death()
 
 
 	# remove actor

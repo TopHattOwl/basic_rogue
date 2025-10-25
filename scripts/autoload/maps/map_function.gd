@@ -361,7 +361,6 @@ func initialize_map_data():
 			}
 			GameData.terrain_map[y].append(tile_data)
 			GameData.actors_map[y].append(null)
-			GameData.items_map[Vector2i(x, y)] = []
 
 
 ## parse tile layers from preloaded scenes, generated maps first generate this data and draw later

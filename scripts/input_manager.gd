@@ -29,6 +29,8 @@ func handle_input() -> void:
 
 		GameData.INPUT_MODES.DIRECTION:
 			handle_direction_inputs()
+		GameData.INPUT_MODES.GATHER_DIRECTION:
+			handle_gather_direction_inputs()
 
 
 		# # UI Stuff
@@ -100,8 +102,11 @@ func handle_zoomed_in_inputs():
 		GameData.player.PlayerComp.set_prev_input_mode()
 		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.INVENTORY
 
-	# TODO pick up 
-
+	# pick up 
+	if Input.is_action_just_pressed("pick_up"):
+		GameData.player.PlayerComp.set_prev_input_mode()
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.DIRECTION
+		ItemDropManager.pick_gather_target()
 
 	# enter world map where you can freely move, only in dev_mode
 	if Input.is_action_just_pressed("open_world_map") and not ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map:
@@ -295,8 +300,24 @@ func handle_direction_inputs():
 	for action in GameData.INPUT_DIRECTIONS:
 		if Input.is_action_just_pressed(action):
 			var dir = GameData.INPUT_DIRECTIONS[action]
-			SignalBus.direction_input().emit(dir)
+			SignalBus.directional_input.emit(dir)
 
+
+func handle_gather_direction_inputs() -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		var available_tiles: AvailableTilesNode = get_tree().get_first_node_in_group("available_tiles")
+		if available_tiles:
+			available_tiles.queue_free()
+		ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).restore_input_mode()
+	
+	for action in GameData.INPUT_DIRECTIONS:
+		if Input.is_action_just_pressed(action):
+			var dir = GameData.INPUT_DIRECTIONS[action]
+			var selected_grid = ComponentRegistry.get_player_pos() + dir
+			ItemDropManager.open_pick_up_window(selected_grid)
+
+			var available_tiles: AvailableTilesNode = get_tree().get_first_node_in_group("available_tiles")
+			available_tiles.queue_free()
 
 # --- DEBUG ---
 

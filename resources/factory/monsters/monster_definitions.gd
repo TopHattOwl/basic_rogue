@@ -113,7 +113,19 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MONSTER_DROPS): {
-
+			"loot_pool": [
+				{
+					"item_id": ItemDefinitions.ITEMS.IRON_LUMP,
+					"weight": 10,
+					"max_amount": 2
+				},
+				{
+					"item_id": ItemDefinitions.ITEMS.IRON_POLEAXE,
+					"weight": 2,
+					"max_amount": 1
+				},
+			],
+			"fix_loot_pool": [ItemDefinitions.ITEMS.LEATHER_BELT],
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {

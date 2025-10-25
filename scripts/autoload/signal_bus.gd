@@ -126,6 +126,7 @@ signal item_window_closed()
 ## NOT used for movement. [br]
 ## Used for aiming, looking, etc.
 signal directional_input(direction: Vector2i)
+signal waiting_for_directional_input()
 
 
 

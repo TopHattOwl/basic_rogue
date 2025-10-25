@@ -23,11 +23,10 @@ func _init(avalible_tiles: Array[Vector2i], _aoe: int = 0, _targeter_texture: Te
 
 	# Add in avalible tiles scene and it to TargererModule's variable
 	var avalible_tiles_scene = load(DirectoryPaths.available_tile_scene)
-	var _avalible_tiles_node = avalible_tiles_scene.instantiate()
+	var _avalible_tiles_node: AvailableTilesNode = avalible_tiles_scene.instantiate()
 	_avalible_tiles_node.set_avalible_tiles(avalible_tiles)
-	avalible_tiles_node = _avalible_tiles_node
 
-	GameData.main_node.add_child(avalible_tiles_node)
+	GameData.main_node.add_child(_avalible_tiles_node)
 
 ## activates the targeter
 ## adds targeter_sprite

@@ -23,6 +23,21 @@ var text_color: String
 func _ready() -> void:
 	pass
 
+func on_death() -> void:
+	drop_loot()
+
+func drop_loot() -> void:
+	var monster_drops_comp: MonsterDropsComponent = get_component(GameData.ComponentKeys.MONSTER_DROPS)
+	var loot = monster_drops_comp._roll_for_drops()
+
+	if loot.is_empty():
+		return
+	
+	var pos_comp: PositionComponent = get_component(GameData.ComponentKeys.POSITION)
+	var grid_pos: Vector2i = pos_comp.grid_pos  
+	for item_id in loot:
+		var item: ItemResource = ItemFactory.create_item(item_id)
+		ItemDropManager.drop_item(item, grid_pos)
 
 func get_component(component_key: int) -> Node:
 	return get_node("Components").get_node(GameData.get_component_name(component_key))

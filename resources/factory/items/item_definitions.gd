@@ -452,7 +452,7 @@ var item_definitions: Dictionary = {
 	ITEMS.IRON_LUMP: {
 		"base_data": {
 			"id": ITEMS.IRON_LUMP,
-			"uid": ITEMS.keys()[ITEMS.TEST_POWDER],
+			"uid": ITEMS.keys()[ITEMS.IRON_LUMP],
 			"display_name": "Iron lump",
 			"description": "A lump of iron",
 			"item_type": GameData.ITEM_TYPES.RESOURCE,
