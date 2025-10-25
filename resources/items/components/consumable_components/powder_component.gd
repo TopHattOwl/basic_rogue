@@ -33,3 +33,7 @@ func on_use(_item: ItemResource, _entity: Node2D, _target: Variant = null) -> vo
 
 	target_modifier_comp.add_buff(buff)
 	current_uses -= 1
+
+
+func can_use(_item: ItemResource, _entity: Node2D, _target: Variant = null) -> bool:
+	return current_uses > 0

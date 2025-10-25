@@ -172,6 +172,14 @@ func _on_unequip_pressed() -> void:
 
 ## using stuff does not pass turn
 func _on_use_pressed() -> void:
+	var can_use_item: bool = current_item.call_component_bool({
+		"method_name": "can_use",
+		"entity": GameData.player,
+	})
+
+	if not can_use_item:
+		return
+		
 	var inventory_comp: InventoryComponent = GameData.player.InventoryComp
 	inventory_comp.use_item(current_item)
 

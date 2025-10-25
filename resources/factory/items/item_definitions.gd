@@ -69,7 +69,40 @@ var item_definitions: Dictionary = {
 
 	},
 	ITEMS.STEEL_LONGSWORD: {
+		"base_data": {
+			"id": ITEMS.STEEL_LONGSWORD,
+			"uid": ITEMS.keys()[ITEMS.STEEL_LONGSWORD],
+			"display_name": "Steel Longsword",
+			"description": "A simple steel longsword",
+			"item_type": GameData.ITEM_TYPES.WEAPON,
+			"sprite_path": "res://assets/items/weapons/steel_londsword.png",
+			"rarity": GameData.RARITY.UNCOMMON,
+			"value": 25,
+		},
+		"components": {
+			"MeleeWeaponComponent": {
+				"damage_min": 20,
+				"damage_max": 29,
+				"weapon_type": GameData.WEAPON_TYPES.SWORD,
+				"weapon_sub_type": GameData.WEAPON_SUBTYPES.SWORD_2H,
+				"attac-Type": GameData.ATTACK_TYPE.SLASH,
+				"element": GameData.ELEMENT.PHYSICAL,
+				"bonuses": [
+					
+				],
+			},
+			"EquipableComponent": {
+				"equipment_slot": GameData.EQUIPMENT_SLOTS.MAIN_HAND,
+			},
+			"CapacityComponent": {
+				"max_capacity": 56,
+ 			},
+			"StackableComponent": {
+				"is_stackable": false,
+				"max_stack_size": 0,
+			},
 
+		}
 	},
 
 	#   -- Axes --
@@ -82,7 +115,40 @@ var item_definitions: Dictionary = {
 
 	#   -- Polearms --
 	ITEMS.IRON_POLEAXE: {
+		"base_data": {
+			"id": ITEMS.IRON_POLEAXE,
+			"uid": ITEMS.keys()[ITEMS.IRON_POLEAXE],
+			"display_name": "Iron Poleaxe",
+			"description": "A simple iron poleaxe",
+			"item_type": GameData.ITEM_TYPES.WEAPON,
+			"sprite_path": "",
+			"rarity": GameData.RARITY.UNCOMMON,
+			"value": 25,
+		},
+		"components": {
+			"MeleeWeaponComponent": {
+				"damage_min": 20,
+				"damage_max": 35,
+				"weapon_type": GameData.WEAPON_TYPES.POLEARMS,
+				"weapon_sub_type": GameData.WEAPON_SUBTYPES.POLEARM_2H,
+				"attac-Type": GameData.ATTACK_TYPE.SLASH,
+				"element": GameData.ELEMENT.PHYSICAL,
+				"bonuses": [
+					
+				],
+			},
+			"EquipableComponent": {
+				"equipment_slot": GameData.EQUIPMENT_SLOTS.MAIN_HAND,
+			},
+			"CapacityComponent": {
+				"max_capacity": 58,
+ 			},
+			"StackableComponent": {
+				"is_stackable": false,
+				"max_stack_size": 0,
+			},
 
+		}
 	},
 
 
@@ -125,7 +191,35 @@ var item_definitions: Dictionary = {
 
 	#   -- Chest slot --
 	ITEMS.IRON_CHESTPLATE: {
-
+		"base_data": {
+			"id": ITEMS.IRON_CHESTPLATE,
+			"uid": ITEMS.keys()[ITEMS.IRON_CHESTPLATE],
+			"display_name": "Iron Chestplate",
+			"description": "A simple asdasdasd",
+			"item_type": GameData.ITEM_TYPES.ARMOR,
+			"sprite_path": "",
+			"rarity": GameData.RARITY.COMMON,
+			"value": 21,
+		},
+		"components": {
+			"StackableComponent": {
+				"is_stackable": false,
+				"max_stack_size": 0,
+			},
+			"ArmorComponent": {
+				"armor": 20,
+				"resistances": {
+					GameData.ELEMENT.FIRE: 0.10,
+					GameData.ELEMENT.POISON: 0.12,
+				}
+			},
+			"EquipableComponent": {
+				"equipment_slot": GameData.EQUIPMENT_SLOTS.CHEST,
+			},
+			"CapacityComponent": {
+				"max_capacity": 30,
+ 			},
+		}
 	},
 	ITEMS.STEEL_CHESTPLATE: {
 
@@ -166,7 +260,35 @@ var item_definitions: Dictionary = {
 
 	#   -- Legs slot --
 	ITEMS.IRON_GREAVES: {
-
+		"base_data": {
+			"id": ITEMS.IRON_GREAVES,
+			"uid": ITEMS.keys()[ITEMS.IRON_GREAVES],
+			"display_name": "IRON_GREAVES",
+			"description": "simple IRON_GREAVES",
+			"item_type": GameData.ITEM_TYPES.ARMOR,
+			"sprite_path": "",
+			"rarity": GameData.RARITY.COMMON,
+			"value": 12,
+		},
+		"components": {
+			"StackableComponent": {
+				"is_stackable": false,
+				"max_stack_size": 0,
+			},
+			"ArmorComponent": {
+				"armor": 12,
+				"resistances": {
+					GameData.ELEMENT.FIRE: 0.05,
+					GameData.ELEMENT.BLOOD: 0.06,
+				}
+			},
+			"EquipableComponent": {
+				"equipment_slot": GameData.EQUIPMENT_SLOTS.FEET,
+			},
+			"CapacityComponent": {
+				"max_capacity": 17,
+ 			},
+		}
 	},
 
 	# 	-- Hands slot --

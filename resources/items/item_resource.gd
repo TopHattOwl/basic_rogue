@@ -46,3 +46,20 @@ func _call_component_method(d: Dictionary) -> void:
 
 				_:
 					comp.call(method_name, self, entity)
+
+func call_component_bool(d: Dictionary) -> bool:
+	var entity = d.get("entity", null)
+	var method_name = d.get("method_name", "")
+	var target = d.get("target", null)
+	for comp in components:
+		if comp.has_method(method_name):
+			match method_name:
+				"on_use":
+					return comp.call(method_name, self, entity, target)
+				
+				"can_use":
+					return comp.call(method_name, self, entity, target)
+
+				_:
+					return comp.call(method_name, self, entity)
+	return false

@@ -85,6 +85,7 @@ func handle_two_handed(_item: ItemResource, _slot: int) -> void:
 		GameData.WEAPON_SUBTYPES.SWORD_2H,
 		GameData.WEAPON_SUBTYPES.MACE_2H,
 		GameData.WEAPON_SUBTYPES.SPEAR_2H,
+		GameData.WEAPON_SUBTYPES.POLEARM_2H,
 	]
 	var item_melee_comp: MeleeWeaponComponent = _item.get_component(MeleeWeaponComponent)
 

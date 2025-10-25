@@ -24,6 +24,12 @@ func _ready():
 	var test_weapon = ItemFactory.create_item(ItemDefinitions.ITEMS.IRON_LONGSWORD)
 	inv_comp.add_item(test_weapon)
 
+	var test_poleaxe = ItemFactory.create_item(ItemDefinitions.ITEMS.IRON_POLEAXE)
+	inv_comp.add_item(test_poleaxe)
+
+	var test_steel_sword = ItemFactory.create_item(ItemDefinitions.ITEMS.STEEL_LONGSWORD)
+	inv_comp.add_item(test_steel_sword)
+
 	var test_shield = ItemFactory.create_item(ItemDefinitions.ITEMS.ROUND_SHIELD)
 	inv_comp.add_item(test_shield)
 
