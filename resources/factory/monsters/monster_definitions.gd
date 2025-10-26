@@ -130,7 +130,11 @@ var monster_definitions: Dictionary = {
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
 			
-		}
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
+			"quickness": 1200,
+		},
 	},
 
 	# ------------------------------------------------------
@@ -215,7 +219,11 @@ var monster_definitions: Dictionary = {
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
 			
-		}
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
+			"quickness": 1500,
+		},
 	},
 
 	# ------------------------------------------------------
@@ -300,7 +308,11 @@ var monster_definitions: Dictionary = {
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
 			
-		}
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
+			"quickness": 1900,
+		},
 	},
 
 	# ------------------------------------------------------
@@ -385,7 +397,11 @@ var monster_definitions: Dictionary = {
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
 			
-		}
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
+			"quickness": 1600,
+		},
 	},
 
 	# ------------------------------------------------------
@@ -472,7 +488,11 @@ var monster_definitions: Dictionary = {
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
 			
-		}
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
+			"quickness": 800,
+		},
 	},
 
 
@@ -556,7 +576,11 @@ var monster_definitions: Dictionary = {
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
 			
-		}
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
+			"quickness": 750,
+		},
 	},
 
 	GameData.MONSTERS_ALL.SANDSTONE_GOLEM: {
@@ -639,7 +663,11 @@ var monster_definitions: Dictionary = {
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
 			
-		}
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
+			"quickness": 800,
+		},
 	},
 
 
@@ -727,7 +755,11 @@ var monster_definitions: Dictionary = {
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
 			
-		}
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
+			"quickness": 700,
+		},
 	},
 
 	GameData.MONSTERS_ALL.TOOTH_FAIRY: {
@@ -810,7 +842,11 @@ var monster_definitions: Dictionary = {
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
 			
-		}
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
+			"quickness": 1500,
+		},
 	},
 
 }

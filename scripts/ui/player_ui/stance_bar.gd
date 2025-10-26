@@ -78,5 +78,10 @@ func _activate_stance(index: int):
 
 		toggle_stance_bar()
 
-		SignalBus.make_turn_pass.emit()
+		var action: Action = ActionFactory.make_action({
+			"entity": GameData.player,
+			"action_type": GameData.ACTIONS.CHANGE_STANCE,
+			"is_success": true
+		})
+		SignalBus.player_action_completed.emit(action)
 		

@@ -11,7 +11,7 @@ var owner: Node2D
 func _init(_duration: int, _owner: Node2D) -> void:
     duration = _duration
     owner = _owner
-    SignalBus.player_acted.connect(_on_player_acted)
+    SignalBus.turn_passed.connect(_on_player_acted)
     SignalBus.actor_hit_final.connect(_on_actor_hit)
 
 func _on_actor_hit(d: Dictionary) -> void:

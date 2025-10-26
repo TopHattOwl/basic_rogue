@@ -3,16 +3,12 @@ extends Node
 var player_ui: PlayerUICanvas
 
 func _ready() -> void:
-	SignalBus.player_acted.connect(_on_pass_time)
 	SignalBus.block_power_changed.connect(_block_test)
 	SignalBus.actor_hit_final.connect(_log_actor_hit)
 	SignalBus.skill_leveled_up.connect(_log_skill_level_up)
 
 func _block_test(new_value, max_value):
 	player_ui.update_block_display(new_value, max_value)
-
-func _on_pass_time():
-	log_message("<<<<< --- Turn Ended --- >>>>>")
 
 func set_player_ui():
 	player_ui = GameData.player.get_node("PlayerUI")

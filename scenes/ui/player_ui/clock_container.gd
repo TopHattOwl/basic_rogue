@@ -17,7 +17,7 @@ func _ready() -> void:
 
 	degrees_per_turn = 360.0 / float(GameTime.DAY_LENGTH)
 	# print("one turn is ", degrees_per_turn, " degrees")
-	SignalBus.player_acted.connect(_on_player_acted)
+	SignalBus.turn_passed.connect(_on_player_acted)
 	_on_player_acted()
 
 

@@ -39,5 +39,9 @@
 			"x": 20,
 			"y": 17
 		}
+	},
+	"energy_component": {
+		"quickness": 1000,
+		"energy": 1000
 	}
 }

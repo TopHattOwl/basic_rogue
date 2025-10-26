@@ -405,6 +405,7 @@ func add_player_to_variables(player: Node2D) -> void:
 
 func add_hostile_to_variables(actor: Node2D) -> void:
 	GameData.all_hostile_actors.append(actor)
+	GameData.all_actors.append(actor)
 	var grid_pos = ComponentRegistry.get_component(actor, GameData.ComponentKeys.POSITION).grid_pos
 	GameData.actors_map[grid_pos.y][grid_pos.x] = actor
 
@@ -412,6 +413,7 @@ func add_friendly_to_variables(actor: Node2D) -> void:
 	GameData.all_friendly_actors.append(actor)
 	var grid_pos = ComponentRegistry.get_component(actor, GameData.ComponentKeys.POSITION).grid_pos
 	GameData.actors_map[grid_pos.y][grid_pos.x] = actor
+	GameData.all_actors.append(actor)
 
 # --- TileSets ---
 func get_tile_texture(tilemap_layer: TileMapLayer, grid_pos: Vector2i) -> Texture2D:

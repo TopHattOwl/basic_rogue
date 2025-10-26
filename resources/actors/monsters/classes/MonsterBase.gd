@@ -13,7 +13,7 @@ var uid: String
 
 # for monster managers to spawn(AmbushManager and DungeonManager)
 var cost: int
-var monster_group: int
+var monster_group: int # not yet used
 
 
 

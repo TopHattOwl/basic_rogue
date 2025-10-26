@@ -48,7 +48,7 @@ var current_month: StringName
 
 func _ready() -> void:
 	current_month = MONTHS.get(month)
-	SignalBus.player_acted.connect(_on_turn_end)
+	SignalBus.turn_passed.connect(_on_turn_end)
 	update_current_time()
 
 func _process(_delta: float) -> void:

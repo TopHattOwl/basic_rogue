@@ -127,7 +127,12 @@ func exit_spell_aiming(is_success: bool) -> void:
 
 	# if casting is successfull make turn pass
 	if is_success:
-		SignalBus.make_turn_pass.emit()
+		var action: Action = ActionFactory.make_action({
+			"entity": GameData.player,
+			"action_type": GameData.ACTIONS.CAST_SPELL,
+			"is_success": true
+		})
+		SignalBus.player_action_completed.emit(action)
 
 
 func activate_spell_aiming_targeter() -> void:

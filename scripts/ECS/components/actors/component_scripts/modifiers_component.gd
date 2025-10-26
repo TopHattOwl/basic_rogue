@@ -4,6 +4,7 @@ extends Node
 var melee_combat_modifiers: Array[StatModifier]
 var block_modifiers: Array[StatModifier]
 var stamina_modifiers: Array[StatModifier]
+var energy_modifiers: Array[StatModifier]
 
 
 # temporary buffs that only last for x turns
@@ -20,13 +21,13 @@ func initialize(_d: Dictionary = {}) -> void:
 	pass
 
 func _ready() -> void:
-	SignalBus.player_acted.connect(_advance_buffs)
+	SignalBus.turn_passed.connect(_advance_buffs)
 
 func add_modifier(mod: StatModifier) -> void:
 	if GameData.modifiers_debug:
 		print("[ModifiersComponent] checking modifier: ", mod)
 
-	if melee_combat_modifiers.has(mod) or block_modifiers.has(mod) or stamina_modifiers.has(mod):
+	if melee_combat_modifiers.has(mod) or block_modifiers.has(mod) or stamina_modifiers.has(mod) or energy_modifiers.has(mod):
 		if GameData.modifiers_debug:
 			print("[ModifiersComponent] modifier already applied, not adding")
 		return
@@ -40,7 +41,14 @@ func add_modifier(mod: StatModifier) -> void:
 			if GameData.modifiers_debug:
 				print("[ModifiersComponent] adding block modifier")
 			add_block_modifier(mod)
+		GameData.ComponentKeys.STAMINA:
+			if GameData.modifiers_debug:
+				print("[ModifiersComponent] adding stamina modifier")
 			pass
+		GameData.ComponentKeys.ENERGY:
+			if GameData.modifiers_debug:
+				print("[ModifiersComponent] adding energy modifier")
+			add_energy_modifier(mod)
 
 
 func remove_modifier(mod: StatModifier) -> void:
@@ -67,6 +75,14 @@ func add_block_modifier(mod: StatModifier) -> void:
 
 func remove_block_modifier(mod: StatModifier) -> void:
 	block_modifiers.erase(mod)
+
+func add_energy_modifier(mod: StatModifier) -> void:
+	energy_modifiers.append(mod)
+	if energy_modifiers.size() > 1:
+		energy_modifiers.sort_custom(_sort_priority)
+
+func remove_energy_modifier(mod: StatModifier) -> void:
+	energy_modifiers.erase(mod)
 
 # --- SORTING ---
 func _sort_priority(a: StatModifier, b: StatModifier) -> bool:

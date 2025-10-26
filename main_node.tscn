@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b25g1hme5htyn" path="res://scripts/main_node.gd" id="1_scfaf"]
 [ext_resource type="Script" uid="uid://dwxyxpv42x5jx" path="res://scripts/input_manager.gd" id="2_bxfy6"]
 [ext_resource type="Shader" uid="uid://cfb76lctdcisy" path="res://resources/shader/scan_lines_shader.gdshader" id="2_dhalm"]
-[ext_resource type="PackedScene" uid="uid://wajrqdqs5k4i" path="res://turn_manager.tscn" id="3_scfaf"]
+[ext_resource type="Script" uid="uid://032f1axjuvqf" path="res://scripts/energy_turn_manager.gd" id="3_yjirp"]
 [ext_resource type="PackedScene" uid="uid://bcn2hw7fpnd0l" path="res://scenes/fov/fov.tscn" id="4_621oa"]
 [ext_resource type="PackedScene" uid="uid://b20p5wy1p0r7l" path="res://scenes/dev_tools/console_ui.tscn" id="6_wywo8"]
 
@@ -21,7 +21,8 @@ input_manager = NodePath("InputManager")
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("2_bxfy6")
 
-[node name="TurnManager" parent="." instance=ExtResource("3_scfaf")]
+[node name="EnergyTurnManager" type="Node" parent="."]
+script = ExtResource("3_yjirp")
 
 [node name="FOV" parent="." instance=ExtResource("4_621oa")]
 

@@ -40,7 +40,7 @@ func initialize(d: Dictionary) -> void:
 	melee_dodge = d.get("melee_dodge", 0)
 
 # combat system
-func melee_attack(target: Node2D) -> bool:
+func melee_attack(target: Node2D) -> Action:
 
 	if debug:
 		print("----- melee attack -----")
@@ -64,10 +64,10 @@ func melee_attack(target: Node2D) -> bool:
 		target_melee_combat = ComponentRegistry.get_component(target, GameData.ComponentKeys.MONSTER_COMBAT)
 		if !target_melee_combat:
 			push_error("target has no melee combat component")
-			return false
+			return ActionFactory.make_action()
 	if !target_health:
 		push_error("target has no health component")
-		return false
+		return ActionFactory.make_action()
 
 	# damage of the attack, with modifiers
 	var dam: int = calc_damage()
@@ -97,7 +97,11 @@ func melee_attack(target: Node2D) -> bool:
 			"combat_type": GameData.COMBAT_TYPE.MELEE
 		}
 		SignalBus.actor_hit.emit(signal_hit_data)
-		return true
+		return ActionFactory.make_action({
+			"entity": get_parent().get_parent(),
+			"action_type": GameData.ACTIONS.MELEE_ATTACK,
+			"is_success": true
+		})
 	
 	# no block check, monster's can't block only have armor
 	
@@ -119,7 +123,11 @@ func melee_attack(target: Node2D) -> bool:
 	if debug:
 		print("actor hit target, signal emitted")
 
-	return true
+	return ActionFactory.make_action({
+		"entity": get_parent().get_parent(),
+		"action_type": GameData.ACTIONS.MELEE_ATTACK,
+		"is_success": true
+	})
 
 # --- Utils ---
 

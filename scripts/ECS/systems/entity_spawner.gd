@@ -22,7 +22,7 @@ static func spawn_player() -> void:
 
 	GameData.main_node.add_child(GameData.player)
 	GameData.player.owner = GameData.main_node # for scene persistence
-	
+	SignalBus.actor_spawned.emit(GameData.player)
 	# upate/set camera zoom and limints
 	UiFunc.update_camera_data()
 
@@ -54,6 +54,7 @@ static func spawn_monster(grid_pos: Vector2i = Vector2i.ZERO, monster_key: int =
 
 
 	GameData.main_node.add_child(monster)
+	SignalBus.actor_spawned.emit(monster)
 	monster.owner = GameData.main_node # for scene persistence
 
 
@@ -85,6 +86,7 @@ static func spawn_npc(grid_pos: Vector2i = Vector2i.ZERO, npc_key: int = 0) -> v
 
 
 	GameData.main_node.add_child(npc)
+	SignalBus.actor_spawned.emit(npc)
 	npc.owner = GameData.main_node # for scene persistence
 
 

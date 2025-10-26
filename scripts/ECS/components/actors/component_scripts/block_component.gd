@@ -17,7 +17,7 @@ func _ready():
     current_block_power = max_block_power
     _turn_counter = 0
 
-    SignalBus.player_acted.connect(_on_turn_pass)
+    SignalBus.turn_passed.connect(_on_turn_pass)
 
 
 func try_block(damage: int) -> bool:

@@ -15,7 +15,7 @@ var current_turn_phase: int = TURN_PHASES.PLAYER
 var active_projectiles: Array = []
 
 func _ready() -> void:
-	SignalBus.make_turn_pass.connect(_on_make_turn_pass)
+	# SignalBus.make_turn_pass.connect(_on_make_turn_pass)
 	SignalBus.projectile_spawned.connect(_on_projectile_spawned)
 	SignalBus.projectile_finished.connect(_on_projectile_finished)
 
@@ -71,7 +71,6 @@ func _process_monsters():
 	for enemy in GameData.all_hostile_actors:
 		var ai = ComponentRegistry.get_component(enemy, GameData.ComponentKeys.AI_BEHAVIOR)
 		var enemy_pos = ComponentRegistry.get_component(enemy, GameData.ComponentKeys.POSITION).grid_pos
-
 
 
 		if ai.is_in_range(player_pos, enemy_pos):

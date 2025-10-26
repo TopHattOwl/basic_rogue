@@ -26,7 +26,7 @@ func initialize(d: Dictionary) -> void:
 	melee_dodge = d.get("melee_dodge", 0)
 
 # combat system
-func melee_attack(target: Node2D) -> bool:
+func melee_attack(target: Node2D) -> Action:
 	var attacker_pos = get_parent().get_node(GameData.get_component_name(GameData.ComponentKeys.POSITION)).grid_pos
 	var target_pos = ComponentRegistry.get_component(target, GameData.ComponentKeys.POSITION).grid_pos
 	
@@ -41,10 +41,10 @@ func melee_attack(target: Node2D) -> bool:
 		target_melee_combat = ComponentRegistry.get_component(target, GameData.ComponentKeys.MONSTER_COMBAT)
 		if !target_melee_combat:
 			push_error("target has no melee combat component")
-			return false
+			return ActionFactory.make_action()
 	if !target_health:
 		push_error("target has no health component")
-		return false
+		return ActionFactory.make_action()
 
 	var dam: int = calc_damage()
 	var signal_hit_data := {}
@@ -65,7 +65,11 @@ func melee_attack(target: Node2D) -> bool:
 			"combat_type": GameData.COMBAT_TYPE.MELEE
 		}
 		SignalBus.actor_hit.emit(signal_hit_data)
-		return true
+		return ActionFactory.make_action({
+			"entity": get_parent().get_parent(),
+			"action_type": GameData.ACTIONS.MELEE_ATTACK,
+			"is_success": true
+		})
 	
 	# block check
 	var target_block_comp = ComponentRegistry.get_component(target, GameData.ComponentKeys.BLOCK)
@@ -81,7 +85,11 @@ func melee_attack(target: Node2D) -> bool:
 			"combat_type": GameData.COMBAT_TYPE.MELEE
 		}
 		SignalBus.actor_hit.emit(signal_hit_data)
-		return true 
+		return ActionFactory.make_action({
+			"entity": get_parent().get_parent(),
+			"action_type": GameData.ACTIONS.MELEE_ATTACK,
+			"is_success": true
+		})
 	
 
 	signal_hit_data = {
@@ -97,7 +105,12 @@ func melee_attack(target: Node2D) -> bool:
 
 	if GameData.melee_combat_component_debug:
 		print("singal hit data: ", signal_hit_data)
-	return true
+
+	return ActionFactory.make_action({
+		"entity": get_parent().get_parent(),
+		"action_type": GameData.ACTIONS.MELEE_ATTACK,
+		"is_success": true
+	})
 
 # --- Utils ---
 
@@ -109,7 +122,7 @@ func get_armor() -> int:
 func calc_damage() -> int:
 	var dam := 0
 
-	if get_parent().has_node(GameData.get_component_name(GameData.ComponentKeys.MONSTER_MODIFIERS)):
+	if get_parent().has_node(GameData.get_component_name(GameData.ComponentKeys.MODIFIERS)):
 		# TODO: complete
 		# not yet calculating
 		# just using base value

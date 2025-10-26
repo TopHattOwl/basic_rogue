@@ -155,7 +155,13 @@ func _on_equip_pressed() -> void:
 	close_window()
 
 	SignalBus.inventory_update.emit()
-	SignalBus.make_turn_pass.emit()
+	var action: Action = ActionFactory.make_action({
+		"entity": GameData.player,
+		"item": current_item,
+		"action_type": GameData.ACTIONS.EQUIP_ITEM,
+		"is_success": true,
+	})
+	SignalBus.player_action_completed.emit(action)
 
 
 func _on_unequip_pressed() -> void:
@@ -166,7 +172,13 @@ func _on_unequip_pressed() -> void:
 	close_window()
 
 	SignalBus.inventory_update.emit()
-	SignalBus.make_turn_pass.emit()
+	var action: Action = ActionFactory.make_action({
+		"entity": GameData.player,
+		"item": current_item,
+		"action_type": GameData.ACTIONS.UNEQUIP_ITEM,
+		"is_success": true,
+	})
+	SignalBus.player_action_completed.emit(action)
 
 	close_window()
 

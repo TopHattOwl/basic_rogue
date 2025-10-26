@@ -14,7 +14,7 @@ func _ready() -> void:
 	mouseover_area.mouse_entered.connect(_on_mouse_entered)
 	mouseover_area.mouse_exited.connect(_on_mouse_exited)
 
-	SignalBus.player_acted.connect(_on_player_acted)
+	SignalBus.turn_passed.connect(_on_player_acted)
 
 func _on_player_acted() -> void:
 	buff_duration -= 1

@@ -51,4 +51,5 @@ func _notification(what: int) -> void:
 
 		path_sprites.clear()
 
+
 		avalible_tiles_node.queue_free()

@@ -36,6 +36,7 @@ var component_paths = {
 	GameData.get_component_name(GameData.ComponentKeys.STANCE): "res://scripts/ECS/components/actors/component_scripts/stance_component.gd",
 	GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): "res://scripts/ECS/components/actors/component_scripts/modifiers_component.gd",
 	GameData.get_component_name(GameData.ComponentKeys.MONSTER_PROPERTIES): "res://scripts/ECS/components/actors/component_scripts/monster_properties_component.gd",
+	GameData.get_component_name(GameData.ComponentKeys.ENERGY): "res://scripts/ECS/components/actors/component_scripts/energy_component.gd",
 
 	# MONSTERS
 	GameData.get_component_name(GameData.ComponentKeys.MONSTER_STATS): "res://scripts/ECS/components/actors/component_scripts/monster_stats_component.gd",

@@ -105,3 +105,13 @@
 	# pick up item
 	
 	# save_player.gd need to save player's previous input mode (band-aid fix) make a better version somehow
+
+
+
+
+
+
+# ASD
+
+	# Player is not in all_actors and actors_map variables, when these maps/variables get reset, player does not get added again to all_actors, so far no issue with this so maybe it's okay
+		# player does get added to actors_map when moving tho, but when player transitions to a new map, player is not in actors map initially

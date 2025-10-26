@@ -22,6 +22,8 @@ extends Node2D
 @export var BlockComp: BlockComponent
 @export var StanceComp: StanceComponent
 
+@export var EnergyComp: EnergyComponent
+
 @export var IdentityComp: IdentityComponent
 
 @export var PositionComp: PositionComponent

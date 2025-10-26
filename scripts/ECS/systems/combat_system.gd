@@ -68,6 +68,7 @@ func die(actor: Node2D):
 	GameData.actors_map[actor_pos.y][actor_pos.x] = null
 	GameData.all_hostile_actors.erase(actor)
 	GameData.all_actors.erase(actor)
+	GameData.all_friendly_actors.erase(actor)
 
 	# if actor is not player, toggle walkable tile when dies
 	if not is_actor_player:
@@ -79,6 +80,6 @@ func die(actor: Node2D):
 		EntitySpawner.spawn_monster_remains(actor)
 		_monster.on_death()
 
-
+	SignalBus.actor_died.emit(actor)
 	# remove actor
 	actor.queue_free()

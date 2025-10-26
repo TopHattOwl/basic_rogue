@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://xu1v46ex8vaq"]
+[gd_scene load_steps=26 format=3 uid="uid://xu1v46ex8vaq"]
 
 [ext_resource type="Script" uid="uid://cvdxfs6ys8ftq" path="res://scenes/actors/player/player.gd" id="1_qxscg"]
 [ext_resource type="Texture2D" uid="uid://mk7q31h1b4rs" path="res://assets/player/player_knight.png" id="1_wmv1v"]
 [ext_resource type="PackedScene" uid="uid://duhsb81d10cy6" path="res://scripts/ECS/components/actors/component_scenes/abilities_component.tscn" id="2_inh5e"]
 [ext_resource type="Script" uid="uid://bhv2dtlsqdcan" path="res://scenes/actors/player/camera_2d.gd" id="3_8bu7j"]
 [ext_resource type="PackedScene" uid="uid://eys5a813xto2" path="res://scripts/ECS/components/actors/component_scenes/attributes_component.tscn" id="3_hcvpp"]
+[ext_resource type="PackedScene" uid="uid://jcarmxvo7iaq" path="res://scripts/ECS/components/actors/component_scenes/energy_component.tscn" id="4_0w3ce"]
 [ext_resource type="PackedScene" uid="uid://bv8wcyppts1of" path="res://scripts/ECS/components/actors/component_scenes/equipment_component.tscn" id="4_4iwnj"]
 [ext_resource type="PackedScene" uid="uid://2kryyu4hwiir" path="res://scripts/ECS/components/actors/component_scenes/health_component.tscn" id="5_068wj"]
 [ext_resource type="PackedScene" uid="uid://b61calyf4yl75" path="res://scripts/ECS/components/actors/component_scenes/identity_component.tscn" id="6_xducv"]
@@ -25,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://bax82ymxy2qjg" path="res://scripts/ECS/components/actors/component_scenes/defense_stats_component.tscn" id="20_cat03"]
 [ext_resource type="PackedScene" uid="uid://yg8kkrm1kjy2" path="res://scripts/ECS/components/actors/component_scenes/hotbar_component.tscn" id="21_cat03"]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("PlayerUI", "HealthComp", "StaminaComp", "AbilitiesComp", "SpellsComp", "HotbarComp", "SkillsComp", "AttributesComp", "EquipmentComp", "InventoryComp", "MeleeCombatComp", "DefenseStatsComp", "BlockComp", "StanceComp", "IdentityComp", "PositionComp", "StateComp", "PlayerComp", "ModifiersComp", "player_ui") groups=["player"]]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("PlayerUI", "HealthComp", "StaminaComp", "AbilitiesComp", "SpellsComp", "HotbarComp", "SkillsComp", "AttributesComp", "EquipmentComp", "InventoryComp", "MeleeCombatComp", "DefenseStatsComp", "BlockComp", "StanceComp", "EnergyComp", "IdentityComp", "PositionComp", "StateComp", "PlayerComp", "ModifiersComp", "player_ui") groups=["player"]]
 z_index = 10
 z_as_relative = false
 script = ExtResource("1_qxscg")
@@ -43,6 +44,7 @@ MeleeCombatComp = NodePath("Components/MeleeCombatComponent")
 DefenseStatsComp = NodePath("Components/DefenseStatsComponent")
 BlockComp = NodePath("Components/BlockComponent")
 StanceComp = NodePath("Components/StanceComponent")
+EnergyComp = NodePath("Components/EnergyComponent")
 IdentityComp = NodePath("Components/IdentityComponent")
 PositionComp = NodePath("Components/PositionComponent")
 StateComp = NodePath("Components/StateComponent")
@@ -61,6 +63,8 @@ zoom = Vector2(0.65, 0.65)
 script = ExtResource("3_8bu7j")
 
 [node name="Components" type="Node" parent="."]
+
+[node name="EnergyComponent" parent="Components" instance=ExtResource("4_0w3ce")]
 
 [node name="AbilitiesComponent" parent="Components" instance=ExtResource("2_inh5e")]
 

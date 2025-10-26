@@ -39,6 +39,10 @@ var npc_definitions: Dictionary = {
 		GameData.get_component_name(GameData.ComponentKeys.TALK): {
 			"conversation_tree_json_path": DirectoryPaths.npc_conversations_json[GameData.NPCS_ALL.WIZARD],
 		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
+			"quickness": 1000,
+		},
 	},
 
     # -----------------------------------------------------------------------------------
@@ -69,6 +73,10 @@ var npc_definitions: Dictionary = {
 
 		GameData.get_component_name(GameData.ComponentKeys.SHOP_KEEPER): {
 			
+		},
+
+		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
+			"quickness": 800,
 		},
 	},
 

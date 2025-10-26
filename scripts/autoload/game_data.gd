@@ -12,6 +12,14 @@ var main_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 # ___ Main Node ___
 
 var main_node: Node2D
+var energy_turn_manager: EnergyTurnManager:
+	set(value):
+		energy_turn_manager = value
+		print("[GameData] Energy turn manager set")
+var input_manager: InputManager:
+	set(value):
+		input_manager = value
+		print("[GameData] Input manager set")
 
 func set_main_node(value: Node2D) -> void:
 	if not value is Node2D:
@@ -58,15 +66,15 @@ var all_items: Array = []
 ## also initializes fov data
 func remove_entities(_is_player_in_dungeon: bool = false) -> void:
 	# remove entities from tree
-	if all_hostile_actors.size() > 0:
-		for actor in all_hostile_actors:
+	if all_actors.size() > 0:
+		for actor in all_actors:
+			SignalBus.actor_removed.emit(actor)
 			actor.queue_free()
+
 	if all_items.size() > 0:
 		for item in all_items:
 			item.queue_free()
-	if all_friendly_actors.size() > 0:
-		for actor in all_friendly_actors:
-			actor.queue_free()
+
 	var remains = main_node.get_tree().get_nodes_in_group("remains")
 	if remains.size() > 0:
 		for remain in remains:
@@ -78,6 +86,7 @@ func remove_entities(_is_player_in_dungeon: bool = false) -> void:
 	all_actors = []
 	all_items = []
 
+	# this resets the maps
 	MapFunction.initialize_map_data()
 
 
@@ -327,13 +336,14 @@ const COMPONENTS = {
 	ComponentKeys.SKILLS: "Components/SkillsComponent",
 	ComponentKeys.STANCE: "Components/StanceComponent",
 	ComponentKeys.MODIFIERS: "Components/ModifiersComponent",
+	ComponentKeys.ENERGY: "Components/EnergyComponent",
 
 	# MONSTERS
 	ComponentKeys.MONSTER_PROPERTIES: "Components/MonsterPropertiesComponent",
 	ComponentKeys.MONSTER_STATS: "Components/MonsterStatsComponent",
 	ComponentKeys.MONSTER_DROPS: "Components/MonsterDropsComponent",
 	ComponentKeys.MONSTER_COMBAT: "Components/MonsterCombatComponent",
-	ComponentKeys.MONSTER_MODIFIERS: "Components/MonsterModifiersComponent",
+	# ComponentKeys.MONSTER_MODIFIERS: "Components/MonsterModifiersComponent",
 
 	# NPCS
 
@@ -356,15 +366,15 @@ enum ComponentKeys {
 	STANCE,
 	HOTBAR,
 	MODIFIERS,
-
-	# ALL ACTORS
 	AI_BEHAVIOR,
 
+	# ALL ACTORS
 	ATTRIBUTES,
 	HEALTH,
 	IDENTITY,
 	DEFENSE_STATS,
 	POSITION,
+	ENERGY,
 
 	# maybe players and monsters, right not just player
 	SPELLS,
@@ -375,7 +385,7 @@ enum ComponentKeys {
 	MONSTER_PROPERTIES,
 	MONSTER_STATS,
 	MONSTER_COMBAT,
-	MONSTER_MODIFIERS,
+	# MONSTER_MODIFIERS,
 	MONSTER_DROPS,
 
 
@@ -644,6 +654,50 @@ enum MODIFIER_OPERATION {
 	MULTIPLY,
 	OVERRIDE,
 }
+
+
+# ACTIONS
+enum ACTIONS {
+	WAIT,
+	MOVE,
+	MELEE_ATTACK,
+	RANGED_ATTACK,
+	CAST_SPELL,
+	USE_ITEM,
+	EQUIP_ITEM,
+	UNEQUIP_ITEM,
+	CHANGE_STANCE,
+}
+
+var ACTION_COSTS: Dictionary = {
+	ACTIONS.WAIT: 500,
+	ACTIONS.MOVE: 1000,
+	ACTIONS.MELEE_ATTACK: 1000,
+	ACTIONS.RANGED_ATTACK: 1000,
+	ACTIONS.CAST_SPELL: 1000,
+	ACTIONS.USE_ITEM: 800,
+	ACTIONS.EQUIP_ITEM: 700,
+	ACTIONS.UNEQUIP_ITEM: 700,
+	ACTIONS.CHANGE_STANCE: 500,
+}
+
+var ACTION_DELAY: Dictionary = {
+	ACTIONS.WAIT: 0.0,
+	ACTIONS.MOVE: 0.05,
+	ACTIONS.MELEE_ATTACK: 0.15,
+	ACTIONS.RANGED_ATTACK: 0.15,
+	ACTIONS.CAST_SPELL: 0.15,
+	ACTIONS.USE_ITEM: 0.1,
+	ACTIONS.EQUIP_ITEM: 0.1,
+	ACTIONS.UNEQUIP_ITEM: 0.1,
+	ACTIONS.CHANGE_STANCE: 0.1,
+}
+
+func get_action_cost(action: ACTIONS) -> int:
+	return ACTION_COSTS[action]
+
+func get_action_delay(action: ACTIONS) -> int:
+	return ACTION_DELAY[action]
 
 
 enum HIT_ACTIONS {

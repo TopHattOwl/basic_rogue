@@ -1,7 +1,17 @@
 extends Node
 
-signal player_acted()
+## emitted when player completed an action that costs energy
+signal player_action_completed(action: Action)
+
+## EnergyTurnManager migration: replace with player_action_completed
 signal make_turn_pass()
+
+## EnergyTurnManager migration: replace with turn_passed
+signal player_acted()
+
+
+## emitted when a whole turn passed (no actors with energy left)
+signal turn_passed()
 
 
 ## emitted when actor tries hitting another, used for calculations
@@ -18,6 +28,14 @@ signal actor_hit(hit_data: Dictionary)
 
 ## emitted when calculations are done and damage is applied -> for animation and stuff
 signal actor_hit_final(hit_data: Dictionary)
+
+
+## emitted when actor is removed from scene but did not die
+signal actor_removed(actor: Node2D)
+
+## emitted when actor dies after it will be removed from scene
+signal actor_died(actor: Node2D)
+signal actor_spawned(actor: Node2D)
 
 
 
