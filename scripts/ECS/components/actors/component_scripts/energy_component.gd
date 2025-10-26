@@ -10,8 +10,14 @@ extends Node
 ## Current energy accumulated
 var energy: int = 0
 
-## Energy required to take an action
-const ENERGY_THRESHOLD: int = 1000
+
+## energy cost variables so modifier system can modify them
+
+var move_cost: int = GameData.get_action_cost(GameData.ACTIONS.MOVE)
+var melee_attack_cost: int = GameData.get_action_cost(GameData.ACTIONS.MELEE_ATTACK)
+var ranged_attack_cost: int = GameData.get_action_cost(GameData.ACTIONS.RANGED_ATTACK)
+var cast_spell_cost: int = GameData.get_action_cost(GameData.ACTIONS.CAST_SPELL)
+var change_stance_cost: int = GameData.get_action_cost(GameData.ACTIONS.CHANGE_STANCE)
 
 
 func initialize(data: Dictionary) -> void:
@@ -23,17 +29,18 @@ func initialize(data: Dictionary) -> void:
 
 ## Gain energy each tick
 func tick() -> void:
+	var debug: bool = GameData.tick_debug
 	if get_parent().get_parent() == GameData.player:
-		print("[Energy component] ticking player, energy before: ", energy)
+		if debug:
+			print("[Energy component] ticking player, energy before: ", energy)
 	else:
-		print("[Energy component] ticking actor({0}), energy before: {1}".format([get_parent().get_parent().uid, energy]))
-	print("[Energy component] quickness: ", quickness)
-	energy += quickness
-	print("[Energy component] actor ticked, energy after: ", energy)
+		if debug:
+			print("[Energy component] ticking actor({0}), energy before: {1}".format([get_parent().get_parent().uid, energy]))
+	if debug:
+		print("[Energy component] quickness: ", quickness)
+		print("[Energy component] actor ticked, energy after: ", energy)
 
-## Check if entity can act
-func can_act() -> bool:
-	return energy >= ENERGY_THRESHOLD
+	energy += quickness
 
 
 ## Spend energy after action, keeping remainder
@@ -44,7 +51,3 @@ func spend_energy(cost: int) -> void:
 ## for testing/debugging
 func reset_energy() -> void:
 	energy = 0
-
-## Get debug info
-func get_debug_info() -> String:
-	return "Energy: %d | quickness: %d | Can act: %s" % [energy, quickness, can_act()]

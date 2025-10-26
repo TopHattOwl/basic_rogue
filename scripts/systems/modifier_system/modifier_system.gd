@@ -13,6 +13,9 @@ static func get_modified_value(entity: Node2D, stat: StringName, target_componen
 static func get_modified_component_value(entity: Node2D, stat: StringName, target_component: int) -> Variant:
 	var modifiers = _get_relevant_modifiers(entity, stat, target_component)
 
+	if modifiers.is_empty():
+		return ComponentRegistry.get_component(entity, target_component).get(stat)
+
 	var base_value = ComponentRegistry.get_component(entity, target_component).get(stat)
 	var current = base_value
 
@@ -44,6 +47,11 @@ static func _get_relevant_modifiers(entity: Node2D, stat: StringName, target_com
 			modifiers = ComponentRegistry.get_component(entity, GameData.ComponentKeys.MODIFIERS).block_modifiers
 		GameData.ComponentKeys.STAMINA:
 			modifiers = ComponentRegistry.get_component(entity, GameData.ComponentKeys.MODIFIERS).stamina_modifiers
+		GameData.ComponentKeys.ENERGY:
+			modifiers = ComponentRegistry.get_component(entity, GameData.ComponentKeys.MODIFIERS).energy_modifiers
+		_:
+			push_error("[ModifierSystem] Invalid target component: ", target_component)
+			return []
 
 	return modifiers.filter(
 		func(mod): return mod.target_stat == stat and _check_conditions(mod, entity)

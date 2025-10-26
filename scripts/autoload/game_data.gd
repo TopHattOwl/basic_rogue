@@ -657,7 +657,9 @@ enum MODIFIER_OPERATION {
 
 
 # ACTIONS
+# if new action added, add to EnergyComponent
 enum ACTIONS {
+	PASS, # when actor needs to pass its turn to perform long action
 	WAIT,
 	MOVE,
 	MELEE_ATTACK,
@@ -670,6 +672,7 @@ enum ACTIONS {
 }
 
 var ACTION_COSTS: Dictionary = {
+	ACTIONS.PASS: 0,
 	ACTIONS.WAIT: 500,
 	ACTIONS.MOVE: 1000,
 	ACTIONS.MELEE_ATTACK: 1000,
@@ -682,6 +685,7 @@ var ACTION_COSTS: Dictionary = {
 }
 
 var ACTION_DELAY: Dictionary = {
+	ACTIONS.PASS: 0.0,
 	ACTIONS.WAIT: 0.0,
 	ACTIONS.MOVE: 0.05,
 	ACTIONS.MELEE_ATTACK: 0.15,
@@ -737,7 +741,8 @@ const PAUSE_MENU_Z_INDEX = 70
 var combat_system_debug := 0
 var melee_combat_component_debug := 0
 var spell_debug := 0
-var turn_manager_debug := 0
+var energy_turn_manager_debug := 1
+var tick_debug := 0 # for tick management
 var input_manager_debug := 0
 var hot_bar_debug := 0
 var map_functions_debug := 0

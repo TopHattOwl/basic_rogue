@@ -6,8 +6,10 @@ var energy_threshold: int = 1000
 
 var active_projectiles: Array = []
 
-func _ready():
+var debug: int = GameData.energy_turn_manager_debug
 
+func _ready():
+	
 	SignalBus.actor_died.connect(remove_from_queue)
 	SignalBus.actor_spawned.connect(add_to_queue)
 	SignalBus.actor_removed.connect(remove_from_queue)
@@ -21,10 +23,11 @@ func _ready():
 
 func process_next_action():
 
-
-	print("--- [EnergyTurnManager] PROCESSING NEXT ACTION ---")
+	if debug:
+		print("--- [EnergyTurnManager] PROCESSING NEXT ACTION ---")
 	if actor_queue.is_empty():
-		print("[EnergyTurnManager] No actors in queue")
+		if debug:
+			print("[EnergyTurnManager] No actors in queue")
 		return
 
 	# get actor with highest energy
@@ -33,7 +36,8 @@ func process_next_action():
 
 	# highest energy does not pass treshold -> tick
 	if energy_comp.energy < energy_threshold:
-		print("[EnergyTurnManager] highest energy does not pass threshold, turn passed")
+		if debug:
+			print("[EnergyTurnManager] highest energy does not pass threshold, turn passed")
 		tick_all_actors()
 		SignalBus.turn_passed.emit()
 		return
@@ -43,33 +47,39 @@ func process_next_action():
 
 	# special case for player
 	if actor == GameData.player:
-		print("[EnergyTurnManager] player's turn, waiting for input")
+		if debug:
+			print("[EnergyTurnManager] player's turn, waiting for input")
 		var player_comp = GameData.player.PlayerComp
 		player_comp.is_players_turn = true
 		# don't readd to queue yet, wait for player input
 		return
 	
 	# other actors
-	print("[EnergyTurnManager] processing action for actor: ", actor.uid)
+	if debug:
+		print("[EnergyTurnManager] processing action for actor: ", actor.uid)
 	var _action: Action = get_action(actor)
-	print("\t\tAction: ", GameData.ACTIONS.keys()[_action.action_type])
+	if debug:
+		print("\t\tAction: ", GameData.ACTIONS.keys()[_action.action_type])
 
 	energy_comp.spend_energy(_action.cost)
 	
 	# if still alive add back
 	if is_instance_valid(actor):
-		print("[EnergyTurnManager] actor action processed, energy left: ", energy_comp.energy)
+		if debug:
+			print("[EnergyTurnManager] actor action processed, energy left: ", energy_comp.energy)
 		add_to_queue(actor)
 	else:
-		print("[EnergyTurnManager] actior died from action")
+		if debug:
+			print("[EnergyTurnManager] actior died from action")
 
 func on_player_action_completed(_action: Action) -> void:
 	var action_cost: int = _action.cost
 	var energy_comp: EnergyComponent = GameData.player.EnergyComp
 	energy_comp.spend_energy(action_cost)
 
-	print("[EnergyTurnManager] player action completed, energy left: ", energy_comp.energy)
-	print("\t\tAction: ", GameData.ACTIONS.keys()[_action.action_type])
+	if debug:
+		print("[EnergyTurnManager] player action completed, energy left: ", energy_comp.energy)
+		print("\t\tAction: ", GameData.ACTIONS.keys()[_action.action_type])
 
 	# add player back to queue if not in it
 	if not actor_queue.has(GameData.player):
@@ -95,11 +105,13 @@ func get_action(actor) -> Action:
 	return _action
 
 func tick_all_actors():
-	print("--- [EnergyTurnManager] TICKING ALL ACTORS ---")
-	print("[EnergyTurnManager] moving projectivles first")
+	if debug:
+		print("--- [EnergyTurnManager] TICKING ALL ACTORS ---")
+		print("[EnergyTurnManager] moving projectivles first")
 	_process_projectiles()
 
-	print("actor queue when ticking: ", actor_queue)
+	if debug:
+		print("actor queue when ticking: ", actor_queue)
 	for actor in actor_queue:
 		var energy_comp: EnergyComponent = ComponentRegistry.get_component(actor, GameData.ComponentKeys.ENERGY)
 		energy_comp.tick()
@@ -107,8 +119,9 @@ func tick_all_actors():
 	sort_actors()
 
 func _process_projectiles() -> void:
-	if GameData.turn_manager_debug:
-		print("processing projectiles phase")
+
+	if debug:
+		print("[EnergyTurnManager] processing projectiles phase")
 
 	if active_projectiles.is_empty():
 		return
