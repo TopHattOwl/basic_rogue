@@ -16,5 +16,7 @@ static func make_action(data: Dictionary = {}) -> Action:
 	if action_type == GameData.ACTIONS.MELEE_ATTACK:
 		cost = ModifierSystem.get_modified_value(_entity, "melee_attack_cost", GameData.ComponentKeys.ENERGY)
 
-	var _action = Action.new(action_type, cost, is_success)
+	var energy_comp: EnergyComponent = _entity.get_component(GameData.ComponentKeys.ENERGY)
+	var final_cost = energy_comp.get_effective_cost(cost)
+	var _action = Action.new(action_type, final_cost, is_success)
 	return _action

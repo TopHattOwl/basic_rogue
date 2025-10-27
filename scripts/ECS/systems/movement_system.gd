@@ -12,7 +12,7 @@ static func process_movement(entity: Node, new_pos: Vector2i) -> Action:
 	# Error check
 	if not position_component:
 		push_error("No position component found for entity: ", entity.name)
-		return ActionFactory.make_action()
+		return ActionFactory.make_action({"entity": entity})
 
 	# player component check
 	var is_current_actor_player = GameData.player == entity
@@ -75,7 +75,7 @@ static func process_movement(entity: Node, new_pos: Vector2i) -> Action:
 	if MapFunction.get_tile_info(new_pos)["tags"].has(GameData.TILE_TAGS.STAIR) and is_current_actor_player and not GameData.current_dungeon:
 		var player_world_pos = GameData.player.PlayerComp.world_map_pos
 		WorldMapData.world_monster_map.enter_dungeon(player_world_pos)
-		return ActionFactory.make_action()
+		return ActionFactory.make_action({"entity": entity})
 
 
 	if MapFunction.is_in_bounds(new_pos) and GameData.player.has_node("Components/GhostComponent") and is_current_actor_player:
@@ -96,7 +96,7 @@ static func process_movement(entity: Node, new_pos: Vector2i) -> Action:
 		})
 
 
-	return ActionFactory.make_action()
+	return ActionFactory.make_action({"entity": entity})
 
 
 ## attemps to move monster to new pos
@@ -107,7 +107,7 @@ static func process_monster_movement(entity: Node, new_pos: Vector2i) -> Action:
 	# Error check
 	if not position_component:
 		push_error("No position component found for entity: ", entity.name)
-		return ActionFactory.make_action()
+		return ActionFactory.make_action({"entity": entity})
 
 	
 	# Combat check
@@ -144,7 +144,7 @@ static func process_monster_movement(entity: Node, new_pos: Vector2i) -> Action:
 			"is_success": true
 		})
 
-	return ActionFactory.make_action()
+	return ActionFactory.make_action({"entity": entity})
 
 # --- WORLD MAP MOVEMENT ---
 
@@ -170,11 +170,11 @@ static func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> Action:
 	# Error check
 	if not position_component:
 		push_error("No position component found for entity: ", entity.name)
-		return ActionFactory.make_action()
+		return ActionFactory.make_action({"entity": entity})
 	
 	# bounds check
 	if not MapFunction.is_in_bounds(new_pos):
-		return ActionFactory.make_action()
+		return ActionFactory.make_action({"entity": entity})
 
 	# player component check
 	var is_current_actor_player = GameData.player == entity
@@ -243,7 +243,7 @@ static func process_dungeon_movement(entity: Node, new_pos: Vector2i) -> Action:
 			if stair_down.pos == new_pos:
 				stair_down.use_stair()
 	
-	return ActionFactory.make_action()
+	return ActionFactory.make_action({"entity": entity})
 
 # --- UTILS ---
 static func check_map_transition(new_pos: Vector2i, dir: Vector2i) -> bool:

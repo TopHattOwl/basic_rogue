@@ -43,11 +43,6 @@ static func load_player_base(data: Dictionary) -> void:
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).element = melee.get("element")
 	ComponentRegistry.get_player_comp(GameData.ComponentKeys.MELEE_COMBAT).melee_dodge = melee.get("melee_dodge")
 
-	# Energy component
-	var energy = data.get("energy_component")
-	ComponentRegistry.get_player_comp(GameData.ComponentKeys.ENERGY).quickness = energy.get("quickness")
-	ComponentRegistry.get_player_comp(GameData.ComponentKeys.ENERGY).energy = energy.get("energy")
-
 
 static func load_player_data(data: Dictionary):
 	# Position component

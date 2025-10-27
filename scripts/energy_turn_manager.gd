@@ -2,14 +2,20 @@ class_name EnergyTurnManager
 extends Node
 
 var actor_queue: Array = []  # Sorted by energy descending
-var energy_threshold: int = 1000
+var turn_event: TurnEvent
 
 var active_projectiles: Array = []
 
 var debug: int = GameData.energy_turn_manager_debug
 
 func _ready():
-	
+
+	# add turn event to queue
+	var _turn_event: TurnEvent = TurnEvent.new()
+	turn_event = _turn_event
+	add_to_queue(turn_event)
+
+
 	SignalBus.actor_died.connect(remove_from_queue)
 	SignalBus.actor_spawned.connect(add_to_queue)
 	SignalBus.actor_removed.connect(remove_from_queue)
@@ -24,22 +30,22 @@ func _ready():
 func process_next_action():
 
 	if debug:
-		print("--- [EnergyTurnManager] PROCESSING NEXT ACTION ---")
+		print("[EnergyTurnManager] ==== PROCESSING NEXT ACTION ====")
+
 	if actor_queue.is_empty():
 		if debug:
 			print("[EnergyTurnManager] No actors in queue")
 		return
 
-	# get actor with highest energy
+	# get actor with lowest time value
 	var actor: Node2D = actor_queue[0]
 	var energy_comp: EnergyComponent = ComponentRegistry.get_component(actor, GameData.ComponentKeys.ENERGY)
 
-	# highest energy does not pass treshold -> tick
-	if energy_comp.energy < energy_threshold:
+	# turn event is next -> pass turn
+	if actor == turn_event:
 		if debug:
-			print("[EnergyTurnManager] highest energy does not pass threshold, turn passed")
-		tick_all_actors()
-		SignalBus.turn_passed.emit()
+			print("[EnergyTurnManager] current actor is turn event -> passing turn")
+		pass_turn()
 		return
 	
 	# remove temporarily from queue
@@ -61,12 +67,12 @@ func process_next_action():
 	if debug:
 		print("\t\tAction: ", GameData.ACTIONS.keys()[_action.action_type])
 
-	energy_comp.spend_energy(_action.cost)
+	energy_comp.add_time(_action.cost)
 	
 	# if still alive add back
 	if is_instance_valid(actor):
 		if debug:
-			print("[EnergyTurnManager] actor action processed, energy left: ", energy_comp.energy)
+			print("[EnergyTurnManager] actor action processed, time value: ", energy_comp.time_value)
 		add_to_queue(actor)
 	else:
 		if debug:
@@ -75,10 +81,10 @@ func process_next_action():
 func on_player_action_completed(_action: Action) -> void:
 	var action_cost: int = _action.cost
 	var energy_comp: EnergyComponent = GameData.player.EnergyComp
-	energy_comp.spend_energy(action_cost)
+	energy_comp.add_time(action_cost)
 
 	if debug:
-		print("[EnergyTurnManager] player action completed, energy left: ", energy_comp.energy)
+		print("[EnergyTurnManager] player action completed, time value: ", energy_comp.time_value)
 		print("\t\tAction: ", GameData.ACTIONS.keys()[_action.action_type])
 
 	# add player back to queue if not in it
@@ -92,6 +98,25 @@ func on_player_action_completed(_action: Action) -> void:
 	# continue the turn processing
 	process_next_action()
 
+func pass_turn() -> void:
+
+	if debug:
+		print("===============================================")
+		print("===   [EnergyTurnManager] PASSING TURN      ===")
+		print("===============================================")
+		print("[EnergyTurnManager]\tprocessing projectiles")
+
+	_process_projectiles()
+
+	turn_event.pass_turn()
+
+	if debug:
+		print("[EnergyTurnManager]\tTurnEvent time value: ", turn_event.get_time_value())
+
+	SignalBus.turn_passed.emit()
+
+	sort_actors()
+
 ## executes the actor's ai action and returns the action cost
 func get_action(actor) -> Action:
 
@@ -99,24 +124,10 @@ func get_action(actor) -> Action:
 
 	# if actor has no ai, do nothing just wait
 	if not ai:
-		return ActionFactory.make_action()
+		return ActionFactory.make_action({"entity": actor})
 
 	var _action: Action = ai.execute_ai_action()
 	return _action
-
-func tick_all_actors():
-	if debug:
-		print("--- [EnergyTurnManager] TICKING ALL ACTORS ---")
-		print("[EnergyTurnManager] moving projectivles first")
-	_process_projectiles()
-
-	if debug:
-		print("actor queue when ticking: ", actor_queue)
-	for actor in actor_queue:
-		var energy_comp: EnergyComponent = ComponentRegistry.get_component(actor, GameData.ComponentKeys.ENERGY)
-		energy_comp.tick()
-	
-	sort_actors()
 
 func _process_projectiles() -> void:
 
@@ -139,7 +150,7 @@ func add_to_queue(actor: Node2D) -> void:
 
 	for i in range(actor_queue.size()):
 		var queue_energy: EnergyComponent = ComponentRegistry.get_component(actor_queue[i], GameData.ComponentKeys.ENERGY)
-		if energy_comp.energy > queue_energy.energy:
+		if energy_comp.time_value < queue_energy.time_value:
 			actor_queue.insert(i, actor)
 			return
 
@@ -150,7 +161,9 @@ func remove_from_queue(actor: Node2D) -> void:
 
 func sort_actors() -> void:
 	actor_queue.sort_custom(func(a, b):
-		return ComponentRegistry.get_component(a, GameData.ComponentKeys.ENERGY).energy > ComponentRegistry.get_component(b, GameData.ComponentKeys.ENERGY).energy
+		var a_energy_comp: EnergyComponent = ComponentRegistry.get_component(a, GameData.ComponentKeys.ENERGY)
+		var b_energy_comp: EnergyComponent = ComponentRegistry.get_component(b, GameData.ComponentKeys.ENERGY)
+		return a_energy_comp.time_value < b_energy_comp.time_value
 	)
 
 

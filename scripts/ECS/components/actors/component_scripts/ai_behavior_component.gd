@@ -19,6 +19,7 @@ func set_ai_type(ai_type: String):
 
 func execute_ai_action() -> Action:
 	var player_pos: Vector2i = ComponentRegistry.get_player_pos()
+	var _entity: Node2D = get_parent().get_parent()
 
 	var self_pos_comp: PositionComponent = ComponentRegistry.get_component(get_parent().get_parent(), GameData.ComponentKeys.POSITION)
 	
@@ -29,7 +30,7 @@ func execute_ai_action() -> Action:
 		return _action
 
 	
-	return ActionFactory.make_action()
+	return ActionFactory.make_action({"entity": _entity})
 
 func get_next_position(current_pos: Vector2i, target_pos: Vector2i) -> Vector2i:
 	if type == "chase":

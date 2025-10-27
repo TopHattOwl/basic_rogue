@@ -76,7 +76,12 @@ func _process(_delta):
 
 		input_manager.handle_input()
 	else:
-		GameData.energy_turn_manager.process_next_action()
+		# process 10 turns in a frame
+		for i in range(10):
+			GameData.energy_turn_manager.process_next_action()
+
+			if GameData.player.PlayerComp.is_players_turn:
+				break
 
 
 func get_player_comp(comp_key: int) -> Node:

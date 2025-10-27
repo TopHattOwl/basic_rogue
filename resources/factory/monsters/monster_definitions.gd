@@ -133,7 +133,7 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
-			"quickness": 1200,
+			"base_speed": 1.0,
 		},
 	},
 
@@ -222,7 +222,7 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
-			"quickness": 1500,
+			"base_speed": 1.0,
 		},
 	},
 
@@ -311,7 +311,7 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
-			"quickness": 1900,
+			"base_speed": 1.5,
 		},
 	},
 
@@ -400,7 +400,7 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
-			"quickness": 1600,
+			"base_speed": 1.0,
 		},
 	},
 
@@ -491,7 +491,7 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
-			"quickness": 800,
+			"base_speed": 1.0,
 		},
 	},
 
@@ -579,7 +579,7 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
-			"quickness": 750,
+			"base_speed": 1.0,
 		},
 	},
 
@@ -666,7 +666,7 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
-			"quickness": 800,
+			"base_speed": 1.0,
 		},
 	},
 
@@ -758,7 +758,7 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
-			"quickness": 700,
+			"base_speed": 1.0,
 		},
 	},
 
@@ -845,7 +845,7 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
-			"quickness": 1500,
+			"base_speed": 1.0,
 		},
 	},
 

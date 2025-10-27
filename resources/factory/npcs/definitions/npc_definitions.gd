@@ -41,7 +41,7 @@ var npc_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
-			"quickness": 1000,
+
 		},
 	},
 

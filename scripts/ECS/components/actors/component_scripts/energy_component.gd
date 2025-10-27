@@ -1,17 +1,14 @@
 class_name EnergyComponent
 extends Node
 
+# the base speed of the entity
+var base_speed: float = 1.0
 
-@export var quickness: int = 1000:
-	set(value):
-		quickness = value
-		energy = value
-
-## Current energy accumulated
-var energy: int = 0
+## Current time_value accumulated
+var time_value: int = 0
 
 
-## energy cost variables so modifier system can modify them
+## time_value cost variables so modifier system can modify them
 
 var move_cost: int = GameData.get_action_cost(GameData.ACTIONS.MOVE)
 var melee_attack_cost: int = GameData.get_action_cost(GameData.ACTIONS.MELEE_ATTACK)
@@ -19,35 +16,40 @@ var ranged_attack_cost: int = GameData.get_action_cost(GameData.ACTIONS.RANGED_A
 var cast_spell_cost: int = GameData.get_action_cost(GameData.ACTIONS.CAST_SPELL)
 var change_stance_cost: int = GameData.get_action_cost(GameData.ACTIONS.CHANGE_STANCE)
 
-
-func initialize(data: Dictionary) -> void:
-	quickness = data.get("quickness", 1000)
-
-	# if no special starting energy, just max it
-	energy = data.get("starting_energy", quickness)
-
-
-## Gain energy each tick
-func tick() -> void:
-	var debug: bool = GameData.tick_debug
-	if get_parent().get_parent() == GameData.player:
-		if debug:
-			print("[Energy component] ticking player, energy before: ", energy)
-	else:
-		if debug:
-			print("[Energy component] ticking actor({0}), energy before: {1}".format([get_parent().get_parent().uid, energy]))
-	if debug:
-		print("[Energy component] quickness: ", quickness)
-		print("[Energy component] actor ticked, energy after: ", energy)
-
-	energy += quickness
+func _init(data: Dictionary = {}) -> void:
+	var _base_speed = data.get("base_speed", 1.0)
+	base_speed = _base_speed
+	var _energy_turn_manager: EnergyTurnManager = GameData.energy_turn_manager
+	if _energy_turn_manager == null:
+		time_value = 0
+		return
+	var _turn_event: TurnEvent = GameData.energy_turn_manager.turn_event
+	if _turn_event == null:
+		time_value = 0
+		return
+	time_value = _turn_event.get_time_value()
 
 
-## Spend energy after action, keeping remainder
-func spend_energy(cost: int) -> void:
-	energy -= cost
+func initialize(_data: Dictionary = {}) -> void:
+	pass
+
+## Returns the effective cost of an action based on `base_speed` of entity
+func get_effective_cost(action_cost: int) -> int:
+	var modifiers_comp: ModifiersComponent = get_parent().get_parent().get_component(GameData.ComponentKeys.MODIFIERS)
+	if modifiers_comp == null:
+		return action_cost
+	var speed = ModifierSystem.get_modified_value(
+		get_parent().get_parent(),
+		"base_speed",
+		GameData.ComponentKeys.ENERGY
+	)
+	return int(action_cost / speed)
+
+## adds time to entity when it acted
+func add_time(value: int) -> void:
+	time_value += value
 
 
 ## for testing/debugging
-func reset_energy() -> void:
-	energy = 0
+func reset_time() -> void:
+	time_value = 0

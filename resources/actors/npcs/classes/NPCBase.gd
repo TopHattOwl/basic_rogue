@@ -15,12 +15,11 @@ func _ready() -> void:
 
 
 func get_component(component_key: int) -> Node:
-	var comp = get_node("Components").get_node(GameData.get_component_name(component_key))
-	if not comp:
-		push_warning("component not found: " + GameData.get_component_name(component_key) + " if no null reference error, ignore this")
+	if not components.has_node(GameData.get_component_name(component_key)):
 		return null
 
-	return get_node("Components").get_node(GameData.get_component_name(component_key))
+	var comp = get_node("Components").get_node(GameData.get_component_name(component_key))
+	return comp
 
 
 func _init(d: Dictionary) -> void:

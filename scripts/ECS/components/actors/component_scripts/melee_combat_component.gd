@@ -64,10 +64,10 @@ func melee_attack(target: Node2D) -> Action:
 		target_melee_combat = ComponentRegistry.get_component(target, GameData.ComponentKeys.MONSTER_COMBAT)
 		if !target_melee_combat:
 			push_error("target has no melee combat component")
-			return ActionFactory.make_action()
+			return ActionFactory.make_action({"entity": get_parent().get_parent()})
 	if !target_health:
 		push_error("target has no health component")
-		return ActionFactory.make_action()
+		return ActionFactory.make_action({"entity": get_parent().get_parent()})
 
 	# damage of the attack, with modifiers
 	var dam: int = calc_damage()
