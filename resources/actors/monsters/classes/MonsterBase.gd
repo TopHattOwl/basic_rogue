@@ -55,6 +55,9 @@ func _init(d: Dictionary) -> void:
 	var base_data = d.get("base_data", {}) # base values (id, ui, cost, etc.)
 	set_base_data(base_data)
 
+	z_as_relative = false
+	z_index = GameData.MOSNTER_Z_INDEX
+
 	add_components(d)
 
 func set_base_data(d: Dictionary) -> void:

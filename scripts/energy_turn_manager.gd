@@ -79,12 +79,17 @@ func process_next_action():
 			print("[EnergyTurnManager] actior died from action")
 
 func on_player_action_completed(_action: Action) -> void:
+
 	var action_cost: int = _action.cost
 	var energy_comp: EnergyComponent = GameData.player.EnergyComp
+
+	if debug:
+		print("[[EnergyTurnManager] player time value before action: ", energy_comp.time_value)
+		print("[[EnergyTurnManager] cost of action: ", action_cost)
 	energy_comp.add_time(action_cost)
 
 	if debug:
-		print("[EnergyTurnManager] player action completed, time value: ", energy_comp.time_value)
+		print("[EnergyTurnManager] player action completed, time value after action: ", energy_comp.time_value)
 		print("\t\tAction: ", GameData.ACTIONS.keys()[_action.action_type])
 
 	# add player back to queue if not in it

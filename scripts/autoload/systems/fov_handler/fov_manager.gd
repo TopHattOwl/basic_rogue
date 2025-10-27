@@ -17,7 +17,7 @@ var debug := GameData.fov_manager_debug
 
 func _ready() -> void:
 	SignalBus.game_state_changed.connect(_process_toggle)
-	SignalBus.turn_passed.connect(update_fov)
+	SignalBus.player_action_completed.connect(update_fov)
 	SignalBus.calculate_fov.connect(initialize_fov)
 	SignalBus.world_map_pos_changed.connect(save_explored_tiles)
 	SignalBus.entered_dungeon.connect(_on_dungeon_entered)
@@ -97,7 +97,7 @@ func initialize_fov() -> void:
 	update_fov()
 
 
-func update_fov() -> void:
+func update_fov(_action: Action = null) -> void:
 	if map_width == 0 or map_height == 0:
 		return
 	

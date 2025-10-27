@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://yg8kkrm1kjy2" path="res://scripts/ECS/components/actors/component_scenes/hotbar_component.tscn" id="21_cat03"]
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("PlayerUI", "HealthComp", "StaminaComp", "AbilitiesComp", "SpellsComp", "HotbarComp", "SkillsComp", "AttributesComp", "EquipmentComp", "InventoryComp", "MeleeCombatComp", "DefenseStatsComp", "BlockComp", "StanceComp", "EnergyComp", "IdentityComp", "PositionComp", "StateComp", "PlayerComp", "ModifiersComp", "player_ui") groups=["player"]]
-z_index = 10
+z_index = 15
 z_as_relative = false
 script = ExtResource("1_qxscg")
 PlayerUI = NodePath("PlayerUI")
@@ -54,8 +54,6 @@ text_color = "#bbbab5"
 player_ui = NodePath("PlayerUI")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 3
-z_as_relative = false
 texture = ExtResource("1_wmv1v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -108,3 +106,5 @@ visible = false
 [node name="PlayerUI" parent="." instance=ExtResource("16_xducv")]
 
 [node name="Targeter" parent="." instance=ExtResource("17_yab6n")]
+z_index = 0
+z_as_relative = true

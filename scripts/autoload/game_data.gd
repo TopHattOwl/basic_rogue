@@ -731,17 +731,27 @@ enum ALL_SETTLEMENTS {
 
 
 # --- Z INDEXES ---
-
+# if not used anywhere, it's probably set inside Godot
 const TALK_SCREEN_Z_INDEX = 25
-const LOADING_SCREEN_Z_INDEX = 80
-const PAUSE_MENU_Z_INDEX = 70
+const LOADING_SCREEN_Z_INDEX = 150
+const PAUSE_MENU_Z_INDEX = 140
+
+const PLAYER_Z_INDEX = 15
+const MOSNTER_Z_INDEX = 10
+const MOSNTER_REMAINS_Z_INDEX = 9
+const NPC_Z_INDEX = 10
+
+const DEFAULT_WORLD_MAP_TILE_Z_INDEX = 1
+const WORLD_MAP_BACKGROUND_Z_INDEX = 0
+const WORLD_MAP_DUNGEON_Z_INDEX = 2
+const WORLD_MAP_WATER_Z_INDEX = 3
 
 
 # debug options
 var combat_system_debug := 0
 var melee_combat_component_debug := 0
 var spell_debug := 0
-var energy_turn_manager_debug := 1
+var energy_turn_manager_debug := 0
 var tick_debug := 0 # for tick management
 var input_manager_debug := 0
 var hot_bar_debug := 0
@@ -751,7 +761,7 @@ var world_map_data_debug := 0
 var fov_manager_debug := 0
 var item_debug := 0
 var inventory_debug := 0
-var equipment_ui_debug := 1
+var equipment_ui_debug := 0
 var modifiers_debug := 0
 var skill_debug := 0
 var leveling_system_debug := 0

@@ -70,6 +70,20 @@ func _ready():
 
 	# SkillFactory.print_skill_tree(GameData.SKILLS.SWORD)
 
+	# energy turn manager testing
+	var player_stat_mod_comp: ModifiersComponent = GameData.player.ModifiersComp
+
+	var _hase_buff: StatModifier = ModifierFactory.make_singe_modifier({
+		"target_component": GameData.ComponentKeys.ENERGY,
+		"target_stat": "base_speed",
+		"operation": GameData.MODIFIER_OPERATION.MULTIPLY,
+		"value": 1.5 # 50% faster actions globally
+	})[0]
+
+	player_stat_mod_comp.add_energy_modifier(_hase_buff)
+
+	
+
 func _process(_delta):
 # input handler, gets input passed to it and depending on what input is pressed it calls different functions
 	if GameData.player.PlayerComp.is_players_turn:

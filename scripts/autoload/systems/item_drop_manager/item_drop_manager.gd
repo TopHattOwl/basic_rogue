@@ -62,15 +62,15 @@ func pick_gather_target() -> void:
 
 
 
-func pick_up_specific_item(_item: ItemResource, grid_pos: Vector2i, _entity: Node2D) -> void:
+func pick_up_specific_item(_item: ItemResource, _grid_pos: Vector2i, _entity: Node2D) -> void:
 	pass
 
-func pick_up_all_items(grid_pos: Vector2i, _entity: Node2D) -> void:
+func pick_up_all_items(_grid_pos: Vector2i, _entity: Node2D) -> void:
 	pass
 
 
 ## Remove specific item from ground (for destruction, not pickup)
-func remove_item(grid_pos: Vector2i, item: ItemResource) -> void:
+func remove_item(_grid_pos: Vector2i, _item: ItemResource) -> void:
 	pass
 
 
