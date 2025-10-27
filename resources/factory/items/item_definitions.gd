@@ -50,9 +50,12 @@ var item_definitions: Dictionary = {
 				"weapon_sub_type": GameData.WEAPON_SUBTYPES.SWORD_2H,
 				"attac-Type": GameData.ATTACK_TYPE.SLASH,
 				"element": GameData.ELEMENT.PHYSICAL,
-				"bonuses": [
-					
-				],
+				"bonuses": ModifierFactory.make_singe_modifier({
+					"target_component": GameData.ComponentKeys.ENERGY,
+					"target_stat": "melee_attack_cost",
+					"value": 20,
+					"operation": GameData.MODIFIER_OPERATION.ADD, 
+				}),
 			},
 			"EquipableComponent": {
 				"equipment_slot": GameData.EQUIPMENT_SLOTS.MAIN_HAND,
@@ -142,6 +145,47 @@ var item_definitions: Dictionary = {
 			},
 			"CapacityComponent": {
 				"max_capacity": 58,
+ 			},
+			"StackableComponent": {
+				"is_stackable": false,
+				"max_stack_size": 0,
+			},
+
+		}
+	},
+
+	# -- Daggers --
+	ITEMS.STEEL_DAGGER: {
+		"base_data": {
+			"id": ITEMS.STEEL_DAGGER,
+			"uid": ITEMS.keys()[ITEMS.STEEL_DAGGER],
+			"display_name": "STEEL_DAGGER",
+			"description": "A simple STEEL_DAGGER",
+			"item_type": GameData.ITEM_TYPES.WEAPON,
+			"sprite_path": "",
+			"rarity": GameData.RARITY.UNCOMMON,
+			"value": 10,
+		},
+		"components": {
+			"MeleeWeaponComponent": {
+				"damage_min": 15,
+				"damage_max": 20,
+				"weapon_type": GameData.WEAPON_TYPES.DAGGER,
+				"weapon_sub_type": GameData.WEAPON_SUBTYPES.DAGGER_1H,
+				"attac-Type": GameData.ATTACK_TYPE.PIERCE,
+				"element": GameData.ELEMENT.PHYSICAL,
+				"bonuses": ModifierFactory.make_singe_modifier({
+					"target_component": GameData.ComponentKeys.ENERGY,
+					"target_stat": "melee_attack_cost",
+					"value": -30,
+					"operation": GameData.MODIFIER_OPERATION.ADD, 
+				}),
+			},
+			"EquipableComponent": {
+				"equipment_slot": GameData.EQUIPMENT_SLOTS.MAIN_HAND,
+			},
+			"CapacityComponent": {
+				"max_capacity": 38,
  			},
 			"StackableComponent": {
 				"is_stackable": false,
@@ -480,6 +524,8 @@ enum ITEMS {
 	STEEL_BATTLEAXE,
 
 	IRON_POLEAXE,
+
+	STEEL_DAGGER,
 
 
 	# --- SHIELDS ---

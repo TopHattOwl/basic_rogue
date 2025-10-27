@@ -29,6 +29,9 @@ func add_children():
     components = _components
     add_child(components)
 
+    z_as_relative = false
+    z_index = GameData.MOSNTER_REMAINS_Z_INDEX
+
     add_components()
 
 func add_components():

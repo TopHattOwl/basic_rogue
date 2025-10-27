@@ -30,6 +30,9 @@ func _ready():
 	var test_steel_sword = ItemFactory.create_item(ItemDefinitions.ITEMS.STEEL_LONGSWORD)
 	inv_comp.add_item(test_steel_sword)
 
+	var test_steel_dagger = ItemFactory.create_item(ItemDefinitions.ITEMS.STEEL_DAGGER)
+	inv_comp.add_item(test_steel_dagger)
+
 	var test_shield = ItemFactory.create_item(ItemDefinitions.ITEMS.ROUND_SHIELD)
 	inv_comp.add_item(test_shield)
 

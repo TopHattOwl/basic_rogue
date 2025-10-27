@@ -115,10 +115,27 @@ func fill_data_text() -> void:
 	# -- melee weapon text
 	if current_item.get_component(MeleeWeaponComponent):
 		var melee_weapon_comp: MeleeWeaponComponent = current_item.get_component(MeleeWeaponComponent)
-
 		# weapon subtype text
 		_text += " | " + GameData.WEAPON_SUBTYPES.keys()[melee_weapon_comp.weapon_sub_type].capitalize()
 		_text += "\nDamage: " + str(melee_weapon_comp.damage_min) + "-" + str(melee_weapon_comp.damage_max) 
+
+		# attack speed
+		var _bonuses: Array = melee_weapon_comp.bonuses
+		if not _bonuses.is_empty():
+			var attack_speed_mods = _bonuses.filter(func(a: StatModifier):
+				return a.target_stat == "melee_attack_cost" and a.target_component == GameData.ComponentKeys.ENERGY
+			)
+			var total_attak_speed_mod: int = 0
+			for mod in attack_speed_mods:
+				total_attak_speed_mod += mod.value
+			
+			var player_energy_comp: EnergyComponent = GameData.player.EnergyComp
+			_text += "\nAttack time: " + str(player_energy_comp.melee_attack_cost + total_attak_speed_mod)
+		
+		# if no bonuses just use default
+		else:
+			var player_energy_comp: EnergyComponent = GameData.player.EnergyComp
+			_text += "\nAttack time: " + str(player_energy_comp.melee_attack_cost)
 
 	# -- armor text
 	if current_item.get_component(ArmorComponent):

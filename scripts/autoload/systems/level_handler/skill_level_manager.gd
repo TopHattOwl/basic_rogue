@@ -56,5 +56,7 @@ func get_weapon_type() -> int:
 			return GameData.SKILLS.MACE
 		GameData.WEAPON_TYPES.POLEARMS:
 			return GameData.SKILLS.POLEARMS
+		GameData.WEAPON_TYPES.DAGGER:
+			return GameData.SKILLS.DAGGER
 		_:
 			return -1
