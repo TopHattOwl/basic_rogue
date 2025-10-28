@@ -48,6 +48,8 @@ func handle_input() -> void:
 			handle_talk_screen_inputs()
 		GameData.INPUT_MODES.PAUSE_MENU:
 			handle_pause_menu_inputs()
+		GameData.INPUT_MODES.PICK_UP_WINDOW:
+			pass
 
 
 		# DEBUG
@@ -104,9 +106,9 @@ func handle_zoomed_in_inputs():
 		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.INVENTORY
 
 	# pick up 
-	if Input.is_action_just_pressed("pick_up"):
+	if Input.is_action_just_pressed("action_pick_up"):
 		GameData.player.PlayerComp.set_prev_input_mode()
-		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.DIRECTION
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.GATHER_DIRECTION
 		ItemDropManager.pick_gather_target()
 
 	# enter world map where you can freely move, only in dev_mode
@@ -315,10 +317,13 @@ func handle_gather_direction_inputs() -> void:
 		if Input.is_action_just_pressed(action):
 			var dir = GameData.INPUT_DIRECTIONS[action]
 			var selected_grid = ComponentRegistry.get_player_pos() + dir
-			ItemDropManager.open_pick_up_window(selected_grid)
 
 			var available_tiles: AvailableTilesNode = get_tree().get_first_node_in_group("available_tiles")
 			available_tiles.queue_free()
+
+			ItemDropManager.open_pick_up_window(selected_grid)
+
+			
 
 # --- DEBUG ---
 

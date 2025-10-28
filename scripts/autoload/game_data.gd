@@ -194,6 +194,9 @@ func reset_maps() -> void:
 	actors_map = []
 	items_map = {}
 
+	# remove loot sprites
+	ItemDropManager.loot_renderer.remove_all_sprites()
+
 # ___ Tiles ___
 
 
@@ -736,19 +739,22 @@ enum ALL_SETTLEMENTS {
 
 # --- Z INDEXES ---
 # if not used anywhere, it's probably set inside Godot
-const TALK_SCREEN_Z_INDEX = 25
+
 const LOADING_SCREEN_Z_INDEX = 150
 const PAUSE_MENU_Z_INDEX = 140
+const TALK_SCREEN_Z_INDEX = 25
+const PICK_UP_WINDOW_Z_INDEX = 24
 
 const PLAYER_Z_INDEX = 15
 const MOSNTER_Z_INDEX = 10
-const MOSNTER_REMAINS_Z_INDEX = 9
 const NPC_Z_INDEX = 10
+const LOOT_Z_INDEX = 9
+const MOSNTER_REMAINS_Z_INDEX = 8
 
-const DEFAULT_WORLD_MAP_TILE_Z_INDEX = 1
-const WORLD_MAP_BACKGROUND_Z_INDEX = 0
 const WORLD_MAP_DUNGEON_Z_INDEX = 2
 const WORLD_MAP_WATER_Z_INDEX = 3
+const DEFAULT_WORLD_MAP_TILE_Z_INDEX = 1
+const WORLD_MAP_BACKGROUND_Z_INDEX = 0
 
 
 # debug options

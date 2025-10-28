@@ -1,3 +1,4 @@
+class_name InventoryItemControlNode
 extends Control
 ## when pressing an inventory item it opens its item window
 ## flow:

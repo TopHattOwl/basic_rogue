@@ -3,6 +3,7 @@ extends Node
 var player_ui: PlayerUICanvas
 
 func _ready() -> void:
+	SignalBus.turn_passed.connect(_log_turn_end)
 	SignalBus.block_power_changed.connect(_block_test)
 	SignalBus.actor_hit_final.connect(_log_actor_hit)
 	SignalBus.skill_leveled_up.connect(_log_skill_level_up)
@@ -40,6 +41,9 @@ func log_monster_attack(monster: Node2D, damage: int, hit_action: int = 0) -> vo
 func log_player_attack(target: Node2D, damage: int, element: int, hit_action: int = 0) -> void:
 	player_ui.log_message(LogMessage.make_player_attack_message(target, damage, element, hit_action))
 
+func _log_turn_end() -> void:
+	var text = "<<<<< Turn ended >>>>>"
+	player_ui.log_message(text)
 
 func _log_skill_level_up(skill_tree_id: int) -> void:
 	var skill_tree = GameData.player.SkillsComp.skills[skill_tree_id]
@@ -137,16 +141,13 @@ func update_camera_data():
 	if !ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map:
 		# limits
 		# todo fix
-		cam.limit_right = (GameData.MAP_SIZE.x + 8)  * GameData.TILE_SIZE.x
-		cam.limit_bottom = (GameData.MAP_SIZE.y + 3) * GameData.TILE_SIZE.y
-		cam.limit_top = (-3) * GameData.TILE_SIZE.y
-		cam.limit_left = (-13) * GameData.TILE_SIZE.x
+		cam.limit_right = (GameData.MAP_SIZE.x  * 2)  * GameData.TILE_SIZE.x
+		cam.limit_bottom = (GameData.MAP_SIZE.y * 2) * GameData.TILE_SIZE.y
+		cam.limit_top = (GameData.MAP_SIZE.y * -2) * GameData.TILE_SIZE.y
+		cam.limit_left =  (GameData.MAP_SIZE.x  * -2) * GameData.TILE_SIZE.x
 
 		# zoom 
 		cam.zoom = Vector2(0.7, 0.7)
-
-		# set offset
-		cam.offset.x = 64
 	
 	# world map
 	elif ComponentRegistry.get_player_comp(GameData.ComponentKeys.PLAYER).is_in_world_map and !GameData.player.PlayerComp.is_in_dungeon:

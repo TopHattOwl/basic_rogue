@@ -7,8 +7,8 @@
 		"strength": 16
 	},
 	"health_component": {
-		"hp": 124,
-		"max_hp": 124
+		"hp": 467,
+		"max_hp": 467
 	},
 	"identity_component": {
 		"actor_name": "player",

@@ -124,7 +124,7 @@ func load_items(index: int) -> void:
 	var items = inventory_comp.get_items(index)
 
 	for item in items:
-		var _inventory_item = load(DirectoryPaths.inventory_item).instantiate()
+		var _inventory_item: InventoryItemControlNode = load(DirectoryPaths.inventory_item).instantiate()
 		_inventory_item.init(item)
 		items_container.add_child(_inventory_item)
 	

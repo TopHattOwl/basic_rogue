@@ -214,7 +214,19 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MONSTER_DROPS): {
-
+			"loot_pool": [
+				{
+					"item_id": ItemDefinitions.ITEMS.IRON_LONGSWORD,
+					"weight": 2,
+					"max_amount": 1
+				},
+				{
+					"item_id": ItemDefinitions.ITEMS.STEEL_HELMET,
+					"weight": 4,
+					"max_amount": 1
+				},
+			],
+			"initial_drop_chance": 0.9,
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
@@ -303,7 +315,19 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MONSTER_DROPS): {
-
+			"loot_pool": [
+				{
+					"item_id": ItemDefinitions.ITEMS.IRON_LONGSWORD,
+					"weight": 2,
+					"max_amount": 1
+				},
+				{
+					"item_id": ItemDefinitions.ITEMS.STEEL_HELMET,
+					"weight": 4,
+					"max_amount": 1
+				},
+			],
+			"initial_drop_chance": 0.9,
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
@@ -311,7 +335,7 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.ENERGY): {
-			"base_speed": 1.5,
+			"base_speed": 2.0,
 		},
 	},
 
@@ -392,7 +416,19 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MONSTER_DROPS): {
-
+			"loot_pool": [
+				{
+					"item_id": ItemDefinitions.ITEMS.IRON_LONGSWORD,
+					"weight": 2,
+					"max_amount": 1
+				},
+				{
+					"item_id": ItemDefinitions.ITEMS.STEEL_HELMET,
+					"weight": 4,
+					"max_amount": 1
+				},
+			],
+			"initial_drop_chance": 0.9,
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
@@ -483,7 +519,19 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MONSTER_DROPS): {
-
+			"loot_pool": [
+				{
+					"item_id": ItemDefinitions.ITEMS.IRON_LONGSWORD,
+					"weight": 2,
+					"max_amount": 1
+				},
+				{
+					"item_id": ItemDefinitions.ITEMS.STEEL_HELMET,
+					"weight": 4,
+					"max_amount": 1
+				},
+			],
+			"initial_drop_chance": 0.9,
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
@@ -571,7 +619,19 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MONSTER_DROPS): {
-
+			"loot_pool": [
+				{
+					"item_id": ItemDefinitions.ITEMS.IRON_LONGSWORD,
+					"weight": 2,
+					"max_amount": 1
+				},
+				{
+					"item_id": ItemDefinitions.ITEMS.STEEL_HELMET,
+					"weight": 4,
+					"max_amount": 1
+				},
+			],
+			"initial_drop_chance": 0.9,
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
@@ -750,7 +810,19 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MONSTER_DROPS): {
-
+			"loot_pool": [
+				{
+					"item_id": ItemDefinitions.ITEMS.IRON_LONGSWORD,
+					"weight": 2,
+					"max_amount": 1
+				},
+				{
+					"item_id": ItemDefinitions.ITEMS.STEEL_HELMET,
+					"weight": 4,
+					"max_amount": 1
+				},
+			],
+			"initial_drop_chance": 0.9,
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
@@ -837,7 +909,19 @@ var monster_definitions: Dictionary = {
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MONSTER_DROPS): {
-
+			"loot_pool": [
+				{
+					"item_id": ItemDefinitions.ITEMS.IRON_LONGSWORD,
+					"weight": 2,
+					"max_amount": 1
+				},
+				{
+					"item_id": ItemDefinitions.ITEMS.STEEL_HELMET,
+					"weight": 4,
+					"max_amount": 1
+				},
+			],
+			"initial_drop_chance": 0.9,
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {

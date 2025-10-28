@@ -28,7 +28,7 @@ func on_death() -> void:
 
 func drop_loot() -> void:
 	var monster_drops_comp: MonsterDropsComponent = get_component(GameData.ComponentKeys.MONSTER_DROPS)
-	var loot = monster_drops_comp._roll_for_drops()
+	var loot = monster_drops_comp.roll_drops()
 
 	if loot.is_empty():
 		return

@@ -178,4 +178,8 @@ signal loading_label_changed(text: String)
 # when item is dropped on the ground
 signal item_dropped(item: ItemResource, grid_pos: Vector2i)
 
+# when single item is picked up
 signal item_picked_up(item: ItemResource, grid_pos: Vector2i, entity: Node2D)
+
+# when all items are picked up from a position
+signal all_items_picked_up(grid_pos: Vector2i)

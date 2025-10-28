@@ -8,7 +8,7 @@ static func make_player_attack_message(target: Node2D, damage: int, element: int
 	match hit_action:
 		GameData.HIT_ACTIONS.HIT: # hit
 			var damage_color = get_damage_color(element)
-			text = "You hit the [color={0}]{1}[/color] for [color={2}]{3}[/color] damage".format([
+			text = "[color=cyan]You[/color] hit the [color={0}]{1}[/color] for [color={2}]{3}[/color] damage".format([
 				target.text_color,
 				target_name,
 				damage_color,

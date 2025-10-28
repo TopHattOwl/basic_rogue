@@ -109,12 +109,6 @@ var item_definitions: Dictionary = {
 	},
 
 	#   -- Axes --
-	ITEMS.IRON_BATTLEAXE: {
-
-	},
-	ITEMS.STEEL_BATTLEAXE: {
-
-	},
 
 	#   -- Polearms --
 	ITEMS.IRON_POLEAXE: {
@@ -264,9 +258,6 @@ var item_definitions: Dictionary = {
 				"max_capacity": 30,
  			},
 		}
-	},
-	ITEMS.STEEL_CHESTPLATE: {
-
 	},
 
 	#   -- Head slot --
@@ -432,9 +423,7 @@ var item_definitions: Dictionary = {
 	},
 
 	#   -- Chest under slot --
-	ITEMS.GAMBESON: {
 
-	},
 
 
 	# ====================
@@ -488,6 +477,10 @@ var item_definitions: Dictionary = {
 		},
 	},
 
+	# ====================
+	# MONSTER PARTS
+	# ====================
+
 
 	# ====================
 	# RESOURCES
@@ -520,8 +513,8 @@ enum ITEMS {
 	IRON_LONGSWORD,
 	STEEL_LONGSWORD,
 
-	IRON_BATTLEAXE,
-	STEEL_BATTLEAXE,
+	# IRON_BATTLEAXE,
+	# STEEL_BATTLEAXE,
 
 	IRON_POLEAXE,
 
@@ -530,13 +523,13 @@ enum ITEMS {
 
 	# --- SHIELDS ---
 	ROUND_SHIELD,
-	KITE_SHIELD,
+	# KITE_SHIELD,
 
 	# --- ARMOR ---
 	
 	# Chest
 	IRON_CHESTPLATE,
-	STEEL_CHESTPLATE,
+	# STEEL_CHESTPLATE,
 
 	# Head
 	STEEL_HELMET,
@@ -554,11 +547,17 @@ enum ITEMS {
 	CLOAK,
 
 	# Chest under
-	GAMBESON,
+	# GAMBESON,
 
 	# --- POWDER ---
 	TEST_POWDER,
 
+
+	# --- MONSTER PARTS ---
+
+	# INSECT_WINGS,
+	# IRON_STRING_HEART,
+	# PILE_OF_ASH,
 
 
 	# --- RESOURCE ---

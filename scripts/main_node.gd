@@ -73,18 +73,26 @@ func _ready():
 
 	# SkillFactory.print_skill_tree(GameData.SKILLS.SWORD)
 
-	# energy turn manager testing
-	var player_stat_mod_comp: ModifiersComponent = GameData.player.ModifiersComp
+	# --- haste modifier test ---
+	# var player_stat_mod_comp: ModifiersComponent = GameData.player.ModifiersComp
 
-	var _hase_buff: StatModifier = ModifierFactory.make_singe_modifier({
-		"target_component": GameData.ComponentKeys.ENERGY,
-		"target_stat": "base_speed",
-		"operation": GameData.MODIFIER_OPERATION.MULTIPLY,
-		"value": 1.5 # 50% faster actions globally
-	})[0]
+	# var _hase_buff: StatModifier = ModifierFactory.make_singe_modifier({
+	# 	"target_component": GameData.ComponentKeys.ENERGY,
+	# 	"target_stat": "base_speed",
+	# 	"operation": GameData.MODIFIER_OPERATION.MULTIPLY,
+	# 	"value": 1.5 # 50% faster actions globally
+	# })[0]
 
-	player_stat_mod_comp.add_energy_modifier(_hase_buff)
+	# player_stat_mod_comp.add_energy_modifier(_hase_buff)
 
+
+	# # pick up window test
+	# var item1 = ItemFactory.create_item(ItemDefinitions.ITEMS.STEEL_HELMET)
+	# var item2 = ItemFactory.create_item(ItemDefinitions.ITEMS.IRON_LUMP)
+	# var item3 = ItemFactory.create_item(ItemDefinitions.ITEMS.CLOAK)
+	# var pick_up_window: PickUpWindowControlNode = load(DirectoryPaths.pick_up_window_scene).instantiate()
+	# pick_up_window.setup([item1, item2, item3])
+	# UiFunc.player_ui.add_child(pick_up_window)
 	
 
 func _process(_delta):

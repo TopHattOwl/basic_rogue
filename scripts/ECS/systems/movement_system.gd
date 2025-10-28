@@ -130,8 +130,6 @@ static func process_monster_movement(entity: Node, new_pos: Vector2i) -> Action:
 		GameData.actors_map[old_pos.y][old_pos.x] = null
 		GameData.actors_map[new_pos.y][new_pos.x] = entity
 
-		# update astar if not player (if player's pos in astar if solid, monsters will not 'see' them)
-
 		MapFunction.astar_toggle_walkable(old_pos)
 		MapFunction.astar_toggle_walkable(new_pos)
 

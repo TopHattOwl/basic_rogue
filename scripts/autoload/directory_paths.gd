@@ -128,6 +128,8 @@ const damage_text_scene = "res://scenes/ui/damage_text.tscn"
 
 const inventory_item = "res://scenes/ui/player_ui/inventory/inventory_item.tscn"
 
+const pick_up_window_scene = "res://scenes/ui/pick_up_window/pick_up_window.tscn"
+
 const item_window_scene = "res://scenes/ui/items/item_window.tscn"
 
 const buff_icon_scene = "res://scenes/ui/hud/buffs/buff_icon.tscn"
@@ -150,6 +152,8 @@ const monster_parts_tab_icon = "res://assets/icons/inventory_tab_icons/monster_p
 
 
 # --- SPRITES/TILEMAPS ---
+
+const loot_on_ground_sprite = "res://assets/items/loot_on_ground.png"
 
 var monster_sprites = {
 	GameData.MONSTERS_ALL.IRON_WORM: "res://assets/monsters/giant_worm.png",

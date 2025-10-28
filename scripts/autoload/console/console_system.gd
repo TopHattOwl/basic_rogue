@@ -20,7 +20,7 @@ func _ready() -> void:
 	# spawn commands
 	register_command("spawn_monster", spawn_monster_command, "Spawns a monster with given id at given position\n\t\tspawn_monster (id/uid) (x) (y)")
 	register_command("spawn_npc", spawn_npc_command, "Spawns an npc with given id at given position\n\t\tspawn_npc (id/uid) (x) (y)")
-	register_command("spawn_item", spawn_item_command, "NOT IMPLEMENTED\nSpawns an item with given id at given position\n\t\tspawn_item [id] [x] [y]")
+	register_command("spawn_item", spawn_item_command, "\nSpawns an item with given id at given position\n\t\tspawn_item [id] [x] [y]")
 
 	# time commans
 	register_command("pass_day", pass_day_command, "Skips to the first turn on the next day")
@@ -260,8 +260,72 @@ func spawn_npc_command(_args: PackedStringArray) -> String:
 
 func spawn_item_command(_args: PackedStringArray) -> String:
 	var output = ""
+	var item_id = -1
+	var item_uid = ""
+
+	# if no args given, slect rnadom item id
 	if _args.is_empty():
-		return "Error: Missing arguments for spawn_item command: id, x, y\n" + "Usage: spawn_item [id] [x] [y]"
+		item_id = randi() % ItemDefinitions.ITEMS.size()
+		item_uid = ItemDefinitions.ITEMS.keys()[item_id]
+	else:
+		var arg = _args[0]
+
+		# check if _args[0] is id or uid
+		if arg.is_valid_int():
+			# NUMERIC ID CASE
+			item_id = arg.to_int()
+
+			if item_id < 0 or item_id >= ItemDefinitions.ITEMS.size():
+				return "Error: Invalid item id: " + arg 
+
+			item_uid = ItemDefinitions.ITEMS.keys()[item_id]
+
+		else:
+			# UID CASE
+			if ItemDefinitions.ITEMS.keys().has(arg):
+
+				for key in ItemDefinitions.ITEMS.keys():
+					if key == arg:
+						item_id = ItemDefinitions.ITEMS[key]
+						item_uid = arg
+						break
+			else:
+				return "Error: Invalid item uid: " + arg
+
+
+	var grid_pos := Vector2i.ZERO
+
+	var is_pos_given: bool = _args.size() == 3
+
+	if not is_pos_given:
+		
+		var avalible_tiles = MapFunction.get_tiles_in_radius(
+			GameData.player.PositionComp.grid_pos,
+			5,
+			false,
+			false,
+			"euclidean",
+			true,
+			false
+		)
+		if avalible_tiles.is_empty():
+			return "Cannot spawn item, no avalible tiles nearby"
+
+		grid_pos = avalible_tiles[randi() % avalible_tiles.size()]
+
+	# if pos given, check if it is valid
+	else:
+		var _x = _args[1].to_int()
+		var _y = _args[2].to_int()
+		grid_pos = Vector2i(_x, _y)
+		if not MapFunction.can_spawn_monster_at_pos(grid_pos):
+			return "cannot spawn at: " + "(" +_args[1] + ", " + _args[2] + ")"
+
+	output = "spawning item: " + item_uid + " at: " + "(" + str(grid_pos.x) + ", " + str(grid_pos.y) + ")"
+
+	var item: ItemResource = ItemFactory.create_item(item_id)
+	
+	ItemDropManager.drop_item(item, grid_pos)
 
 	return output
 
