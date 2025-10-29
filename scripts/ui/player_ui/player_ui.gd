@@ -22,18 +22,11 @@ var look_target_stuff = []
 # --- INVENTORY ---
 @onready var inventory: InventoryControlNode = $Inventory
 
-# --- BLOCK POWER ---
 
-@onready var block = $BlockPower
+# --- BLOCK ---
 
-func update_block_display(current: int, _max: int) -> void:
-	block.text = "%s/%s" % [current, _max]
-
-# --- HEALTH ---
-@onready var hp_bar: Label = $HPBar
-func _process(_delta: float) -> void:
-	hp_bar.text = "HP: %s/%s" % [ComponentRegistry.get_player_comp(GameData.ComponentKeys.HEALTH).hp, ComponentRegistry.get_player_comp(GameData.ComponentKeys.HEALTH).max_hp]
-
+func update_block_display(new_value, max_value):
+	print("[PlayerUICanvas] blobk ui is not made yet")
 
 # --- MESSAGE LOG ---
 func log_message(message: String) -> void:
@@ -71,6 +64,3 @@ func _ready() -> void:
 	# hide/show ui
 	inventory.visible = false
 	stance_bar.visible = false
-
-	# init block power
-	block.text = "%s/%s" % [ComponentRegistry.get_player_comp(GameData.ComponentKeys.BLOCK).current_block_power, ComponentRegistry.get_player_comp(GameData.ComponentKeys.BLOCK).max_block_power]

@@ -1,40 +1,46 @@
-[gd_scene load_steps=16 format=3 uid="uid://be4gwtu23s7n6"]
+[gd_scene load_steps=22 format=3 uid="uid://be4gwtu23s7n6"]
 
 [ext_resource type="Script" uid="uid://bk8wygn2yqos2" path="res://scripts/ui/player_ui/player_ui.gd" id="1_hrok7"]
-[ext_resource type="Texture2D" uid="uid://cm21jj8xixo86" path="res://assets/ui/HP_alt.png" id="2_ow2f4"]
+[ext_resource type="Texture2D" uid="uid://dbsmskknn0g4d" path="res://assets/ui/border/border_left.png" id="2_dn77d"]
+[ext_resource type="Texture2D" uid="uid://ugerup4eqx16" path="res://assets/ui/border/border_top.png" id="3_eo4gi"]
 [ext_resource type="Script" uid="uid://g4jr7ixl7hs4" path="res://scenes/ui/player_ui/clock_container.gd" id="3_g2gjf"]
 [ext_resource type="Texture2D" uid="uid://dd80msrdcnci" path="res://assets/ui/look_bg.png" id="3_m8cl3"]
 [ext_resource type="Texture2D" uid="uid://crhvdt3srw8wq" path="res://assets/ui/clock_round.png" id="4_g2gjf"]
-[ext_resource type="Texture2D" uid="uid://ls0rjmajqbol" path="res://assets/ui/sidebar_bg.png" id="4_vopia"]
+[ext_resource type="Texture2D" uid="uid://dsipvhwg22ng4" path="res://assets/ui/border/border_bottom.png" id="4_mj2yk"]
 [ext_resource type="Script" uid="uid://c8l2kw4kej00a" path="res://scripts/ui/player_ui/stance_bar.gd" id="5_1ek40"]
 [ext_resource type="PackedScene" uid="uid://cdditl3ld2caa" path="res://scenes/ui/player_ui/minimap/minimap.tscn" id="5_35xku"]
+[ext_resource type="Texture2D" uid="uid://d3fq1bhbxa7r1" path="res://assets/ui/border/sidebar.png" id="5_ixohn"]
 [ext_resource type="Script" uid="uid://dobnprsw10nxm" path="res://scripts/ui/player_ui/inventory.gd" id="6_23jyl"]
 [ext_resource type="Script" uid="uid://2tj2dlsumkbw" path="res://scenes/ui/player_ui/buffs_container.gd" id="7_81j3l"]
+[ext_resource type="Texture2D" uid="uid://cs7u74l184ia7" path="res://assets/ui/status/status_progess_bar.png" id="9_eo4gi"]
+[ext_resource type="Script" uid="uid://vyyh35d6fewu" path="res://scripts/ui/player_ui/status_bar.gd" id="9_mj2yk"]
 [ext_resource type="PackedScene" uid="uid://cxi61x40xqu63" path="res://scenes/ui/player_ui/equipment_tab/equipment_tab.tscn" id="10_84420"]
+[ext_resource type="Texture2D" uid="uid://c6m7gpv0ao6l3" path="res://assets/ui/inventory/inventory_background.png" id="14_mj2yk"]
 
-[sub_resource type="Gradient" id="Gradient_35xku"]
-offsets = PackedFloat32Array(0.259677, 0.645161)
-colors = PackedColorArray(0.0246681, 0.0223797, 0.00601648, 1, 0.065951, 0.0808474, 0.0762816, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_ixohn"]
+font_size = 9
+font_color = Color(0.0627451, 0.329412, 0.054902, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_84420"]
-gradient = SubResource("Gradient_35xku")
+[sub_resource type="LabelSettings" id="LabelSettings_eo4gi"]
+font_size = 9
+font_color = Color(0.0627451, 0.329412, 0.054902, 1)
 
-[sub_resource type="Gradient" id="Gradient_23jyl"]
-offsets = PackedFloat32Array(0, 0.474138, 1)
-colors = PackedColorArray(0.158472, 0.158472, 0.158472, 1, 0.0552024, 0.165105, 0.191099, 1, 0.241156, 0.241156, 0.241156, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_mj2yk"]
+font_size = 9
+font_color = Color(0.0627451, 0.329412, 0.054902, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_81j3l"]
-gradient = SubResource("Gradient_23jyl")
-width = 174
-height = 94
-fill_from = Vector2(0.798801, 0.303419)
-fill_to = Vector2(0.120051, 0.692308)
+[sub_resource type="LabelSettings" id="LabelSettings_gfd5x"]
+font_size = 9
+font_color = Color(0.0627451, 0.329412, 0.054902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nhaou"]
+font_size = 9
+font_color = Color(0.0627451, 0.329412, 0.054902, 1)
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_hrok7")
 
 [node name="Boder" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -42,17 +48,16 @@ offset_bottom = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="Boder"]
 layout_mode = 0
-offset_right = 64.0
+offset_right = 48.0
 offset_bottom = 360.0
-texture = SubResource("GradientTexture1D_84420")
+texture = ExtResource("2_dn77d")
 expand_mode = 1
 
 [node name="TextureRect3" type="TextureRect" parent="Boder"]
 layout_mode = 0
-offset_top = 1.0
 offset_right = 640.0
-offset_bottom = 33.0
-texture = SubResource("GradientTexture1D_84420")
+offset_bottom = 32.0
+texture = ExtResource("3_eo4gi")
 expand_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="Boder"]
@@ -60,14 +65,159 @@ layout_mode = 0
 offset_top = 328.0
 offset_right = 640.0
 offset_bottom = 360.0
-texture = SubResource("GradientTexture1D_84420")
+texture = ExtResource("4_mj2yk")
 expand_mode = 2
+
+[node name="StatusBar" type="HBoxContainer" parent="."]
+z_index = 1
+offset_left = 80.0
+offset_top = 328.0
+offset_right = 309.0
+offset_bottom = 360.0
+theme_override_constants/separation = 0
+script = ExtResource("9_mj2yk")
+
+[node name="HpAndStamina" type="Control" parent="StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HPText" type="Label" parent="StatusBar/HpAndStamina"]
+layout_mode = 0
+offset_right = 22.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 9
+text = "HP:"
+label_settings = SubResource("LabelSettings_ixohn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPProgress" type="TextureProgressBar" parent="StatusBar/HpAndStamina"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1.0
+offset_right = 70.0
+offset_bottom = 15.0
+max_value = 1.0
+step = 0.1
+value = 1.0
+texture_progress = ExtResource("9_eo4gi")
+
+[node name="HPValue" type="Label" parent="StatusBar/HpAndStamina"]
+layout_mode = 0
+offset_left = 72.0
+offset_right = 112.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 9
+text = "999/999"
+label_settings = SubResource("LabelSettings_eo4gi")
+vertical_alignment = 1
+
+[node name="StaminaText" type="Label" parent="StatusBar/HpAndStamina"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 22.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 9
+text = "ST:"
+label_settings = SubResource("LabelSettings_mj2yk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaminaProgress" type="TextureProgressBar" parent="StatusBar/HpAndStamina"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 17.0
+offset_right = 70.0
+offset_bottom = 31.0
+max_value = 1.0
+step = 0.1
+value = 1.0
+texture_progress = ExtResource("9_eo4gi")
+
+[node name="StaminaValue" type="Label" parent="StatusBar/HpAndStamina"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 16.0
+offset_right = 112.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 9
+text = "999/999"
+label_settings = SubResource("LabelSettings_gfd5x")
+vertical_alignment = 1
+
+[node name="Capacity" type="Control" parent="StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WeaponCapacityText" type="Label" parent="StatusBar/Capacity"]
+layout_mode = 0
+offset_right = 22.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 9
+text = "WC:"
+label_settings = SubResource("LabelSettings_nhaou")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeaponCapacityprogress" type="TextureProgressBar" parent="StatusBar/Capacity"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1.0
+offset_right = 70.0
+offset_bottom = 15.0
+max_value = 1.0
+step = 0.1
+value = 1.0
+texture_progress = ExtResource("9_eo4gi")
+
+[node name="WeaponCapacityvalue" type="Label" parent="StatusBar/Capacity"]
+layout_mode = 0
+offset_left = 72.0
+offset_right = 112.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 9
+text = "999/999"
+label_settings = SubResource("LabelSettings_nhaou")
+vertical_alignment = 1
+
+[node name="ArmorCapacityText" type="Label" parent="StatusBar/Capacity"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 22.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 9
+text = "AC:"
+label_settings = SubResource("LabelSettings_nhaou")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArmorCapacityProgress" type="TextureProgressBar" parent="StatusBar/Capacity"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 17.0
+offset_right = 70.0
+offset_bottom = 31.0
+max_value = 1.0
+step = 0.1
+value = 1.0
+texture_progress = ExtResource("9_eo4gi")
+
+[node name="ArmorCapacityValue" type="Label" parent="StatusBar/Capacity"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 16.0
+offset_right = 112.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 9
+text = "999/999"
+label_settings = SubResource("LabelSettings_nhaou")
+vertical_alignment = 1
 
 [node name="SideBar" type="TextureRect" parent="."]
 offset_left = 512.0
 offset_right = 640.0
 offset_bottom = 360.0
-texture = ExtResource("4_vopia")
+texture = ExtResource("5_ixohn")
 expand_mode = 1
 
 [node name="ClockContainer" type="Control" parent="SideBar" node_paths=PackedStringArray("time_label")]
@@ -125,44 +275,6 @@ offset_left = 4.0
 offset_top = -13.12
 offset_right = 4.0
 offset_bottom = -17.16
-
-[node name="HPBar" type="Label" parent="."]
-z_index = 1
-offset_left = 224.0
-offset_top = 328.0
-offset_right = 288.0
-offset_bottom = 352.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 8
-text = "HP"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="HPBar"]
-z_index = -1
-layout_mode = 0
-offset_right = 64.0
-offset_bottom = 24.0
-texture = ExtResource("2_ow2f4")
-
-[node name="BlockPower" type="Label" parent="."]
-z_index = 1
-offset_left = 328.0
-offset_top = 328.0
-offset_right = 392.0
-offset_bottom = 352.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 8
-text = "Block"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="BlockPower"]
-z_index = -1
-layout_mode = 0
-offset_right = 64.0
-offset_bottom = 24.0
-texture = ExtResource("2_ow2f4")
 
 [node name="LookUI" type="TextureRect" parent="."]
 visible = false
@@ -225,6 +337,8 @@ grow_vertical = 2
 
 [node name="Inventory" type="Control" parent="."]
 visible = false
+z_index = 50
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 16.0
@@ -244,7 +358,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_81j3l")
+texture = ExtResource("14_mj2yk")
 
 [node name="FilterContainer" type="HBoxContainer" parent="Inventory"]
 layout_mode = 1
@@ -291,9 +405,9 @@ offset_bottom = 261.616
 
 [node name="BuffsContainer" type="HBoxContainer" parent="."]
 offset_left = 136.0
-offset_top = 304.0
+offset_top = 296.0
 offset_right = 480.0
-offset_bottom = 328.0
+offset_bottom = 320.0
 script = ExtResource("7_81j3l")
 
 [node name="Buffs" type="HBoxContainer" parent="BuffsContainer"]
@@ -308,7 +422,7 @@ alignment = 1
 
 [node name="PassivesContainer" type="HBoxContainer" parent="."]
 offset_left = 160.0
-offset_top = 280.0
+offset_top = 272.0
 offset_right = 456.0
-offset_bottom = 304.0
+offset_bottom = 296.0
 alignment = 1

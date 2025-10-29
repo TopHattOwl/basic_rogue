@@ -162,10 +162,10 @@ var monster_sprites = {
 	GameData.MONSTERS_ALL.STONE_CYCLOPS: "res://assets/monsters/stone/stone_cyclops.png",
 
 	GameData.MONSTERS_ALL.HOBGOBLIN: "",
-	GameData.MONSTERS_ALL.TOOTH_FAIRY: "",
+	GameData.MONSTERS_ALL.TOOTH_FAIRY: "res://assets/monsters/tooth_fairy.png",
 	GameData.MONSTERS_ALL.WOLF: "",
-	GameData.MONSTERS_ALL.PUMPKIN: "",
-	GameData.MONSTERS_ALL.SANDSTONE_GOLEM: "",
+	GameData.MONSTERS_ALL.PUMPKIN: "res://assets/monsters/pumpkin.png",
+	GameData.MONSTERS_ALL.SANDSTONE_GOLEM: "res://assets/monsters/sandstone_golem.png",
 }
 
 var monster_remains_sprites = {

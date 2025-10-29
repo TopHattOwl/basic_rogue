@@ -3,12 +3,6 @@ extends Node
 ## emitted when player completed an action that costs energy
 signal player_action_completed(action: Action)
 
-## EnergyTurnManager migration: replace with player_action_completed
-signal make_turn_pass()
-
-## EnergyTurnManager migration: replace with turn_passed
-signal player_acted()
-
 
 ## emitted when a whole turn passed (no actors with energy left)
 signal turn_passed()
@@ -36,6 +30,12 @@ signal actor_removed(actor: Node2D)
 ## emitted when actor dies after it will be removed from scene
 signal actor_died(actor: Node2D)
 signal actor_spawned(actor: Node2D)
+
+
+# --- PLAYER ---
+
+signal player_hp_changed(new_hp: int, max_hp: int)
+signal player_stamina_changed()
 
 
 

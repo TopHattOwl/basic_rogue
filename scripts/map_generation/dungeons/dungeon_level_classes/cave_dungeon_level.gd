@@ -8,6 +8,9 @@ const CORRIDOR_WIDTH = 4
 
 func generate_level_terrain() -> void:
 
+	# have to reset variables here, also resets rng state -> consistent level generation
+	reset_variables()
+
 	for y in range(GameData.MAP_SIZE.y):
 		terrain_map.append([])
 		for x in range(GameData.MAP_SIZE.x):
@@ -176,7 +179,6 @@ func find_closest_cave_points(cave1: Array, cave2: Array) -> Array:
 	return closest_pair
 
 
-# ALTERNATIVE: Even better wide corridor with smoothing
 func dig_wide_corridor_smooth(start: Vector2i, end: Vector2i) -> void:
 	var current = start
 	var path = [start]

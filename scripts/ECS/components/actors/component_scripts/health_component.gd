@@ -7,6 +7,8 @@ var max_hp: int = 10:
 var hp: int = 10:
 	set(value):
 		hp = clampi(value, 0, max_hp)
+		if get_parent().get_parent() == GameData.player:
+			SignalBus.player_hp_changed.emit(hp, max_hp)
 
 
 # func initialize2(max_hp_value: int) -> void:

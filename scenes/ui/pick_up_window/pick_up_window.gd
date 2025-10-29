@@ -138,7 +138,8 @@ func build_ui() -> void:
 	var border_panel := PanelContainer.new()
 	# Create StyleBox for the border
 	var border_style := StyleBoxFlat.new()
-	border_style.bg_color = Color(0.9, 0.9, 0.85)  # Off-white border
+	# border_style.bg_color = Color(0.9, 0.9, 0.85)  # Off-white border
+	border_style.bg_color = Color(255, 250, 241)  # Off-white border
 	border_style.content_margin_left = BORDER_WIDTH
 	border_style.content_margin_right = BORDER_WIDTH
 	border_style.content_margin_top = BORDER_WIDTH

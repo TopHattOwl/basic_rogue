@@ -4,11 +4,11 @@ var player_ui: PlayerUICanvas
 
 func _ready() -> void:
 	SignalBus.turn_passed.connect(_log_turn_end)
-	SignalBus.block_power_changed.connect(_block_test)
+	SignalBus.block_power_changed.connect(_on_block_changed)
 	SignalBus.actor_hit_final.connect(_log_actor_hit)
 	SignalBus.skill_leveled_up.connect(_log_skill_level_up)
 
-func _block_test(new_value, max_value):
+func _on_block_changed(new_value, max_value):
 	player_ui.update_block_display(new_value, max_value)
 
 func set_player_ui():
