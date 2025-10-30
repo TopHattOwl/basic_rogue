@@ -739,11 +739,14 @@ enum ALL_SETTLEMENTS {
 
 # --- Z INDEXES ---
 # if not used anywhere, it's probably set inside Godot
+const CRT_EFFECTS_Z_INDEX = 128
+const GLOW_EFFECTS_Z_INDEX = 127
 
-const LOADING_SCREEN_Z_INDEX = 150
-const PAUSE_MENU_Z_INDEX = 140
+const LOADING_SCREEN_Z_INDEX = 110
+const PAUSE_MENU_Z_INDEX = 100
 const TALK_SCREEN_Z_INDEX = 25
 const PICK_UP_WINDOW_Z_INDEX = 24
+const INVENTORY_Z_INDEX = 20
 
 const PLAYER_Z_INDEX = 15
 const MOSNTER_Z_INDEX = 10

@@ -115,17 +115,17 @@ var monster_definitions: Dictionary = {
 		GameData.get_component_name(GameData.ComponentKeys.MONSTER_DROPS): {
 			"loot_pool": [
 				{
-					"item_id": ItemDefinitions.ITEMS.IRON_LUMP,
-					"weight": 10,
-					"max_amount": 2
-				},
-				{
 					"item_id": ItemDefinitions.ITEMS.IRON_POLEAXE,
 					"weight": 2,
 					"max_amount": 1
 				},
+				{
+					"item_id": ItemDefinitions.ITEMS.IRON_STRING_HEART,
+					"weight": 10,
+					"max_amount": 2
+				},
 			],
-			"fix_loot_pool": [ItemDefinitions.ITEMS.LEATHER_BELT],
+			"fix_loot_pool": [ItemDefinitions.ITEMS.IRON_LUMP],
 		},
 
 		GameData.get_component_name(GameData.ComponentKeys.MODIFIERS): {
@@ -221,9 +221,9 @@ var monster_definitions: Dictionary = {
 					"max_amount": 1
 				},
 				{
-					"item_id": ItemDefinitions.ITEMS.STEEL_HELMET,
-					"weight": 4,
-					"max_amount": 1
+					"item_id": ItemDefinitions.ITEMS.PILE_OF_ASH,
+					"weight": 5,
+					"max_amount": 2
 				},
 			],
 			"initial_drop_chance": 0.9,
@@ -322,9 +322,9 @@ var monster_definitions: Dictionary = {
 					"max_amount": 1
 				},
 				{
-					"item_id": ItemDefinitions.ITEMS.STEEL_HELMET,
-					"weight": 4,
-					"max_amount": 1
+					"item_id": ItemDefinitions.ITEMS.INSECT_WINGS,
+					"weight": 5,
+					"max_amount": 2
 				},
 			],
 			"initial_drop_chance": 0.9,

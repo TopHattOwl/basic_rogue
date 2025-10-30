@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://w60sylyrvcau"]
+[gd_scene load_steps=4 format=3 uid="uid://w60sylyrvcau"]
 
 [ext_resource type="Texture2D" uid="uid://b03nr4iukht4e" path="res://assets/ui/equipment_tab/equipment_slot_placeholder.png" id="1_fml6w"]
 [ext_resource type="Script" uid="uid://ccuxdgmuk81y3" path="res://scenes/ui/player_ui/equipment_tab/equipment_slot.gd" id="1_hky3y"]
+[ext_resource type="Theme" uid="uid://cdsjjdkb6w6wk" path="res://resources/themes/main_theme.tres" id="3_b08e5"]
 
 [node name="EquipmentSlot" type="Control" node_paths=PackedStringArray("background_texture", "item_texture", "slot_button", "slot_label")]
 custom_minimum_size = Vector2(16, 24)
@@ -41,6 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_b08e5")
 flat = true
 
 [node name="SlotLabel" type="Label" parent="."]
@@ -49,6 +51,7 @@ offset_left = -24.0
 offset_top = 24.0
 offset_right = 40.0
 offset_bottom = 47.0
+theme = ExtResource("3_b08e5")
 theme_override_font_sizes/font_size = 7
 text = "Head under armor"
 horizontal_alignment = 1

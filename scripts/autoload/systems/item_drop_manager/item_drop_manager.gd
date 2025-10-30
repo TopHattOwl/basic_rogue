@@ -146,6 +146,7 @@ func open_pick_up_window(grid_pos: Vector2i) -> void:
 	for item in items:
 		print("\t", item.display_name)
 
+	# premade PickUpWindowControlNode has to be loaded, bc Anchor Preset ca only be set in editor
 	var pick_up_window: PickUpWindowControlNode = load(DirectoryPaths.pick_up_window_scene).instantiate()
 	pick_up_window.setup(items, grid_pos)
 	UiFunc.player_ui.add_child(pick_up_window)

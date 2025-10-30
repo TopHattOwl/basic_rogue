@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxi61x40xqu63"]
+[gd_scene load_steps=3 format=3 uid="uid://cxi61x40xqu63"]
 
 [ext_resource type="Script" uid="uid://bnx0wptoexpog" path="res://scenes/ui/player_ui/equipment_tab/equipment_tab.gd" id="1_u0saa"]
 [ext_resource type="PackedScene" uid="uid://w60sylyrvcau" path="res://scenes/ui/player_ui/equipment_tab/equipment_slot.tscn" id="2_hjkx6"]
-[ext_resource type="Texture2D" uid="uid://d2b65c070ip5a" path="res://assets/ui/equipment_tab/equipment_tab_background.png" id="2_sikld"]
 
 [node name="EquipmentTab" type="Control"]
 layout_mode = 3
@@ -17,14 +16,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u0saa")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_sikld")
+color = Color(0, 1, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0352941, 0.0313726, 0.0313726, 1)
 
 [node name="HandsSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0

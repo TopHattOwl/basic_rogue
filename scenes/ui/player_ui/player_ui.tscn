@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://be4gwtu23s7n6"]
+[gd_scene load_steps=18 format=3 uid="uid://be4gwtu23s7n6"]
 
 [ext_resource type="Script" uid="uid://bk8wygn2yqos2" path="res://scripts/ui/player_ui/player_ui.gd" id="1_hrok7"]
 [ext_resource type="Texture2D" uid="uid://dbsmskknn0g4d" path="res://assets/ui/border/border_left.png" id="2_dn77d"]
@@ -15,27 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://cs7u74l184ia7" path="res://assets/ui/status/status_progess_bar.png" id="9_eo4gi"]
 [ext_resource type="Script" uid="uid://vyyh35d6fewu" path="res://scripts/ui/player_ui/status_bar.gd" id="9_mj2yk"]
 [ext_resource type="PackedScene" uid="uid://cxi61x40xqu63" path="res://scenes/ui/player_ui/equipment_tab/equipment_tab.tscn" id="10_84420"]
+[ext_resource type="Theme" uid="uid://cdsjjdkb6w6wk" path="res://resources/themes/main_theme.tres" id="10_ixohn"]
 [ext_resource type="Texture2D" uid="uid://c6m7gpv0ao6l3" path="res://assets/ui/inventory/inventory_background.png" id="14_mj2yk"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ixohn"]
-font_size = 9
-font_color = Color(0.0627451, 0.329412, 0.054902, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_eo4gi"]
-font_size = 9
-font_color = Color(0.0627451, 0.329412, 0.054902, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_mj2yk"]
-font_size = 9
-font_color = Color(0.0627451, 0.329412, 0.054902, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_gfd5x"]
-font_size = 9
-font_color = Color(0.0627451, 0.329412, 0.054902, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_nhaou"]
-font_size = 9
-font_color = Color(0.0627451, 0.329412, 0.054902, 1)
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_hrok7")
@@ -85,9 +66,9 @@ size_flags_horizontal = 3
 layout_mode = 0
 offset_right = 22.0
 offset_bottom = 16.0
+theme = ExtResource("10_ixohn")
 theme_override_font_sizes/font_size = 9
 text = "HP:"
-label_settings = SubResource("LabelSettings_ixohn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -107,9 +88,9 @@ layout_mode = 0
 offset_left = 72.0
 offset_right = 112.0
 offset_bottom = 16.0
+theme = ExtResource("10_ixohn")
 theme_override_font_sizes/font_size = 9
 text = "999/999"
-label_settings = SubResource("LabelSettings_eo4gi")
 vertical_alignment = 1
 
 [node name="StaminaText" type="Label" parent="StatusBar/HpAndStamina"]
@@ -117,9 +98,9 @@ layout_mode = 0
 offset_top = 16.0
 offset_right = 22.0
 offset_bottom = 32.0
+theme = ExtResource("10_ixohn")
 theme_override_font_sizes/font_size = 9
 text = "ST:"
-label_settings = SubResource("LabelSettings_mj2yk")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -140,9 +121,9 @@ offset_left = 72.0
 offset_top = 16.0
 offset_right = 112.0
 offset_bottom = 32.0
+theme = ExtResource("10_ixohn")
 theme_override_font_sizes/font_size = 9
 text = "999/999"
-label_settings = SubResource("LabelSettings_gfd5x")
 vertical_alignment = 1
 
 [node name="Capacity" type="Control" parent="StatusBar"]
@@ -153,9 +134,8 @@ size_flags_horizontal = 3
 layout_mode = 0
 offset_right = 22.0
 offset_bottom = 16.0
-theme_override_font_sizes/font_size = 9
+theme = ExtResource("10_ixohn")
 text = "WC:"
-label_settings = SubResource("LabelSettings_nhaou")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -175,9 +155,9 @@ layout_mode = 0
 offset_left = 72.0
 offset_right = 112.0
 offset_bottom = 16.0
+theme = ExtResource("10_ixohn")
 theme_override_font_sizes/font_size = 9
 text = "999/999"
-label_settings = SubResource("LabelSettings_nhaou")
 vertical_alignment = 1
 
 [node name="ArmorCapacityText" type="Label" parent="StatusBar/Capacity"]
@@ -185,9 +165,9 @@ layout_mode = 0
 offset_top = 16.0
 offset_right = 22.0
 offset_bottom = 32.0
+theme = ExtResource("10_ixohn")
 theme_override_font_sizes/font_size = 9
 text = "AC:"
-label_settings = SubResource("LabelSettings_nhaou")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -208,9 +188,9 @@ offset_left = 72.0
 offset_top = 16.0
 offset_right = 112.0
 offset_bottom = 32.0
+theme = ExtResource("10_ixohn")
 theme_override_font_sizes/font_size = 9
 text = "999/999"
-label_settings = SubResource("LabelSettings_nhaou")
 vertical_alignment = 1
 
 [node name="SideBar" type="TextureRect" parent="."]
@@ -254,6 +234,8 @@ offset_left = 15.0
 offset_top = 56.0
 offset_right = 112.0
 offset_bottom = 80.0
+theme = ExtResource("10_ixohn")
+theme_override_font_sizes/font_size = 14
 text = "TimeLabel"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -263,6 +245,7 @@ layout_mode = 0
 offset_top = 196.0
 offset_right = 128.0
 offset_bottom = 360.0
+theme = ExtResource("10_ixohn")
 theme_override_font_sizes/normal_font_size = 5
 vertical_alignment = 2
 
@@ -271,9 +254,8 @@ layout_mode = 1
 anchor_top = 0.267
 anchor_right = 1.0
 anchor_bottom = 0.531
-offset_left = 4.0
 offset_top = -13.12
-offset_right = 4.0
+offset_right = 0.0
 offset_bottom = -17.16
 
 [node name="LookUI" type="TextureRect" parent="."]
@@ -336,8 +318,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Inventory" type="Control" parent="."]
-visible = false
-z_index = 50
+z_index = 20
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
@@ -382,6 +363,9 @@ offset_left = 0.191986
 offset_top = -0.0159988
 offset_right = -0.0640259
 offset_bottom = -0.160004
+theme = ExtResource("10_ixohn")
+theme_override_font_sizes/font_size = 14
+text = "TabNameLabel"
 horizontal_alignment = 1
 vertical_alignment = 1
 

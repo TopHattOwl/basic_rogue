@@ -29,8 +29,3 @@ Dialoge tree element setup:
             ]
         }
     }
-
-
-Components:
-    add id an name to GameData.ComponentKeys and GameData.COMPONENTS
-    add script path to DirectoryPaths.component_paths

@@ -98,8 +98,10 @@ func add_buttons(_options: Array) -> void:
 func make_button(label: String, option: Dictionary) -> void:
 	var button = Button.new()
 	button.text = label
-	button.add_theme_font_size_override("font_size", 6)
 	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+
+	button.theme = load(DirectoryPaths.main_theme)
+	button.add_theme_font_size_override("font_size", 6)
 
 	button.pressed.connect(_on_option_pressed.bind(option))
 

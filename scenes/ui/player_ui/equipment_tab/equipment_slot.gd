@@ -18,6 +18,11 @@ func _ready() -> void:
 	slot_button.pressed.connect(_on_slot_button_pressed)
 	SignalBus.equipment_changed.connect(fill_in_equipment)
 
+	slot_button.focus_mode = Control.FOCUS_ALL
+	slot_button.focus_neighbor_top = NodePath("")
+	slot_button.focus_neighbor_bottom = NodePath("")
+	slot_button.focus_neighbor_left = NodePath("")
+	slot_button.focus_neighbor_right = NodePath("")
 
 ## Filles the slot with the item if slot is not empty
 func fill_in_equipment(_data: Dictionary = {}) -> void:

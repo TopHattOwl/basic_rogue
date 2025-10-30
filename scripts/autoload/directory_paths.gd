@@ -119,6 +119,8 @@ const dungeon_generator = "res://scripts/map_generation/dungeon_generator.gd"
 
 
 # --- UI ---
+const main_theme = "res://resources/themes/main_theme.tres"
+
 const main_menu_scene = "res://scenes/ui/main_menu/main_menu.tscn"
 const new_game_window_scene = "res://scenes/ui/main_menu/new_game/new_game_window.tscn"
 const loading_screen_scene = "res://scenes/ui/loading/loading_screen.tscn"
@@ -149,6 +151,10 @@ const shield_tab_icon = "res://assets/icons/inventory_tab_icons/shields_tab.png"
 const potions_tab_icon = "res://assets/icons/inventory_tab_icons/potions_tab.png"
 const powder_tab_icon = "res://assets/icons/inventory_tab_icons/powder_tab.png"
 const monster_parts_tab_icon = "res://assets/icons/inventory_tab_icons/monster_part_tab.png"
+const alchemy_tab_icon = "res://assets/icons/inventory_tab_icons/alchemy_tab.png"
+const resource_tab_icon = "res://assets/icons/inventory_tab_icons/resources_tab.png"
+const food_tab_icon = "res://assets/icons/inventory_tab_icons/food_tab.png"
+const other_tab_icon = "res://assets/icons/inventory_tab_icons/other_tab.png"
 
 
 # --- SPRITES/TILEMAPS ---

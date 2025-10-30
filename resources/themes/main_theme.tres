@@ -1,0 +1,56 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cdsjjdkb6w6wk"]
+
+[ext_resource type="StyleBox" uid="uid://wkh4m2ukgw6w" path="res://resources/themes/button_style_box_flat.tres" id="1_x2ak3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2ak3"]
+bg_color = Color(0, 0.0313726, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.4, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4ejt"]
+bg_color = Color(0, 0.133333, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 1, 0.4, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yjg5f"]
+bg_color = Color(0, 0.133333, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 1, 0.4, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wthw"]
+bg_color = Color(0, 0.2, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.8, 0, 1)
+
+[resource]
+/colors/background_color = Color(0.0352941, 0.0313726, 0.0313726, 1)
+/colors/font_color_default = Color(0, 1, 0, 1)
+/colors/font_color_disabled = Color(0.4, 1, 0.4, 1)
+/colors/font_color_hover = Color(0, 0.8, 0, 1)
+/colors/font_color_pressed = Color(0, 0.4, 0, 1)
+Button/colors/font_color = Color(0, 1, 0, 1)
+Button/colors/font_focus_color = Color(0.4, 1, 0.4, 1)
+Button/colors/font_hover_color = Color(0.4, 1, 0.4, 1)
+Button/colors/font_hover_pressed_color = Color(0.4, 1, 0.4, 1)
+Button/colors/font_pressed_color = Color(0, 0.8, 0, 1)
+Button/colors/icon_disabled_color = Color(0, 0.4, 0, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_x2ak3")
+Button/styles/focus = SubResource("StyleBoxFlat_i4ejt")
+Button/styles/hover = SubResource("StyleBoxFlat_yjg5f")
+Button/styles/normal = ExtResource("1_x2ak3")
+Button/styles/pressed = SubResource("StyleBoxFlat_0wthw")
+Label/colors/font_color = Color(0, 1, 0, 1)
+Label/font_sizes/font_size = 8
+RichTextLabel/colors/default_color = Color(0, 1, 0, 1)

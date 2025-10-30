@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckn6j0406j6g3"]
+[gd_scene load_steps=3 format=3 uid="uid://ckn6j0406j6g3"]
 
 [ext_resource type="Script" uid="uid://badwlgx13jo2e" path="res://scenes/ui/player_ui/inventory/inventory_item.gd" id="1_radx0"]
+[ext_resource type="Theme" uid="uid://cdsjjdkb6w6wk" path="res://resources/themes/main_theme.tres" id="2_y0brx"]
 
 [node name="InventoryItem" type="Control" node_paths=PackedStringArray("item_button")]
 custom_minimum_size = Vector2(50, 20)
@@ -14,5 +15,6 @@ layout_mode = 0
 offset_top = 2.0
 offset_right = 88.0
 offset_bottom = 18.0
+theme = ExtResource("2_y0brx")
 theme_override_font_sizes/font_size = 8
 flat = true

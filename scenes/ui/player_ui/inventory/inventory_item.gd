@@ -30,10 +30,15 @@ func _ready() -> void:
 
 
 func _on_item_pressed(item: ItemResource) -> void:
+	if UiFunc.player_ui.inventory.is_item_window_opened:
+		return
 	# open item's item window 
 	var _item_window_component: ItemWindowComponent = item.get_component(ItemWindowComponent)
 	_item_window_component.open_item_window(item)
 
+
+func select() -> void:
+	item_button.grab_focus()
 	
 	
 	

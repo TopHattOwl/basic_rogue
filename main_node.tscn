@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b423to0sh4ppm"]
+[gd_scene load_steps=10 format=3 uid="uid://b423to0sh4ppm"]
 
 [ext_resource type="Script" uid="uid://b25g1hme5htyn" path="res://scripts/main_node.gd" id="1_scfaf"]
 [ext_resource type="Script" uid="uid://dwxyxpv42x5jx" path="res://scripts/input_manager.gd" id="2_bxfy6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://032f1axjuvqf" path="res://scripts/energy_turn_manager.gd" id="3_yjirp"]
 [ext_resource type="PackedScene" uid="uid://bcn2hw7fpnd0l" path="res://scenes/fov/fov.tscn" id="4_621oa"]
 [ext_resource type="PackedScene" uid="uid://b20p5wy1p0r7l" path="res://scenes/dev_tools/console_ui.tscn" id="6_wywo8"]
+[ext_resource type="PackedScene" uid="uid://djwelpvjyxh2r" path="res://scenes/glow/glow.tscn" id="6_yjirp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bxfy6"]
 shader = ExtResource("2_dhalm")
@@ -18,6 +19,9 @@ center_offset = Vector3(320, 180, 0)
 script = ExtResource("1_scfaf")
 input_manager = NodePath("InputManager")
 
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("2_bxfy6")
 
@@ -26,12 +30,14 @@ script = ExtResource("3_yjirp")
 
 [node name="FOV" parent="." instance=ExtResource("4_621oa")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CRTEffect" type="CanvasLayer" parent="."]
 layer = 128
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CRTEffect"]
 material = SubResource("ShaderMaterial_bxfy6")
 mesh = SubResource("QuadMesh_lwogq")
+
+[node name="Glow" parent="." instance=ExtResource("6_yjirp")]
 
 [node name="ConsoleUI" parent="." instance=ExtResource("6_wywo8")]
 visible = false

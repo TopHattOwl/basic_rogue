@@ -1,17 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c80qiqocgxr3a"]
+[gd_scene load_steps=3 format=3 uid="uid://c80qiqocgxr3a"]
 
 [ext_resource type="Script" uid="uid://ylxgs8pf3qm7" path="res://scenes/ui/talk/talk_screen.gd" id="1_y8o5y"]
-
-[sub_resource type="Gradient" id="Gradient_ulih1"]
-offsets = PackedFloat32Array(0.207237, 0.643092, 1)
-colors = PackedColorArray(0.333007, 0.170907, 0.329253, 1, 0.217049, 0.411516, 0.236121, 1, 0.0619377, 0.22613, 0.192623, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rrtou"]
-gradient = SubResource("Gradient_ulih1")
-width = 100
-height = 100
-fill_from = Vector2(1, 0)
-fill_to = Vector2(0, 1)
+[ext_resource type="Theme" uid="uid://cdsjjdkb6w6wk" path="res://resources/themes/main_theme.tres" id="2_ulih1"]
 
 [node name="TalkScreen" type="Control" node_paths=PackedStringArray("background", "conversation", "options_container")]
 layout_mode = 3
@@ -27,18 +17,31 @@ offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y8o5y")
-background = NodePath("Background")
+background = NodePath("")
 conversation = NodePath("Convarsation")
 options_container = NodePath("OptionsContainer")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_rrtou")
+color = Color(0, 1, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0352941, 0.0313726, 0.0313726, 1)
 
 [node name="Convarsation" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -51,6 +54,7 @@ offset_right = -144.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_ulih1")
 theme_override_font_sizes/bold_italics_font_size = 8
 theme_override_font_sizes/italics_font_size = 8
 theme_override_font_sizes/mono_font_size = 8

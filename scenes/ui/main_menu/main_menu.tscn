@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bloydjlut44cj"]
+[gd_scene load_steps=7 format=3 uid="uid://bloydjlut44cj"]
 
 [ext_resource type="Script" uid="uid://x4yt772tjvyr" path="res://scenes/ui/main_menu/main_menu.gd" id="1_1ch07"]
 [ext_resource type="Shader" uid="uid://cfb76lctdcisy" path="res://resources/shader/scan_lines_shader.gdshader" id="2_e8t4i"]
+[ext_resource type="PackedScene" uid="uid://djwelpvjyxh2r" path="res://scenes/glow/glow.tscn" id="2_qt1dd"]
+[ext_resource type="Theme" uid="uid://cdsjjdkb6w6wk" path="res://resources/themes/main_theme.tres" id="4_cmwxi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e8t4i"]
 shader = ExtResource("2_e8t4i")
@@ -19,10 +21,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ch07")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Glow" parent="." instance=ExtResource("2_qt1dd")]
+
+[node name="CRTEffect" type="CanvasLayer" parent="."]
 layer = 128
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CRTEffect"]
 material = SubResource("ShaderMaterial_e8t4i")
 mesh = SubResource("QuadMesh_qt1dd")
 
@@ -33,15 +37,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.103744, 0.103744, 0.103744, 1)
+color = Color(0.0627451, 0.329412, 0.054902, 1)
 
-[node name="BackgroundImage" type="TextureRect" parent="Background"]
+[node name="BackgroundImage" type="ColorRect" parent="Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.0352941, 0.0313726, 0.0313726, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -55,24 +64,31 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Title" type="Label" parent="CenterContainer/MenuItems"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("4_cmwxi")
+theme_override_font_sizes/font_size = 18
 text = "Cuul Game"
 horizontal_alignment = 1
 
 [node name="NewGameButton" type="Button" parent="CenterContainer/MenuItems"]
 layout_mode = 2
+theme = ExtResource("4_cmwxi")
 text = "New Game"
 
 [node name="LoadGameButton" type="Button" parent="CenterContainer/MenuItems"]
 layout_mode = 2
+theme = ExtResource("4_cmwxi")
 text = "Load Game"
 
 [node name="OptionsButton" type="Button" parent="CenterContainer/MenuItems"]
 layout_mode = 2
+theme = ExtResource("4_cmwxi")
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/MenuItems"]
 layout_mode = 2
+theme = ExtResource("4_cmwxi")
 text = "Quit"
 
 [node name="Transitions" type="AnimationPlayer" parent="."]

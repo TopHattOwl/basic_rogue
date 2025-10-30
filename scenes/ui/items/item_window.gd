@@ -8,6 +8,7 @@ var DEBUG_MODE := true
 # holds the buttons for each avaliable interaction on the item
 @export var InteractionsContainer: VBoxContainer
 var interaction_buttons: Array[Button]
+var selected_index: int
 
 var current_item: ItemResource
 
@@ -30,11 +31,46 @@ func _ready() -> void:
 	SignalBus.inventory_closed.connect(_on_inventory_closed)
 	DataText.bbcode_enabled = true
 
+
+	if interaction_buttons.is_empty():
+		return
+
+	# grab focus on first button
+	interaction_buttons[0].grab_focus()
+	selected_index = 0
+
 func _process(_delta: float) -> void:
 	if not visible:
 		return
 	if Input.is_action_just_pressed("ui_cancel"):
 		close_window()
+	
+	if Input.is_action_just_pressed("ui_up_custom"):
+		cycle_buttons(-1)
+	
+	if Input.is_action_just_pressed("ui_down_custom"):
+		cycle_buttons(1)
+
+func cycle_buttons(direction: int) -> void:
+	if interaction_buttons.is_empty():
+		return
+
+	selected_index = (selected_index + direction) % interaction_buttons.size()
+	if selected_index < 0:
+		selected_index = interaction_buttons.size() - 1
+	
+	_update_button_focus()
+
+func _update_button_focus() -> void:
+	if interaction_buttons.is_empty():
+		return
+	if selected_index < 0 or selected_index >= interaction_buttons.size():
+		return
+
+	var button = interaction_buttons[selected_index]
+	button.grab_focus()
+	
+
 
 func make_interact_buttons() -> void:
 	if DEBUG_MODE:
@@ -57,6 +93,7 @@ func add_equip_button() -> void:
 	var button = Button.new()
 	button.name = "EquipButton"
 	button.text = "Equip"
+	button.theme = load(DirectoryPaths.main_theme)
 	InteractionsContainer.add_child(button)
 	interaction_buttons.append(button)
 
@@ -69,6 +106,7 @@ func add_unequip_button() -> void:
 	var button = Button.new()
 	button.name = "UnequipButton"
 	button.text = "Unequip"
+	button.theme = load(DirectoryPaths.main_theme)
 	InteractionsContainer.add_child(button)
 	interaction_buttons.append(button)
 
@@ -82,6 +120,7 @@ func add_use_button() -> void:
 	var button = Button.new()
 	button.name = "UseButton"
 	button.text = "Use"
+	button.theme = load(DirectoryPaths.main_theme)
 	InteractionsContainer.add_child(button)
 	interaction_buttons.append(button)
 

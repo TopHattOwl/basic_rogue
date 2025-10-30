@@ -1,21 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://babl0882ctsl5"]
+[gd_scene load_steps=6 format=3 uid="uid://babl0882ctsl5"]
 
 [ext_resource type="Script" uid="uid://csh2ft2g44mms" path="res://scenes/ui/items/item_window.gd" id="1_6ayta"]
-
-[sub_resource type="Gradient" id="Gradient_nxd4x"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.0460526, 0.253289, 0.620066, 0.953947)
-colors = PackedColorArray(0.165656, 0.165656, 0.165656, 1, 0.0849511, 0.0904175, 0.0281187, 1, 0.247374, 0.27771, 0.312082, 1, 0.190762, 0.190762, 0.190762, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3g2r6"]
-gradient = SubResource("Gradient_nxd4x")
-fill_to = Vector2(0.482906, 0.662393)
+[ext_resource type="Theme" uid="uid://cdsjjdkb6w6wk" path="res://resources/themes/main_theme.tres" id="2_nxd4x"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nxd4x"]
 size = Vector2(16, 24)
 
 [sub_resource type="Gradient" id="Gradient_6ayta"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 1, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_nxd4x"]
 gradient = SubResource("Gradient_6ayta")
@@ -37,13 +30,26 @@ DataText = NodePath("DataText")
 Stack = NodePath("Stack")
 value_label = NodePath("Value")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 168.0
 offset_top = 32.0
 offset_right = 472.0
 offset_bottom = 264.0
-texture = SubResource("GradientTexture2D_3g2r6")
+color = Color(0, 1, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0352941, 0.0313726, 0.0313726, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(192, 56)
@@ -62,6 +68,7 @@ offset_left = 336.0
 offset_top = 40.0
 offset_right = 464.0
 offset_bottom = 128.0
+theme = ExtResource("2_nxd4x")
 theme_override_font_sizes/normal_font_size = 7
 
 [node name="SeparatorLine" type="TextureRect" parent="."]
@@ -79,6 +86,7 @@ offset_left = 216.0
 offset_top = 40.0
 offset_right = 328.0
 offset_bottom = 128.0
+theme = ExtResource("2_nxd4x")
 theme_override_font_sizes/normal_font_size = 7
 
 [node name="Stack" type="Label" parent="."]
@@ -87,6 +95,7 @@ offset_left = 176.0
 offset_top = 72.0
 offset_right = 208.0
 offset_bottom = 95.0
+theme = ExtResource("2_nxd4x")
 theme_override_font_sizes/font_size = 10
 horizontal_alignment = 1
 
@@ -96,6 +105,7 @@ offset_left = 176.0
 offset_top = 232.0
 offset_right = 216.0
 offset_bottom = 255.0
+theme = ExtResource("2_nxd4x")
 theme_override_font_sizes/font_size = 8
 text = "17 Gold"
 horizontal_alignment = 1

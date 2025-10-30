@@ -481,6 +481,65 @@ var item_definitions: Dictionary = {
 	# MONSTER PARTS
 	# ====================
 
+	ITEMS.PILE_OF_ASH: {
+		"base_data": {
+			"id": ITEMS.PILE_OF_ASH,
+			"uid": ITEMS.keys()[ITEMS.PILE_OF_ASH],
+			"display_name": "PILE_OF_ASH",
+			"description": "A PILE_OF_ASH",
+			"item_type": GameData.ITEM_TYPES.MONSTER_PART,
+			"sprite_path": "",
+			"rarity": GameData.RARITY.COMMON,
+			"value": 8,
+		},
+
+		"components": {
+			"StackableComponent": {
+				"is_stackable": true,
+				"max_stack_size": 33
+			}
+		}
+	},
+
+	ITEMS.IRON_STRING_HEART: {
+		"base_data": {
+			"id": ITEMS.IRON_STRING_HEART,
+			"uid": ITEMS.keys()[ITEMS.IRON_STRING_HEART],
+			"display_name": "IRON_STRING_HEART",
+			"description": "A IRON_STRING_HEART",
+			"item_type": GameData.ITEM_TYPES.MONSTER_PART,
+			"sprite_path": "",
+			"rarity": GameData.RARITY.COMMON,
+			"value": 12,
+		},
+
+		"components": {
+			"StackableComponent": {
+				"is_stackable": true,
+				"max_stack_size": 33
+			}
+		}
+	},
+
+	ITEMS.INSECT_WINGS: {
+		"base_data": {
+			"id": ITEMS.INSECT_WINGS,
+			"uid": ITEMS.keys()[ITEMS.INSECT_WINGS],
+			"display_name": "INSECT_WINGS",
+			"description": "A INSECT_WINGS",
+			"item_type": GameData.ITEM_TYPES.MONSTER_PART,
+			"sprite_path": "",
+			"rarity": GameData.RARITY.COMMON,
+			"value": 9,
+		},
+
+		"components": {
+			"StackableComponent": {
+				"is_stackable": true,
+				"max_stack_size": 33
+			}
+		}
+	},
 
 	# ====================
 	# RESOURCES
@@ -555,9 +614,9 @@ enum ITEMS {
 
 	# --- MONSTER PARTS ---
 
-	# INSECT_WINGS,
-	# IRON_STRING_HEART,
-	# PILE_OF_ASH,
+	INSECT_WINGS,
+	IRON_STRING_HEART,
+	PILE_OF_ASH,
 
 
 	# --- RESOURCE ---
