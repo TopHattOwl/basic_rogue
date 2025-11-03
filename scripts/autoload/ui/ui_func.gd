@@ -42,7 +42,10 @@ func log_player_attack(target: Node2D, damage: int, element: int, hit_action: in
 	player_ui.log_message(LogMessage.make_player_attack_message(target, damage, element, hit_action))
 
 func _log_turn_end() -> void:
+	var prev_text = player_ui.last_message
 	var text = "<<<<< Turn ended >>>>>"
+	if prev_text == text:
+		return
 	player_ui.log_message(text)
 
 func _log_skill_level_up(skill_tree_id: int) -> void:
@@ -171,9 +174,16 @@ func toggle_stance_bar():
 # --- INVENTORY ---
 
 func toggle_inventory():
+	toggle_buffs_container()
 	player_ui.inventory.toggle_inventory()
 
 # --- SIDEBAR ---
 
 func toggle_sidebar():
 	player_ui.visible = !player_ui.visible
+
+# --- buffs & passives/bonuses ---
+
+func toggle_buffs_container() -> void:
+	player_ui.buffs_container.visible = !player_ui.buffs_container.visible
+	player_ui.passives_container.visible = !player_ui.passives_container.visible

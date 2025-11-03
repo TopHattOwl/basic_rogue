@@ -24,10 +24,11 @@ var TAB_ICONS = {
 	GameData.ITEM_TAB_NAMES[GameData.ITEM_TYPES.OTHER]: load(DirectoryPaths.other_tab_icon),
 }
 
-@onready var filter_container = $FilterContainer
+@onready var filter_container: HBoxContainer = $FilterContainer
 @onready var tab_name = $TabName
 
-@onready var items_container = $ItemsContainer
+# TODO: replace with ItemList
+@onready var items_container: VBoxContainer = $ItemsContainer
 var items_container_children: Array
 
 var selected_index: int = 0
@@ -135,8 +136,15 @@ func _on_item_window_closed() -> void:
 
 	set_process(true)
 
+	if items_container_children.is_empty():
+		return
+
 	# select the previously selected item
-	items_container_children[selected_index].select()	
+	if selected_index >= 0 and selected_index < items_container_children.size():
+		items_container_children[selected_index].select()
+	else:
+		selected_index = 0
+		items_container_children[selected_index].select()	
 
 # --- making inventory tab ---
 func make_inventory() -> void:

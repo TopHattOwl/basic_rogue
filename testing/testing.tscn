@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://v0hx7nyi0jx8"]
+
+[ext_resource type="Script" uid="uid://bkrljjvk8vok7" path="res://testing/testing.gd" id="1_sgbpx"]
+[ext_resource type="Theme" uid="uid://cdsjjdkb6w6wk" path="res://resources/themes/main_theme.tres" id="2_eape4"]
+
+[node name="Testing" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sgbpx")
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 53.0
+offset_right = 296.0
+offset_bottom = 285.0
+theme = ExtResource("2_eape4")
+select_mode = 2
+allow_search = false
+
+[node name="ItemList2" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 56.0
+offset_right = 600.0
+offset_bottom = 285.0

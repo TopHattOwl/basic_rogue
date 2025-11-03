@@ -1,3 +1,4 @@
+class_name BuffsContainerHBox
 extends HBoxContainer
 
 @onready var buffs_container = $Buffs

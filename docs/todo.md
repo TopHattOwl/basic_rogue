@@ -1,3 +1,6 @@
+# Replace items list with ItemList node so it can be scrollable with many items
+
+
 # BUGS:
 	# level up particle sometimes doesn't exit the tree
 

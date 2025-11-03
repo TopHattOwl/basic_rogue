@@ -4,7 +4,6 @@ extends Control
 @export var background_texture: TextureRect
 @export var item_texture: TextureRect
 @export var slot_button: Button
-@export var slot_label: Label
 var equipped_item: ItemResource
 var debug: int = GameData.equipment_ui_debug
 
@@ -19,10 +18,6 @@ func _ready() -> void:
 	SignalBus.equipment_changed.connect(fill_in_equipment)
 
 	slot_button.focus_mode = Control.FOCUS_ALL
-	slot_button.focus_neighbor_top = NodePath("")
-	slot_button.focus_neighbor_bottom = NodePath("")
-	slot_button.focus_neighbor_left = NodePath("")
-	slot_button.focus_neighbor_right = NodePath("")
 
 ## Filles the slot with the item if slot is not empty
 func fill_in_equipment(_data: Dictionary = {}) -> void:
@@ -63,4 +58,4 @@ func _set_label() -> void:
 	
 	_text = _text.capitalize()
 
-	slot_label.text = _text
+	slot_button.text = _text

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxi61x40xqu63"]
+[gd_scene load_steps=4 format=3 uid="uid://cxi61x40xqu63"]
 
 [ext_resource type="Script" uid="uid://bnx0wptoexpog" path="res://scenes/ui/player_ui/equipment_tab/equipment_tab.gd" id="1_u0saa"]
 [ext_resource type="PackedScene" uid="uid://w60sylyrvcau" path="res://scenes/ui/player_ui/equipment_tab/equipment_slot.tscn" id="2_hjkx6"]
+[ext_resource type="Theme" uid="uid://cdsjjdkb6w6wk" path="res://resources/themes/main_theme.tres" id="2_sikld"]
 
 [node name="EquipmentTab" type="Control"]
 layout_mode = 3
@@ -9,145 +10,132 @@ anchor_left = 0.05
 anchor_top = 0.178
 anchor_right = 0.05
 anchor_bottom = 0.178
-offset_top = -0.0800018
-offset_right = 208.0
-offset_bottom = 263.92
+offset_top = -24.08
+offset_right = 256.0
+offset_bottom = 231.92
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u0saa")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 1, 0, 1)
-
-[node name="ColorRect" type="ColorRect" parent="Background"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = -3.0
-offset_bottom = -3.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0352941, 0.0313726, 0.0313726, 1)
+theme = ExtResource("2_sikld")
 
 [node name="HandsSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 168.0
-offset_top = 160.0
-offset_right = 184.0
-offset_bottom = 184.0
+offset_left = 120.0
+offset_top = 176.0
+offset_right = 136.0
+offset_bottom = 200.0
 equipment_id = 6
 
 [node name="ArmsSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 160.0
-offset_right = 40.0
-offset_bottom = 184.0
+offset_left = 8.0
+offset_top = 176.0
+offset_right = 24.0
+offset_bottom = 200.0
 equipment_id = 5
 
 [node name="FeetSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 217.0
-offset_right = 112.0
-offset_bottom = 241.0
+offset_left = 8.0
+offset_top = 208.0
+offset_right = 24.0
+offset_bottom = 232.0
 equipment_id = 8
 
 [node name="LegsUnderSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 144.0
-offset_top = 200.18
-offset_right = 160.0
-offset_bottom = 224.18
+offset_left = 120.0
+offset_top = 112.18
+offset_right = 136.0
+offset_bottom = 136.18
 rotation = -0.0112793
 equipment_id = 13
 
 [node name="LegsSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 200.0
-offset_right = 64.0
-offset_bottom = 224.0
+offset_left = 8.0
+offset_top = 112.18
+offset_right = 24.0
+offset_bottom = 136.18
 equipment_id = 7
 
 [node name="BeltSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 160.0
-offset_right = 112.0
-offset_bottom = 184.0
+offset_left = 120.0
+offset_top = 208.0
+offset_right = 136.0
+offset_bottom = 232.0
 equipment_id = 9
 
 [node name="OffHandSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 168.0
-offset_top = 112.0
-offset_right = 184.0
-offset_bottom = 136.0
+offset_left = 120.0
+offset_top = 16.0
+offset_right = 136.0
+offset_bottom = 40.0
 equipment_id = 1
 
 [node name="MainHandSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 112.0
-offset_right = 40.0
-offset_bottom = 136.0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 40.0
 equipment_id = 0
 
 [node name="ChestUnderSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 117.0
-offset_right = 112.0
-offset_bottom = 141.0
+offset_left = 120.0
+offset_top = 80.0
+offset_right = 136.0
+offset_bottom = 104.0
 equipment_id = 12
 
 [node name="ChestSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 72.0
-offset_right = 112.0
-offset_bottom = 96.0
+offset_left = 8.0
+offset_top = 80.0
+offset_right = 24.0
+offset_bottom = 104.0
 equipment_id = 4
 
 [node name="NeckSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 160.0
-offset_top = 64.0
-offset_right = 176.0
-offset_bottom = 88.0
+offset_left = 120.0
+offset_top = 144.0
+offset_right = 136.0
+offset_bottom = 168.0
 rotation = -0.0112793
 equipment_id = 10
 
 [node name="ShouldersSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 64.0
-offset_right = 48.0
-offset_bottom = 88.0
+offset_left = 8.0
+offset_top = 144.0
+offset_right = 24.0
+offset_bottom = 168.0
 equipment_id = 3
 
 [node name="HeadSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 19.0
-offset_right = 72.0
-offset_bottom = 43.0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 24.0
+offset_bottom = 72.0
 equipment_id = 2
 
 [node name="HeadUnderSlot" parent="." instance=ExtResource("2_hjkx6")]
 layout_mode = 0
-offset_left = 136.0
-offset_top = 19.0
-offset_right = 152.0
-offset_bottom = 43.0
+offset_left = 120.0
+offset_top = 48.0
+offset_right = 136.0
+offset_bottom = 72.0
 equipment_id = 11

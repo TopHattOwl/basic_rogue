@@ -26,8 +26,8 @@ func _ready() -> void:
 	# center it
 	var viewport_size: Vector2 = get_viewport_rect().size
 	position = Vector2(
-		(viewport_size.x - size.x) / 2,
-		(viewport_size.y - size.y) / 2
+		(viewport_size.x / 2 - size.x / 2),
+		(viewport_size.y / 2 - size.y / 2)
 	)
 
 	# only set visible to true when all is ready
@@ -128,17 +128,20 @@ func setup(items: Array = [], _gather_pos: Vector2i = Vector2i.ZERO) -> void:
 	visible = false
 
 func build_ui() -> void:
+
+	# maybe needed idk
+	# size = Vector2(WIDTH + PADDING * 2, items_to_display.size() * ITEM_HEIGHT + PADDING * 2)
+
 	# root VBoxContainer for auto sizing
 	var root_vbox := VBoxContainer.new()
 	root_vbox.custom_minimum_size = Vector2(WIDTH + PADDING * 2 + BORDER_WIDTH * 2, 0)
 	root_vbox.name = "RootVBoxContainer"
 	add_child(root_vbox)
 	
-	# Border panel for bg
+	# # Border panel for bg
 	var border_panel := PanelContainer.new()
 	# Create StyleBox for the border
 	var border_style := StyleBoxFlat.new()
-	# border_style.bg_color = Color(0.9, 0.9, 0.85)  # Off-white border
 	border_style.bg_color = Color(255, 250, 241)  # Off-white border
 	border_style.content_margin_left = BORDER_WIDTH
 	border_style.content_margin_right = BORDER_WIDTH
@@ -159,6 +162,13 @@ func build_ui() -> void:
 	background_panel.add_theme_stylebox_override("panel", bg_style)
 	background_panel.name = "BackgroundPanel"
 	border_panel.add_child(background_panel)
+
+	# TODO: replace `background_panel` and `border_panel` with themes panel
+	# var background_panel := Panel.new()
+	# background_panel.name = "BackgroundPanel"
+	# background_panel.theme = load(DirectoryPaths.main_theme)
+	# background_panel.size = size
+	# root_vbox.add_child(background_panel)
 
 	# main Vbox for items and button
 	var main_vbox := VBoxContainer.new()

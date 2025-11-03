@@ -23,16 +23,26 @@ var look_target_stuff = []
 @onready var inventory: InventoryControlNode = $Inventory
 
 
+# --- buffs & passives/bonuses ---
+@onready var buffs_container: BuffsContainerHBox = $BuffsContainer
+@onready var passives_container: HBoxContainer = $PassivesContainer
+
+
 # --- BLOCK ---
 
 func update_block_display(new_value, max_value):
 	print("[PlayerUICanvas] blobk ui is not made yet")
 
 # --- MESSAGE LOG ---
+var last_message: String = ""
 func log_message(message: String) -> void:
 	var full_message = ">" + message + "\n"
 	message_log.append_text(full_message)
 	message_log.scroll_to_line(message_log.get_line_count()) # auto-scroll 
+	last_message = message
+
+func get_last_message() -> String:
+	return message_log.get_text()
 
 # --- LOOK UI ---
 func toggle_look_ui() -> void:

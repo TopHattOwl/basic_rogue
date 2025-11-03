@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ccuxdgmuk81y3" path="res://scenes/ui/player_ui/equipment_tab/equipment_slot.gd" id="1_hky3y"]
 [ext_resource type="Theme" uid="uid://cdsjjdkb6w6wk" path="res://resources/themes/main_theme.tres" id="3_b08e5"]
 
-[node name="EquipmentSlot" type="Control" node_paths=PackedStringArray("background_texture", "item_texture", "slot_button", "slot_label")]
+[node name="EquipmentSlot" type="Control" node_paths=PackedStringArray("background_texture", "item_texture", "slot_button")]
 custom_minimum_size = Vector2(16, 24)
 layout_mode = 3
 anchors_preset = 0
@@ -14,9 +14,9 @@ script = ExtResource("1_hky3y")
 background_texture = NodePath("Background")
 item_texture = NodePath("ItemTexture")
 slot_button = NodePath("Button")
-slot_label = NodePath("SlotLabel")
 
 [node name="Background" type="TextureRect" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,6 +27,7 @@ texture = ExtResource("1_fml6w")
 expand_mode = 4
 
 [node name="ItemTexture" type="TextureRect" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,19 +41,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 88.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_b08e5")
+theme_override_font_sizes/font_size = 8
+text = "Head under"
 flat = true
-
-[node name="SlotLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = -24.0
-offset_top = 24.0
-offset_right = 40.0
-offset_bottom = 47.0
-theme = ExtResource("3_b08e5")
-theme_override_font_sizes/font_size = 7
-text = "Head under armor"
-horizontal_alignment = 1
-autowrap_mode = 3

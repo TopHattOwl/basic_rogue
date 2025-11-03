@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ylxgs8pf3qm7" path="res://scenes/ui/talk/talk_screen.gd" id="1_y8o5y"]
 [ext_resource type="Theme" uid="uid://cdsjjdkb6w6wk" path="res://resources/themes/main_theme.tres" id="2_ulih1"]
 
-[node name="TalkScreen" type="Control" node_paths=PackedStringArray("background", "conversation", "options_container")]
+[node name="TalkScreen" type="Control" node_paths=PackedStringArray("conversation", "options_container")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -17,31 +17,17 @@ offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y8o5y")
-background = NodePath("")
 conversation = NodePath("Convarsation")
 options_container = NodePath("OptionsContainer")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 1, 0, 1)
-
-[node name="ColorRect" type="ColorRect" parent="Background"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = -3.0
-offset_bottom = -3.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0352941, 0.0313726, 0.0313726, 1)
+theme = ExtResource("2_ulih1")
 
 [node name="Convarsation" type="RichTextLabel" parent="."]
 layout_mode = 1

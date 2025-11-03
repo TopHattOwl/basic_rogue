@@ -30,7 +30,17 @@ layer = 128
 material = SubResource("ShaderMaterial_e8t4i")
 mesh = SubResource("QuadMesh_qt1dd")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_cmwxi")
+
 [node name="Background" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
