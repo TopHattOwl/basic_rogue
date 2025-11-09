@@ -4,9 +4,8 @@ extends Control
 
 func _ready() -> void:
 
-
-	var img = PlaceholderTexture2D.new()
-	img. size = Vector2(16, 24)
+	var item: ItemResource = ItemFactory.create_item(4)
+	var img = load(DirectoryPaths.monster_sprites[0])
 	item_list.add_item("Test item", img)
 	item_list.add_item("Test item 2", img)
 	item_list.add_item("Test item 4", img)
@@ -19,6 +18,9 @@ func _ready() -> void:
 	item_list.add_item("Test item 11", img)
 	item_list.add_item("Test item 12", img)
 	item_list.add_item("Test item 13", img)
+
+	# add item reference
+	item_list.set_item_metadata(0, item)
 
 
 	item_list.multi_selected.connect(_on_item_multi_selected)
@@ -39,8 +41,14 @@ func _process(_delta: float) -> void:
 		print("ItemList visible: ", item_list.visible)
 		print("ItemList size: ", item_list.size)
 		print("ItemList global position: ", item_list.global_position)
+
+	if Input.is_action_just_pressed("ui_tab_custom"):
+		item_list.select(0)
 	
 
 func _on_item_multi_selected(index: int, selected: bool):
+
 	# This function runs every time an item is toggled
 	print("Item at index %s is now %s" % [index, "selected" if selected else "deselected"])
+	if item_list.get_item_metadata(index):
+		print("item: ", item_list.get_item_metadata(index))

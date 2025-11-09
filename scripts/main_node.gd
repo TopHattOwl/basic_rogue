@@ -85,15 +85,6 @@ func _ready():
 	# })[0]
 
 	# player_stat_mod_comp.add_energy_modifier(_hase_buff)
-
-
-	# # pick up window test
-	# var item1 = ItemFactory.create_item(ItemDefinitions.ITEMS.STEEL_HELMET)
-	# var item2 = ItemFactory.create_item(ItemDefinitions.ITEMS.IRON_LUMP)
-	# var item3 = ItemFactory.create_item(ItemDefinitions.ITEMS.CLOAK)
-	# var pick_up_window: PickUpWindowControlNode = load(DirectoryPaths.pick_up_window_scene).instantiate()
-	# pick_up_window.setup([item1, item2, item3])
-	# UiFunc.player_ui.add_child(pick_up_window)
 	
 
 func _process(_delta):
