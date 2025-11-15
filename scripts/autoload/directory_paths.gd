@@ -157,6 +157,14 @@ const food_tab_icon = "res://assets/icons/inventory_tab_icons/food_tab.png"
 const other_tab_icon = "res://assets/icons/inventory_tab_icons/other_tab.png"
 
 
+# attributes icons
+const strength_icon = "res://assets/icons/attributes_icons/strenght_icon.png"
+const dexterity_icon = "res://assets/icons/attributes_icons/dexterity_icon.png"
+const intelligence_icon = "res://assets/icons/attributes_icons/intelligence_icon.png"
+const constitution_icon = "res://assets/icons/attributes_icons/constitution_icon.png"
+const perception_icon = "res://assets/icons/attributes_icons/perception_icon.png"
+
+
 # --- SPRITES/TILEMAPS ---
 
 const loot_on_ground_sprite = "res://assets/items/loot_on_ground.png"

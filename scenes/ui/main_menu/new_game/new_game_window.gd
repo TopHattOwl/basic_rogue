@@ -5,6 +5,7 @@ extends Control
 
 @export var continue_button: Button
 
+
 var debug: int = 0
 
 
@@ -29,6 +30,8 @@ func _ready() -> void:
 
 	# load player base into player
 	SaveFuncs.load_player_base(player_base)
+
+	stats_container.set_stats(player_base["attributes_component"])
 
 	continue_button.pressed.connect(_on_continue_pressed)
 
