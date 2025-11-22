@@ -26,7 +26,7 @@ func on_use(_item: ItemResource, _entity: Node2D, _target: Variant = null) -> vo
 
 	for mod in modifiers:
 		# set current weapon for condition to use powder
-		var weapon_condition = WeaponCondition.new(weapon)
+		var weapon_condition: WeaponCondition = ConditionFactory.make_weapon_condition(weapon)
 
 		# add condition
 		mod.conditions.append(weapon_condition)

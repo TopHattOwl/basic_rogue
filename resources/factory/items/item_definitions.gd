@@ -477,6 +477,57 @@ var item_definitions: Dictionary = {
 		},
 	},
 
+	ITEMS.SUPER_COOL_POWDER: {
+		"base_data": {
+			"id": ITEMS.SUPER_COOL_POWDER,
+			"uid": ITEMS.keys()[ITEMS.SUPER_COOL_POWDER],
+			"display_name": "Test Powder 2",
+			"description": "A super cool test powder",
+			"item_type": GameData.ITEM_TYPES.POWDER,
+			"sprite_path": "",
+			"rarity": GameData.RARITY.COMMON,
+			"value": 99,
+		},
+		"components": {
+			"StackableComponent": {
+				"is_stackable": false,
+				"max_stack_size": 0,
+			},
+			"PowderComponent": {
+				"max_uses": 5,
+				"buff": BuffFactory.make_buff({
+					"duration": 50,
+					"buff_name": "Super cool Test Buff",
+					"buff_sprite_path": "",
+					"description": "test buff for test powder",
+					"modifiers": ModifierFactory.make_batch_modifiers([
+						{
+							"target_stat": "damage_min",
+							"target_component": GameData.ComponentKeys.MELEE_COMBAT,
+							"operation": GameData.MODIFIER_OPERATION.ADD,
+							"value": 20.0,
+							"conditions": [
+								ConditionFactory.make_weapon_type_condition(GameData.WEAPON_TYPES.POLEARMS)
+							]
+						},
+						{
+							"target_stat": "damage_min",
+							"target_component": GameData.ComponentKeys.MELEE_COMBAT,
+							"operation": GameData.MODIFIER_OPERATION.MULTIPLY,
+							"value": 1.7,
+						},
+						{
+							"target_stat": "element",
+							"target_component": GameData.ComponentKeys.MELEE_COMBAT,
+							"operation": GameData.MODIFIER_OPERATION.OVERRIDE,
+							"value": GameData.ELEMENT.FIRE,
+						},
+					]),
+				}),
+			}
+		},
+	},
+
 	# ====================
 	# MONSTER PARTS
 	# ====================
@@ -610,6 +661,7 @@ enum ITEMS {
 
 	# --- POWDER ---
 	TEST_POWDER,
+	SUPER_COOL_POWDER,
 
 
 	# --- MONSTER PARTS ---

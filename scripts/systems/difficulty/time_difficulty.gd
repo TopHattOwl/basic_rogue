@@ -22,11 +22,10 @@ func _on_month_passed() -> void:
 	print("month passed")
 
 	months_passed += 1
-	# helth multiplier
+	# health multiplier
 	var x = months_passed
 
 	x = -0.0000146503 * pow(x, 3) + 0.00202007 * pow(x, 2) + 0.033369 * x + 1.09487
-	# x = pow(x, 2.97)
 	health_multiplier = x
 
 	# damage multiplier

@@ -32,7 +32,7 @@ func _damage_actor(hit_data: Dictionary) -> void:
 	var damage = hit_data.get("damage", 0)	
 	var element = hit_data.get("element", GameData.ELEMENT.PHYSICAL)
 
-	var target_defense_comp = ComponentRegistry.get_component(target, GameData.ComponentKeys.DEFENSE_STATS)
+	var target_defense_comp: DefenseStatsComponent = ComponentRegistry.get_component(target, GameData.ComponentKeys.DEFENSE_STATS)
 	var target_health = ComponentRegistry.get_component(target, GameData.ComponentKeys.HEALTH)
 	if !target_defense_comp:
 		push_error("target, {0} has no defense component".format(ComponentRegistry.get_component(target, GameData.ComponentKeys.IDENTITY).actor_name))

@@ -317,6 +317,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Inventory" type="Control" parent="."]
+visible = false
 z_index = 20
 z_as_relative = false
 layout_mode = 3

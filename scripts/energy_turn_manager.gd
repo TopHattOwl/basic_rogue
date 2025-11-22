@@ -1,7 +1,7 @@
 class_name EnergyTurnManager
 extends Node
 
-var actor_queue: Array = []  # Sorted by energy descending
+var actor_queue: Array = []  # Sorted by energy descending [player ref, enemy 1 ref, npc 1 ref, turn_event ref]
 var turn_event: TurnEvent
 
 var active_projectiles: Array = []

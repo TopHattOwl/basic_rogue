@@ -245,6 +245,63 @@ func handle_dungeon_inputs():
 			_input_states.erase(action)
 
 
+	# enter stance selection mode
+	if Input.is_action_just_pressed("stance_change"):
+		UiFunc.toggle_stance_bar()
+		GameData.player.PlayerComp.set_prev_input_mode()
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.STANCE_SELECTION
+	
+	# inventory
+	if Input.is_action_just_pressed("inventory"):
+		UiFunc.toggle_inventory()
+		GameData.player.PlayerComp.set_prev_input_mode()
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.INVENTORY
+
+	# pick up 
+	if Input.is_action_just_pressed("action_pick_up"):
+		GameData.player.PlayerComp.set_prev_input_mode()
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.GATHER_DIRECTION
+		ItemDropManager.pick_gather_target()
+
+	# open pause menu
+	if Input.is_action_just_pressed("quit"):
+		GameData.player.PlayerComp.set_prev_input_mode()
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.PAUSE_MENU
+		var pause_menu = load(DirectoryPaths.pause_menu_scene).instantiate()
+		pause_menu.z_index = GameData.PAUSE_MENU_Z_INDEX
+		UiFunc.player_ui.add_child(pause_menu)
+	
+	if Input.is_action_just_pressed("dev_overlay"):
+		GameData.player.get_node("DevTools").toggle_dev_overlay()
+	
+	if Input.is_action_just_pressed("look"):
+		toggle_look_mode()
+
+
+	# hotbar inputs
+	for hotbar_input in GameData.HOTBAR_INPUTS:
+		if Input.is_action_just_pressed(hotbar_input):
+
+			GameData.player.PlayerComp.set_prev_input_mode()
+
+			# use hotbar will handle seting the player input mode and emitting player action completed signal if rquired
+			GameData.player.HotbarComp.use_hotbar(hotbar_input)
+
+	
+	# talking
+	if Input.is_action_just_pressed("action_chat"):
+		GameData.player.PlayerComp.set_prev_input_mode()
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.DIRECTION
+		TalkManager.pick_talk_target()
+
+
+	# console open
+	if Input.is_action_just_pressed("console") and GameData.dev_mode:
+		GameData.player.PlayerComp.set_prev_input_mode()
+		GameData.player.PlayerComp.input_mode = GameData.INPUT_MODES.CONSOLE
+		GameData.main_node.get_node("ConsoleUI").toggle_console()
+
+
 # --- STANCE CHANGE ---
 
 func handle_stance_selection_inputs() -> void:

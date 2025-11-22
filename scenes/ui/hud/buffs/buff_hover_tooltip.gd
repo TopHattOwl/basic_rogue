@@ -1,3 +1,4 @@
+class_name BuffHoverTooltipControl
 extends Control
 ## When hovering over a buff icon, show a tooltip
 
@@ -81,7 +82,15 @@ func make_add_desc(_mod: StatModifier) -> String:
 
 
 func make_multiply_desc(_mod: StatModifier) -> String:
-	var _desc = ""
+	var _desc = "+ " + str((_mod.value - 1) * 100) + " %"
+	
+	match _mod.target_stat:
+		"damage_min":
+			_desc += " to damage"
+		"damage_max":
+			return ""
+		_:
+			pass
 
 	return _desc
 

@@ -135,7 +135,6 @@ func calculate_stats(_d: Dictionary) -> Dictionary:
 
 # SINGALS
 
-
 func _on_fov_calculated() -> void:
 
 	var monster_pos = get_component(GameData.ComponentKeys.POSITION).grid_pos

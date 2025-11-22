@@ -9,7 +9,6 @@ var time_value: int = 0
 
 
 ## time_value cost variables so modifier system can modify them
-
 var move_cost: int = GameData.get_action_cost(GameData.ACTIONS.MOVE)
 var melee_attack_cost: int = GameData.get_action_cost(GameData.ACTIONS.MELEE_ATTACK)
 var ranged_attack_cost: int = GameData.get_action_cost(GameData.ACTIONS.RANGED_ATTACK)

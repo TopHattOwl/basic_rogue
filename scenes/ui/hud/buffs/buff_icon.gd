@@ -2,7 +2,7 @@ extends Control
 ## buff icon will get loaded into player's buff container
 
 var buff: Buff
-var buff_tooltip: Control
+var buff_tooltip: BuffHoverTooltipControl
 var buff_duration: int
 
 @export var buff_icon: TextureRect
