@@ -50,6 +50,7 @@
 		# crafting_station: int from enum CRAFTING_STATIONS (alchemy for powder, potions | cooking station for food)
 		# craftable_by_player: bool if player can craft it themself or have to bring it to a special crafter (like monster weapons need to be made with a specaial crafter)
 
+	# make world map much larger, to the east, the longer you go east the less civilizations (settlements) there are -> stronger monsters
 	# player can do things like clear a dungeon, fulfill contracts, etc 
 	# stances could alter attack type: mordhau grip on sword changes to bash, dagger could change to pirece from slash if stabbing stance
 	# messages:
@@ -80,7 +81,6 @@
 		# Make sure dirung bioe generaion that the spawn pos (GameData.WORLD_SPAWN_POS) is clear of non walkable tiles
 		# finish spell aiming system
 		# make player unable to use powders that are already applied
-		# make world map much larger, to the east, the longer you go east the less civilizations (settlements) there are -> stronger monsters
 			# this way there can be more regions and more settlements, more dungeons and more contracts
 		# scripts/systems/world_manager/  make the autoloads in this folder
 		# 
@@ -108,10 +108,6 @@
 	# pick up item
 	
 	# save_player.gd need to save player's previous input mode (band-aid fix) make a better version somehow
-
-
-
-
 
 
 # ASD

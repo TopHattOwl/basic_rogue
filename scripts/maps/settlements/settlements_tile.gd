@@ -79,7 +79,7 @@ class ContractData:
 		max_contracts = data.get("max_contracts", 5)
 
 	func needs_contract() -> bool:
-		var day_random = randi_range(2,3)
+		var day_random = randi_range(3,4)
 
 		return days_since_last_contract >= day_random and num_of_contracts < max_contracts
 

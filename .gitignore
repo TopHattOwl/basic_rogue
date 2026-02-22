@@ -11,3 +11,5 @@ bin/
 *.import.*
 *.tmp
 *.tmp.*
+
+docs/

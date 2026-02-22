@@ -5,7 +5,6 @@ const INPUT_DIRECTIONS = GameData.INPUT_DIRECTIONS
 	
 func _ready():
 
-
 	# passing main node to game data
 	GameData.main_node = self
 	SignalBus.game_state_changed.emit(GameState.GAME_STATES.PLAYING)
